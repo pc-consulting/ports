@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fbsd_gpio
-PORTVERSION=	0.5.0
+PORTVERSION=	g20160701
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,5 +14,13 @@ LICENSE=	BSD	# Derived from setup.py
 
 USES=		python
 USE_PYTHON=	autoplist distutils
+
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cffi>=0:devel/py-cffi@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cffi>=0:devel/py-cffi@${PY_FLAVOR}
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	evadot
+GH_PROJECT=	fbsd_gpio_py
+GH_TAGNAME=	5bb7928
 
 .include <bsd.port.mk>
