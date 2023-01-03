@@ -12,8 +12,6 @@ COMMENT=	Self-contained Python GPIO access for the RPI via FreeBSD's libgpio
 
 LICENSE=	BSD3CLAUSE
 
-BROKEN=		Does not build yet. Just needs to install a single file though...
-
 USES=		python:3.0+
 USE_PYTHON=	autoplist distutils
 
