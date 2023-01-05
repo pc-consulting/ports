@@ -1,6 +1,6 @@
---- setup.py.orig	2023-01-03 10:58:48 UTC
+--- setup.py.orig	2023-01-05 22:25:18 UTC
 +++ setup.py
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,13 @@
 +#!/usr/bin/env python
 +
 +from distutils.core import setup
@@ -14,5 +14,3 @@
 +   py_modules = ['GPIOfbsd', 'GPIOfbsd_test'],
 +   package_data = {'': ['LICENSE', 'README.md'] }
 +   )
-+
-+#py_modules = ['GPIOfbsd.py', 'GPIOfbsd_test.py', 'LICENSE', 'README.md']
