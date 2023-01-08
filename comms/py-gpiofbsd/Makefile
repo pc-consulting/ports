@@ -9,6 +9,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Self-contained Python GPIO access for the RPI via FreeBSD's libgpio
+WWW=		https://github.com/ethanlmiller/python-GPIOfbsd
 
 LICENSE=	BSD3CLAUSE
 

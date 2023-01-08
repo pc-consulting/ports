@@ -7,5 +7,3 @@ no C compilation of any kind. It doesn't use cffi,
 and requires no additional downloads. This may make
 it easier to get working in the first place, and
 easier to maintain.
-
-WWW: https://github.com/ethanlmiller/python-GPIOfbsd
