@@ -327,24 +327,72 @@ PLIST_SUB+=	PORTVERSION=${PORTVERSION} PORTMAINVER=${PORTVERSION:C|^([1-9]+)\.([
 #	=== Conditional Option Definition Details === BEGIN ===
 
 ### XXX FIXME XXX ### BEGIN
-LIBSTRIP_FILES=	analog audio blocks channels digital dtv fec fft\
-		filter pmt qtgui runtime trellis video-sdl\
-		vocoder wavelet
-SHEBANG_FILES=	grc/scripts/freedesktop/grc_setup_freedesktop.in \
-		gnuradio-runtime/python/gnuradio/ctrlport/gr-ctrlport-monitor \
-		gnuradio-runtime/python/gnuradio/ctrlport/gr-perf-monitorx
-USES+=		shebangfix
+#LIBSTRIP_FILES=	pmt
+#SHEBANG_FILES=	grc/scripts/freedesktop/grc_setup_freedesktop.in
+#USES+=		shebangfix
 # - Mark as broken if off: RUNTIME PYTHON?
 ### XXX FIXME XXX ### END
 
-#	Option UHD
+# Nothing: TESTING PYTHON POSTINSTALL DOXYGEN DEBUG DOCS
+.if ${PORT_OPTIONS:MRUNTIME}
+LIBSTRIP_FILES+=	runtime
+.endif
+# Nothing: PCH
+.if ${PORT_OPTIONS:MCRTLPORT}
+LIBSTRIP_FILES+=	crtlport
+SHEBANG_FILES+=		gnuradio-runtime/python/gnuradio/ctrlport/gr-ctrlport-monitor \
+			gnuradio-runtime/python/gnuradio/ctrlport/gr-perf-monitorx
+USES+=			shebangfix
+.endif
+# Nothing: COMPANION
+.if ${PORT_OPTIONS:MBLOCKS}
+LIBSTRIP_FILES+=	blocks
+.endif
+.if ${PORT_OPTIONS:MFEC}
+LIBSTRIP_FILES+=	fec
+.endif
+.if ${PORT_OPTIONS:MFFT}
+LIBSTRIP_FILES+=	fft
+.endif
+.if ${PORT_OPTIONS:MFILTER}
+LIBSTRIP_FILES+=	filter
+.endif
+.if ${PORT_OPTIONS:MANALOG}
+LIBSTRIP_FILES+=	analog
+.endif
+.if ${PORT_OPTIONS:MDIGITAL}
+LIBSTRIP_FILES+=	digital
+.endif
+.if ${PORT_OPTIONS:MDTV}
+LIBSTRIP_FILES+=	dtv
+.endif
+.if ${PORT_OPTIONS:MAUDIO}
+LIBSTRIP_FILES+=	audio
+.endif
+.if ${PORT_OPTIONS:MCHANNELS}
+LIBSTRIP_FILES+=	channels
+.endif
+# Nothing: PDU IIO
+.if ${PORT_OPTIONS:MQTGUI}
+LIBSTRIP_FILES+=	qtgui
+.endif
+.if ${PORT_OPTIONS:MTRELLIS}
+LIBSTRIP_FILES+=	trellis
+.endif
 .if ${PORT_OPTIONS:MUHD}
 LIBSTRIP_FILES+=	uhd
-LIB_DEPENDS+=	libuhd.so:comms/uhd
-PLIST_SUB+=	UHD=""
-.else
-PLIST_SUB+=	UHD="@comment "
 .endif
+# Nothing: RFNOC UTILS MODTOOL BLOCKTOOL
+.if ${PORT_OPTIONS:MSDL}
+LIBSTRIP_FILES+=	video-sdl
+.endif
+.if ${PORT_OPTIONS:MVOCODER}
+LIBSTRIP_FILES+=	vocoder
+.endif
+.if ${PORT_OPTIONS:MWAVELET}
+LIBSTRIP_FILES+=	wavelet
+.endif
+# Nothing: ZMQ NETWORK SOAPY
 
 #	=== Conditional Option Definition Details === END ===
 
