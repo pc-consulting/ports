@@ -76,7 +76,7 @@ OPTIONS_DEFAULT=	TESTING PYTHON POSTINSTALL \
 			RFNOC UTILS MODTOOL BLOCKTOOL SDL \
 			VOCODER WAVELET ZMQ NETWORK SOAPY
 
-OPTIONS_EXCLUDE=	RUNTIME	# Effectively mandatory, don't ask user
+#OPTIONS_EXCLUDE=	RUNTIME	# Effectively mandatory, don't ask user
 #OPTIONS_EXCLUDE=	DOXYGEN
 
 OPTIONS_SUB=		yes
@@ -112,9 +112,9 @@ PYTHON_CMAKE_BOOL+=	ENABLE_PYTHON
 PYTHON_CMAKE_ON+=	-DPYTHON_EXECUTABLE:STRING="${PYTHON_CMD}"
 PYTHON_LIB_DEPENDS+=	${PY_BOOST}
 PYTHON_RUN_DEPENDS:=	${PYTHON_BUILD_DEPENDS}	# Not checked whether this is strictly true.
-PYTHON_USES+=		pyyqt:5 python:3.5+ qt:5
+PYTHON_USES+=		pyqt:5 python:3.5+ qt:5
 ### XXX FIXME XXX ### BEGIN
-#PYTHON_USES+=		pyyqt:5 python:3.5+ qt:5 wx:3.2+
+#PYTHON_USES+=		pyqt:5 python:3.5+ qt:5 wx:3.2+
 PYTHON_USE+=		pyqt=pyqt5 qt=buildtools,core,gui,xml,qmake,widgets
 #PYTHON_USE+=		pyqt=pyqt5 qt=buildtools,core,gui,xml,qmake,widgets wx=wx,python:run
 # Not sure whether the above properly translates the following.
@@ -248,8 +248,10 @@ QTGUI_DESC=		QT GUI support (QT5/6 dependency, implies FFT FILTER PYTHON RUNTIME
 QTGUI_CMAKE_BOOL=	ENABLE_GR_QTGUI
 QTGUI_IMPLIES=		RUNTIME FFT FILTER PYTHON	# Maybe resolve python qt relation more elegantly later
 QTGUI_LIB_DEPENDS+=	libqwt6.so:x11-toolkits/qwt6
-QTGUI_USES+=		qt:5 wx:3.2+
-QTGUI_USE+=		qt=buildtools,core,gui,xml,qmake,widgets wx=wx
+# XXX FIXME XXX QTGUI_USES+=		qt:5 wx:3.2+
+QTGUI_USES+=		qt:5
+# XXX FIXME XXX QTGUI_USE+=		qt=buildtools,core,gui,xml,qmake,widgets wx=wx
+QTGUI_USE+=		qt=buildtools,core,gui,xml,qmake,widgets
 
 #	Option TRELLIS
 TRELLIS_DESC=		Trellis encoding support (implies ANALOG DIGITAL BLOCKS RUNTIME)
