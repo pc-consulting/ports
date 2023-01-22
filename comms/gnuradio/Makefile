@@ -10,11 +10,13 @@ WWW=		https://www.gnuradio.org/
 
 LICENSE=	GPLv3
 
+# XXX FIXME XXX Which of these can we relate to options, which ones are global?
 BUILD_DEPENDS=	\
 		minixmlto:textproc/minixmlto \
 		swig:devel/swig \
 		mpir>0:math/mpir \
 		xdg-open:devel/xdg-utils
+# XXX FIXME XXX Which of these can we relate to options, which ones are global?
 LIB_DEPENDS=	\
 		liblog4cpp.so:devel/log4cpp \
 		liborc-0.4.so:devel/orc \
@@ -23,6 +25,7 @@ LIB_DEPENDS=	\
 		libpangocairo.so:x11-toolkits/pango
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+# XXX FIXME XXX Which of these can we relate to options, which ones are global?
 USES=		cmake \
 		compiler:c++11-lang \
 		desktop-file-utils \
@@ -34,8 +37,9 @@ USES=		cmake \
 		shared-mime-info \
 		shebangfix
 
-SHEBANG_FILES=	grc/scripts/freedesktop/grc_setup_freedesktop.in 
+SHEBANG_FILES=	grc/scripts/freedesktop/grc_setup_freedesktop.in
 
+# XXX FIXME XXX Which of these can we relate to options, which ones are global?
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING="${LOCALBASE}/lib/gcc${_GCC_VER}" \
 		-DICONV_LIB:STRING="X${ICONV_LIB}" \
 		-DICONV_PREFIX:STRING="${ICONV_PREFIX}" \
@@ -45,9 +49,10 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING="${LOCALBASE}/lib/gcc${_GCC_VER}" \
 
 USE_CXXSTD=	c++11
 USE_GITHUB=	yes
-#USE_WX=		3.2
-#USE_QT=		buildtools core gui xml qmake widgets
-#WX_COMPS=	wx python:run
+# XXX FIXME XXX WX options remain here until I figure out how to set them at an option.
+USE_WX=		3.2
+USE_QT=		buildtools core gui xml qmake widgets
+WX_COMPS=	wx python:run
 USE_LDCONFIG=	yes
 
 #	=== Define Makefile Options === BEGIN ===
@@ -105,13 +110,17 @@ PYTHON_BUILD_DEPENDS+=	\
 			cheetah:devel/py-cheetah3@${PY_FLAVOR}
 PYTHON_CMAKE_BOOL+=	ENABLE_PYTHON
 PYTHON_CMAKE_ON+=	-DPYTHON_EXECUTABLE:STRING="${PYTHON_CMD}"
-PYTHON_LIB_DEPENDS+=	${PY_BOOST} 
+PYTHON_LIB_DEPENDS+=	${PY_BOOST}
 PYTHON_RUN_DEPENDS:=	${PYTHON_BUILD_DEPENDS}	# Not checked whether this is strictly true.
-PYTHON_USES+=		pyqt:5 python:3.5+ qt:5 wx:3.2+
-PYTHON_USE+=		pyqt=pyqt5 qt=buildtools,core,gui,xml,qmake,widgets wx=wx,python:run
+PYTHON_USES+=		pyyqt:5 python:3.5+ qt:5
+### XXX FIXME XXX ### BEGIN
+#PYTHON_USES+=		pyyqt:5 python:3.5+ qt:5 wx:3.2+
+PYTHON_USE+=		pyqt=pyqt5 qt=buildtools,core,gui,xml,qmake,widgets
+#PYTHON_USE+=		pyqt=pyqt5 qt=buildtools,core,gui,xml,qmake,widgets wx=wx,python:run
 # Not sure whether the above properly translates the following.
 #USE_WX=	3.2
 #WX_COMPS=	wx python:run
+### XXX FIXME XXX ### END
 
 #	Option POSTINSTALL	# No idea what this does but it seems to be on per default
 POSTINSTALL_DESC=	Enable post-install support (you likely want this)
@@ -283,7 +292,7 @@ BLOCKTOOL_IMPLIES=	RUNTIME PYTHON
 SDL_DESC=		Simple DirectMedia Layer video support (SDL dependency, implies RUNTIME)
 SDL_CMAKE_BOOL=		ENABLE_GR_VIDEO_SDL
 SDL_IMPLIES=		RUNTIME
-SDL_BUILD_DEPENDS+=	sdl-config:devel/sdl12 
+SDL_BUILD_DEPENDS+=	sdl-config:devel/sdl12
 
 #	Option VOCODER
 VOCODER_DESC=		Voice encoder support (libcodec2 & libgsm dependencies, implies ANALOG FFT FILTER BLOCKS RUNTIME)
