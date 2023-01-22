@@ -22,7 +22,7 @@ LIB_DEPENDS=	\
 		liborc-0.4.so:devel/orc \
 		libthrift.so:devel/thrift-cpp \
 		libunwind.so:devel/libunwind \
-		libpangocairo.so:x11-toolkits/pango
+		libpangocairo-1.0.so:x11-toolkits/pango
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 # XXX FIXME XXX Which of these can we relate to options, which ones are global?
