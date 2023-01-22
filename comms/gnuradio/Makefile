@@ -152,9 +152,9 @@ RUNTIME_CMAKE_BOOL=	ENABLE_GNURADIO_RUNTIME
 RUNTIME_CMAKE_BOOL_OFF=	ENABLE_INTERNAL_VOLK
 RUNTIME_CMAKE_ON+=	-DPYTHON_EXECUTABLE:STRING="${PYTHON_CMD}"
 #RUNTIME_IMPLIES=	PYTHON	# Need the binary, but not necessarily the option?
-RUNTIME_BUILD_DEPENDS+=	libboost_date_time.so:devel/boost-libs \
-			volk>0:devel/volk
+RUNTIME_BUILD_DEPENDS+=	volk>0:devel/volk
 RUNTIME_LIB_DEPENDS+=	libgmpxx.so:math/gmp \
+			libboost_date_time.so:devel/boost-libs \
 			libspdlog.so:devel/spdlog
 RUNTIME_RUN_DEPENDS:=	${RUNTIME_BUILD_DEPENDS}	# Not checked whether this is strictly true.
 RUNTIME_USES+=		python:3.5+
@@ -325,9 +325,9 @@ SOAPY_DESC=		SoapySDR support (SopySDR dependency, implies PYTHON RUNTIME)
 SOAPY_CMAKE_BOOL=	ENABLE_GR_SOAPY
 SOAPY_IMPLIES=		RUNTIME PYTHON
 #	Note: Could add knobs to pick an SDR we have in ports, later...
-SOAPY_BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/SoapySDR.py:misc/py-SoapySDR@${PY_FLAVOR} \
+SOAPY_BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/SoapySDR.py:misc/py-SoapySDR@${PY_FLAVOR}
 SOAPY_LIB_DEPENDS+=	libSoapySDR.so:misc/soapysdr
-SOAPY_RUN_DEPENDS+=	${SOAPY_LIB_DEPENDS}
+SOAPY_RUN_DEPENDS+=	${SOAPY_BUILD_DEPENDS}
 
 #	=== Option Definition Details === END ===
 
