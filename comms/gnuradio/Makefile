@@ -134,7 +134,7 @@ DOXYGEN_BUILD_DEPENDS+=	doxygen>0:devel/doxygen \
 			dot:graphics/graphviz \
 			xmlto:textproc/xmlto \
 			freefont-ttf>0:x11-fonts/freefont-ttf \
-			mathjax>0:www/mathjax
+			MathJax>0:www/mathjax
 DOXYGEN_RUN_DEPENDS:=	${RUNTIME_BUILD_DEPENDS}	# Not checked whether this is strictly true.
 
 #	Option DEBUG
