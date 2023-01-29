@@ -93,7 +93,6 @@ TESTING_CMAKE_BOOL=	ENABLE_TESTING
 
 #	Option PYTHON	# Effectively mandatory for GR to be useful
 PYTHON_DESC=		Python support (effectively mandatory)
-# XXX FIXME XXX Need py-mako be updated to >1.1.0. Most notably, breaks COMPANION, QTGUI, UTILS.
 PYTHON_BUILD_DEPENDS+=	\
 			${PYTHON_PKGNAMEPREFIX}sphinx>=1.2.2,1:textproc/py-sphinx@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
