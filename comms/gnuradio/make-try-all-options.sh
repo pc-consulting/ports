@@ -6,7 +6,7 @@ export P_MAKE_PATH=comms_gnuradio
 export P_PATH=/home/pcc/src/FreeBSD/ports/comms/gnuradio
 # This requires at least one run of 'make config'.
 export P_OPTIONS=`grep _FILE_COMPLETE_OPTIONS_LIST /var/db/ports/${P_MAKE_PATH}/options | cut -f2- -d=`
-export P_OPTIONS='BLAH BLUBB'
+#export P_OPTIONS='BLAH BLUBB'
 #		make rmconfig 2>&1 | `${LOGCMD}` && \
 #
 
@@ -18,11 +18,11 @@ for option in ${P_OPTIONS} ; do
 	(
 		cd ${P_PATH} && \
 		echo $0" ===>>> Now working in "`pwd`"." && \
-		make makeplist 2>&1 | `${LOGCMD}` && \
+		make makeplist 2>&1 | ${LOGCMD} && \
 		mv pkg-plist pkg-plist.${option} && \
-		make showconfig 2>&1 | `${LOGCMD}` && \
-		make all 2>&1 | `${LOGCMD}` && \
-		make clean 2>&1 | `${LOGCMD}` && \
+		make showconfig 2>&1 | ${LOGCMD} && \
+		make all 2>&1 | ${LOGCMD} && \
+		make clean 2>&1 | ${LOGCMD} && \
 		echo $0" ===>>> Work done for ${option} in "`pwd`"."
 	)
 done
