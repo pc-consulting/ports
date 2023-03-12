@@ -1,0 +1,9 @@
+Cloudlog is an open-source PHP & MySQL based amateur radio logging
+application, allowing you to log contacts via a web browser on any
+device and platformi. It includes the following features:
+
+- Log QSOs anywhere,
+- Logbook of the World Integration,
+- Integrates eQSL, QRZ Logbook, Clublog,
+- Awards Support,
+- And probably some others more...

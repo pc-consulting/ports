@@ -1,0 +1,21 @@
+Please now add the Cloudlog directory to your web server so that it
+is accessible through your web.
+
+You also will have to add a database to your mysql server after the
+installation. Log into your mysql server administrator account and 
+
+  CREATE DATABASE Cloudlog;
+
+(assuming that you wish to name your database 'Cloudlog'). Create a
+new database user for Cloudlog, e. g. 'us3r', and grant it the
+required access with 'password', and all db privileges:
+
+  CREATE USER 'us3r'@localhost IDENTIFIED BY 'password';
+  GRANT ALL PRIVILEGES ON Cloudlog.* TO 'us3r'@'localhost';
+
+https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#4-create-a-sql-database-and-user
+may elaborate further. Please now point your browser to
+<your-url-to-cloudlog>/install, and follow the instructions.
+https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#5-run-the-cloudlog-install-wizard
+refers. Please also check the post-install tasks at
+https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#post-install-tasks
