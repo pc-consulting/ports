@@ -29,9 +29,9 @@ NO_ARCH=	YES
 #BROKEN=		Sorry, below FreeBSD 12, you're on your own...
 #.endif
 
-#do-install:
-#	@${MKDIR} ${STAGEDIR}${WWWDIR}
-#	@cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${WWWDIR}
+do-install:
+	@${MKDIR} ${STAGEDIR}${WWWDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${WWWDIR}
 #.for i in ${FAQ_DIR}
 #	@${MKDIR} ${STAGEDIR}${WWWDIR}/${i}
 #.endfor
