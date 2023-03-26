@@ -32,6 +32,19 @@ NO_ARCH=	YES
 do-install:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${WWWDIR}
+        # TODO:
+	# Create /usr/local/etc/nginx/nginx.conf if not there, copy sample otherwise
+	# Copy sample cloudlog.conf.sample if not there, copy sample otherwise to /usr/local/etc/nginx/conf.d/
+	# Enable php_fpm if not yet active
+	# Create /usr/local/etc/php.ini if not there, copy sample otherwise
+	# Enable database if not yet active
+	# Run database initialization if selected by user
+	# Adjust pkg-message output accordingly.
+	#${INSTALL_DATA} files/nginx.conf files/cloudlog.conf
+	#
+#post-patch:
+	#@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/Makefile
+	#
 #.for i in ${FAQ_DIR}
 #	@${MKDIR} ${STAGEDIR}${WWWDIR}/${i}
 #.endfor

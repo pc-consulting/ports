@@ -2941,3 +2941,6 @@
 @dir(www,www,) %%WWWDIR%%/assets/i18n
 @dir(www,www,) %%WWWDIR%%/assets/svg
 @dir(www,www,) %%WWWDIR%%/uploads
+#/usr/local/etc/nginx/nginx.conf
+#/usr/local/etc/nginx/conf.d/cloudlog.conf
+#/usr/local/etc/php-fpm.d/cloudlog.conf
