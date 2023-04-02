@@ -4,11 +4,6 @@ Current state of the art (at time of edit):
 
 Considered production-ready (i. e. could go into the ports tree):
 
-- textproc/py-mako
-    - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
-    - Has been there in -1.0-something for a good while
-    - Is a quite stable and known, self-installing python package
-    - Is accepted by the proposed gnuradio port
 - comms/py-gpiofbsd
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
