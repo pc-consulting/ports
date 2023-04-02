@@ -1,21 +1,39 @@
-Please now add the Cloudlog directory to your web server so that it
-is accessible through your web.
 
-You also will have to add a database to your mysql server after the
-installation. Log into your mysql server administrator account and 
+1. Cloudlog needs a mysql type database to store its data.
+   I have installed a sample sequence of commands which you
+   should execute in the database to prepare for cloudlog at:
+      ... path to .sql sample ...
+   Any further indications?
 
-  CREATE DATABASE Cloudlog;
+2. Cloudlog also needs a web server to operate from.
+   I have installed for you a sample nginx config file at:
+      /usr/local/etc/nginx/nginx.conf.cloudlog-sample
+   If you do not othewise have an nginx configuration made,
+   you simply could replace the nginx port's default config
+   with this one.
+   Please also find a corresponding cloudlog nginx config file at:
+      /usr/local/etc/nginx/conf.d/cloudlog.conf
+   The sample nginx.conf would start nginx with that configuration.
+   Cloudlog uses php-fpm for which I stored a config file at:
+      /usr/local/etc/php-fpm.d/cloudlog.conf
+   The default php-fpm configuration would use that automatically.
+   Once done, you should be able to activate the updated nginx with:
+      service nginx restart
 
-(assuming that you wish to name your database 'Cloudlog'). Create a
-new database user for Cloudlog, e. g. 'us3r', and grant it the
-required access with 'password', and all db privileges:
+3. Once database and webserver are ready, you may run the
+   cloudlog install wizard via a web browser. The default
+   installation described above makes cloudlog accessible at:
+      https://localhost:7355/
+   When you have completed the install wizard, you can start
+   to locally log with cloudlog at that URL.
 
-  CREATE USER 'us3r'@localhost IDENTIFIED BY 'password';
-  GRANT ALL PRIVILEGES ON Cloudlog.* TO 'us3r'@'localhost';
+4. If you seek further reading, here's a good point to start:
+      https://github.com/magicbug/Cloudlog/wiki/
 
-https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#4-create-a-sql-database-and-user
-may elaborate further. Please now point your browser to
-<your-url-to-cloudlog>/install, and follow the instructions.
-https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#5-run-the-cloudlog-install-wizard
-refers. Please also check the post-install tasks at
-https://github.com/magicbug/Cloudlog/wiki/Installation-on-a-FreeBSD-Server#post-install-tasks
+5. If you wish to run cloudlog on the public internet, please
+   do ensure that you appropriately secure your service. A good
+   idea is to connect via an independent instance, for instance
+   something like a separate OPNsense-based server, e. g.:
+      https://docs.opnsense.org/manual/how-tos/haproxy.html
+
+Happy dx-ing and best 73s, 55, etc. de Peter DL5BCT.
