@@ -2,8 +2,17 @@
 1. Cloudlog needs a mysql type database to store its data.
    I have installed a sample sequence of commands which you
    should execute in the database to prepare for cloudlog at:
-      ... path to .sql sample ...
-   Any further indications?
+      /usr/local/share/examples/cloudlog/files/mysql-setup-cloudlog.sql.sample
+   Take a copy of that file, replace 'user' with the database
+   user of your preference, and 'userpassword' with a secret
+   only known to you. Connect to your database as database
+   administrator, typically as root user with
+      mysql
+   and execute your script with
+      source /path/to/your/script
+   When done, add the password to your password store (or
+   just memorize it), and remove your script so that the
+   secret remains secret.
 
 2. Cloudlog also needs a web server to operate from.
    I have installed for you a sample nginx config file at:
