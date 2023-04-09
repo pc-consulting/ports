@@ -17,6 +17,12 @@ Considered alpha/beta (i. e. may or may not be a starting point for a working po
     - Currently does not see Qwt6 yet
     - Currently lacks good pkg-plist
     - But seems to build...
+- www/cloudlog
+    - Still very drafty port
+    - Makefile needs completion to install files from files/ to where they belong
+    - pkg-plist needs updating accordingly (e. g. examples dir)
+    - pkg-message currently contains fixed paths
+    - Entirely untested
 
 Considered pre-alpha (i. e. likely a waste of time):
 
