@@ -1,6 +1,6 @@
 PORTNAME=	gnuradio
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.10.6.0
+DISTVERSION=	3.10.7.0
 #PORTREVISION=	6
 CATEGORIES=	comms astro hamradio science
 
@@ -50,6 +50,8 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING="${LOCALBASE}/lib/gcc${_GCC_VER}" \
 USE_CXXSTD=	c++11
 USE_GITHUB=	yes
 # XXX FIXME XXX WX options remain here until I figure out how to set them at an option.
+#USE_PYTHON=	yes	# bsd.wx.mk says this must appear before USE_WX
+			# (likely invalidates PYTHON option. though...)
 USE_WX=		3.2
 USE_QT=		buildtools core gui xml qmake widgets
 WX_COMPS=	wx python:run
