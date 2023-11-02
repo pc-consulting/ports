@@ -31,6 +31,12 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         => Someone more knowledgeable may wish to suggest to remove some of them
     - WX is a loose end in Makefile, see comments and commented-out bits there
     - Currently does not see Qwt6 yet
+- finance/trytond
+    - Created with the help of pytoport
+    - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBD
+    - portlint passes
+    - Otherwise untested
+    - Does not depend on postgres but the port will need a database => TBD
 - www/cloudlog
     - Still very drafty port
     - Makefile needs completion to install files from files/ to where they belong
