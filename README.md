@@ -2,28 +2,44 @@ This folder contains the ports I'm fiddling with.
 
 Current state of the art (at time of edit):
 
-Considered production-ready (i. e. could go into the ports tree):
+Considered *production-ready* (i. e. could go into the ports tree):
 
 - comms/py-gpiofbsd
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
 
-Considered alpha/beta (i. e. may or may not be a starting point for a working port):
+Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
-- science/py-bluesky
-    - Needs update to latest sources prior to any further work
 - comms/gnuradio
-    - Still very drafty port, pending better organization in Makefile, etc.
+    - _Any more knowledgeable testers/takers more than welcome._
+    - Still pretty drafty port, pending better organization in Makefile, etc.
+    - gr-qtgui does not find qwt and disables (though I think it's there)
+    - Build hangs in staging creating Freedesktop items:
+        Begin freedesktop install...
+        Install icon: 16x16
+        Install icon: 24x24
+        Install icon: 32x32
+        Install icon: 48x48
+        Install icon: 64x64
+        Install icon: 128x128
+        Install icon: 256x256
+        Install mime type
+        Install menu items
+      (and remaining here forever)
+    - pkg-plist likely well outdated
+    - Only attempted to build all OPTIONS so far, needs much more testing
+        => Someone more knowledgeable may wish to suggest to remove some of them
+    - WX is a loose end in Makefile, see comments and commented-out bits there
     - Currently does not see Qwt6 yet
-    - Currently lacks good pkg-plist
-    - But seems to build...
 - www/cloudlog
     - Still very drafty port
     - Makefile needs completion to install files from files/ to where they belong
     - pkg-plist needs updating accordingly (e. g. examples dir)
     - pkg-message currently contains fixed paths
     - Entirely untested
+- science/py-bluesky
+    - Needs update to latest sources prior to any further work
 
-Considered pre-alpha (i. e. likely a waste of time):
+Considered *pre-alpha* (i. e. likely a waste of time):
 
 - Any port not detailed above
