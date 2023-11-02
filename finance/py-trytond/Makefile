@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton server
-WWW=		https://www.tryton.org/
+WWW=		https://docs.tryton.org/projects/server/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
