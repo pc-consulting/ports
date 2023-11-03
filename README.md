@@ -42,9 +42,9 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
     - finance/trytond
         - Server of the Tryton business suite
         - Does not depend on postgres but the port will need a database => TBD
-    - finance/trytond-account
-        - Accounting module for Tryton server
-        - As-created by pytoport, not usable yet
+    - finance/trytond-account*
+        - Accounting modules for Tryton server
+        - As-created by pytoport, not usable yet: trytond-account, trytond-account-asset
 - ports-mgmt/pytoport
     - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
     - PORTREVISION bumped to 1 accordingly.
