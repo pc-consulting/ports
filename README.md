@@ -31,20 +31,20 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         => Someone more knowledgeable may wish to suggest to remove some of them
     - WX is a loose end in Makefile, see comments and commented-out bits there
     - Currently does not see Qwt6 yet
-- finance/tryton*
+- finance/py-tryton*
     - General observations, unless noted more specifically below:
         - (Relatively naively) created with the help of pytoport, with obvious required amendments.
         - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBC
         - portlint passes
         - Otherwise untested
-    - finance/tryton
+    - finance/py-tryton
         - Desktop client of the Tryton business suite
-    - finance/trytond
+    - finance/py-trytond
         - Server of the Tryton business suite
         - Does not depend on postgres but the port will need a database => TBD
-    - finance/trytond-account*
+    - finance/py-trytond-account*
         - Accounting modules for Tryton server
-        - As-created by pytoport, not usable yet: trytond-account, trytond-account-asset, trytond-account-be, trytond-account-budget, py-trytond-account-cash-rounding, trytond-account-consolidation, trytond-account-credit-limit, trytond-account-deposit, trytond-account-dunning
+        - As-created by pytoport, not usable yet: py-trytond-account, py-trytond-account-asset, py-trytond-account-be, py-trytond-account-budget, py-trytond-account-cash-rounding, py-trytond-account-consolidation, py-trytond-account-credit-limit, py-trytond-account-deposit, py-trytond-account-dunning, py-trytond-account-dunning-email
 - ports-mgmt/pytoport
     - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
     - PORTREVISION bumped to 1 accordingly.
