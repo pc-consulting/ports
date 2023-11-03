@@ -1,7 +1,3 @@
-Tryton GIS backend
+Tryton GIS backend, adds Geographic Information System (GIS) support to trytond
 
-It adds GIS support to Tryton.
-
-
-
-WWW: http://www.tryton.org/
+Part of the Tryton Business Software Suite.

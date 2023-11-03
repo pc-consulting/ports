@@ -1,21 +1,23 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-gis
 PORTVERSION=	7.0.0
-CATEGORIES=	devel python
+CATEGORIES=	finance geography python # science?? -- nah...
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Adds geographic information system support to trytond
+WWW=		https://docs.tryton.org/projects/backend-gis/en/latest
 
-LICENSE=	AGPLv3
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geomet>0:XXX/py-geomet
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geomet>0:science/py-geomet@${PY_FLAVOR}
 
-USES=		python:3.0+ # 3, 3.8, 3.9, 3.10, 3.11, 3.12
+USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>
