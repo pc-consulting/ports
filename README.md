@@ -37,11 +37,14 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBC
         - portlint passes
         - Otherwise untested
+    - finance/tryton
+        - Desktop client of the Tryton business suite
     - finance/trytond
         - Server of the Tryton business suite
         - Does not depend on postgres but the port will need a database => TBD
-    - finance/tryton
-        - Desktop client of the Tryton business suite
+    - finance/trytond-account
+        - Accounting module for Tryton server
+        - As-created by pytoport, not usable yet
 - ports-mgmt/pytoport
     - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
     - PORTREVISION bumped to 1 accordingly.
