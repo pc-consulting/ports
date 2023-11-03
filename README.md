@@ -44,7 +44,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - Does not depend on postgres but the port will need a database => TBD
     - finance/py-trytond-account*
         - Accounting modules for Tryton server
-        - As-created by pytoport, not usable yet: py-trytond-account, py-trytond-account-asset, py-trytond-account-be, py-trytond-account-budget, py-trytond-account-cash-rounding, py-trytond-account-consolidation, py-trytond-account-credit-limit, py-trytond-account-deposit, py-trytond-account-dunning, py-trytond-account-dunning-email, py-trytond-account-dunning-fee, py-trytond-account-dunning-letter
+        - As-created by pytoport, not usable yet: py-trytond-account, py-trytond-account-asset, py-trytond-account-be, py-trytond-account-budget, py-trytond-account-cash-rounding, py-trytond-account-consolidation, py-trytond-account-credit-limit, py-trytond-account-deposit, py-trytond-account-dunning, py-trytond-account-dunning-email, py-trytond-account-dunning-fee, py-trytond-account-dunning-letter, py-trytond-account-es
 - ports-mgmt/pytoport
     - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
     - PORTREVISION bumped to 1 accordingly.
