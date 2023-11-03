@@ -33,8 +33,8 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
     - Currently does not see Qwt6 yet
 - finance/tryton*
     - General observations, unless noted more specifically below:
-        - Created with the help of pytoport
-        - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBD
+        - (Relatively naively) created with the help of pytoport, with obvious required amendments.
+        - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBC
         - portlint passes
         - Otherwise untested
     - finance/trytond
@@ -42,6 +42,10 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - Does not depend on postgres but the port will need a database => TBD
     - finance/tryton
         - Desktop client of the Tryton business suite
+- ports-mgmt/pytoport
+    - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
+    - PORTREVISION bumped to 1 accordingly.
+    - There still may be an issue with handling underscores '_' in distribution file names which seem to be converted to dashes '-' unconditionally. Subsequently, download of distfiles with underscores in their names fails.
 - www/cloudlog
     - Still very drafty port
     - Makefile needs completion to install files from files/ to where they belong
