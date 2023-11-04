@@ -19,10 +19,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}types-python-dateutil>0:devel/py-types-python-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}simpleeval>0:devel/py-simpleeval@${PY_FLAVOR}
 # Dependencies from tryton.cfg (company, currency, ir, party, res) # ir, res:trytond built-in
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=7.0.0:finance/py-trytond@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-company>=7.0.0:finance/py-trytond-company@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-currency>=7.0.0:finance/py-trytond-currency@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-party>=7.0.0:finance/py-trytond-party@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-company=${PORTVERSION}:finance/py-trytond-company@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-currency=${PORTVERSION}:finance/py-trytond-currency@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
