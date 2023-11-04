@@ -34,9 +34,10 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
 - finance/py-tryton*
     - General observations, unless noted more specifically below:
         - (Relatively naively) created with the help of pytoport, with obvious required amendments.
-        - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance. => TBC
+        - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance.
         - portlint passes
         - Otherwise untested
+        - Distfiles go to DIST_SUBDIR=Tryton
     - finance/py-tryton
         - Desktop client of the Tryton business suite
     - finance/py-trytond
