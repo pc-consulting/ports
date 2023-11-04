@@ -6,6 +6,8 @@ PORTVERSION=	7.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Allows users to enter requests for product supply (requisition). this will create a "purchase request" by line which will be treated by the purchasing department

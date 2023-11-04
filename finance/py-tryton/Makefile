@@ -5,6 +5,8 @@ PORTVERSION=	7.0.0
 CATEGORIES=	finance python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton desktop client
