@@ -1,5 +1,4 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-company
 PORTVERSION=	7.0.0
@@ -11,11 +10,16 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with companies and employees
+WWW=		https://docs.tryton.org/en/latest/company.html
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	
+# No dependencies from python package
+# Dependencies from tryton.cfg (currency, ir, party, res)
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-currency>=7.0.0:finance/py-trytond-currency@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-party>=7.0.0:finance/py-trytond-party@${PY_FLAVOR}
+# ir, res -> TBD
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
