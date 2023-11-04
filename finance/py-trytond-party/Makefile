@@ -11,7 +11,7 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with parties and addresses
-www=		https://docs.tryton.org/en/latest/party.html
+WWW=		https://docs.tryton.org/en/latest/party.html
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
