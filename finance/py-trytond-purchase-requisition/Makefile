@@ -12,7 +12,7 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Allows users to enter requests for product supply (requisition). this will create a "purchase request" by line which will be treated by the purchasing department
 
-LICENSE=	AGPLv3
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:XXX/py-python-sql

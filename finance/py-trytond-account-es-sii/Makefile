@@ -12,7 +12,7 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module that sends invoices to the spanish sii webservice
 
-LICENSE=	AGPLv3
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeep>0:XXX/py-zeep \

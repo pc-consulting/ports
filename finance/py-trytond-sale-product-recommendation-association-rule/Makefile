@@ -12,7 +12,7 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module to learn association rule for recommendation
 
-LICENSE=	AGPLv3
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}efficient-apriori>0:XXX/py-efficient-apriori

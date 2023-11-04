@@ -12,7 +12,7 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module that allows carriers selection to be restrictedby subdivision
 
-LICENSE=	AGPLv3
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	
