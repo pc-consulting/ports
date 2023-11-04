@@ -10,14 +10,17 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with currencies
+WWW=		https://docs.tryton.org/en/latest/currency.html
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dateutil>0:XXX/py-python-dateutil \
-			${PYTHON_PKGNAMEPREFIX}argcomplete>0:XXX/py-argcomplete \
-			${PYTHON_PKGNAMEPREFIX}pycountry>0:XXX/py-pycountry \
-			${PYTHON_PKGNAMEPREFIX}pycountry>0:XXX/py-pycountry
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}types-python-dateutil>0:devel/py-types-python-dateutil@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}argcomplete>0:devel/py-argcomplete@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pycountry>0:textproc/py-pycountry@${PY_FLAVOR}
+# Dependencies from tryton.cfg (ir, res) # ir, res:trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
