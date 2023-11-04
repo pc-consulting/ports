@@ -11,13 +11,17 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with parties and addresses
+www=		https://docs.tryton.org/en/latest/party.html
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-stdnum[soap]>0:XXX/py-python-stdnum[soap] \
-			${PYTHON_PKGNAMEPREFIX}phonenumbers>0:XXX/py-phonenumbers \
-			${PYTHON_PKGNAMEPREFIX}phonenumbers>0:XXX/py-phonenumbers
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}stdnum>0:devel/py-stdnum@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}phonenumbers>0:devel/py-phonenumbers@${PY_FLAVOR}
+# Dependencies from tryton.cfg (country, ir, res) # ir, res:trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-country=${PORTVERSION}:finance/py-trytond-country@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
