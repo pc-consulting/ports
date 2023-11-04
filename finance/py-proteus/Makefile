@@ -2,7 +2,7 @@
 
 PORTNAME=	proteus
 PORTVERSION=	7.0.0
-CATEGORIES=	devel python
+CATEGORIES=	finance devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
