@@ -15,7 +15,9 @@ WWW=		https://docs.tryton.org/projects/backend-gis/en/latest
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+# Dependencies from python package
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geomet>0:science/py-geomet@${PY_FLAVOR}
+# No dependencies from tryton.cfg
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
