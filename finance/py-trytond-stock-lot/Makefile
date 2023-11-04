@@ -1,5 +1,4 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-stock-lot
 PORTVERSION=	7.0.0

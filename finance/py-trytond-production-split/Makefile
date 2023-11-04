@@ -1,5 +1,4 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-production-split
 PORTVERSION=	7.0.0

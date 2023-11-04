@@ -1,5 +1,4 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-product-price-list
 PORTVERSION=	7.0.0

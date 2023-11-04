@@ -1,5 +1,4 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
-# $FreeBSD$
 
 PORTNAME=	trytond-stock-quantity-early-planning
 PORTVERSION=	7.0.0
