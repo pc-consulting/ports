@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Genshi>0:XXX/py-Genshi \
 			${PYTHON_PKGNAMEPREFIX}lxml>0:XXX/py-lxml \
 			${PYTHON_PKGNAMEPREFIX}python-dateutil>0:XXX/py-python-dateutil
 
-USES=		python:3.0+ # 3, 3.8, 3.9, 3.10, 3.11, 3.12
+USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

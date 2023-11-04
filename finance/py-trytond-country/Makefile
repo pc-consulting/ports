@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:XXX/py-python-sql \
 			${PYTHON_PKGNAMEPREFIX}pycountry>0:XXX/py-pycountry \
 			${PYTHON_PKGNAMEPREFIX}pycountry>0:XXX/py-pycountry
 
-USES=		python:3.0+ # 3, 3.8, 3.9, 3.10, 3.11, 3.12
+USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

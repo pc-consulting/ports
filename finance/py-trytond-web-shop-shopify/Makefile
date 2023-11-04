@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ShopifyAPI>0:XXX/py-ShopifyAPI \
 			${PYTHON_PKGNAMEPREFIX}python-sql>0:XXX/py-python-sql \
 			${PYTHON_PKGNAMEPREFIX}python-dateutil>0:XXX/py-python-dateutil
 
-USES=		python:3.0+ # 3, 3.8, 3.9, 3.10, 3.11, 3.12
+USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

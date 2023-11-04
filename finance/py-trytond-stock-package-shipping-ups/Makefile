@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>0:XXX/py-requests \
 			${PYTHON_PKGNAMEPREFIX}requests-oauthlib>0:XXX/py-requests-oauthlib \
 			${PYTHON_PKGNAMEPREFIX}oauthlib>0:XXX/py-oauthlib
 
-USES=		python:3.0+ # 3, 3.8, 3.9, 3.10, 3.11, 3.12
+USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>
