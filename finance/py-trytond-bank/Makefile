@@ -11,12 +11,18 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with banks
+WWW=		https://docs.tryton.org/projects/modules-bank/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-stdnum>0:XXX/py-python-stdnum \
-			${PYTHON_PKGNAMEPREFIX}schwifty>0:XXX/py-schwifty
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}stdnum>0:devel/py-stdnum@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}schwifty>0:finance/py-schwifty@${PY_FLAVOR}
+# Dependencies from tryton.cfg (currency, ir, party) # ir:trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-currency=${PORTVERSION}:finance/py-trytond-currency@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

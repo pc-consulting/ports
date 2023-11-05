@@ -1,30 +1,3 @@
-Bank Module
-
 The bank module defines the concept of bank and account.
 
-Bank
-
-A bank links a party with a BIC.
-
-
-
-Bank Account
-
-A bank account is defined by a Bank and at least one number.
-
-The Bank is the bank where the account is set.
-
-The Owners are the parties who own the account.
-
-The Currency is the default currency of the account.
-
-The Numbers are the different possible number that identifies the account. There
-are two types defined by default:
-
-IBAN
-
-Other
-
-
-
-WWW: http://www.tryton.org/
+Part of the Tryton Business Software suite.
