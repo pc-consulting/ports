@@ -11,11 +11,19 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module for production
+WWW=		https://docs.tryton.org/en/latest/production.html
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	
+# No dependencies from python package
+# Dependencies from tryton.cfg (company, ir, product, res, stock;
+#				extras: stock_lot)) # ir, res: trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-company=${PORTVERSION}:finance/py-trytond-company@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-stock=${PORTVERSION}:finance/py-trytond-stock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-stock-lot=${PORTVERSION}:finance/py-trytond-stock-lot@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
