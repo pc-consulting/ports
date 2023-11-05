@@ -9,3 +9,17 @@
      else:
          ver = "%s.%s" % lowest
  
+@@ -167,7 +167,12 @@ def generate_makefile(data, path=os.getcwd(), name=Non
+     else:
+         add(o, "MAINTAINER", email)
+     summary = info.get('summary', '# FILL ME')
+-    add(o, "COMMENT", "{}".format(summary.capitalize().rstrip('.')))
++
++    try:
++        add(o, "COMMENT", "{}".format(summary.capitalize().rstrip('.')))
++    except:
++        add(o, "COMMENT", '# FILL ME')
++
+     o.write('\n')
+ 
+     if info.get('licfile', None):
