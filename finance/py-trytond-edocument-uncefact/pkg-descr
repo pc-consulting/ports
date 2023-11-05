@@ -1,7 +1,3 @@
-EDocument UN/CEFACT Module
-
-Implement electronic document from UN/CEFACT:
-
-Cross-Industry-Invoice (16B-CII)
-
-WWW: http://www.tryton.org/
+The EDocument UN/CEFACT Module implements the Cross-Industry-Invoice
+(16B-CII) electronic document format from UN/CEFACT.
+Part of the Trydon Business Software suite.

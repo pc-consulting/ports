@@ -11,12 +11,17 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module for electronic document un/cefact
+WWW=		https://docs.tryton.org/projects/modules-edocument-uncefact/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Genshi>0:XXX/py-Genshi \
-			${PYTHON_PKGNAMEPREFIX}lxml>0:XXX/py-lxml
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Genshi>0:textproc/py-genshi@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR}
+# Dependencies from tryton.cfg (ir, edocument_unece) # ir: trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-edocument-unece=${PORTVERSION}:finance/py-trytond-edocument-unece@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
