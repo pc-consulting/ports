@@ -1,4 +1,4 @@
-This folder contains the ports I'm fiddling with.
+This folder contains the FreeBSD ports I'm fiddling with.
 
 Current state of the art (at time of edit):
 
