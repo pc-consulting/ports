@@ -1,0 +1,10 @@
+--- pyproject.toml.orig	2020-02-02 00:00:00 UTC
++++ pyproject.toml
+@@ -6,7 +6,6 @@ build-backend = "hatchling.build"
+ name = "schwifty"
+ dynamic = ["version"]
+ readme = "README.rst"
+-license = "MIT"
+ classifiers = [
+   "Development Status :: 5 - Production/Stable",
+   "License :: OSI Approved :: MIT License",

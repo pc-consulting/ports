@@ -1,0 +1,3 @@
+schwifty is a Python library that let's you easily work with IBANs and BICs as
+specified by the ISO. IBAN is the Internation Bank Account Number and BIC the
+Business Identifier Code. Both are used for international money transfer.
