@@ -38,11 +38,13 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - portlint passes
         - Otherwise untested
         - Distfiles go to DIST_SUBDIR=Tryton
+    - finance/tryton-server
+        - Meta port to facilitate your individual module configuration from the lot below and further possible dependencies.
     - finance/py-tryton
         - Desktop client of the Tryton business suite
     - finance/py-trytond
         - Server of the Tryton business suite
-        - Does not depend on postgres but the port will need a database => TBD
+        - Does not depend on postgres but the port will need a database which can be pulled in via the tryton-server meta port if you don't have it available elsewhwere yet.
     - finance/py-trytond-*
         - Modules for Tryton server
         - Passing portlint, and (if applicable) with complete tryton.cfg dependencies in Makefile: py-proteus, py-trytond-account, py-trytond-account-invoice, py-trytond-account-invoice-stock, py-trytond-account-product, py-trytond-analytic-account, py-trytond-attendance, py-trytond-bank, py-trytond-carrier, py-trytond-commission, py-trytond-company, py-trytond-company-work-time, py-trytond-country, py-trytond-customs, py-trytond-currency, py-trytond-dashboard, py-trytond-document-incoming, py-trytond-edocument-uncefact, py-trytond-edocument-unece, py-trytond-gis, py-trytond-google-maps, py-trytond-inbound-email, py-trytond-ldap-authentication, py-trytond-marketing, py-trytond-notification-email, py-trytond-party, py-trytond-product, py-trytond-product-attribute, py-trytond-product-image, py-trytond-production, py-trytond-project, py-trytond-purchase, py-trytond-purchase-request, py-trytond-quality, py-trytond-sale, py-trytond-sale-supply, py-trytond-sale-supply-drop-shipment, py-trytond-stock, py-trytond-stock-lot, py-trytond-timesheet, py-trytond-user-role, py-trytond-web-shop, py-trytond-web-user

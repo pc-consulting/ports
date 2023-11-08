@@ -1,0 +1,40 @@
+TRYTON® is business software, ideal for companies of any size, easy
+to use, complete and 100% Open Source.
+
+TRYTON® includes all these features fully integrated:
+- Financial Accounting
+    Record all transactions in your chart of accounts.
+- Sales
+    Follow orders from quotation to customer satisfaction.
+- Inventory & Stock
+    Track goods in your warehouses from receipt to delivery.
+- Analytic Accounting
+    Break down your expenses and revenues by category.
+- Customer Relationship Management (CRM)
+    Convert your leads and opportunities into sales.
+- Purchasing
+    Follow your requests for quotation and reduce costs by grouping
+    orders.
+- Supply Chain
+    Fill your warehouses just in time.
+- Manufacturing
+    Transform raw materials into finished products with bill of
+    materials and routing.
+- Shipping
+    Package shipments for your carriers.
+- Project Management
+    Check the profitability of projects and never forget to invoice
+    customers.
+- Subscription Management
+    Create recurring invoices for your customer contracts.
+- Third Party Integration
+    Automate your communication with banks, carriers, websites etc.
+
+This meta port is for you to customize your desired server
+functionality. It calls in the corresponding individual ports with
+the TRYTON server (trytond), and the corresponding individual
+modules.
+
+Each individual module port knows which other modules it depends on
+so you need not worry about dependencies. Just pick what you need,
+and let the ports framework figure out the rest for you.
