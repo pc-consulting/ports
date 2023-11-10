@@ -44,6 +44,13 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - Still conceptual, not portlinted, likely not usable yet in any way
     - finance/py-tryton
         - Desktop client of the Tryton business suite
+    - finance/tryton-demo
+        - Rough action plan as follows, yet to be implemented
+        - Investigate 'representative stand-alone playground' scenario for self-learning and tutorials, both
+            - In module configuration (e. g. via either a given troton-server configuration, or a list of 'direct' dependencies to py-trytond-*), and
+            - In example data (e. g. during post-install, via py-proteus scripts); and
+            - Including (pre-configured) all required non-trytond modules (web server, database, and the like), optionally tryton-desktop/py-tryton, and the like.
+        - Investigate use of trytoncommunity-setuptools (https://pypi.org/project/trytoncommunity-setuptools/)
     - finance/py-trytond
         - Server of the Tryton business suite
         - Does not depend on postgres but the port will need a database which can be pulled in via the tryton-server meta port if you don't have it available elsewhwere yet.
