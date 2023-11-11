@@ -41,7 +41,9 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - Still need to identify whether to centralize Makefile items, and which ones, if so.
     - finance/tryton-server
         - Meta port to facilitate your individual module configuration from the lot below and further possible dependencies.
-        - Still conceptual, not portlinted, likely not usable yet in any way
+        - First shot at formal options structure, to be tested (will need to set up a local poudirere for that first)
+        - Not entierly portlinted yet, likely not usable yet in any meaningful way
+        - Still need confirm how to work with a distfile-less port
     - finance/py-tryton
         - Desktop client of the Tryton business suite
     - finance/tryton-demo
