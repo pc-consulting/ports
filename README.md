@@ -73,6 +73,10 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
     - Entirely untested
 - science/py-bluesky
     - Needs update to latest sources prior to any further work
+- comms/openatscompass
+    - Quick porting attempt but unusable at this time. CMAKE fails at least on my box so I guess that ${WRKSRC}/CMakeLists.txt needs further attention.
+    - Naming is a pain. The repo uses UPPER case, the distfile apparently only downloads in lower case. So you extract the sources from a lower-case-named distfile to an UPPER-case source code work directory. Which for I still have to fiddle out the most convenient way to ${XXX:tl} or ${XXX:tu} which variable. And I do not just want to name the port with a common name likely to reappear elsewhere in the ports tree.
+    - A normal port build seems to complain about my current approach though portlint -AC seems happy about it.
 
 Considered *pre-alpha* (i. e. likely a waste of time):
 
