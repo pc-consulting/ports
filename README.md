@@ -43,6 +43,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - Meta port to facilitate your individual module configuration from the lot below and further possible dependencies.
         - First shot at formal options structure, to be tested (will need to set up a local poudirere for that first)
         - Not entierly portlinted yet, likely not usable yet in any meaningful way
+        - Incomplete depended module ports now should have an IGNORE, hoping that this may help with poudriere in the future.
         - Still need confirm how to work with a distfile-less port
     - finance/py-tryton
         - Desktop client of the Tryton business suite
