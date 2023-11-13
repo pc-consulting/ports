@@ -44,6 +44,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - First shot at formal options structure, to be tested (will need to set up a local poudirere for that first)
         - Not entierly portlinted yet, likely not usable yet in any meaningful way
         - Incomplete depended module ports now should have an IGNORE, hoping that this may help with poudriere in the future.
+        - Added a default OPTIONS selection of what I currently believe is close to a minimal module configuration.
         - Still need confirm how to work with a distfile-less port
     - finance/py-tryton
         - Desktop client of the Tryton business suite
