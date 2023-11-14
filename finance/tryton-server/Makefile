@@ -130,7 +130,6 @@ FRENCHCHORUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr-chorus=${POR
 FRENCHCHORUS_IGNORE=		Module port yet to be completed.
 GERMAN_DESC=		German "Standardkontenrahmen 03" accounting.
 GERMAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-de-skr03=${PORTVERSION}:finance/py-trytond-account-de-skr03@${PY_FLAVOR}
-GERMAN_IGNORE=		Module port yet to be completed.
 ACCOUNTINGINVOICE_DESC=		Manages customer and supplier invoices.
 ACCOUNTINGINVOICE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice=${PORTVERSION}:finance/py-trytond-account-invoice@${PY_FLAVOR}
 INVOICECORRECTION_DESC=		Correct price on posted invoices.

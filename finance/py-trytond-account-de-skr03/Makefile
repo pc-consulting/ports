@@ -2,7 +2,7 @@
 
 PORTNAME=	trytond-account-de-skr03
 PORTVERSION=	7.0.0
-CATEGORIES=	finance python
+CATEGORIES=	finance python german
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
@@ -11,11 +11,14 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module with german chart of accounts skr03
+WWW=		https://docs.tryton.org/projects/modules-account-de-skr03/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	
+# No dependencies from python package
+# Dependencies from tryton.cfg (account) # trytond indirectly via py-trytond-account
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}account=${PORTVERSION}:finance/py-account@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
