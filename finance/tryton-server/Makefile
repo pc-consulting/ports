@@ -84,7 +84,6 @@ ACCOUNTINGASSET_DESC=		Depreciation of fixed assets.
 ACCOUNTINGASSET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-asset=${PORTVERSION}:finance/py-trytond-account-asset@${PY_FLAVOR}
 BELGIAN_DESC=		Belgian accounting.
 BELGIAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-be=${PORTVERSION}:finance/py-trytond-account-be@${PY_FLAVOR}
-BELGIAN_IGNORE=		Module port yet to be completed.
 BUDGET_DESC=		Budgets for accounts.
 BUDGET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-budget=${PORTVERSION}:finance/py-trytond-account-budget@${PY_FLAVOR}
 CASHROUNDING_DESC=		Round cash amounts.
