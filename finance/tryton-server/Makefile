@@ -98,7 +98,6 @@ CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-credit-limit=${P
 CREDITLIMIT_IGNORE=		Module port yet to be completed.
 DEPOSIT_DESC=		Supports customer deposits.
 DEPOSIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-deposit=${PORTVERSION}:finance/py-trytond-account-deposit@${PY_FLAVOR}
-DEPOSIT_IGNORE=		Module port yet to be completed.
 DUNNING_DESC=		Manages dunning on receivables.
 DUNNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning=${PORTVERSION}:finance/py-trytond-account-dunning@${PY_FLAVOR}
 DUNNING_IGNORE=		Module port yet to be completed.
