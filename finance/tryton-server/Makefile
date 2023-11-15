@@ -87,7 +87,6 @@ BELGIAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-be=${PORTVERSION}:fi
 BELGIAN_IGNORE=		Module port yet to be completed.
 BUDGET_DESC=		Budgets for accounts.
 BUDGET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-budget=${PORTVERSION}:finance/py-trytond-account-budget@${PY_FLAVOR}
-BUDGET_IGNORE=		Module port yet to be completed.
 CASHROUNDING_DESC=		Round cash amounts.
 CASHROUNDING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-cash-rounding=${PORTVERSION}:finance/py-trytond-account-cash-rounding@${PY_FLAVOR}
 CASHROUNDING_IGNORE=		Module port yet to be completed.
