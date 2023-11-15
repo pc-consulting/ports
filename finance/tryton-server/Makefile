@@ -119,7 +119,6 @@ SPANISHSII_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-es-sii=${PORTVERS
 SPANISHSII_IGNORE=		Module port yet to be completed.
 EUROPE_DESC=		Common European requirements.
 EUROPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-eu=${PORTVERSION}:finance/py-trytond-account-eu@${PY_FLAVOR}
-EUROPE_IGNORE=		Module port yet to be completed.
 FRENCH_DESC=		French accounting.
 FRENCH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr=${PORTVERSION}:finance/py-trytond-account-fr@${PY_FLAVOR}
 FRENCH_IGNORE=		Module port yet to be completed.
