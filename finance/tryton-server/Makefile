@@ -406,7 +406,6 @@ SALEFUNDAMENTAL_DESC=		Fundamentals to follow sales.
 SALEFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR}
 ADVANCEPAYMENT_DESC=		Manage advance payment on sale.
 ADVANCEPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-advance-payment=${PORTVERSION}:finance/py-trytond-sale-advance-payment@${PY_FLAVOR}
-ADVANCEPAYMENT_IGNORE=		Module port yet to be completed.
 SALESAMENDMENT_DESC=		Amend sales in processing.
 SALESAMENDMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-amendment=${PORTVERSION}:finance/py-trytond-sale-amendment@${PY_FLAVOR}
 SALESAMENDMENT_IGNORE=		Module port yet to be completed.
