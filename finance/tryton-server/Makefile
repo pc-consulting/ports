@@ -97,7 +97,6 @@ DEPOSIT_DESC=		Supports customer deposits.
 DEPOSIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-deposit=${PORTVERSION}:finance/py-trytond-account-deposit@${PY_FLAVOR}
 DUNNING_DESC=		Manages dunning on receivables.
 DUNNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning=${PORTVERSION}:finance/py-trytond-account-dunning@${PY_FLAVOR}
-DUNNING_IGNORE=		Module port yet to be completed.
 DUNNINGEMAIL_DESC=		Sends dunning emails.
 DUNNINGEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-email=${PORTVERSION}:finance/py-trytond-account-dunning-email@${PY_FLAVOR}
 DUNNINGEMAIL_IGNORE=		Module port yet to be completed.
