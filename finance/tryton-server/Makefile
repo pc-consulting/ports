@@ -90,7 +90,6 @@ CASHROUNDING_DESC=		Round cash amounts.
 CASHROUNDING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-cash-rounding=${PORTVERSION}:finance/py-trytond-account-cash-rounding@${PY_FLAVOR}
 CONSOLIDATION_DESC=		Consolidate accounting of multiple companies.
 CONSOLIDATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-consolidation=${PORTVERSION}:finance/py-trytond-account-consolidation@${PY_FLAVOR}
-CONSOLIDATION_IGNORE=		Module port yet to be completed.
 CREDITLIMIT_DESC=		Manages credit limit of parties.
 CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-credit-limit=${PORTVERSION}:finance/py-trytond-account-credit-limit@${PY_FLAVOR}
 CREDITLIMIT_IGNORE=		Module port yet to be completed.
