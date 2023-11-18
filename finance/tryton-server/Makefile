@@ -92,7 +92,6 @@ CONSOLIDATION_DESC=		Consolidate accounting of multiple companies.
 CONSOLIDATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-consolidation=${PORTVERSION}:finance/py-trytond-account-consolidation@${PY_FLAVOR}
 CREDITLIMIT_DESC=		Manages credit limit of parties.
 CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-credit-limit=${PORTVERSION}:finance/py-trytond-account-credit-limit@${PY_FLAVOR}
-CREDITLIMIT_IGNORE=		Module port yet to be completed.
 DEPOSIT_DESC=		Supports customer deposits.
 DEPOSIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-deposit=${PORTVERSION}:finance/py-trytond-account-deposit@${PY_FLAVOR}
 DUNNING_DESC=		Manages dunning on receivables.
