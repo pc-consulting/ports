@@ -186,7 +186,6 @@ STATEMENTOFX_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-ofx=$
 STATEMENTOFX_IGNORE=		Module port yet to be completed.
 STATMEMENTRULE_DESC=		Applies rules on imported statements.
 STATMEMENTRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-rule=${PORTVERSION}:finance/py-trytond-account-statement-rule@${PY_FLAVOR}
-STATMEMENTRULE_IGNORE=		Module port yet to be completed.
 STATEMENTSEPA_DESC=		Imports statements in SEPA format.
 STATEMENTSEPA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-sepa=${PORTVERSION}:finance/py-trytond-account-statement-sepa@${PY_FLAVOR}
 STATEMENTSEPA_IGNORE=		Module port yet to be completed.
