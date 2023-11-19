@@ -145,7 +145,6 @@ MOVELINEGROUPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-move-line-g
 MOVELINEGROUPING_IGNORE=		Module port yet to be completed.
 ACCOUNTINGPAYMENT_DESC=		Manages payments.
 ACCOUNTINGPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment=${PORTVERSION}:finance/py-trytond-account-payment@${PY_FLAVOR}
-ACCOUNTINGPAYMENT_IGNORE=		Module port yet to be completed.
 PAYMENTBRAINTREE_DESC=		Receives payment from Braintree.
 PAYMENTBRAINTREE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-braintree=${PORTVERSION}:finance/py-trytond-account-payment-braintree@${PY_FLAVOR}
 PAYMENTBRAINTREE_IGNORE=		Module port yet to be completed.
