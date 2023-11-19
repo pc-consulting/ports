@@ -413,7 +413,6 @@ EXTRA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-extra=${PORTVERSION}:fina
 EXTRA_IGNORE=		Module port yet to be completed.
 GIFTCARD_DESC=		Sales gift cards.
 GIFTCARD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-gift-card=${PORTVERSION}:finance/py-trytond-sale-gift-card@${PY_FLAVOR}
-GIFTCARD_IGNORE=		Module port yet to be completed.
 SALESHISTORY_DESC=		Manages revisions.
 SALESHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-history=${PORTVERSION}:finance/py-trytond-sale-history@${PY_FLAVOR}
 SALESHISTORY_IGNORE=		Module port yet to be completed.
