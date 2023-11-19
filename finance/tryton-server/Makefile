@@ -100,7 +100,6 @@ DUNNINGEMAIL_DESC=		Sends dunning emails.
 DUNNINGEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-email=${PORTVERSION}:finance/py-trytond-account-dunning-email@${PY_FLAVOR}
 DUNNINGFEE_DESC=	Adds fees to dunnings.
 DUNNINGFEE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-fee=${PORTVERSION}:finance/py-trytond-account-dunning-fee@${PY_FLAVOR}
-DUNNINGFEE_IGNORE=		Module port yet to be completed.
 DUNNINGLETTER_DESC=		Prints dunning letters.
 DUNNINGLETTER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-letter=${PORTVERSION}:finance/py-trytond-account-dunning-letter@${PY_FLAVOR}
 SPANISH_DESC=		Spanish accounting.
