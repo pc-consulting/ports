@@ -150,7 +150,6 @@ PAYMENTBRAINTREE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-bra
 PAYMENTBRAINTREE_IGNORE=		Module port yet to be completed.
 PAYMENTCLEARING_DESC=		Uses clearing account for payments.
 PAYMENTCLEARING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-clearing=${PORTVERSION}:finance/py-trytond-account-payment-clearing@${PY_FLAVOR}
-PAYMENTCLEARING_IGNORE=		Module port yet to be completed.
 PAYMENTSEPA_DESC=		Genrates SEPA messages for payments.
 PAYMENTSEPA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-sepa=${PORTVERSION}:finance/py-trytond-account-payment-sepa@${PY_FLAVOR}
 PAYMENTSEPA_IGNORE=		Module port yet to be completed.
