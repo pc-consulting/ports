@@ -98,7 +98,6 @@ DUNNING_DESC=		Manages dunning on receivables.
 DUNNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning=${PORTVERSION}:finance/py-trytond-account-dunning@${PY_FLAVOR}
 DUNNINGEMAIL_DESC=		Sends dunning emails.
 DUNNINGEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-email=${PORTVERSION}:finance/py-trytond-account-dunning-email@${PY_FLAVOR}
-DUNNINGEMAIL_IGNORE=		Module port yet to be completed.
 DUNNINGFEE_DESC=	Adds fees to dunnings.
 DUNNINGFEE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-dunning-fee=${PORTVERSION}:finance/py-trytond-account-dunning-fee@${PY_FLAVOR}
 DUNNINGFEE_IGNORE=		Module port yet to be completed.
