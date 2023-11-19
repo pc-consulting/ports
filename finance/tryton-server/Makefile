@@ -172,7 +172,6 @@ RULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-rule=${PORTVERSION}:fin
 RULE_IGNORE=		Module port yet to be completed.
 STATEMENT_DESC=		Books bank statement, cash day book etc.
 STATEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement=${PORTVERSION}:finance/py-trytond-account-statement@${PY_FLAVOR}
-STATEMENT_IGNORE=		Module port yet to be completed.
 STATEMENTAEB43_DESC=		Imports statements in AEB43 format.
 STATEMENTAEB43_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-aeb43=${PORTVERSION}:finance/py-trytond-account-statement-aeb43@${PY_FLAVOR}
 STATEMENTAEB43_IGNORE=		Module port yet to be completed.
