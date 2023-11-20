@@ -1,0 +1,3 @@
+Send responses to HTTPX using pytest. Once installed, httpx_mock
+fixture will make sure every request will be replied to with user
+provided responses.
