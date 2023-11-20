@@ -112,7 +112,6 @@ FRENCH_DESC=		French accounting.
 FRENCH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr=${PORTVERSION}:finance/py-trytond-account-fr@${PY_FLAVOR}
 FRENCHCHORUS_DESC=		Sends invoices via Chorus Pro.
 FRENCHCHORUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr-chorus=${PORTVERSION}:finance/py-trytond-account-fr-chorus@${PY_FLAVOR}
-FRENCHCHORUS_IGNORE=		Module port yet to be completed.
 GERMAN_DESC=		German "Standardkontenrahmen 03" accounting.
 GERMAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-de-skr03=${PORTVERSION}:finance/py-trytond-account-de-skr03@${PY_FLAVOR}
 ACCOUNTINGINVOICE_DESC=		Manages customer and supplier invoices.
