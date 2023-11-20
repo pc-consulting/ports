@@ -110,7 +110,6 @@ EUROPE_DESC=		Common European requirements.
 EUROPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-eu=${PORTVERSION}:finance/py-trytond-account-eu@${PY_FLAVOR}
 FRENCH_DESC=		French accounting.
 FRENCH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr=${PORTVERSION}:finance/py-trytond-account-fr@${PY_FLAVOR}
-FRENCH_IGNORE=		Module port yet to be completed.
 FRENCHCHORUS_DESC=		Sends invoices via Chorus Pro.
 FRENCHCHORUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-fr-chorus=${PORTVERSION}:finance/py-trytond-account-fr-chorus@${PY_FLAVOR}
 FRENCHCHORUS_IGNORE=		Module port yet to be completed.
