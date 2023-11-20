@@ -11,12 +11,13 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module that sends invoices to the spanish sii webservice
+WWW=		https://docs.tryton.org/projects/modules-account-es-sii/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeep>0:XXX/py-zeep \
-			${PYTHON_PKGNAMEPREFIX}requests>0:XXX/py-requests
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeep>0:net/py-zeep \
+		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

@@ -106,7 +106,6 @@ SPANISH_DESC=		Spanish accounting.
 SPANISH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-es=${PORTVERSION}:finance/py-trytond-account-es@${PY_FLAVOR}
 SPANISHSII_DESC=	Sends invoices to Subministro Inmediato de Informacion (SII).
 SPANISHSII_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-es-sii=${PORTVERSION}:finance/py-trytond-account-es-sii@${PY_FLAVOR}
-SPANISHSII_IGNORE=		Module port yet to be completed.
 EUROPE_DESC=		Common European requirements.
 EUROPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-eu=${PORTVERSION}:finance/py-trytond-account-eu@${PY_FLAVOR}
 FRENCH_DESC=		French accounting.
