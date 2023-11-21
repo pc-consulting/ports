@@ -126,7 +126,6 @@ INVOICELINESTANDALONE_DESC=		Supports invoice line without invoice.
 INVOICELINESTANDALONE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-line-standalone=${PORTVERSION}:finance/py-trytond-account-invoice-line-standalone@${PY_FLAVOR}
 INVOICESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 INVOICESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-secondary-unit=${PORTVERSION}:finance/py-trytond-account-invoice-secondary-unit@${PY_FLAVOR}
-INVOICESECONDARYUNIT_IGNORE=		Module port yet to be completed.
 INVOICESTOCK_DESC=		Links invoice lines and stock moves.
 INVOICESTOCK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-stock=${PORTVERSION}:finance/py-trytond-account-invoice-stock@${PY_FLAVOR}
 INVOICEWATERMARK_DESC=		Adds watermark to printed invoices.
