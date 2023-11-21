@@ -130,7 +130,6 @@ INVOICESTOCK_DESC=		Links invoice lines and stock moves.
 INVOICESTOCK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-stock=${PORTVERSION}:finance/py-trytond-account-invoice-stock@${PY_FLAVOR}
 INVOICEWATERMARK_DESC=		Adds watermark to printed invoices.
 INVOICEWATERMARK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-watermark=${PORTVERSION}:finance/py-trytond-account-invoice-watermark@${PY_FLAVOR}
-INVOICEWATERMARK_IGNORE=		Module port yet to be completed.
 MOVELINEGROUPING_DESC=		Show move line grouped.
 MOVELINEGROUPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-move-line-grouping=${PORTVERSION}:finance/py-trytond-account-move-line-grouping@${PY_FLAVOR}
 MOVELINEGROUPING_IGNORE=		Module port yet to be completed.
