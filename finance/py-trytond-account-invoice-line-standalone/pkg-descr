@@ -1,6 +1,3 @@
-Account Invoice Line Standalone Module
-
-The account invoice line standalone module allows to create invoice line not
-linked to an invoice.
-
-WWW: http://www.tryton.org/
+The account invoice line standalone module allows to create an
+invoice line not linked to an invoice.
+Part of the Tryton Business Software suite.

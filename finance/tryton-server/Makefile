@@ -124,7 +124,6 @@ INVOICEHISTORY_DESC=		Historize invoice.
 INVOICEHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-history=${PORTVERSION}:finance/py-trytond-account-invoice-history@${PY_FLAVOR}
 INVOICELINESTANDALONE_DESC=		Supports invoice line without invoice.
 INVOICELINESTANDALONE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-line-standalone=${PORTVERSION}:finance/py-trytond-account-invoice-line-standalone@${PY_FLAVOR}
-INVOICELINESTANDALONE_IGNORE=		Module port yet to be completed.
 INVOICESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 INVOICESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-secondary-unit=${PORTVERSION}:finance/py-trytond-account-invoice-secondary-unit@${PY_FLAVOR}
 INVOICESECONDARYUNIT_IGNORE=		Module port yet to be completed.
