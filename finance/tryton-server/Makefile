@@ -120,7 +120,6 @@ INVOICECORRECTION_DESC=		Correct price on posted invoices.
 INVOICECORRECTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-correction=${PORTVERSION}:finance/py-trytond-account-invoice-correction@${PY_FLAVOR}
 INVOICEDEFER_DESC=		Defer expense and revenue.
 INVOICEDEFER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-defer=${PORTVERSION}:finance/py-trytond-account-invoice-defer@${PY_FLAVOR}
-INVOICEDEFER_IGNORE=		Module port yet to be completed.
 INVOICEHISTORY_DESC=		Historize invoice.
 INVOICEHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-history=${PORTVERSION}:finance/py-trytond-account-invoice-history@${PY_FLAVOR}
 INVOICEHISTORY_IGNORE=		Module port yet to be completed.

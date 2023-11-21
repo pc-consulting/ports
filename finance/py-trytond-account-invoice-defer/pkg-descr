@@ -1,6 +1,3 @@
-Account Invoice Defer Module
-
-The Account Invoice Defer Module allow to defer the expense or the revenue of an
-invoice line over many periods.
-
-WWW: http://www.tryton.org/
+The Account Invoice Defer Module allows to defer the expense or the
+revenue of an invoice line over many periods.
+Part of the Tryton Business Software suite.
