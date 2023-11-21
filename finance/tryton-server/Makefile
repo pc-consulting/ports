@@ -118,7 +118,6 @@ ACCOUNTINGINVOICE_DESC=		Manages customer and supplier invoices.
 ACCOUNTINGINVOICE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice=${PORTVERSION}:finance/py-trytond-account-invoice@${PY_FLAVOR}
 INVOICECORRECTION_DESC=		Correct price on posted invoices.
 INVOICECORRECTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-correction=${PORTVERSION}:finance/py-trytond-account-invoice-correction@${PY_FLAVOR}
-INVOICECORRECTION_IGNORE=		Module port yet to be completed.
 INVOICEDEFER_DESC=		Defer expense and revenue.
 INVOICEDEFER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-defer=${PORTVERSION}:finance/py-trytond-account-invoice-defer@${PY_FLAVOR}
 INVOICEDEFER_IGNORE=		Module port yet to be completed.
