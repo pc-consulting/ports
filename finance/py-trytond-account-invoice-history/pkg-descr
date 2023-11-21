@@ -1,6 +1,3 @@
-Account Invoice History Module
-
-The account invoice history module activates the historization of the invoice
-and its related fields.
-
-WWW: http://www.tryton.org/
+The account invoice history module activates the historization of
+the invoice and its related fields.
+Part of the Tryton Business Software suite.
