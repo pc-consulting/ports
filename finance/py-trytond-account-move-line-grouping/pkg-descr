@@ -1,6 +1,3 @@
-Account Move Line Grouping Module
-
-The Account Move Line Grouping Module adds a view that displays move lines
-grouped.
-
-WWW: http://www.tryton.org/
+The Account Move Line Grouping Module adds a view that displays move
+lines grouped.
+Part of the Tryton Business Software suite.
