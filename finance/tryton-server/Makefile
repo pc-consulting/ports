@@ -175,7 +175,6 @@ STOCKANGLOSAXON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-anglo-
 STOCKANGLOSAXON_IGNORE=		Module port yet to be completed.
 STOCKCONTINENTAL_DESC=		Values stock using the continental method.
 STOCKCONTINENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-continental=${PORTVERSION}:finance/py-trytond-account-stock-continental@${PY_FLAVOR}
-STOCKCONTINENTAL_IGNORE=		Module port yet to be completed.
 STOCKEUROPEAN_DESC=		Common stock European requirements.
 STOCKEUROPEAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-eu=${PORTVERSION}:finance/py-trytond-account-stock-eu@${PY_FLAVOR}
 STOCKEUROPEAN_IGNORE=		Module port yet to be completed.
