@@ -395,7 +395,6 @@ GIFTCARD_DESC=		Sales gift cards.
 GIFTCARD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-gift-card=${PORTVERSION}:finance/py-trytond-sale-gift-card@${PY_FLAVOR}
 SALESHISTORY_DESC=		Manages revisions.
 SALESHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-history=${PORTVERSION}:finance/py-trytond-sale-history@${PY_FLAVOR}
-SALESHISTORY_IGNORE=		Module port yet to be completed.
 INVOICEDATE_DESC=		Compute the date of invoice.
 INVOICEDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-date=${PORTVERSION}:finance/py-trytond-sale-invoice-date@${PY_FLAVOR}
 INVOICEDATE_IGNORE=		Module port yet to be completed.
