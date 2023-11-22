@@ -375,7 +375,6 @@ ADVANCEPAYMENT_DESC=		Manage advance payment on sale.
 ADVANCEPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-advance-payment=${PORTVERSION}:finance/py-trytond-sale-advance-payment@${PY_FLAVOR}
 SALESAMENDMENT_DESC=		Amend sales in processing.
 SALESAMENDMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-amendment=${PORTVERSION}:finance/py-trytond-sale-amendment@${PY_FLAVOR}
-SALESAMENDMENT_IGNORE=		Module port yet to be completed.
 SALESBLANKETAGREEMENT_DESC=		Manage sale blanket agreements.
 SALESBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-blanket-agreement=${PORTVERSION}:finance/py-trytond-sale-blanket-agreement@${PY_FLAVOR}
 SALESBLANKETAGREEMENT_IGNORE=		Module port yet to be completed.
