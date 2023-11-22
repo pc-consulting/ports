@@ -136,7 +136,6 @@ ACCOUNTINGPAYMENT_DESC=		Manages payments.
 ACCOUNTINGPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment=${PORTVERSION}:finance/py-trytond-account-payment@${PY_FLAVOR}
 PAYMENTBRAINTREE_DESC=		Receives payment from Braintree.
 PAYMENTBRAINTREE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-braintree=${PORTVERSION}:finance/py-trytond-account-payment-braintree@${PY_FLAVOR}
-PAYMENTBRAINTREE_IGNORE=		Module port yet to be completed.
 PAYMENTCLEARING_DESC=		Uses clearing account for payments.
 PAYMENTCLEARING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-clearing=${PORTVERSION}:finance/py-trytond-account-payment-clearing@${PY_FLAVOR}
 PAYMENTSEPA_DESC=		Genrates SEPA messages for payments.
