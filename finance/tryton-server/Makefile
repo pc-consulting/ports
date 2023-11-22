@@ -714,7 +714,6 @@ IMAGEATTRIBUTE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-image-attribu
 IMAGEATTRIBUTE_IGNORE=		Module port yet to be completed.
 KIT_DESC=		Add support for product kits.
 KIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-kit=${PORTVERSION}:finance/py-trytond-product-kit@${PY_FLAVOR}
-KIT_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_ADMINISTRATION=	INBOUNDEMAIL AUTHENTICATIOSAML \
 				AUTHENTICATIONLDAP \
