@@ -1,6 +1,3 @@
-Account Receivable Rule Module
-
-The Account Receivable Rule Module defines rules to reconcile receivable between
-accounts.
-
-WWW: http://www.tryton.org/
+The Account Receivable Rule Module defines rules to reconcile
+receivable between accounts.
+Part of the Tryton Business Software suite.

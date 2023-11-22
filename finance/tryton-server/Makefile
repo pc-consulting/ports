@@ -149,7 +149,6 @@ ACCOUNTINGPRODUCT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-product=${
 ACCOUNTINGPRODUCT_IGNORE=		Module port yet to be completed.
 RECEIVABLERULE_DESC=		Applies rules to receivable.
 RECEIVABLERULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-receivable-rule=${PORTVERSION}:finance/py-trytond-account-receivable-rule@${PY_FLAVOR}
-RECEIVABLERULE_IGNORE=		Module port yet to be completed.
 RULE_DESC=		Applies rules on accounts.
 RULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-rule=${PORTVERSION}:finance/py-trytond-account-rule@${PY_FLAVOR}
 RULE_IGNORE=		Module port yet to be completed.
