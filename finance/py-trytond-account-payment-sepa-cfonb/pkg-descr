@@ -1,5 +1,3 @@
-Account Payment SEPA CFONB Module
-
-The account_payment_sepa_cfonb module adds CFONB flavors to SEPA messages.
-
-WWW: http://www.tryton.org/
+The account_payment_sepa_cfonb module adds CFONB flavors to SEPA
+messages.
+Part of the Tryton Business Software suite.

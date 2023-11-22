@@ -142,7 +142,6 @@ PAYMENTSEPA_DESC=		Genrates SEPA messages for payments.
 PAYMENTSEPA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-sepa=${PORTVERSION}:finance/py-trytond-account-payment-sepa@${PY_FLAVOR}
 PAYMENTSEPACFONB_DESC=		Adds CFONB flavors to SEPA.
 PAYMENTSEPACFONB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-sepa-cfonb=${PORTVERSION}:finance/py-trytond-account-payment-sepa-cfonb@${PY_FLAVOR}
-PAYMENTSEPACFONB_IGNORE=		Module port yet to be completed.
 PAYMENTSTRIPE_DESC=		Receives payment from Stripe.
 PAYMENTSTRIPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-stripe=${PORTVERSION}:finance/py-trytond-account-payment-stripe@${PY_FLAVOR}
 PAYMENTSTRIPE_IGNORE=		Module port yet to be completed.
