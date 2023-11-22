@@ -552,8 +552,7 @@ STOCKSPLIT_DESC=	Splits moves and shipments.
 STOCKSPLIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-split=${PORTVERSION}:finance/py-trytond-stock-split@${PY_FLAVOR}
 STOCKSPLIT_IGNORE=		Module port yet to be completed.
 STOCKSUPPLY_DESC=		Supplies warehouses.
-STOCKSUPPLY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}=${PORTVERSION}:finance/py-@${PY_FLAVOR}
-STOCKSUPPLY_IGNORE=		Module port yet to be completed.
+STOCKSUPPLY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply=${PORTVERSION}:finance/py-trytond-stock-supply@${PY_FLAVOR}
 SUPPLYFORECAST_DESC=		Uses forecast to supply warehouses.
 SUPPLYFORECAST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-forecast=${PORTVERSION}:finance/py-trytond-stock-supply-forecast@${PY_FLAVOR}
 SUPPLYFORECAST_IGNORE=		Module port yet to be completed.

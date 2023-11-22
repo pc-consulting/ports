@@ -1,0 +1,3 @@
+The Stock Supply module add automatic supply mechanisms and introduce
+the concepts of order point. An order point define minimum, maximum
+and target quantities for a product on a location.
