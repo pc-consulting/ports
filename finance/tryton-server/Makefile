@@ -543,7 +543,6 @@ STOCKSECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-secondary-u
 STOCKSECONDARYUNIT_IGNORE=		Module port yet to be completed.
 STOCKSHIPMENTCOST_DESC=		Adds shipment costs to outgoing moves.
 STOCKSHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipment-cost=${PORTVERSION}:finance/py-trytond-stock-shipment-cost@${PY_FLAVOR}
-STOCKSHIPMENTCOST_IGNORE=		Module port yet to be completed.
 STOCKSHIPMENTCOSTWEIGHT_DESC=		Set shipment costs based on weight.
 STOCKSHIPMENTCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipment-cost-weight=${PORTVERSION}:finance/py-trytond-stock-shipment-cost-weight@${PY_FLAVOR}
 STOCKSHIPMENTCOSTWEIGHT_IGNORE=		Module port yet to be completed.
