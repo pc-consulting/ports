@@ -144,7 +144,6 @@ PAYMENTSEPACFONB_DESC=		Adds CFONB flavors to SEPA.
 PAYMENTSEPACFONB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-sepa-cfonb=${PORTVERSION}:finance/py-trytond-account-payment-sepa-cfonb@${PY_FLAVOR}
 PAYMENTSTRIPE_DESC=		Receives payment from Stripe.
 PAYMENTSTRIPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-stripe=${PORTVERSION}:finance/py-trytond-account-payment-stripe@${PY_FLAVOR}
-PAYMENTSTRIPE_IGNORE=		Module port yet to be completed.
 ACCOUNTINGPRODUCT_DESC=		Adds accounting on product and category.
 ACCOUNTINGPRODUCT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-product=${PORTVERSION}:finance/py-trytond-account-product@${PY_FLAVOR}
 ACCOUNTINGPRODUCT_IGNORE=		Module port yet to be completed.
