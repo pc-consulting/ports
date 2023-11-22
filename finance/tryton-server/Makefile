@@ -151,7 +151,6 @@ RECEIVABLERULE_DESC=		Applies rules to receivable.
 RECEIVABLERULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-receivable-rule=${PORTVERSION}:finance/py-trytond-account-receivable-rule@${PY_FLAVOR}
 RULE_DESC=		Applies rules on accounts.
 RULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-rule=${PORTVERSION}:finance/py-trytond-account-rule@${PY_FLAVOR}
-RULE_IGNORE=		Module port yet to be completed.
 STATEMENT_DESC=		Books bank statement, cash day book etc.
 STATEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement=${PORTVERSION}:finance/py-trytond-account-statement@${PY_FLAVOR}
 STATEMENTAEB43_DESC=		Imports statements in AEB43 format.
