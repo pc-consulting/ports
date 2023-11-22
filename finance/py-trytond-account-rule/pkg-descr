@@ -1,6 +1,3 @@
-Account Rule Module
-
-The Account Rule Module allows rules which substitute default accounts with
-other accounts.
-
-WWW: http://www.tryton.org/
+The Account Rule Module allows rules which substitute default
+accounts with other accounts.
+Part of the Tryton Business Server suite.
