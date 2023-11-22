@@ -172,7 +172,6 @@ STATEMENTSEPA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-sepa
 STATEMENTSEPA_IGNORE=		Module port yet to be completed.
 STOCKANGLOSAXON_DESC=		Values stock using the anglo-saxon method.
 STOCKANGLOSAXON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-anglo-saxon=${PORTVERSION}:finance/py-trytond-account-stock-anglo-saxon@${PY_FLAVOR}
-STOCKANGLOSAXON_IGNORE=		Module port yet to be completed.
 STOCKCONTINENTAL_DESC=		Values stock using the continental method.
 STOCKCONTINENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-continental=${PORTVERSION}:finance/py-trytond-account-stock-continental@${PY_FLAVOR}
 STOCKEUROPEAN_DESC=		Common stock European requirements.
