@@ -1,0 +1,4 @@
+The sale subscription module defines subscription, services and
+recurrence rule models. A subscription defines how some recurring
+services are periodically invoiced. The invoice is generated based
+on the consumption of each services.
