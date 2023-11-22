@@ -320,7 +320,6 @@ PURCHASEFUNDAMENTAL_DESC=		Fundamentals to follow purchases.
 PURCHASEFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase=${PORTVERSION}:finance/py-trytond-purchase@${PY_FLAVOR}
 PURCHASEAMENDMENT_DESC=		Amend purchases in processing.
 PURCHASEAMENDMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-amendment=${PORTVERSION}:finance/py-trytond-purchase-amendment@${PY_FLAVOR}
-PURCHASEAMENDMENT_IGNORE=		Module port yet to be completed.
 PURCHASEBLANKETAGREEMENT_DESC=		Manage blanket agreements.
 PURCHASEBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-blanket-agreement=${PORTVERSION}:finance/py-trytond-purchase-blanket-agreement@${PY_FLAVOR}
 PURCHASEBLANKETAGREEMENT_IGNORE=		Module port yet to be completed.
