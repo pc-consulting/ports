@@ -326,7 +326,6 @@ PURCHASEBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-bl
 PURCHASEBLANKETAGREEMENT_IGNORE=		Module port yet to be completed.
 PURCHASEHISTORY_DESC=		Manages revisions.
 PURCHASEHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-history=${PORTVERSION}:finance/py-trytond-purchase-history@${PY_FLAVOR}
-PURCHASEHISTORY_IGNORE=		Module port yet to be completed.
 INVOICELINESTANDALONE_DESC=		Generates invoice lines.
 INVOICELINESTANDALONE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-invoice-line-standalone=${PORTVERSION}:finance/py-trytond-purchase-invoice-line-standalone@${PY_FLAVOR}
 INVOICELINESTANDALONE_IGNORE=		Module port yet to be completed.
