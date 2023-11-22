@@ -489,7 +489,6 @@ ASSIGNMANUAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-assign-manual=${P
 ASSIGNMANUAL_IGNORE=		Module port yet to be completed.
 CONSIGNMENT_DESC=		Manages consignment stock from supplier or at customer warehouse.
 CONSIGNMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-consignment=${PORTVERSION}:finance/py-trytond-stock-consignment@${PY_FLAVOR}
-CONSIGNMENT_IGNORE=		Module port yet to be completed.
 FORECAST_DESC=		Forecast the stock levels.
 FORECAST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-forecast=${PORTVERSION}:finance/py-trytond-stock-forecast@${PY_FLAVOR}
 FORECAST_IGNORE=		Module port yet to be completed.
