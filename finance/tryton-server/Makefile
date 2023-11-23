@@ -155,7 +155,6 @@ STATEMENT_DESC=		Books bank statement, cash day book etc.
 STATEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement=${PORTVERSION}:finance/py-trytond-account-statement@${PY_FLAVOR}
 STATEMENTAEB43_DESC=		Imports statements in AEB43 format.
 STATEMENTAEB43_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-aeb43=${PORTVERSION}:finance/py-trytond-account-statement-aeb43@${PY_FLAVOR}
-STATEMENTAEB43_IGNORE=		Module port yet to be completed.
 STATEMENTCODA_DESC=		Imports statements in CODA format.
 STATEMENTCODA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-coda=${PORTVERSION}:finance/py-trytond-account-statement-coda@${PY_FLAVOR}
 STATEMENTCODA_IGNORE=		Module port yet to be completed.

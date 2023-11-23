@@ -1,6 +1,3 @@
-Account Statement AEB43 Module
-
-The Account Statement AEB43 module implements the import of the Norm 43 of the
-Spanish banks association file as statement.
-
-WWW: http://www.tryton.org/
+The Account Statement AEB43 module implements the import of the Norm
+43 of the Spanish banks association file as statement.
+Part of the Tryton Business Software suite.
