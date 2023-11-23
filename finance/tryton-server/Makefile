@@ -146,7 +146,6 @@ PAYMENTSTRIPE_DESC=		Receives payment from Stripe.
 PAYMENTSTRIPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment-stripe=${PORTVERSION}:finance/py-trytond-account-payment-stripe@${PY_FLAVOR}
 ACCOUNTINGPRODUCT_DESC=		Adds accounting on product and category.
 ACCOUNTINGPRODUCT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-product=${PORTVERSION}:finance/py-trytond-account-product@${PY_FLAVOR}
-ACCOUNTINGPRODUCT_IGNORE=		Module port yet to be completed.
 RECEIVABLERULE_DESC=		Applies rules to receivable.
 RECEIVABLERULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-receivable-rule=${PORTVERSION}:finance/py-trytond-account-receivable-rule@${PY_FLAVOR}
 RULE_DESC=		Applies rules on accounts.
