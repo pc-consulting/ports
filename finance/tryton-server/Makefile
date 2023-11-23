@@ -156,7 +156,6 @@ STATEMENTAEB43_DESC=		Imports statements in AEB43 format.
 STATEMENTAEB43_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-aeb43=${PORTVERSION}:finance/py-trytond-account-statement-aeb43@${PY_FLAVOR}
 STATEMENTCODA_DESC=		Imports statements in CODA format.
 STATEMENTCODA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-coda=${PORTVERSION}:finance/py-trytond-account-statement-coda@${PY_FLAVOR}
-STATEMENTCODA_IGNORE=		Module port yet to be completed.
 STATEMENTMT940_DESC=		Imports statement in SWIFT Message Type 940 format.
 STATEMENTMT940_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-mt940=${PORTVERSION}:finance/py-trytond-account-statement-mt940@${PY_FLAVOR}
 STATEMENTMT940_IGNORE=		Module port yet to be completed.
