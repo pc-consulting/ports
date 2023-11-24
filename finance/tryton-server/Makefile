@@ -164,7 +164,6 @@ STATMEMENTRULE_DESC=		Applies rules on imported statements.
 STATMEMENTRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-rule=${PORTVERSION}:finance/py-trytond-account-statement-rule@${PY_FLAVOR}
 STATEMENTSEPA_DESC=		Imports statements in SEPA format.
 STATEMENTSEPA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-sepa=${PORTVERSION}:finance/py-trytond-account-statement-sepa@${PY_FLAVOR}
-STATEMENTSEPA_IGNORE=		Module port yet to be completed.
 STOCKANGLOSAXON_DESC=		Values stock using the anglo-saxon method.
 STOCKANGLOSAXON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-anglo-saxon=${PORTVERSION}:finance/py-trytond-account-stock-anglo-saxon@${PY_FLAVOR}
 STOCKCONTINENTAL_DESC=		Values stock using the continental method.
