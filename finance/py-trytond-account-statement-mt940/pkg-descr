@@ -1,6 +1,3 @@
-Account Statement MT940 Module
-
-The Account Statement MT940 Module implements the import of MT940 files as
-statements.
-
-WWW: http://www.tryton.org/
+The Account Statement MT940 Module implements the import of MT940
+files as statements.
+Part of the Tryton Business Software suite.
