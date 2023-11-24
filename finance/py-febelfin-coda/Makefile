@@ -10,7 +10,9 @@ MAINTAINER=	pcc@gmx.net
 COMMENT=	Module to parse coda files
 WWW=		https://coda.b2ck.com/
 
+
 LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 USES=		python:3.5+
 USE_PYTHON=	autoplist distutils
