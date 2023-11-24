@@ -160,7 +160,6 @@ STATEMENTMT940_DESC=		Imports statement in SWIFT Message Type 940 format.
 STATEMENTMT940_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-mt940=${PORTVERSION}:finance/py-trytond-account-statement-mt940@${PY_FLAVOR}
 STATEMENTOFX_DESC=		Imports statements in OFX format.
 STATEMENTOFX_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-ofx=${PORTVERSION}:finance/py-trytond-account-statement-ofx@${PY_FLAVOR}
-STATEMENTOFX_IGNORE=		Module port yet to be completed.
 STATMEMENTRULE_DESC=		Applies rules on imported statements.
 STATMEMENTRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-statement-rule=${PORTVERSION}:finance/py-trytond-account-statement-rule@${PY_FLAVOR}
 STATEMENTSEPA_DESC=		Imports statements in SEPA format.

@@ -1,6 +1,3 @@
-Account Statement OFX Module
-
-The Account statement OFX module implement the import of the OFX file as
-statement.
-
-WWW: http://www.tryton.org/
+The Account statement OFX module implements the import of the OFX
+file as statement.
+Part of the Tryton Business Software suite.
