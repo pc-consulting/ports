@@ -529,7 +529,6 @@ QUANTITYISSUE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-issue=$
 QUANTITYISSUE_IGNORE=		Module port yet to be completed.
 STOCKSECONDARYUNIT_DESC=	Reports quantity issues.
 STOCKSECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-secondary-unit=${PORTVERSION}:finance/py-trytond-stock-secondary-unit@${PY_FLAVOR}
-STOCKSECONDARYUNIT_IGNORE=		Module port yet to be completed.
 STOCKSHIPMENTCOST_DESC=		Adds shipment costs to outgoing moves.
 STOCKSHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipment-cost=${PORTVERSION}:finance/py-trytond-stock-shipment-cost@${PY_FLAVOR}
 STOCKSHIPMENTCOSTWEIGHT_DESC=		Set shipment costs based on weight.

@@ -1,6 +1,3 @@
-Stock Secondary Unit Module
-
-The stock secondary unit module adds a secondary unit of measure on the stock
-move.
-
-WWW: http://www.tryton.org/
+The stock secondary unit module adds a secondary unit of measure on
+the stock move.
+Part of the Tryton Business Software suite.
