@@ -172,7 +172,6 @@ STOCKEUROPEAN_DESC=		Common stock European requirements.
 STOCKEUROPEAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-eu=${PORTVERSION}:finance/py-trytond-account-stock-eu@${PY_FLAVOR}
 STOCKLANDEDCOST_DESC=		Allocates landed cost.
 STOCKLANDEDCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-landed-cost=${PORTVERSION}:finance/py-trytond-account-stock-landed-cost@${PY_FLAVOR}
-STOCKLANDEDCOST_IGNORE=		Module port yet to be completed.
 STOCKLANDEDCOSTWEIGHT_DESC=		Allocates landed cost based on weight.
 STOCKLANDEDCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-landed-cost-weight=${PORTVERSION}:finance/py-trytond-account-stock-landed-cost-weight@${PY_FLAVOR}
 STOCKLANDEDCOSTWEIGHT_IGNORE=		Module port yet to be completed.
