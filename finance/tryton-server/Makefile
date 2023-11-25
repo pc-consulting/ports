@@ -589,7 +589,6 @@ CARRIERFUNDAMENTAL_DESC=	Fundamentals to manage carriers.
 CARRIERFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier=${PORTVERSION}:finance/py-trytond-carrier@${PY_FLAVOR}
 CARRIAGE_DESC=		Supports multiple carriers per document.
 CARRIAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-carriage=${PORTVERSION}:finance/py-trytond-carrier-carriage@${PY_FLAVOR}
-CARRIAGE_IGNORE=		Module port yet to be completed.
 PERCENTAGE_DESC=	Computes cost based on percentage.
 PERCENTAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-percentage=${PORTVERSION}:finance/py-trytond-carrier-percentage@${PY_FLAVOR}
 PERCENTAGE_IGNORE=		Module port yet to be completed.
