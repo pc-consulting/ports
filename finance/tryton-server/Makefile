@@ -199,7 +199,6 @@ ANALYTICPURCHASE_DESC=		Adds analytic on purchase.
 ANALYTICPURCHASE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-purchase=${PORTVERSION}:finance/py-trytond-analytic-purchase@${PY_FLAVOR}
 ANALYTICSALE_DESC=		Adds analytic on sale.
 ANALYTICSALE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-sale=${PORTVERSION}:finance/py-trytond-analytic-sale@${PY_FLAVOR}
-ANALYTICSALE_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_ATTENCANCE=	ATTENDANCEFUNDAMENTAL
 OPTIONS_DEFAULT+=	ATTENDANCEFUNDAMENTAL
