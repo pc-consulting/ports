@@ -184,7 +184,6 @@ TAXNONDEDUCTIBLE_DESC=		Reports non-deductible tax.
 TAXNONDEDUCTIBLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-non-deductible=${PORTVERSION}:finance/py-trytond-account-tax-non-deductible@${PY_FLAVOR}
 TAXRULECOUNTRY_DESC=		Applies taxes per country of origin and destination.
 TAXRULECOUNTRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-rule-country=${PORTVERSION}:finance/py-trytond-account-tax-rule-country@${PY_FLAVOR}
-TAXRULECOUNTRY_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_ANALYTIC=	ANALYTICFUNDAMENTAL BUDGET ANALYTICINVOICE \
 			ANALYTICPURCHASE ANALYTICSALE
