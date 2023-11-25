@@ -502,7 +502,6 @@ LOTUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot-unit=${PORTVERSION
 LOTUNIT_IGNORE=		Module port yet to be completed.
 PACKAGE_DESC=		Store packaging on shipments.
 PACKAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package=${PORTVERSION}:finance/py-trytond-stock-package@${PY_FLAVOR}
-PACKAGE_IGNORE=		Module port yet to be completed.
 PACKAGESHIPPING_DESC=	Fundamentals to interact with shipping services.
 PACKAGESHIPPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping=${PORTVERSION}:finance/py-trytond-stock-package-shipping@${PY_FLAVOR}
 PACKAGESHIPPING_IGNORE=		Module port yet to be completed.
