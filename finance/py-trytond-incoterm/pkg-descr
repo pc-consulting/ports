@@ -1,0 +1,3 @@
+This Incoterm Model is used to manage the Incoterms on sales,
+purchases and shipments. The module contains the Incoterm versions
+of 2010 and 2020.

@@ -637,8 +637,10 @@ GOOGLEMAPS_DESC=	Referential Modules - Links Address to Google map
 GOOGLEMAPSFUNDAMENTAL_DESC=	Links address to Google map.
 GOOGLEMAPSFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-google-maps=${PORTVERSION}:finance/py-trytond-google-maps@${PY_FLAVOR}
 #
-#OPTIONS_GROUP_INCOTERM=	INCOTERMMOD	# Defines incoterms # Does this exist as a selectable module?
-#INCOTERM_DESC=		Referential Modules - Defines Incoterms
+OPTIONS_GROUP_INCOTERM=	INCOTERMFUNDAMENTAL
+INCOTERM_DESC=		Referential Modules - Defines Incoterms
+INCOTERMFUNDAMENTAL_DESC=	Manage the Incoterms on Sales, Purchases and Shipments
+INCOTERMFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-incoterm=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR}
 #
 OPTIONS_GROUP_PARTY=	PARTYFUNDAMENTAL AVATAR RELATIONSHIP SIRET
 OPTIONS_DEFAULT+=	PARTYFUNDAMENTAL
