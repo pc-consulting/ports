@@ -596,7 +596,6 @@ SUBDIVISION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-subdivision=${PO
 SUBDIVISION_IGNORE=		Module port yet to be completed.
 WEIGHT_DESC=		Computes cost based on weight.
 WEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-weight=${PORTVERSION}:finance/py-trytond-carrier-weight@${PY_FLAVOR}
-WEIGHT_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_COUNTRY=	COUNTRYFUNDAMENTAL
 OPTIONS_DEFAULT+=	COUNTRYFUNDAMENTAL
