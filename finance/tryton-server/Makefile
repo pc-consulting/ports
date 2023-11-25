@@ -178,7 +178,6 @@ ACCOUNTSTOCKSHIPMENTCOST_DESC=		Allocates shipment cost.
 ACCOUNTSTOCKSHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-shipment-cost=${PORTVERSION}:finance/py-trytond-account-stock-shipment-cost@${PY_FLAVOR}
 ACCOUNTSTOCKSHIPMENTCOSTWEIGHT_DESC=		Allocates shipment cost by weight.
 ACCOUNTSTOCKSHIPMENTCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-shipment-cost-weight=${PORTVERSION}:finance/py-trytond-account-stock-shipment-cost-weight@${PY_FLAVOR}
-ACCOUNTSTOCKSHIPMENTCOSTWEIGHT_IGNORE=		Module port yet to be completed.
 TAXCASH_DESC=		Reports tax on cash basis.
 TAXCASH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-cash=${PORTVERSION}:finance/py-trytond-account-tax-cash@${PY_FLAVOR}
 TAXCASH_IGNORE=		Module port yet to be completed.
