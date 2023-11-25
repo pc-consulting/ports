@@ -1,6 +1,3 @@
-Account Tax Non-Deductible Module
-
-The Account Tax Non-Deductible Module allows to define non-deductible taxes and
-reports them.
-
-WWW: http://www.tryton.org/
+The Account Tax Non-Deductible Module allows to define non-deductible
+taxes and reports them.
+Part of the Tryton Business Software suite.

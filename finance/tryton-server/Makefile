@@ -182,7 +182,6 @@ TAXCASH_DESC=		Reports tax on cash basis.
 TAXCASH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-cash=${PORTVERSION}:finance/py-trytond-account-tax-cash@${PY_FLAVOR}
 TAXNONDEDUCTIBLE_DESC=		Reports non-deductible tax.
 TAXNONDEDUCTIBLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-non-deductible=${PORTVERSION}:finance/py-trytond-account-tax-non-deductible@${PY_FLAVOR}
-TAXNONDEDUCTIBLE_IGNORE=		Module port yet to be completed.
 TAXRULECOUNTRY_DESC=		Applies taxes per country of origin and destination.
 TAXRULECOUNTRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-rule-country=${PORTVERSION}:finance/py-trytond-account-tax-rule-country@${PY_FLAVOR}
 TAXRULECOUNTRY_IGNORE=		Module port yet to be completed.
