@@ -1,5 +1,3 @@
-Analytic Invoice Module
-
-The analytic invoice modules allows to set analytic accounts on invoice line.
-
-WWW: http://www.tryton.org/
+The analytic invoice modules allows to set analytic accounts on
+invoice line.
+Part of the Tryton Business Software suite.

@@ -195,7 +195,6 @@ BUDGET_DESC=		Budgets for analytic accounts.
 BUDGET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-budget=${PORTVERSION}:finance/py-trytond-analytic-budget@${PY_FLAVOR}
 ANALYTICINVOICE_DESC=		Adds analytic on invoice.
 ANALYTICINVOICE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-invoice=${PORTVERSION}:finance/py-trytond-analytic-invoice@${PY_FLAVOR}
-ANALYTICINVOICE_IGNORE=		Module port yet to be completed.
 ANALYTICPURCHASE_DESC=		Adds analytic on purchase.
 ANALYTICPURCHASE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-purchase=${PORTVERSION}:finance/py-trytond-analytic-purchase@${PY_FLAVOR}
 ANALYTICPURCHASE_IGNORE=		Module port yet to be completed.
