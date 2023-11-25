@@ -1,13 +1,3 @@
-Product Measurements
-
-The Product Measurements module adds this following measurements to Product:
-
-Length
-
-Height
-
-Width
-
-Weight
-
-WWW: http://www.tryton.org/
+The Product Measurements module adds measurements (length, height,
+width, weight) to a product.
+Part of the Tryton Business Software suite.
