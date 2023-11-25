@@ -1,6 +1,3 @@
-Account Stock EU Module
-
-The Account Stock EU Module is used to generate the Intrastat declarations every
-month.
-
-WWW: http://www.tryton.org/
+The Account Stock EU Module is used to generate the Intrastat
+declarations every month.
+Part of the Tryton Business Software suite.
