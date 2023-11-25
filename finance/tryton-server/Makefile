@@ -535,7 +535,6 @@ STOCKSHIPMENTCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipme
 STOCKSHIPMENTCOSTWEIGHT_IGNORE=		Module port yet to be completed.
 SHIPMENTMEASUREMENTS_DESC=		Adds measurements to shipments.
 SHIPMENTMEASUREMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipment-measurements=${PORTVERSION}:finance/py-trytond-stock-shipment-measurements@${PY_FLAVOR}
-SHIPMENTMEASUREMENTS_IGNORE=		Module port yet to be completed.
 STOCKSPLIT_DESC=	Splits moves and shipments.
 STOCKSPLIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-split=${PORTVERSION}:finance/py-trytond-stock-split@${PY_FLAVOR}
 STOCKSPLIT_IGNORE=		Module port yet to be completed.
