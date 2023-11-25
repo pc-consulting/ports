@@ -335,7 +335,6 @@ REQUESTQUOTATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-request-qu
 REQUESTQUOTATION_IGNORE=		Module port yet to be completed.
 REQUISITION_DESC=		Requires purchase by employees.
 REQUISITION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-requisition=${PORTVERSION}:finance/py-trytond-purchase-requisition@${PY_FLAVOR}
-REQUISITION_IGNORE=		Module port yet to be completed.
 PURCHASESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 PURCHASESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-secondary-unit=${PORTVERSION}:finance/py-trytond-purchase-secondary-unit@${PY_FLAVOR}
 PURCHASESECONDARYUNIT_IGNORE=		Module port yet to be completed.
