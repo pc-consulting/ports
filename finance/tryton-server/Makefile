@@ -332,7 +332,6 @@ REQUEST_DESC=		Collects the purchase requests.
 REQUEST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-request=${PORTVERSION}:finance/py-trytond-purchase-request@${PY_FLAVOR}
 REQUESTQUOTATION_DESC=		Asks quotation for the purchase requests.
 REQUESTQUOTATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-request-quotation=${PORTVERSION}:finance/py-trytond-purchase-request-quotation@${PY_FLAVOR}
-REQUESTQUOTATION_IGNORE=		Module port yet to be completed.
 REQUISITION_DESC=		Requires purchase by employees.
 REQUISITION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-requisition=${PORTVERSION}:finance/py-trytond-purchase-requisition@${PY_FLAVOR}
 PURCHASESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
