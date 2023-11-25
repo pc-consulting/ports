@@ -174,7 +174,6 @@ STOCKLANDEDCOST_DESC=		Allocates landed cost.
 STOCKLANDEDCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-landed-cost=${PORTVERSION}:finance/py-trytond-account-stock-landed-cost@${PY_FLAVOR}
 STOCKLANDEDCOSTWEIGHT_DESC=		Allocates landed cost based on weight.
 STOCKLANDEDCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-landed-cost-weight=${PORTVERSION}:finance/py-trytond-account-stock-landed-cost-weight@${PY_FLAVOR}
-STOCKLANDEDCOSTWEIGHT_IGNORE=		Module port yet to be completed.
 ACCOUNTSTOCKSHIPMENTCOST_DESC=		Allocates shipment cost.
 ACCOUNTSTOCKSHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-shipment-cost=${PORTVERSION}:finance/py-trytond-account-stock-shipment-cost@${PY_FLAVOR}
 ACCOUNTSTOCKSHIPMENTCOST_IGNORE=		Module port yet to be completed.
