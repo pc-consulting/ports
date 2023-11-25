@@ -180,7 +180,6 @@ ACCOUNTSTOCKSHIPMENTCOSTWEIGHT_DESC=		Allocates shipment cost by weight.
 ACCOUNTSTOCKSHIPMENTCOSTWEIGHT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-stock-shipment-cost-weight=${PORTVERSION}:finance/py-trytond-account-stock-shipment-cost-weight@${PY_FLAVOR}
 TAXCASH_DESC=		Reports tax on cash basis.
 TAXCASH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-cash=${PORTVERSION}:finance/py-trytond-account-tax-cash@${PY_FLAVOR}
-TAXCASH_IGNORE=		Module port yet to be completed.
 TAXNONDEDUCTIBLE_DESC=		Reports non-deductible tax.
 TAXNONDEDUCTIBLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-non-deductible=${PORTVERSION}:finance/py-trytond-account-tax-non-deductible@${PY_FLAVOR}
 TAXNONDEDUCTIBLE_IGNORE=		Module port yet to be completed.
