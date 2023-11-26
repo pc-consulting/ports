@@ -700,7 +700,6 @@ INBOUNDEMAIL_DESC=		Receive email.
 INBOUNDEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-inbound-email=${PORTVERSION}:finance/py-trytond-inbound-email@${PY_FLAVOR}
 AUTHENTICATIOSAML_DESC=		Authentication per SAML.
 AUTHENTICATIOSAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-authentication-saml=${PORTVERSION}:finance/py-trytond-authentication-saml@${PY_FLAVOR}
-AUTHENTICATIOSAML_IGNORE=		Module port yet to be completed.
 # Where is this module???
 #AUTHENTICATIONSMS_DESC=		Authentication per SMS.
 #AUTHENTICATIONSMS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}=${PORTVERSION}:finance/py-@${PY_FLAVOR}

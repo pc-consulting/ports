@@ -1,6 +1,3 @@
-Authentication SAML Module
-
-The SAML authentication module allows to delegate the user authentication to an
-identity provider.
-
-WWW: http://www.tryton.org/
+The SAML authentication module allows to delegate the user
+authentication to an identity provider.
+Part of the Tryton Business Software suite.
