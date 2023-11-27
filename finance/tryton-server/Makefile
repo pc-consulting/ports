@@ -213,7 +213,6 @@ COMMISSIONFUNDAMENTAL_DESC=		Fundamentals to commission sales agents.
 COMMISSIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-commission=${PORTVERSION}:finance/py-trytond-commission@${PY_FLAVOR}
 WAITING_DESC=		Creates waiting account moves.
 WAITING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-commission-waiting=${PORTVERSION}:finance/py-trytond-commission-waiting@${PY_FLAVOR}
-_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_DOCUMENT=	DOCUMENTINCOMING DOCUMENTINCOMINGINVOICE \
 			DOCUMENTINCOMINGOCR DOCUMENTINCOMINGOCRTYPLESS \
