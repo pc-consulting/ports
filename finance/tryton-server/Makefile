@@ -576,7 +576,6 @@ CARRIAGE_DESC=		Supports multiple carriers per document.
 CARRIAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-carriage=${PORTVERSION}:finance/py-trytond-carrier-carriage@${PY_FLAVOR}
 PERCENTAGE_DESC=	Computes cost based on percentage.
 PERCENTAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-percentage=${PORTVERSION}:finance/py-trytond-carrier-percentage@${PY_FLAVOR}
-PERCENTAGE_IGNORE=		Module port yet to be completed.
 SUBDIVISION_DESC=		Restricts the usage of a carrier to subdivisions and ZIP codes.
 SUBDIVISION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier-subdivision=${PORTVERSION}:finance/py-trytond-carrier-subdivision@${PY_FLAVOR}
 SUBDIVISION_IGNORE=		Module port yet to be completed.
