@@ -1,3 +1,6 @@
-doc/index.rst
-
-WWW: http://www.tryton.org/
+The carrier subdivision module extends the carrier selection pattern
+with the warehouse subdivision, a regular expression to match against
+warehouse postal code, the customer subdivision, or a regular
+expression to match against customer postal code. These criteria can
+be used to restrict the usage of a carrier to a specific subdivision
+or a specific postal code.
