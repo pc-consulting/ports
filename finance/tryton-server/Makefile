@@ -595,7 +595,6 @@ ROMANIAN_DESC=		Exchange rates from the Romanian National Bank.
 ROMANIAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-currency-ro=${PORTVERSION}:finance/py-trytond-currency-ro@${PY_FLAVOR}
 SERBIAN_DESC=		Exchange rates from the Serbian National Bank.
 SERBIAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-currency-rs=${PORTVERSION}:finance/py-trytond-currency-rs@${PY_FLAVOR}
-SERBIAN_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_CUSTOMS=	CUSTOMSFUNDAMENTAL
 OPTIONS_DEFAULT+=	CUSTOMSFUNDAMENTAL
