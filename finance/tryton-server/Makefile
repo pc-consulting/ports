@@ -223,7 +223,6 @@ DOCUMENTINCOMING_DESC=		Incoming documents handling
 DOCUMENTINCOMING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-document-incoming=${PORTVERSION}:finance/py-trytond-document-incoming@${PY_FLAVOR}
 DOCUMENTINCOMINGINVOICE_DESC=		Incoming invoice documents handling
 DOCUMENTINCOMINGINVOICE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-document-incoming-invoice=${PORTVERSION}:finance/py-trytond-document-incoming-invoice@${PY_FLAVOR}
-DOCUMENTINCOMINGINVOICE_IGNORE=		Module port yet to be completed.
 DOCUMENTINCOMINGOCR_DESC=		Incoming documents with OCR handling
 DOCUMENTINCOMINGOCR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-document-incoming-ocr=${PORTVERSION}:finance/py-trytond-document-incoming-ocr@${PY_FLAVOR}
 DOCUMENTINCOMINGOCR_IGNORE=		Module port yet to be completed.
