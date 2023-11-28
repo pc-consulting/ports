@@ -1,6 +1,3 @@
-Currency RO Module
-
-The Currency RO Module adds the Romanian National Bank as a source for currency
-exchange rates.
-
-WWW: http://www.tryton.org/
+The Currency RO Module adds the Romanian National Bank as a source
+for currency exchange rates.
+Part of the Tryton Business Software suite.
