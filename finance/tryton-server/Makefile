@@ -379,7 +379,6 @@ INVOICEGROUPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-groupin
 INVOICEGROUPING_IGNORE=		Module port yet to be completed.
 OPPORTUNITY_DESC=		Tracks leads and opportunities.
 OPPORTUNITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-opportunity=${PORTVERSION}:finance/py-trytond-sale-opportunity@${PY_FLAVOR}
-OPPORTUNITY_IGNORE=		Module port yet to be completed.
 SALESPAYMENT_DESC=		Pays sales before posting the invoice.
 SALESPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-payment=${PORTVERSION}:finance/py-trytond-sale-payment@${PY_FLAVOR}
 SALESPAYMENT_IGNORE=		Module port yet to be completed.
