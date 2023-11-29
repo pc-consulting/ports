@@ -2,7 +2,7 @@
 
 PORTNAME=	trytond-incoterm
 PORTVERSION=	7.0.1
-CATEGORIES=	devel python
+CATEGORIES=	finance python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
