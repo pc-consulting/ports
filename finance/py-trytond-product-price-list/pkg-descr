@@ -1,6 +1,3 @@
-Product Price List Module
-
-The product price list module provides formula to compute prices per product or
-category.
-
-WWW: http://www.tryton.org/
+The product price list module provides formula to compute prices per
+product or category.
+Part of the Tryton Business Software suite.

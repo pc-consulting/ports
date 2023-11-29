@@ -661,7 +661,6 @@ MEASUREMENTS_DESC=		Adds measurements to products.
 MEASUREMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-measurements=${PORTVERSION}:finance/py-trytond-product-measurements@${PY_FLAVOR}
 PRODUCTPRICELIST_DESC=		Computes price.
 PRODUCTPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list=${PORTVERSION}:finance/py-trytond-product-price-list@${PY_FLAVOR}
-PRODUCTPRICELIST_IGNORE=		Module port yet to be completed.
 PRICELISTCACHE_DESC=		Pre-compute prices.
 PRICELISTCACHE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-cache=${PORTVERSION}:finance/py-trytond-product-price-list-cache@${PY_FLAVOR}
 PRICELISTCACHE_IGNORE=		Module port yet to be completed.
