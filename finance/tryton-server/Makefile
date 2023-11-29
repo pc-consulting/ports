@@ -398,7 +398,6 @@ PRODUCTRECOMMENDATIONRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-produ
 PRODUCTRECOMMENDATIONRULE_IGNORE=		Module port yet to be completed.
 PROMOTION_DESC=		Applies promotions.
 PROMOTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion=${PORTVERSION}:finance/py-trytond-sale-promotion@${PY_FLAVOR}
-PROMOTION_IGNORE=		Module port yet to be completed.
 PROMOTIONCOUPON_DESC=		Applies promotions with coupons.
 PROMOTIONCOUPON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon@${PY_FLAVOR}
 PROMOTIONCOUPON_IGNORE=		Module port yet to be completed.
