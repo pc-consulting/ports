@@ -384,7 +384,6 @@ SALESPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-payment=${PORTVERS
 SALESPAYMENT_IGNORE=		Module port yet to be completed.
 SALESPRICELIST_DESC=		Applies price list.
 SALESPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list=${PORTVERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
-SALESPRICELIST_IGNORE=		Module port yet to be completed.
 PRODUCTCUSTOMER_DESC=		Adds customer’s name and code for product.
 PRODUCTCUSTOMER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-customer=${PORTVERSION}:finance/py-trytond-sale-product-customer@${PY_FLAVOR}
 PRODUCTCUSTOMER_IGNORE=		Module port yet to be completed.
