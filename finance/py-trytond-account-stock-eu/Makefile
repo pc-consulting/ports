@@ -27,6 +27,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:databases/py-python-sql@${PY_FL
 #				sale_supply_drop_shipment,
 #				stock_consignment,
 #				stock_secondary_unit) # ir: trytond built-in
+#		NOTE incoterm currently deviates in its PORTVERSION, hence relaxed check
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION}:finance/py-trytond-account@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-carrier=${PORTVERSION}:finance/py-trytond-carrier@${PY_FLAVOR} \
@@ -35,7 +36,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 		${PYTHON_PKGNAMEPREFIX}trytond-country=${PORTVERSION}:finance/py-trytond-country@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-currency=${PORTVERSION}:finance/py-trytond-currency@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-customs=${PORTVERSION}:finance/py-trytond-customs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-incoterm=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-incoterm>=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-product-measurements=${PORTVERSION}:finance/py-trytond-product-measurements@${PY_FLAVOR} \

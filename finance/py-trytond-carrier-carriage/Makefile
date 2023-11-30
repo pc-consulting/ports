@@ -22,10 +22,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 #				account_invoice, incoterm,
 #				purchase_shipment_cost, sale,
 #				sale_shipment_cost) # ir: trytond built-in
+#		NOTE incoterm currently deviates in its PORTVERSION, hence relaxed check
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account-invoice=${PORTVERSION}:finance/py-trytond-account-invoice@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-carrier=${PORTVERSION}:finance/py-trytond-carrier@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-incoterm=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-incoterm>=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-purchase-shipment-cost=${PORTVERSION}:finance/py-trytond-purchase-shipment-cost@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-cost=${PORTVERSION}:finance/py-trytond-sale-shipment-cost@${PY_FLAVOR} \
