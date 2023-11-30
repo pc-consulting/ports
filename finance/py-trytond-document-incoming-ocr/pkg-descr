@@ -1,6 +1,3 @@
-Document Incoming OCR Module
-
-The Document Incoming OCR Module provides the basis to interact with OCR
-services.
-
-WWW: http://www.tryton.org/
+The Document Incoming OCR Module provides the basis to interact with
+OCR services.
+Part of the Tryton Business Software suite.
