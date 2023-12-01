@@ -244,7 +244,6 @@ CAMPAIGN_DESC=		Manage campaign.
 CAMPAIGN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-marketing-campaign=${PORTVERSION}:finance/py-trytond-marketing-campaign@${PY_FLAVOR}
 EMAIL_DESC=		Manage mailing lists.
 EMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-marketing-email=${PORTVERSION}:finance/py-trytond-marketing-email@${PY_FLAVOR}
-EMAIL_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_PRODUCTION=	PRODUCTIONFUNDAMENTAL OUTSOURCING \
 				ROUTING PRODUCTIONSPLIT WORK \
