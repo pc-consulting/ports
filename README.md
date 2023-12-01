@@ -45,7 +45,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
                 - Yet, I'd love to maintain separate ports because I strongly favour the idea that one can tell 'any' installed package from a look into the pkg db
                 - So, instead, create some kind of bsd.Tryoton.mk
                     - Derive a TRYTOND_SUITE_PACKAGES= with a list of packages in tryton.cfg writing with a script for the port maintainer
-                    - For each package, define a set of variables like we have in ports like TRTOND_ACCOUNT_EU* for *_VERSION, *_DEPENDS, and maybe some others
+                    - For each package, define a set of variables like we have in ports like TRTOND_ACCOUNT_EU* for *_VERSION, *_DEPENDS, *_OPTIONS, and maybe some others
                     - Have a single trytond port origin where all packages can created from, named as we currently have them in individual ports
                     - Eventually, have a set of TRYTOND_CONTRIB_PACKAGES=, maybe in a likewise but separate trytond-contrib port, for all community contrib modules which we evenually will have
                     - Use the tryton-server port as a frontend to drive the two, and the bits that one needs to put Tryton on its feet (like database etc.)
