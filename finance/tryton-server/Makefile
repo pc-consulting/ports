@@ -227,7 +227,6 @@ DOCUMENTINCOMINGOCR_DESC=		Incoming documents with OCR handling
 DOCUMENTINCOMINGOCR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-document-incoming-ocr=${PORTVERSION}:finance/py-trytond-document-incoming-ocr@${PY_FLAVOR}
 DOCUMENTINCOMINGOCRTYPLESS_DESC=	Incoming documents interface with Typless
 DOCUMENTINCOMINGOCRTYPLESS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-document-incoming-ocr-typless=${PORTVERSION}:finance/py-trytond-document-incoming-ocr-typless@${PY_FLAVOR}
-DOCUMENTINCOMINGOCRTYPLESS_IGNORE=		Module port yet to be completed.
 UNCEFACT_DESC=		Supports UN/CEFACT format.
 UNCEFACT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-edocument-uncefact=${PORTVERSION}:finance/py-trytond-edocument-uncefact@${PY_FLAVOR}
 UNECE_DESC=		Adds UNECE codes.
