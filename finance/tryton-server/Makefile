@@ -620,7 +620,6 @@ AVATAR_DESC=		Adds avatar.
 AVATAR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party-avatar=${PORTVERSION}:finance/py-trytond-party-avatar@${PY_FLAVOR}
 RELATIONSHIP_DESC=		Defines relation between parties.
 RELATIONSHIP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party-relationship=${PORTVERSION}:finance/py-trytond-party-relationship@${PY_FLAVOR}
-RELATIONSHIP_IGNORE=		Module port yet to be completed.
 SIRET_DESC=		Adds SIRET and SIREN.
 SIRET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party-siret=${PORTVERSION}:finance/py-trytond-party-siret@${PY_FLAVOR}
 #
