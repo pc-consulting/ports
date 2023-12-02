@@ -636,7 +636,6 @@ ATTRIBUTE_DESC=		Adds attributes to products.
 ATTRIBUTE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-attribute=${PORTVERSION}:finance/py-trytond-product-attribute@${PY_FLAVOR}
 CLASSIFICATION_DESC=		Classifies products.
 CLASSIFICATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-classification=${PORTVERSION}:finance/py-trytond-product-classification@${PY_FLAVOR}
-CLASSIFICATION_IGNORE=		Module port yet to be completed.
 CLASSIFICATIONTAXONOMIC_DESC=		Uses Taxonomic classification.
 CLASSIFICATIONTAXONOMIC_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-classification-taxonomic=${PORTVERSION}:finance/py-trytond-product-classification-taxonomic@${PY_FLAVOR}
 CLASSIFICATIONTAXONOMIC_IGNORE=		Module port yet to be completed.
