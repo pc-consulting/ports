@@ -642,7 +642,6 @@ COSTFIFO_DESC=		Adds FIFO cost method.
 COSTFIFO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-fifo=${PORTVERSION}:finance/py-trytond-product-cost-fifo@${PY_FLAVOR}
 COSTHISTORY_DESC=		Historize the cost.
 COSTHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-history=${PORTVERSION}:finance/py-trytond-product-cost-history@${PY_FLAVOR}
-COSTHISTORY_IGNORE=		Module port yet to be completed.
 COSTWAREHOUSE_DESC=		Calculate cost prices per warehouse.
 COSTWAREHOUSE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-warehouse=${PORTVERSION}:finance/py-trytond-product-cost-warehouse@${PY_FLAVOR}
 COSTWAREHOUSE_IGNORE=		Module port yet to be completed.
