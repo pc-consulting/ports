@@ -640,7 +640,6 @@ CLASSIFICATIONTAXONOMIC_DESC=		Uses Taxonomic classification.
 CLASSIFICATIONTAXONOMIC_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-classification-taxonomic=${PORTVERSION}:finance/py-trytond-product-classification-taxonomic@${PY_FLAVOR}
 COSTFIFO_DESC=		Adds FIFO cost method.
 COSTFIFO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-fifo=${PORTVERSION}:finance/py-trytond-product-cost-fifo@${PY_FLAVOR}
-COSTFIFO_IGNORE=		Module port yet to be completed.
 COSTHISTORY_DESC=		Historize the cost.
 COSTHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-history=${PORTVERSION}:finance/py-trytond-product-cost-history@${PY_FLAVOR}
 COSTHISTORY_IGNORE=		Module port yet to be completed.
