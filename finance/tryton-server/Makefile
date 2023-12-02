@@ -654,7 +654,6 @@ PRICELISTDATES_DESC=		Sets start and end date on price lists.
 PRICELISTDATES_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-dates=${PORTVERSION}:finance/py-trytond-product-price-list-dates@${PY_FLAVOR}
 PRICELISTPARENT_DESC=		Adds price list cascading.
 PRICELISTPARENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-parent=${PORTVERSION}:finance/py-trytond-product-price-list-parent@${PY_FLAVOR}
-PRICELISTPARENT_IGNORE=		Module port yet to be completed.
 IMAGE_DESC=		Adds images.
 IMAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-image=${PORTVERSION}:finance/py-trytond-product-image@${PY_FLAVOR}
 IMAGEATTRIBUTE_DESC=		Adds attributes to product images.
