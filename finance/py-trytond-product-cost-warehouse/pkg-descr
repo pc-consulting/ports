@@ -1,6 +1,3 @@
-Product Cost Warehouse Module
-
-The Product Cost Warehouse Module allows the cost price of products to be
-calculated separately for each warehouse.
-
-WWW: http://www.tryton.org/
+The Product Cost Warehouse Module allows the cost price of products
+to be calculated separately for each warehouse.
+Part of the Tryton Business Software suite.

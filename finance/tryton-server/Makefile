@@ -644,7 +644,6 @@ COSTHISTORY_DESC=		Historize the cost.
 COSTHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-history=${PORTVERSION}:finance/py-trytond-product-cost-history@${PY_FLAVOR}
 COSTWAREHOUSE_DESC=		Calculate cost prices per warehouse.
 COSTWAREHOUSE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-cost-warehouse=${PORTVERSION}:finance/py-trytond-product-cost-warehouse@${PY_FLAVOR}
-COSTWAREHOUSE_IGNORE=		Module port yet to be completed.
 MEASUREMENTS_DESC=		Adds measurements to products.
 MEASUREMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-measurements=${PORTVERSION}:finance/py-trytond-product-measurements@${PY_FLAVOR}
 PRODUCTPRICELIST_DESC=		Computes price.
