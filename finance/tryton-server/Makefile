@@ -618,7 +618,6 @@ PARTYFUNDAMENTAL_DESC=		Fundamentals to store parties.
 PARTYFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR}
 AVATAR_DESC=		Adds avatar.
 AVATAR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party-avatar=${PORTVERSION}:finance/py-trytond-party-avatar@${PY_FLAVOR}
-AVATAR_IGNORE=		Module port yet to be completed.
 RELATIONSHIP_DESC=		Defines relation between parties.
 RELATIONSHIP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party-relationship=${PORTVERSION}:finance/py-trytond-party-relationship@${PY_FLAVOR}
 RELATIONSHIP_IGNORE=		Module port yet to be completed.
