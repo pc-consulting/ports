@@ -661,7 +661,6 @@ IMAGE_DESC=		Adds images.
 IMAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-image=${PORTVERSION}:finance/py-trytond-product-image@${PY_FLAVOR}
 IMAGEATTRIBUTE_DESC=		Adds attributes to product images.
 IMAGEATTRIBUTE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-image-attribute=${PORTVERSION}:finance/py-trytond-product-image-attribute@${PY_FLAVOR}
-IMAGEATTRIBUTE_IGNORE=		Module port yet to be completed.
 KIT_DESC=		Add support for product kits.
 KIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-kit=${PORTVERSION}:finance/py-trytond-product-kit@${PY_FLAVOR}
 #
