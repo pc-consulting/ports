@@ -650,7 +650,6 @@ PRODUCTPRICELIST_DESC=		Computes price.
 PRODUCTPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list=${PORTVERSION}:finance/py-trytond-product-price-list@${PY_FLAVOR}
 PRICELISTCACHE_DESC=		Pre-compute prices.
 PRICELISTCACHE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-cache=${PORTVERSION}:finance/py-trytond-product-price-list-cache@${PY_FLAVOR}
-PRICELISTCACHE_IGNORE=		Module port yet to be completed.
 PRICELISTDATES_DESC=		Sets start and end date on price lists.
 PRICELISTDATES_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-dates=${PORTVERSION}:finance/py-trytond-product-price-list-dates@${PY_FLAVOR}
 PRICELISTDATES_IGNORE=		Module port yet to be completed.

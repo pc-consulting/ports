@@ -1,6 +1,3 @@
-Product Price List Cache Module
-
-The Product Price List Cache Module pre-computes an stores prices for each
-product and price list.
-
-WWW: http://www.tryton.org/
+The Product Price List Cache Module pre-computes an stores prices for
+each product and price list.
+Part of the Tryton Business Software suite.
