@@ -260,7 +260,6 @@ PRODUCTIONSPLIT_DESC=	Split production orders.
 PRODUCTIONSPLIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-split=${PORTVERSION}:finance/py-trytond-production-split@${PY_FLAVOR}
 WORK_DESC=		Manage work order for each production.
 WORK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-work=${PORTVERSION}:finance/py-trytond-production-work@${PY_FLAVOR}
-WORK_IGNORE=		Module port yet to be completed.
 WORKTIMESHEET_DESC=		Track time per work.
 WORKTIMESHEET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-work-timesheet=${PORTVERSION}:finance/py-trytond-production-work-timesheet@${PY_FLAVOR}
 WORKTIMESHEET_IGNORE=		Module port yet to be completed.
