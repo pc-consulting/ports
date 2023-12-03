@@ -272,7 +272,6 @@ INVOICE_DESC=		Invoices the projects.
 INVOICE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project-invoice=${PORTVERSION}:finance/py-trytond-project-invoice@${PY_FLAVOR}
 PLAN_DESC=		Plans the projects.
 PLAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project-plan=${PORTVERSION}:finance/py-trytond-project-plan@${PY_FLAVOR}
-PLAN_IGNORE=		Module port yet to be completed.
 REVENUE_DESC=		Follows cost and revenue of projects.
 REVENUE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project-revenue=${PORTVERSION}:finance/py-trytond-project-revenue@${PY_FLAVOR}
 #
