@@ -262,7 +262,6 @@ WORK_DESC=		Manage work order for each production.
 WORK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-work=${PORTVERSION}:finance/py-trytond-production-work@${PY_FLAVOR}
 WORKTIMESHEET_DESC=		Track time per work.
 WORKTIMESHEET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-work-timesheet=${PORTVERSION}:finance/py-trytond-production-work-timesheet@${PY_FLAVOR}
-WORKTIMESHEET_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_PROJECT=	PROJECTFUNDAMENTAL INVOICE PLAN REVENUE
 OPTIONS_DEFAULT+=	PROJECTFUNDAMENTAL
