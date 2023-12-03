@@ -254,7 +254,6 @@ PRODUCTIONFUNDAMENTAL_DESC=		Fundamentals for production management.
 PRODUCTIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production=${PORTVERSION}:finance/py-trytond-production@${PY_FLAVOR}
 OUTSOURCING_DESC=		Outsources the production.
 OUTSOURCING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-outsourcing=${PORTVERSION}:finance/py-trytond-production-outsourcing@${PY_FLAVOR}
-OUTSOURCING_IGNORE=		Module port yet to be completed.
 ROUTING_DESC=		Defines routings.
 ROUTING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-routing=${PORTVERSION}:finance/py-trytond-production-routing@${PY_FLAVOR}
 PRODUCTIONSPLIT_DESC=	Split production orders.
