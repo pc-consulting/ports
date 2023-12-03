@@ -526,7 +526,6 @@ SUPPLYDAY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-day=${PORTVER
 SUPPLYDAY_IGNORE=		Module port yet to be completed.
 SUPPLYPRODUCTION_DESC=		Supplies warehouses with production orders.
 SUPPLYPRODUCTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-production=${PORTVERSION}:finance/py-trytond-stock-supply-production@${PY_FLAVOR}
-SUPPLYPRODUCTION_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_TIMESHEET=	TIMESHEETFUNDAMENTAL COST
 OPTIONS_DEFAULT+=	TIMESHEETFUNDAMENTAL
