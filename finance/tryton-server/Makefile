@@ -529,7 +529,6 @@ TIMESHEETFUNDAMENTAL_DESC=		Fundamentals to track time spend.
 TIMESHEETFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet=${PORTVERSION}:finance/py-trytond-timesheet@${PY_FLAVOR}
 COST_DESC=		Tracks employee cost.
 COST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet-cost=${PORTVERSION}:finance/py-trytond-timesheet-cost@${PY_FLAVOR}
-COST_IGNORE=		Module port yet to be completed.
 #
 # There are so many 'referential' modules that we use a group for
 # each of them. In most cases, picking one of the items therein
