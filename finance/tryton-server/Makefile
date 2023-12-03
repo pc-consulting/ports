@@ -12,7 +12,7 @@ WWW=		https://www.tryton.org/
 
 LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies have GPLv3
 
-# Let's assume that we always want a server.'
+# Let's assume that we always want a server.
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
 
 OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
@@ -701,7 +701,8 @@ USER_DESC=		Manages external users.
 USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance/py-trytond-web-user@${PY_FLAVOR}
 USER_IGNORE=		Module port yet to be completed.
 
-USES=		PYTHON
+USES=		PYTHON:3.9+
+USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
 
 .include <bsd.port.mk>

@@ -18,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # No dependencies from python package
 # Dependencies from tryton.cfg (account) # trytond indirectly via py-trytond-account
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}account=${PORTVERSION}:finance/py-account@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION}:finance/py-trytond-account@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
