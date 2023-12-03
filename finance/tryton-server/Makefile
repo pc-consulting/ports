@@ -257,7 +257,6 @@ OUTSOURCING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-outsourcing=$
 OUTSOURCING_IGNORE=		Module port yet to be completed.
 ROUTING_DESC=		Defines routings.
 ROUTING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-routing=${PORTVERSION}:finance/py-trytond-production-routing@${PY_FLAVOR}
-ROUTING_IGNORE=		Module port yet to be completed.
 PRODUCTIONSPLIT_DESC=	Split production orders.
 PRODUCTIONSPLIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-split=${PORTVERSION}:finance/py-trytond-production-split@${PY_FLAVOR}
 PRODUCTIONSPLIT_IGNORE=		Module port yet to be completed.
