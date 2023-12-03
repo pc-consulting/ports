@@ -276,7 +276,6 @@ PLAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project-plan=${PORTVERSION}:fin
 PLAN_IGNORE=		Module port yet to be completed.
 REVENUE_DESC=		Follows cost and revenue of projects.
 REVENUE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project-revenue=${PORTVERSION}:finance/py-trytond-project-revenue@${PY_FLAVOR}
-REVENUE_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_PURCHASE=	PURCHASEFUNDAMENTAL PURCHASEAMENDMENT \
 			PURCHASEBLANKETAGREEMENT PURCHASEHISTORY \
