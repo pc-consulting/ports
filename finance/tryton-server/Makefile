@@ -289,7 +289,6 @@ PURCHASEAMENDMENT_DESC=		Amend purchases in processing.
 PURCHASEAMENDMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-amendment=${PORTVERSION}:finance/py-trytond-purchase-amendment@${PY_FLAVOR}
 PURCHASEBLANKETAGREEMENT_DESC=		Manage blanket agreements.
 PURCHASEBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-blanket-agreement=${PORTVERSION}:finance/py-trytond-purchase-blanket-agreement@${PY_FLAVOR}
-PURCHASEBLANKETAGREEMENT_IGNORE=		Module port yet to be completed.
 PURCHASEHISTORY_DESC=		Manages revisions.
 PURCHASEHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-history=${PORTVERSION}:finance/py-trytond-purchase-history@${PY_FLAVOR}
 INVOICELINESTANDALONE_DESC=		Generates invoice lines.
