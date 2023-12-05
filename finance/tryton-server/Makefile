@@ -293,7 +293,6 @@ PURCHASEHISTORY_DESC=		Manages revisions.
 PURCHASEHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-history=${PORTVERSION}:finance/py-trytond-purchase-history@${PY_FLAVOR}
 INVOICELINESTANDALONE_DESC=		Generates invoice lines.
 INVOICELINESTANDALONE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-invoice-line-standalone=${PORTVERSION}:finance/py-trytond-purchase-invoice-line-standalone@${PY_FLAVOR}
-INVOICELINESTANDALONE_IGNORE=		Module port yet to be completed.
 PURCHASEPRICELIST_DESC=		Applies price list.
 PURCHASEPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-price-list=${PORTVERSION}:finance/py-trytond-purchase-price-list@${PY_FLAVOR}
 PURCHASEPRICELIST_IGNORE=		Module port yet to be completed.
