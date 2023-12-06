@@ -342,7 +342,6 @@ CREDITLIMIT_DESC=		Adds sales to the credit limit.
 CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-credit-limit=${PORTVERSION}:finance/py-trytond-sale-credit-limit@${PY_FLAVOR}
 DISCOUNT_DESC=		Adds discount on lines.
 DISCOUNT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-discount=${PORTVERSION}:finance/py-trytond-sale-discount@${PY_FLAVOR}
-DISCOUNT_IGNORE=		Module port yet to be completed.
 EXTRA_DESC=		Add extra lines.
 EXTRA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-extra=${PORTVERSION}:finance/py-trytond-sale-extra@${PY_FLAVOR}
 EXTRA_IGNORE=		Module port yet to be completed.
