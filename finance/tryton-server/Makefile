@@ -344,7 +344,6 @@ DISCOUNT_DESC=		Adds discount on lines.
 DISCOUNT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-discount=${PORTVERSION}:finance/py-trytond-sale-discount@${PY_FLAVOR}
 EXTRA_DESC=		Add extra lines.
 EXTRA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-extra=${PORTVERSION}:finance/py-trytond-sale-extra@${PY_FLAVOR}
-EXTRA_IGNORE=		Module port yet to be completed.
 GIFTCARD_DESC=		Sales gift cards.
 GIFTCARD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-gift-card=${PORTVERSION}:finance/py-trytond-sale-gift-card@${PY_FLAVOR}
 SALESHISTORY_DESC=		Manages revisions.
