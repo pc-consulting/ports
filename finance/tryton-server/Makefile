@@ -295,7 +295,6 @@ INVOICELINESTANDALONE_DESC=		Generates invoice lines.
 INVOICELINESTANDALONE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-invoice-line-standalone=${PORTVERSION}:finance/py-trytond-purchase-invoice-line-standalone@${PY_FLAVOR}
 PURCHASEPRICELIST_DESC=		Applies price list.
 PURCHASEPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-price-list=${PORTVERSION}:finance/py-trytond-purchase-price-list@${PY_FLAVOR}
-PURCHASEPRICELIST_IGNORE=		Module port yet to be completed.
 PRODUCTQUANTITY_DESC=		Adds constraints on quantity purchased.
 PRODUCTQUANTITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-product-quantity=${PORTVERSION}:finance/py-trytond-purchase-product-quantity@${PY_FLAVOR}
 PRODUCTQUANTITY_IGNORE=		Module port yet to be completed.
