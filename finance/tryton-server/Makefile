@@ -340,7 +340,6 @@ COMPLAINT_DESC=		Solves customer complaints.
 COMPLAINT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-complaint=${PORTVERSION}:finance/py-trytond-sale-complaint@${PY_FLAVOR}
 CREDITLIMIT_DESC=		Adds sales to the credit limit.
 CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-credit-limit=${PORTVERSION}:finance/py-trytond-sale-credit-limit@${PY_FLAVOR}
-CREDITLIMIT_IGNORE=		Module port yet to be completed.
 DISCOUNT_DESC=		Adds discount on lines.
 DISCOUNT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-discount=${PORTVERSION}:finance/py-trytond-sale-discount@${PY_FLAVOR}
 DISCOUNT_IGNORE=		Module port yet to be completed.
