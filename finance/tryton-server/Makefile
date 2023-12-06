@@ -305,7 +305,6 @@ REQUISITION_DESC=		Requires purchase by employees.
 REQUISITION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-requisition=${PORTVERSION}:finance/py-trytond-purchase-requisition@${PY_FLAVOR}
 PURCHASESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 PURCHASESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-secondary-unit=${PORTVERSION}:finance/py-trytond-purchase-secondary-unit@${PY_FLAVOR}
-PURCHASESECONDARYUNIT_IGNORE=		Module port yet to be completed.
 PURCHASESHIPMENTCOST_DESC=		Computes shipment cost.
 PURCHASESHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-shipment-cost=${PORTVERSION}:finance/py-trytond-purchase-shipment-cost@${PY_FLAVOR}
 #
