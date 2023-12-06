@@ -336,7 +336,6 @@ SALESAMENDMENT_DESC=		Amend sales in processing.
 SALESAMENDMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-amendment=${PORTVERSION}:finance/py-trytond-sale-amendment@${PY_FLAVOR}
 SALESBLANKETAGREEMENT_DESC=		Manage sale blanket agreements.
 SALESBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-blanket-agreement=${PORTVERSION}:finance/py-trytond-sale-blanket-agreement@${PY_FLAVOR}
-SALESBLANKETAGREEMENT_IGNORE=		Module port yet to be completed.
 COMPLAINT_DESC=		Solves customer complaints.
 COMPLAINT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-complaint=${PORTVERSION}:finance/py-trytond-sale-complaint@${PY_FLAVOR}
 COMPLAINT_IGNORE=		Module port yet to be completed.
