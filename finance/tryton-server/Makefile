@@ -338,7 +338,6 @@ SALESBLANKETAGREEMENT_DESC=		Manage sale blanket agreements.
 SALESBLANKETAGREEMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-blanket-agreement=${PORTVERSION}:finance/py-trytond-sale-blanket-agreement@${PY_FLAVOR}
 COMPLAINT_DESC=		Solves customer complaints.
 COMPLAINT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-complaint=${PORTVERSION}:finance/py-trytond-sale-complaint@${PY_FLAVOR}
-COMPLAINT_IGNORE=		Module port yet to be completed.
 CREDITLIMIT_DESC=		Adds sales to the credit limit.
 CREDITLIMIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-credit-limit=${PORTVERSION}:finance/py-trytond-sale-credit-limit@${PY_FLAVOR}
 CREDITLIMIT_IGNORE=		Module port yet to be completed.
