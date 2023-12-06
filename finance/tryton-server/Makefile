@@ -360,7 +360,6 @@ SALESPRICELIST_DESC=		Applies price list.
 SALESPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list=${PORTVERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
 PRODUCTCUSTOMER_DESC=		Adds customer’s name and code for product.
 PRODUCTCUSTOMER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-customer=${PORTVERSION}:finance/py-trytond-sale-product-customer@${PY_FLAVOR}
-PRODUCTCUSTOMER_IGNORE=		Module port yet to be completed.
 PRODUCTQUALITY_DESC=		Adds constraints on quantity sold.
 PRODUCTQUALITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-quantity=${PORTVERSION}:finance/py-trytond-sale-product-quantity@${PY_FLAVOR}
 PRODUCTQUALITY_IGNORE=		Module port yet to be completed.
