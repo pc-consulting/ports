@@ -356,7 +356,6 @@ OPPORTUNITY_DESC=		Tracks leads and opportunities.
 OPPORTUNITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-opportunity=${PORTVERSION}:finance/py-trytond-sale-opportunity@${PY_FLAVOR}
 SALESPAYMENT_DESC=		Pays sales before posting the invoice.
 SALESPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-payment=${PORTVERSION}:finance/py-trytond-sale-payment@${PY_FLAVOR}
-SALESPAYMENT_IGNORE=		Module port yet to be completed.
 SALESPRICELIST_DESC=		Applies price list.
 SALESPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list=${PORTVERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
 PRODUCTCUSTOMER_DESC=		Adds customer’s name and code for product.
