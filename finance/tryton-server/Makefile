@@ -297,7 +297,6 @@ PURCHASEPRICELIST_DESC=		Applies price list.
 PURCHASEPRICELIST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-price-list=${PORTVERSION}:finance/py-trytond-purchase-price-list@${PY_FLAVOR}
 PRODUCTQUANTITY_DESC=		Adds constraints on quantity purchased.
 PRODUCTQUANTITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-product-quantity=${PORTVERSION}:finance/py-trytond-purchase-product-quantity@${PY_FLAVOR}
-PRODUCTQUANTITY_IGNORE=		Module port yet to be completed.
 REQUEST_DESC=		Collects the purchase requests.
 REQUEST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-request=${PORTVERSION}:finance/py-trytond-purchase-request@${PY_FLAVOR}
 REQUESTQUOTATION_DESC=		Asks quotation for the purchase requests.
