@@ -350,7 +350,6 @@ SALESHISTORY_DESC=		Manages revisions.
 SALESHISTORY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-history=${PORTVERSION}:finance/py-trytond-sale-history@${PY_FLAVOR}
 INVOICEDATE_DESC=		Compute the date of invoice.
 INVOICEDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-date=${PORTVERSION}:finance/py-trytond-sale-invoice-date@${PY_FLAVOR}
-INVOICEDATE_IGNORE=		Module port yet to be completed.
 INVOICEGROUPING_DESC=		Groups invoices.
 INVOICEGROUPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-grouping=${PORTVERSION}:finance/py-trytond-sale-invoice-grouping@${PY_FLAVOR}
 OPPORTUNITY_DESC=		Tracks leads and opportunities.
