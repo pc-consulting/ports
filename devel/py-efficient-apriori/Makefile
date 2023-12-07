@@ -15,6 +15,8 @@ WWW=		https://github.com/tommyod/Efficient-Apriori
 
 LICENSE=	MIT
 
+BROKEN=		fails to fetch due to cumbersome dash-/underscore mangling in download path
+
 USES=		python:3.7+
 USE_PYTHON=	autoplist distutils
 
