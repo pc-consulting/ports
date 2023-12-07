@@ -364,7 +364,6 @@ PRODUCTQUANTITY_DESC=		Adds constraints on quantity sold.
 PRODUCTQUANTITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-quantity=${PORTVERSION}:finance/py-trytond-sale-product-quantity@${PY_FLAVOR}
 PRODUCTRECOMMENDATION_DESC=		Recommends products.
 PRODUCTRECOMMENDATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-recommendation=${PORTVERSION}:finance/py-trytond-sale-product-recommendation@${PY_FLAVOR}
-PRODUCTRECOMMENDATION_IGNORE=		Module port yet to be completed.
 PRODUCTRECOMMENDATIONRULE_DESC=		Recommends products based on association rules.
 PRODUCTRECOMMENDATIONRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-recommendation-association-rule=${PORTVERSION}:finance/py-trytond-sale-product-recommendation-association-rule@${PY_FLAVOR}
 PRODUCTRECOMMENDATIONRULE_IGNORE=		Module port yet to be completed.
