@@ -1,0 +1,16 @@
+An efficient pure Python implementation of the Apriori algorithm.
+
+The apriori algorithm uncovers hidden structures in categorical data.
+The classical example is a database containing purchases from a
+supermarket. Every purchase has a number of items associated with it.
+We would like to uncover association rules such as {bread, eggs} ->
+{bacon} from the data. This is the goal of association rule learning,
+and the Apriori algorithm is arguably the most famous algorithm for
+this problem.
+
+This port provides an efficient, well-tested implementation of the
+apriori algorithm as described in the original paper by Agrawal et
+al, published in 1994.
+
+The code is stable and in widespread use. It's cited in the book
+"Mastering Machine Learning Algorithms" by Bonaccorso.
