@@ -1,6 +1,3 @@
-Sale Product Quantity Module
-
-The Sale Product Quantity Module permits to enforce the minimal and the rounding
-of quantity sold per product.
-
-WWW: http://www.tryton.org/
+The Sale Product Quantity Module permits to enforce the minimal and
+the rounding of quantity sold per product.
+Part of the Tryton Business Software suite.
