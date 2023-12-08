@@ -387,7 +387,6 @@ SUPPLYDROPSHIPMENT_DESC=	Supplies with drop shipment.
 SUPPLYDROPSHIPMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-supply-drop-shipment=${PORTVERSION}:finance/py-trytond-sale-supply-drop-shipment@${PY_FLAVOR}
 SUPPLYPRODUCTION_DESC=		Supplies with production.
 SUPPLYPRODUCTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-supply-production=${PORTVERSION}:finance/py-trytond-sale-supply-production@${PY_FLAVOR}
-SUPPLYPRODUCTION_IGNORE=		Module port yet to be completed.
 #
 OPTIONS_GROUP_SALEPOINT=	SALEPOINTFUNDAMENTAL
 #OPTIONS_DEFAULT+=	# Not yet
