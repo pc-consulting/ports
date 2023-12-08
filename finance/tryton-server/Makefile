@@ -381,7 +381,6 @@ SALESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 SALESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-secondary-unit=${PORTVERSION}:finance/py-trytond-sale-secondary-unit@${PY_FLAVOR}
 STOCKQUANTITY_DESC=		Checks stock level.
 STOCKQUANTITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-stock-quantity=${PORTVERSION}:finance/py-trytond-sale-stock-quantity@${PY_FLAVOR}
-STOCKQUANTITY_IGNORE=		Module port yet to be completed.
 SALESUPPLY_DESC=		Supplies from the sale.
 SALESUPPLY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-supply=${PORTVERSION}:finance/py-trytond-sale-supply@${PY_FLAVOR}
 SUPPLYDROPSHIPMENT_DESC=	Supplies with drop shipment.
