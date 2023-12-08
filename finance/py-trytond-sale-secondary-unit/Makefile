@@ -11,11 +11,28 @@ DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module to add a secondary unit on sale line
+WWW=		https://docs.tryton.org/projects/modules-sale-secondary-unit/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:databases/py-python-sql@${PY_FLAVOR}
+# Dependencies from tryton.cfg (account_invoice, ir, product, sale,
+#				stock; extras: account_invoice_secondary_unit,
+#				sale_blanket_agreement, sale_opportunity,
+#				sale_product_customer, stock_secondary_unit)
+#				# ir: trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account-invoice=${PORTVERSION}:finance/py-trytond-account-invoice@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account-invoice-secondary-unit=${PORTVERSION}:finance/py-trytond-account-invoice-secondary-unit@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale-blanket-agreement=${PORTVERSION}:finance/py-trytond-sale-blanket-agreement@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale-opportunity=${PORTVERSION}:finance/py-trytond-sale-opportunity@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale-product-customer=${PORTVERSION}:finance/py-trytond-sale-product-customer@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-stock=${PORTVERSION}:finance/py-trytond-stock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-stock-secondary-unit=${PORTVERSION}:finance/py-trytond-stock-secondary-unit@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

@@ -381,7 +381,6 @@ SHIPMENTTOLERANCE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-tole
 SHIPMENTTOLERANCE_IGNORE=		Module port yet to be completed.
 SALESECONDARYUNIT_DESC=		Adds a secondary unit of measure.
 SALESECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-secondary-unit=${PORTVERSION}:finance/py-trytond-sale-secondary-unit@${PY_FLAVOR}
-SALESECONDARYUNIT_IGNORE=		Module port yet to be completed.
 STOCKQUANTITY_DESC=		Checks stock level.
 STOCKQUANTITY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-stock-quantity=${PORTVERSION}:finance/py-trytond-sale-stock-quantity@${PY_FLAVOR}
 STOCKQUANTITY_IGNORE=		Module port yet to be completed.
