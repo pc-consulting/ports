@@ -10,12 +10,18 @@ DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUF
 DIST_SUBDIR=	Tryton
 
 MAINTAINER=	pcc@gmx.net
-COMMENT=	A module to handle asset in the sale subscriptions
+COMMENT=	Module to handle asset in the sale subscriptions
+WWW=		https://docs.tryton.org/projects/modules-sale-subscription-asset/en/latest/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	
+# No dependencies from python package
+# Dependencies from tryton.cfg (ir, sale_subscription. stock_lot)
+#				# ir: trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription=${PORTVERSION}:finance/py-trytond-sale-subscription@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-stock-lot=${PORTVERSION}:finance/py-trytond-stock-lot@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
