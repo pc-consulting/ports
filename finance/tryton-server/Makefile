@@ -369,10 +369,8 @@ PRODUCTRECOMMENDATIONRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-produ
 PROMOTION_DESC=		Applies promotions.
 PROMOTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion=${PORTVERSION}:finance/py-trytond-sale-promotion@${PY_FLAVOR}
 PROMOTIONCOUPON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon@${PY_FLAVOR}
-PROMOTIONCOUPON_IGNORE=		Module port yet to be completed.
 PROMOTIONCOUPONPAYMENT_DESC=		Count coupon per identical payment party.
 PROMOTIONCOUPONPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon-payment=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon-payment@${PY_FLAVOR}
-PROMOTIONCOUPONPAYMENT_IGNORE=		Module port yet to be completed.
 SALESHIPMENTCOST_DESC=		Computes shipment cost.
 SALESHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-cost=${PORTVERSION}:finance/py-trytond-sale-shipment-cost@${PY_FLAVOR}
 SHIPMENTGROUPING_DESC=		Groups shipments.
