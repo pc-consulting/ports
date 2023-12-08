@@ -375,7 +375,6 @@ SALESHIPMENTCOST_DESC=		Computes shipment cost.
 SALESHIPMENTCOST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-cost=${PORTVERSION}:finance/py-trytond-sale-shipment-cost@${PY_FLAVOR}
 SHIPMENTGROUPING_DESC=		Groups shipments.
 SHIPMENTGROUPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-grouping=${PORTVERSION}:finance/py-trytond-sale-shipment-grouping@${PY_FLAVOR}
-SHIPMENTGROUPING_IGNORE=		Module port yet to be completed.
 SHIPMENTTOLERANCE_DESC=		Define tolerance for under and over shipment.
 SHIPMENTTOLERANCE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-tolerance=${PORTVERSION}:finance/py-trytond-sale-shipment-tolerance@${PY_FLAVOR}
 SHIPMENTTOLERANCE_IGNORE=		Module port yet to be completed.
