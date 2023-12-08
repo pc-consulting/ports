@@ -368,7 +368,6 @@ PRODUCTRECOMMENDATIONRULE_DESC=		Recommends products based on association rules.
 PRODUCTRECOMMENDATIONRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-recommendation-association-rule=${PORTVERSION}:finance/py-trytond-sale-product-recommendation-association-rule@${PY_FLAVOR}
 PROMOTION_DESC=		Applies promotions.
 PROMOTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion=${PORTVERSION}:finance/py-trytond-sale-promotion@${PY_FLAVOR}
-PROMOTIONCOUPON_DESC=		Applies promotions with coupons.
 PROMOTIONCOUPON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon@${PY_FLAVOR}
 PROMOTIONCOUPON_IGNORE=		Module port yet to be completed.
 PROMOTIONCOUPONPAYMENT_DESC=		Count coupon per identical payment party.
