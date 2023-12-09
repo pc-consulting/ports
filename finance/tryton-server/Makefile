@@ -421,7 +421,6 @@ STOCKFUNDAMENTAL_DESC=		Fundamentals to manage warehouses.
 STOCKFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock=${PORTVERSION}:finance/py-trytond-stock@${PY_FLAVOR}
 ASSIGNMANUAL_DESC=		Manually decide where to pick products.
 ASSIGNMANUAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-assign-manual=${PORTVERSION}:finance/py-trytond-stock-assign-manual@${PY_FLAVOR}
-ASSIGNMANUAL_IGNORE=		Module port yet to be completed.
 CONSIGNMENT_DESC=		Manages consignment stock from supplier or at customer warehouse.
 CONSIGNMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-consignment=${PORTVERSION}:finance/py-trytond-stock-consignment@${PY_FLAVOR}
 FORECAST_DESC=		Forecast the stock levels.
