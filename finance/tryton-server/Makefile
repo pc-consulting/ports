@@ -465,7 +465,6 @@ SHIPMENTMEASUREMENTS_DESC=		Adds measurements to shipments.
 SHIPMENTMEASUREMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-shipment-measurements=${PORTVERSION}:finance/py-trytond-stock-shipment-measurements@${PY_FLAVOR}
 STOCKSPLIT_DESC=	Splits moves and shipments.
 STOCKSPLIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-split=${PORTVERSION}:finance/py-trytond-stock-split@${PY_FLAVOR}
-STOCKSPLIT_IGNORE=		Module port yet to be completed.
 STOCKSUPPLY_DESC=		Supplies warehouses.
 STOCKSUPPLY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply=${PORTVERSION}:finance/py-trytond-stock-supply@${PY_FLAVOR}
 SUPPLYFORECAST_DESC=		Uses forecast to supply warehouses.
