@@ -635,7 +635,6 @@ SHOPSHOPIFY_DESC=		Integration with Shopify.
 SHOPSHOPIFY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop-shopify=${PORTVERSION}:finance/py-trytond-web-shop-shopify@${PY_FLAVOR}
 SHOPVUESTOREFRONT_DESC=		Integration with Vue Storefront.
 SHOPVUESTOREFRONT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop-vue-storefront=${PORTVERSION}:finance/py-trytond-web-shop-vue-storefront@${PY_FLAVOR}
-SHOPVUESTOREFRONT_IGNORE=		Module port yet to be completed.
 SHOPVUESTOREFRONTSTRIPE_DESC=		Support of Stripe Payment for Vue Storefront.
 SHOPVUESTOREFRONTSTRIPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}=${PORTVERSION}:finance/py-@${PY_FLAVOR}
 SHOPVUESTOREFRONTSTRIPE_IGNORE=		Module port yet to be completed.
