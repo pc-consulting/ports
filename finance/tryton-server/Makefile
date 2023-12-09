@@ -431,7 +431,6 @@ LOCATIONMOVE_DESC=		Makes location movable.
 LOCATIONMOVE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-location-move=${PORTVERSION}:finance/py-trytond-stock-location-move@${PY_FLAVOR}
 LOCATIONSEQUENCE_DESC=		Orders locations.
 LOCATIONSEQUENCE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-location-sequence=${PORTVERSION}:finance/py-trytond-stock-location-sequence@${PY_FLAVOR}
-LOCATIONSEQUENCE_IGNORE=		Module port yet to be completed.
 LOT_DESC=		Track products with lot.
 LOT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot=${PORTVERSION}:finance/py-trytond-stock-lot@${PY_FLAVOR}
 LOTSHELFLIFEEXPIRATIONDATE_DESC=	Manages expiration dates.
