@@ -427,7 +427,6 @@ FORECAST_DESC=		Forecast the stock levels.
 FORECAST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-forecast=${PORTVERSION}:finance/py-trytond-stock-forecast@${PY_FLAVOR}
 INVENTORYLOCATION_DESC=		Creates inventories for many locations.
 INVENTORYLOCATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-inventory-location=${PORTVERSION}:finance/py-trytond-stock-inventory-location@${PY_FLAVOR}
-INVENTORYLOCATION_IGNORE=		Module port yet to be completed.
 LOCATIONMOVE_DESC=		Makes location movable.
 LOCATIONMOVE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-location-move=${PORTVERSION}:finance/py-trytond-stock-location-move@${PY_FLAVOR}
 LOCATIONMOVE_IGNORE=		Module port yet to be completed.
