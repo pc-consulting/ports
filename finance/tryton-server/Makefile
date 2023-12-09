@@ -633,7 +633,6 @@ SHOP_DESC=		Fundamentals to sale online.
 SHOP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop=${PORTVERSION}:finance/py-trytond-web-shop@${PY_FLAVOR}
 SHOPSHOPIFY_DESC=		Integration with Shopify.
 SHOPSHOPIFY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop-shopify=${PORTVERSION}:finance/py-trytond-web-shop-shopify@${PY_FLAVOR}
-SHOPSHOPIFY_IGNORE=		Module port yet to be completed.
 SHOPVUESTOREFRONT_DESC=		Integration with Vue Storefront.
 SHOPVUESTOREFRONT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop-vue-storefront=${PORTVERSION}:finance/py-trytond-web-shop-vue-storefront@${PY_FLAVOR}
 SHOPVUESTOREFRONT_IGNORE=		Module port yet to be completed.
