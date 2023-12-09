@@ -443,7 +443,6 @@ PACKAGESHIPPING_DESC=	Fundamentals to interact with shipping services.
 PACKAGESHIPPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping=${PORTVERSION}:finance/py-trytond-stock-package-shipping@${PY_FLAVOR}
 PACKAGESHIPPINGDPD_DESC=	Connects with DPD shipping service.
 PACKAGESHIPPINGDPD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-dpd=${PORTVERSION}:finance/py-trytond-stock-package-shipping-dpd@${PY_FLAVOR}
-PACKAGESHIPPINGDPD_IGNORE=		Module port yet to be completed.
 PACKAGESHIPPINGMYGLS_DESC=		Connects with MyGLS shipping service.
 PACKAGESHIPPINGMYGLS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-mygls=${PORTVERSION}:finance/py-trytond-stock-package-shipping-mygls@${PY_FLAVOR}
 PACKAGESHIPPINGMYGLS_IGNORE=		Module port yet to be completed.
