@@ -451,7 +451,6 @@ PACKAGESHIPPINGUPS_DESC=	Connects with UPS shipping service.
 PACKAGESHIPPINGUPS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-ups=${PORTVERSION}:finance/py-trytond-stock-package-shipping-ups@${PY_FLAVOR}
 PRODUCTLOCATION_DESC=		Defines preferred locations for products.
 PRODUCTLOCATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-product-location=${PORTVERSION}:finance/py-trytond-stock-product-location@${PY_FLAVOR}
-PRODUCTLOCATION_IGNORE=		Module port yet to be completed.
 QUANTITYEARLYPLANNING_DESC=		Consume earlier stock.
 QUANTITYEARLYPLANNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-early-planning=${PORTVERSION}:finance/py-trytond-stock-quantity-early-planning@${PY_FLAVOR}
 QUANTITYEARLYPLANNING_IGNORE=		Module port yet to be completed.
