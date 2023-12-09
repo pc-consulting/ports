@@ -441,7 +441,6 @@ PACKAGE_DESC=		Store packaging on shipments.
 PACKAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package=${PORTVERSION}:finance/py-trytond-stock-package@${PY_FLAVOR}
 PACKAGESHIPPING_DESC=	Fundamentals to interact with shipping services.
 PACKAGESHIPPING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping=${PORTVERSION}:finance/py-trytond-stock-package-shipping@${PY_FLAVOR}
-PACKAGESHIPPING_IGNORE=		Module port yet to be completed.
 PACKAGESHIPPINGDPD_DESC=	Connects with DPD shipping service.
 PACKAGESHIPPINGDPD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-dpd=${PORTVERSION}:finance/py-trytond-stock-package-shipping-dpd@${PY_FLAVOR}
 PACKAGESHIPPINGDPD_IGNORE=		Module port yet to be completed.
