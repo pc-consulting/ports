@@ -435,7 +435,6 @@ LOT_DESC=		Track products with lot.
 LOT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot=${PORTVERSION}:finance/py-trytond-stock-lot@${PY_FLAVOR}
 LOTSHELFLIFEEXPIRATIONDATE_DESC=	Manages expiration dates.
 LOTSHELFLIFEEXPIRATIONDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot-sled=${PORTVERSION}:finance/py-trytond-stock-lot-sled@${PY_FLAVOR}
-LOTSHELFLIFEEXPIRATIONDATE_IGNORE=		Module port yet to be completed.
 LOTUNIT_DESC=		Defines unit and quantity per lot.
 LOTUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot-unit=${PORTVERSION}:finance/py-trytond-stock-lot-unit@${PY_FLAVOR}
 LOTUNIT_IGNORE=		Module port yet to be completed.
