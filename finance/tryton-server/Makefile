@@ -437,7 +437,6 @@ LOTSHELFLIFEEXPIRATIONDATE_DESC=	Manages expiration dates.
 LOTSHELFLIFEEXPIRATIONDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot-sled=${PORTVERSION}:finance/py-trytond-stock-lot-sled@${PY_FLAVOR}
 LOTUNIT_DESC=		Defines unit and quantity per lot.
 LOTUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-lot-unit=${PORTVERSION}:finance/py-trytond-stock-lot-unit@${PY_FLAVOR}
-LOTUNIT_IGNORE=		Module port yet to be completed.
 PACKAGE_DESC=		Store packaging on shipments.
 PACKAGE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package=${PORTVERSION}:finance/py-trytond-stock-package@${PY_FLAVOR}
 PACKAGESHIPPING_DESC=	Fundamentals to interact with shipping services.
