@@ -1,6 +1,3 @@
-Stock Quantity Early Planning Module
-
-The Stock Quantity Early Planning Module helps reducing stock level by proposing
-to consume earlier.
-
-WWW: http://www.tryton.org/
+The Stock Quantity Early Planning Module helps reducing stock level
+by proposing to consume earlier.
+Part of the Tryton Business Software suite.

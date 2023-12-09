@@ -453,7 +453,6 @@ PRODUCTLOCATION_DESC=		Defines preferred locations for products.
 PRODUCTLOCATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-product-location=${PORTVERSION}:finance/py-trytond-stock-product-location@${PY_FLAVOR}
 QUANTITYEARLYPLANNING_DESC=		Consume earlier stock.
 QUANTITYEARLYPLANNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-early-planning=${PORTVERSION}:finance/py-trytond-stock-quantity-early-planning@${PY_FLAVOR}
-QUANTITYEARLYPLANNING_IGNORE=		Module port yet to be completed.
 QUANTITYISSUE_DESC=		Reports quantity issues.
 QUANTITYISSUE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-issue=${PORTVERSION}:finance/py-trytond-stock-quantity-issue@${PY_FLAVOR}
 QUANTITYISSUE_IGNORE=		Module port yet to be completed.
