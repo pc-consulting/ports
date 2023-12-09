@@ -11,6 +11,7 @@ COMMENT=	Activeresource for python
 WWW=		https://github.com/Shopify/pyactiveresource/
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 INSTALL_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 
