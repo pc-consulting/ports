@@ -1,6 +1,3 @@
-Stock Package Shipping Sendcloud Module
-
-The Stock Package Shipping Sendcloud Module allows package labels to be
-generated for shipments made by any of Sendcloud's supported carriers.
-
-WWW: http://www.tryton.org/
+The Stock Package Shipping Sendcloud Module allows package labels to
+be generated for shipments made by any of Sendcloud's supported
+carriers.

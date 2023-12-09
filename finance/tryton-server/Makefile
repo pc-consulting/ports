@@ -447,7 +447,6 @@ PACKAGESHIPPINGMYGLS_DESC=		Connects with MyGLS shipping service.
 PACKAGESHIPPINGMYGLS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-mygls=${PORTVERSION}:finance/py-trytond-stock-package-shipping-mygls@${PY_FLAVOR}
 PACKAGESHIPPINGSENDCLOUD_DESC=		Connects to the Sendcloud shipping service.
 PACKAGESHIPPINGSENDCLOUD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-sendcloud=${PORTVERSION}:finance/py-trytond-stock-package-shipping-sendcloud@${PY_FLAVOR}
-PACKAGESHIPPINGSENDCLOUD_IGNORE=		Module port yet to be completed.
 PACKAGESHIPPINGUPS_DESC=	Connects with UPS shipping service.
 PACKAGESHIPPINGUPS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping-ups=${PORTVERSION}:finance/py-trytond-stock-package-shipping-ups@${PY_FLAVOR}
 PACKAGESHIPPINGUPS_IGNORE=		Module port yet to be completed.
