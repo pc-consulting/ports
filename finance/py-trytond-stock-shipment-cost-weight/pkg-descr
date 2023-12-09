@@ -1,6 +1,3 @@
-Stock Shipment Cost Weight Module
-
-The Stock Shipment Cost Weight Module adds "By Weight" as allocation method of
-shipment cost on the carrier.
-
-WWW: http://www.tryton.org/
+The Stock Shipment Cost Weight Module adds "By Weight" as allocation
+method of shipment cost on the carrier.
+Part of the Tryton Business Software suite.
