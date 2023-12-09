@@ -425,7 +425,6 @@ CONSIGNMENT_DESC=		Manages consignment stock from supplier or at customer wareho
 CONSIGNMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-consignment=${PORTVERSION}:finance/py-trytond-stock-consignment@${PY_FLAVOR}
 FORECAST_DESC=		Forecast the stock levels.
 FORECAST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-forecast=${PORTVERSION}:finance/py-trytond-stock-forecast@${PY_FLAVOR}
-FORECAST_IGNORE=		Module port yet to be completed.
 INVENTORYLOCATION_DESC=		Creates inventories for many locations.
 INVENTORYLOCATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-inventory-location=${PORTVERSION}:finance/py-trytond-stock-inventory-location@${PY_FLAVOR}
 INVENTORYLOCATION_IGNORE=		Module port yet to be completed.
