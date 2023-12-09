@@ -455,7 +455,6 @@ QUANTITYEARLYPLANNING_DESC=		Consume earlier stock.
 QUANTITYEARLYPLANNING_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-early-planning=${PORTVERSION}:finance/py-trytond-stock-quantity-early-planning@${PY_FLAVOR}
 QUANTITYISSUE_DESC=		Reports quantity issues.
 QUANTITYISSUE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-quantity-issue=${PORTVERSION}:finance/py-trytond-stock-quantity-issue@${PY_FLAVOR}
-QUANTITYISSUE_IGNORE=		Module port yet to be completed.
 STOCKSECONDARYUNIT_DESC=	Reports quantity issues.
 STOCKSECONDARYUNIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-secondary-unit=${PORTVERSION}:finance/py-trytond-stock-secondary-unit@${PY_FLAVOR}
 STOCKSHIPMENTCOST_DESC=		Adds shipment costs to outgoing moves.
