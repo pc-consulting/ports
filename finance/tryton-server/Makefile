@@ -471,7 +471,6 @@ SUPPLYDAY_DESC=		Compute supply date per week day.
 SUPPLYDAY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-day=${PORTVERSION}:finance/py-trytond-stock-supply-day@${PY_FLAVOR}
 SUPPLYFORECAST_DESC=		Uses forecast to supply warehouses.
 SUPPLYFORECAST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-forecast=${PORTVERSION}:finance/py-trytond-stock-supply-forecast@${PY_FLAVOR}
-SUPPLYFORECAST_IGNORE=		Module port yet to be completed.
 SUPPLYPRODUCTION_DESC=		Supplies warehouses with production orders.
 SUPPLYPRODUCTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-production=${PORTVERSION}:finance/py-trytond-stock-supply-production@${PY_FLAVOR}
 #

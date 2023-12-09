@@ -1,6 +1,3 @@
-Stock Supply Forecast Module
-
-The stock supply forecast module takes forecast into account to compute purchase
-requests.
-
-WWW: http://www.tryton.org/
+The stock supply forecast module takes forecast into account to
+compute purchase requests.
+Part of the Tryton Business Software suite.
