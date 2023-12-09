@@ -1,6 +1,3 @@
-Stock Package Shipping MyGLS Module
-
-The Stock Package Shipping MyGLS Module allows package labels to be generated
-for shipments using MyGLS webservices.
-
-WWW: http://www.tryton.org/
+The Stock Package Shipping MyGLS Module allows package labels to be
+generated for shipments using MyGLS webservices.
+Part of the Tryton Business Software suite.
