@@ -429,7 +429,6 @@ INVENTORYLOCATION_DESC=		Creates inventories for many locations.
 INVENTORYLOCATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-inventory-location=${PORTVERSION}:finance/py-trytond-stock-inventory-location@${PY_FLAVOR}
 LOCATIONMOVE_DESC=		Makes location movable.
 LOCATIONMOVE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-location-move=${PORTVERSION}:finance/py-trytond-stock-location-move@${PY_FLAVOR}
-LOCATIONMOVE_IGNORE=		Module port yet to be completed.
 LOCATIONSEQUENCE_DESC=		Orders locations.
 LOCATIONSEQUENCE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-location-sequence=${PORTVERSION}:finance/py-trytond-stock-location-sequence@${PY_FLAVOR}
 LOCATIONSEQUENCE_IGNORE=		Module port yet to be completed.
