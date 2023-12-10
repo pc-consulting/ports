@@ -2,7 +2,7 @@
 
 PORTNAME=	efficient-apriori
 PORTVERSION=	2.0.3
-CATEGORIES=	devel python
+CATEGORIES=	devel math python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, the distfile come named with underscores instead of dashes.
@@ -14,8 +14,6 @@ COMMENT=	Efficient python implementation of the apriori algorithm
 WWW=		https://github.com/tommyod/Efficient-Apriori
 
 LICENSE=	MIT
-
-BROKEN=		fails to fetch due to cumbersome dash-/underscore mangling in download path
 
 USES=		python:3.7+
 USE_PYTHON=	autoplist distutils
