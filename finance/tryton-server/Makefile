@@ -640,7 +640,6 @@ SHORTENER_DESC=		Shortens URL and connects them to actions.
 SHORTENER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shortener=${PORTVERSION}:finance/py-trytond-web-shortener@${PY_FLAVOR}
 USER_DESC=		Manages external users.
 USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance/py-trytond-web-user@${PY_FLAVOR}
-USER_IGNORE=		Module port yet to be completed.
 
 USES=		PYTHON:3.9+
 USE_PYTHON=	flavors
