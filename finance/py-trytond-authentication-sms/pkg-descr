@@ -1,0 +1,4 @@
+The SMS authentication module allows users to authenticate via SMS.
+It adds a new authentication method sms, which can be used in the
+list of authentications in the session section of the configuration
+file.
