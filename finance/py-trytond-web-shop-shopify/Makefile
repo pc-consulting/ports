@@ -2,7 +2,7 @@
 
 PORTNAME=	trytond-web-shop-shopify
 PORTVERSION=	7.0.0
-CATEGORIES=	finance python
+CATEGORIES=	finance www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
@@ -17,7 +17,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ShopifyAPI>0:finance/py-shopifyapi@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}shopifyapi>0:finance/py-shopifyapi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyactiveresource>0:finance/py-pyactiveresource@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-sql>0:databases/py-python-sql@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}types-python-dateutil>0:devel/py-types-python-dateutil@${PY_FLAVOR}
@@ -45,8 +45,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 		${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-amendment=${PORTVERSION}:finance/py-trytond-sale-amendment@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-discount=${PORTVERSION}:finance/py-trytond-sale-discount@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-sale-image=${PORTVERSION}:finance/py-trytond-sale-image@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-sale-image-attribute=${PORTVERSION}:finance/py-trytond-sale-image-attribute@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-grouping=${PORTVERSION}:finance/py-trytond-sale-invoice-grouping@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-payment=${PORTVERSION}:finance/py-trytond-sale-payment@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-secondary-unit=${PORTVERSION}:finance/py-trytond-sale-secondary-unit@${PY_FLAVOR} \
