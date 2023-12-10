@@ -20,7 +20,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # Dependencies from tryton.cfg (ir, product, sale; extras:
 #				sale_amendment,
 #				sale_blanket_agreement) # ir: trytond built-in
-#		NOTE incoterm currently deviates in its PORTVERSION, hence relaxed check
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR} \
