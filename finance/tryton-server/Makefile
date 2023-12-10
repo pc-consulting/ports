@@ -636,7 +636,6 @@ SHOPVUESTOREFRONT_DESC=		Integration with Vue Storefront.
 SHOPVUESTOREFRONT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop-vue-storefront=${PORTVERSION}:finance/py-trytond-web-shop-vue-storefront@${PY_FLAVOR}
 SHOPVUESTOREFRONTSTRIPE_DESC=		Support of Stripe Payment for Vue Storefront.
 SHOPVUESTOREFRONTSTRIPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}=${PORTVERSION}:finance/py-@${PY_FLAVOR}
-SHOPVUESTOREFRONTSTRIPE_IGNORE=		Module port yet to be completed.
 SHORTENER_DESC=		Shortens URL and connects them to actions.
 SHORTENER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shortener=${PORTVERSION}:finance/py-trytond-web-shortener@${PY_FLAVOR}
 USER_DESC=		Manages external users.
