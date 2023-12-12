@@ -44,7 +44,7 @@ OPTIONS_GROUP_BACKEND=	GIS
 OPTIONS_DEFAULT+=	GIS
 BACKEND_DESC=		Tryton Backend
 GIS_DESC=		Adds GIS support to Tryton.
-GIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}py-trytond-gis=${PORTVERSION}:finance/py-trytond-gis
+GIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-gis=${PORTVERSION}:finance/py-trytond-gis@${PY_FLAVOR}
 #
 # There are so many 'operational' modules that we use a group for
 # each of them. In most cases, picking one of the items therein
@@ -368,6 +368,7 @@ PRODUCTRECOMMENDATIONRULE_DESC=		Recommends products based on association rules.
 PRODUCTRECOMMENDATIONRULE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-product-recommendation-association-rule=${PORTVERSION}:finance/py-trytond-sale-product-recommendation-association-rule@${PY_FLAVOR}
 PROMOTION_DESC=		Applies promotions.
 PROMOTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion=${PORTVERSION}:finance/py-trytond-sale-promotion@${PY_FLAVOR}
+PROMOTIONCOUPON_DESC=	Applies promotions with coupons.
 PROMOTIONCOUPON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon@${PY_FLAVOR}
 PROMOTIONCOUPONPAYMENT_DESC=		Count coupon per identical payment party.
 PROMOTIONCOUPONPAYMENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-promotion-coupon-payment=${PORTVERSION}:finance/py-trytond-sale-promotion-coupon-payment@${PY_FLAVOR}
@@ -641,8 +642,9 @@ SHORTENER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shortener=${PORTVERSIO
 USER_DESC=		Manages external users.
 USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance/py-trytond-web-user@${PY_FLAVOR}
 
-USES=		PYTHON:3.9+
+USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
+NO_MTREE=	YES
 
 .include <bsd.port.mk>
