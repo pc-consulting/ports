@@ -1,6 +1,6 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
-PORTNAME=	tryton
+PORTNAME=	tryton-server
 PORTVERSION=	7.0.0
 CATEGORIES=	finance
 MASTER_SITES=	@comment
@@ -27,14 +27,14 @@ OPTIONS_GROUP_MAIN=	DTCLIENT SCRCLIENT PSQLCLIENT PSQLSRV WEBSRV
 OPTIONS_DEFAULT=	SCRCLIENT PSQLCLIENT
 MAIN_DESC=		Tryton Frontends and Dependencies
 DTCLIENT_DESC=		The application to connect to the server.
-DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton=${PORTVERSION}:finance/py-tryton@${PY_FLAVOR}
+DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${PORTVERSION}:finance/py-tryton@${PY_FLAVOR}
 SCRCLIENT_DESC=		The library to access models, wizards and reports like a client.
 SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 PSQLCLIENT_DESC=	Install Postgres client (otherwise, depend on local sqlite).
-PSQLCLIENT_RUN_DEPENDS=	postgresql16-client>0:databases/postgresql16-client
+PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
 # Radio-like check required: psql client || sqlite # one req'd in any case, sqlite is default if no other is picked, afaik
 PSQLSRV_DESC=		Locally add a postgres database on the Tryton server machine.
-PSQLSRV_RUN_DEPENDS=	postgresql16-server>0:databases/postgresql16-server
+PSQLSRV_RUN_DEPENDS=	postgresql15-server>0:databases/postgresql15-server
 PSQLSRV_IMPLIES=	PSQLCLIENT
 WEBSRV_DESC=		Locally add an nginx web server.
 WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
