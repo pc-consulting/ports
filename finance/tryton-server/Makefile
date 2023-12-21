@@ -13,7 +13,8 @@ WWW=		https://www.tryton.org/
 LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies have GPLv3
 
 # Let's assume that we always want a server.
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}gevent=${PORTVERSION}:devel/py-gevent@${PY_FLAVOR}
 
 OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 		ANALYTIC ATTENDANCE COMMISSION DOCUMENT MARKETING \
@@ -645,6 +646,14 @@ USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance
 USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
-NO_MTREE=	YES
+#NO_MTREE=	YES
+
+pre-install:
+	@${MKDIR} ${STAGEDIR}${ETCDIR}/rc.d
+	@${MKDIR} ${STAGEDIR}${ETCDIR}/tryton
+
+post-install:
+	@${INSTALL_SCRIPT} ${FILESDIR}/tryton.conf ${STAGEDIR}${ETCDIR}/tryton.conf.sample
+	@${INSTALL_SCRIPT} ${FILESDIR}/tryton ${STAGEDIR}${ETCDIR}/rc.d/tryton
 
 .include <bsd.port.mk>
