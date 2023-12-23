@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# PROVIDE: trytond-worker
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+#
+# trytond-worker knobs for /etc/rc.conf are as follows.
+#
+# trytond-worker_enable	Run trytond at startup (default =NO)
+# trytond-worker_args	Command line flags for trytond (defaults to
+#						--)
+# trytond-worker_conf	Location of the trytond config file
+
+. /etc/rc.subr
+
+name=trytond-worker
+rcvar=trytond_enable
+
+load_rc_config ${name}
+: ${trytond-worker_enable:=NO}
+: ${trytond-worker_args=}
+: ${trytond-worker_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
+: ${trytond-worker_msg:=The ${name} script does nothing sensible yet.}
+
+start_cmd="${name}_start"
+stop_cmd=":"
+
+command_args="-c ${trytond_conf}"
+desc="Cron server of the Tryton Business Software suite."
+
+trytond-worker_start()
+{
+	echo "${trytond-worker_msg}"
+}
+
+run_rc_command "$1"

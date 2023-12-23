@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# PROVIDE: trytond-cron
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+#
+# trytond-cron knobs for /etc/rc.conf are as follows.
+# FIXME Consider running from cron with --once ??
+#
+# trytond-cron_enable	Run trytond at startup (default =NO)
+# trytond-cron_args		Command line flags for trytond (defaults to
+#						--)
+# trytond-cron_conf		Location of the trytond config file
+
+. /etc/rc.subr
+
+name=trytond-cron
+rcvar=trytond_enable
+
+load_rc_config ${name}
+: ${trytond-cron_enable:=NO}
+: ${trytond-cron_args=}
+: ${trytond-cron_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
+: ${trytond-cron_msg:=The ${name} script does nothing sensible yet.}
+
+start_cmd="${name}_start"
+stop_cmd=":"
+
+command_args="-c ${trytond_conf}"
+desc="Cron server of the Tryton Business Software suite."
+
+trytond-cron_start()
+{
+	echo "${trytond-cron_msg}"
+}
+
+run_rc_command "$1"

@@ -6,10 +6,10 @@
 #
 # trytond knobs for /etc/rc.conf are as follows.
 #
-# trytond_enable    Run trytond at startup (default =NO)
-# trytond_args      Command line flags for trytond (defaults to
-#                   --)
-# trytond_conf      Location of the trytond config file
+# trytond_enable	Run trytond at startup (default =NO)
+# trytond_args		Command line flags for trytond (defaults to
+#					--)
+# trytond_conf		Location of the trytond config file
 
 . /etc/rc.subr
 
@@ -18,13 +18,14 @@ rcvar=trytond_enable
 
 load_rc_config ${name}
 : ${trytond_enable:=NO}
-: ${trytond_args=}
-: ${trytond_conf=}
+: ${trytond_args=--coroutine}
+: ${trytond_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
 : ${trytond_msg:=The ${name} script does nothing sensible yet.}
 
 start_cmd="${name}_start"
 stop_cmd=":"
 
+command_args="-c ${trytond_conf}"
 desc="Server of the Tryton Business Software suite."
 
 trytond_start()

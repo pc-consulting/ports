@@ -12,7 +12,7 @@ WWW=		https://www.tryton.org/
 
 LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies have GPLv3
 
-# Let's assume that we always want a server.
+# Let's assume that we always want a server. We also should have a WSGI server.
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}gevent=${PORTVERSION}:devel/py-gevent@${PY_FLAVOR}
 
@@ -650,10 +650,12 @@ PYTHON_NO_DEPENDS=	YES
 
 pre-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/rc.d
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/tryton
+	@${MKDIR} ${STAGEDIR}${ETCDIR}/trytond
 
 post-install:
-	@${INSTALL_SCRIPT} ${FILESDIR}/tryton.conf ${STAGEDIR}${ETCDIR}/tryton.conf.sample
-	@${INSTALL_SCRIPT} ${FILESDIR}/tryton ${STAGEDIR}${ETCDIR}/rc.d/tryton
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf ${STAGEDIR}${ETCDIR}/trytond.conf.sample
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.in ${STAGEDIR}${ETCDIR}/rc.d/trytond
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond-cron.in ${STAGEDIR}${ETCDIR}/rc.d/trytond-cron
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond-worker.in ${STAGEDIR}${ETCDIR}/rc.d/trytond-worker
 
 .include <bsd.port.mk>
