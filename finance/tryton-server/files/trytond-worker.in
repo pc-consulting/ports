@@ -1,32 +1,58 @@
 #!/bin/sh
 
 # PROVIDE: trytond-worker
-# REQUIRE: NETWORKING
+# REQUIRE: LOGIN
 # KEYWORD: shutdown
 #
 # trytond-worker knobs for /etc/rc.conf are as follows.
 #
-# trytond-worker_enable	Run trytond at startup (default =NO)
-# trytond-worker_args	Command line flags for trytond (defaults to
-#						--)
-# trytond-worker_conf	Location of the trytond config file
+# trytond-worker_enable		Run trytond-worker at startup (default
+#							=NO)
+# trytond-worker_args		Command line flags for trytond-worker
+#							(defaults to trytond setting)
+# trytond-worker_conf		Location of the trytond-worker config
+#							file(s) (defaults to trytond setting)
+#							Please note that configurations given
+#							later on the line may, in part, or
+#							entirely, override the ones specified
+#							earlier.
+# trytond-worker_db			The database(s) for trytond-worker to
+#							operate on (defaults to trytond setting)
+# trytond-worker_logconf	Location of the logging config file
+#							(defaults to trytond setting)
+#
+# Please note that trytond-worker_enable, trytond-worker_conf,
+# trytond-worker_db, and trytond-worker_logconf must be set to
+# trytond-acceptable values; hence null string values are ignored
+# below intentionally.
 
 . /etc/rc.subr
 
 name=trytond-worker
-rcvar=trytond_enable
+rcvar=trytond-worker_enable
+
+# Get defaults from tryond settings.
+# NOTE: Must go before load_rc_config of this starup script.
+. %%PREFIX%%/etc/trytond.rc.defaults
 
 load_rc_config ${name}
+
 : ${trytond-worker_enable:=NO}
-: ${trytond-worker_args=}
-: ${trytond-worker_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
-: ${trytond-worker_msg:=The ${name} script does nothing sensible yet.}
+: ${trytond-worker_args="${trytond_args}"}
+: ${trytond-worker_conf:="${trytond_conf}"}
+: ${trytond-worker_db:="${trytond_db}"}
+: ${trytond-worker_logconf:="${trytond_logconf}"}
+: ${trytond-worker_msg:="The ${name} script does not do anything sensible yet."}
 
-start_cmd="${name}_start"
-stop_cmd=":"
+command=%%PREFIX%%/bin/${name}
+pidfile=/var/run/${name}.pid
 
-command_args="-c ${trytond_conf}"
-desc="Cron server of the Tryton Business Software suite."
+command_args="-c ${trytond-worker_conf} --logconf ${trytond-worker_logconf} --pidfile ${pidfile}"
+
+desc="Cron server for the Tryton Business Software suite."
+
+#start_cmd="${name}_start"
+#stop_cmd=":"
 
 trytond-worker_start()
 {

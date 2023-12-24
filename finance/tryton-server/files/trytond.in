@@ -1,32 +1,47 @@
 #!/bin/sh
 
 # PROVIDE: trytond
-# REQUIRE: NETWORKING
+# REQUIRE: LOGIN
 # KEYWORD: shutdown
 #
 # trytond knobs for /etc/rc.conf are as follows.
 #
 # trytond_enable	Run trytond at startup (default =NO)
 # trytond_args		Command line flags for trytond (defaults to
-#					--)
-# trytond_conf		Location of the trytond config file
+#					--coroutine)
+# trytond_conf		Location of the trytond config file(s) (defaults to
+#					%%PREFIX%%/etc/trytond.conf \
+#					%%PREFIX%%/etc/trytond.d/*)
+#					Please note that configurations given later on the
+#					line may, in part, or entirely, override the ones
+#					specified earlier.
+# trytond_db		The database(s) for trytond-cron to operate on
+#					(defaults to %%PREFIX%%/var/db/trytond/db)
+# trytond_logconf	Location of the logging config file (defaults to
+#					%%PREFIX%%/etc/trytond.logconf)
+#
+# Please note that trytond_enable, trytond_conf, trytond_db, and
+# trytond_logconf must be set to trytond-acceptable values; hence null
+# string values are ignored below intentionally.
 
 . /etc/rc.subr
 
 name=trytond
 rcvar=trytond_enable
 
-load_rc_config ${name}
-: ${trytond_enable:=NO}
-: ${trytond_args=--coroutine}
-: ${trytond_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
-: ${trytond_msg:=The ${name} script does nothing sensible yet.}
+# load_rc_config trytond is done via this include, please see there.
+. %%PREFIX%%/etc/trytond.rc.defaults
+: ${trytond_msg:="The ${name} script does not do anything sensible yet."}
 
-start_cmd="${name}_start"
-stop_cmd=":"
+command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile}"
 
-command_args="-c ${trytond_conf}"
+command=%%PREFIX%%/bin/${name}
+pidfile=/var/run/${name}.pid
+
 desc="Server of the Tryton Business Software suite."
+
+#start_cmd="${name}_start"
+#stop_cmd=":"
 
 trytond_start()
 {

@@ -1,33 +1,56 @@
 #!/bin/sh
 
 # PROVIDE: trytond-cron
-# REQUIRE: NETWORKING
+# REQUIRE: LOGIN
 # KEYWORD: shutdown
 #
 # trytond-cron knobs for /etc/rc.conf are as follows.
-# FIXME Consider running from cron with --once ??
 #
-# trytond-cron_enable	Run trytond at startup (default =NO)
-# trytond-cron_args		Command line flags for trytond (defaults to
-#						--)
-# trytond-cron_conf		Location of the trytond config file
+# trytond-cron_enable	Run trytond-cron at startup (default =NO)
+# trytond-cron_args		Command line flags for trytond-cron (defaults
+#						to trytond setting)
+# trytond-cron_conf		Location of the trytond-cron config file(s)
+#						(defaults to trytond setting)
+#						Please note that configurations given later
+#						on the line may, in part, or entirely,
+#						override the ones specified earlier.
+# trytond-cron_db		The database(s) for trytond-cron to operate
+#						on (defaults to trytond setting)
+# trytond-cron_logconf	Location of the logging config file (defaults
+#						to trytond setting)
+#
+# Please note that trytond-cron_enable, trytond-cron_conf,
+# trytond-cron_db, and trytond-cron_logconf must be set to trytond-
+# acceptable values; hence null string values are ignored below
+# intentionally.
 
 . /etc/rc.subr
 
 name=trytond-cron
-rcvar=trytond_enable
+rcvar=trytond-cron_enable
+
+# Get defaults from tryond settings.
+# NOTE: Must go before load_rc_config of this starup script.
+. %%PREFIX%%/etc/trytond.rc.defaults
 
 load_rc_config ${name}
+
 : ${trytond-cron_enable:=NO}
-: ${trytond-cron_args=}
-: ${trytond-cron_conf=%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*}
-: ${trytond-cron_msg:=The ${name} script does nothing sensible yet.}
+: ${trytond-cron_args="${trytond_args}"}
+: ${trytond-cron_conf:="${trytond_conf}"}
+: ${trytond-cron_db:="${trytond_db}"}
+: ${trytond-cron_logconf:="${trytond_logconf}"}
+: ${trytond-cron_msg:="The ${name} script does not do anything sensible yet."}
 
-start_cmd="${name}_start"
-stop_cmd=":"
+command=%%PREFIX%%/bin/${name}
+pidfile=/var/run/${name}.pid
 
-command_args="-c ${trytond_conf}"
-desc="Cron server of the Tryton Business Software suite."
+command_args="-c ${trytond-cron_conf} --logconf ${trytond-cron_logconf} --pidfile ${pidfile}"
+
+desc="Cron server for the Tryton Business Software suite."
+
+#start_cmd="${name}_start"
+#stop_cmd=":"
 
 trytond-cron_start()
 {

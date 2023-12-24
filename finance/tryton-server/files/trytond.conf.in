@@ -1,6 +1,6 @@
 [database]
 uri = postgresql://user:password@localhost/
-path = /usr/local/bin/trytond
+path = %%PREFIX%%/bin/trytond
 
 [web]
 listen = localhost:8000

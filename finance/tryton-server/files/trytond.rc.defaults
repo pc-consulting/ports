@@ -1,0 +1,11 @@
+# This file is to be dot-included in trytond* startup scripts so that
+# all processes can make use of trytond settings, and we can avoid
+# inconsistent settings (unless overridden intentionally, of course).
+
+load_rc_config trytond
+
+: ${trytond_enable:=NO}
+: ${trytond_args="--coroutine"}
+: ${trytond_conf:="%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*"}
+: ${trytond_db:="%%PREFIX%%/var/db/trytond/db"}
+: ${trytond_logconf:="%%PREFIX%%/etc/trytond.logconf"}

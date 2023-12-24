@@ -646,16 +646,17 @@ USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance
 USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
+USE_RC_SUBR=	trytond trytond-cron trytond-worker
 #NO_MTREE=	YES
 
 pre-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/rc.d
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/trytond
+	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
 
 post-install:
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf ${STAGEDIR}${ETCDIR}/trytond.conf.sample
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.in ${STAGEDIR}${ETCDIR}/rc.d/trytond
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond-cron.in ${STAGEDIR}${ETCDIR}/rc.d/trytond-cron
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond-worker.in ${STAGEDIR}${ETCDIR}/rc.d/trytond-worker
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}${ETCDIR}/trytond.conf.sample
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}${ETCDIR}/trytond.rc.defaults
+	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}${ETCDIR}/trytond.logconf.sample
 
 .include <bsd.port.mk>
