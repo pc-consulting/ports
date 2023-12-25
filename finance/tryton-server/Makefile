@@ -655,8 +655,8 @@ pre-install:
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
 
 post-install:
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}${ETCDIR}/trytond.conf.sample
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}${ETCDIR}/trytond.rc.defaults
-	@${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}${ETCDIR}/trytond.logconf.sample
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}${ETCDIR}/trytond.conf.sample
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}${ETCDIR}/trytond.rc.defaults
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}${ETCDIR}/trytond.logconf.sample
 
 .include <bsd.port.mk>
