@@ -40,7 +40,6 @@ load_rc_config ${name}
 : ${trytond-cron_conf:="${trytond_conf}"}
 : ${trytond-cron_db:="${trytond_db}"}
 : ${trytond-cron_logconf:="${trytond_logconf}"}
-: ${trytond-cron_msg:="The ${name} script does not do anything sensible yet."}
 
 command=%%PREFIX%%/bin/${name}
 pidfile=/var/run/${name}.pid
@@ -48,13 +47,5 @@ pidfile=/var/run/${name}.pid
 command_args="-c ${trytond-cron_conf} --logconf ${trytond-cron_logconf} --pidfile ${pidfile}"
 
 desc="Cron server for the Tryton Business Software suite."
-
-#start_cmd="${name}_start"
-#stop_cmd=":"
-
-trytond-cron_start()
-{
-	echo "${trytond-cron_msg}"
-}
 
 run_rc_command "$1"

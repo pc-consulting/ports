@@ -31,7 +31,6 @@ rcvar=trytond_enable
 
 # load_rc_config trytond is done via this include, please see there.
 . %%PREFIX%%/etc/trytond.rc.defaults
-: ${trytond_msg:="The ${name} script does not do anything sensible yet."}
 
 command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile}"
 
@@ -39,13 +38,5 @@ command=%%PREFIX%%/bin/${name}
 pidfile=/var/run/${name}.pid
 
 desc="Server of the Tryton Business Software suite."
-
-#start_cmd="${name}_start"
-#stop_cmd=":"
-
-trytond_start()
-{
-	echo "${trytond_msg}"
-}
 
 run_rc_command "$1"

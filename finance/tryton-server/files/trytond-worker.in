@@ -42,21 +42,12 @@ load_rc_config ${name}
 : ${trytond-worker_conf:="${trytond_conf}"}
 : ${trytond-worker_db:="${trytond_db}"}
 : ${trytond-worker_logconf:="${trytond_logconf}"}
-: ${trytond-worker_msg:="The ${name} script does not do anything sensible yet."}
 
 command=%%PREFIX%%/bin/${name}
 pidfile=/var/run/${name}.pid
 
 command_args="-c ${trytond-worker_conf} --logconf ${trytond-worker_logconf} --pidfile ${pidfile}"
 
-desc="Cron server for the Tryton Business Software suite."
-
-#start_cmd="${name}_start"
-#stop_cmd=":"
-
-trytond-worker_start()
-{
-	echo "${trytond-worker_msg}"
-}
+desc="Workers for the Tryton Business Software suite."
 
 run_rc_command "$1"
