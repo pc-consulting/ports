@@ -1,7 +1,105 @@
 [database]
-uri = postgresql://user:password@localhost/
-path = %%PREFIX%%/bin/trytond
+#uri = postgresql://user:password@localhost/
+#uri = sqlite://
+path = /var/db/trytond/db
+#list = True
+#retry = 5
+#subquery_threshold = 1000
+#language = en
+#avatar_filestore = False
+#avatar+prefix =
+#default_name = template1   # PostgreSQL default
+#default_name = :memory:    # SQLite default
+#default_name = trytond
+#timeout = 1800
+#minconn = 1
+#maxconn = 64
+#unaccent_function = unaccent
+#similarity_function = similarity
 
 [web]
-listen = localhost:8000
+#listen = localhost:8000
+listen = localhost:8421
 hostname = localhost
+#root = /tryton
+#num_proxies = 0
+#cache_timeout = 43200
+#cors = http://example.com https://example.com
+#avatar_base = ''
+#avatar_timeout = 604800
+
+[request]
+#max_size = 2097152
+#max_size_authenticated = 2147483648
+#timeout = 60
+
+[cache]
+#transaction = 10
+#model = 200
+#record = 2000
+#field = 100
+#default = 1024
+#clean_timeout = 300
+#count_timeout = 86400
+#count_clear = 1000
+
+[queue]
+#worker = False
+#clean_days = 30
+#batch_size = 20
+
+[error]
+#clean_days = 90
+
+[table]
+#account.invoice.line = acc_inv_line
+#account.invoice.tax = acc_inv_tax
+
+#[ssl]
+#privatekey = /path/to/private/key
+#certificate = /path/to/certificate
+
+[email]
+#uri = smtp://localhost:25
+#from = "Company Inc" <info@example.com>
+#retry = 5
+
+[session]
+#authentications = password
+#authentications = password+sms,ldap
+#authentication_ip_network = ''
+#max_age = 2592000
+#timeout = 300
+#max_attempt = 5
+#max_attempt_ip_network = 300
+#ip_network_4 = 32
+#ip_network_6 = 56
+
+[password]
+#length = 8
+#forbidden = /path/to/file/with/forbidden/passwords/one/per/line
+#reset_timeout = 86400
+#passlib =
+
+[attachment]
+#filestore = True
+store_prefix=/var/db/trytond/db
+
+[bus]
+#allow_subscribe = False
+#url_host =
+#long_polling_timeout = 300
+#cache_timeout = 300
+#select_timeout = 5
+
+[html]
+#src = https://cloud.tinymce.com/stable/tinymce.min.js
+#plugins = ''
+#css = []
+#class = ''
+
+#[wsgi middleware]
+#ie = werkzeug.contrib.fixers.InternetExplorerFix
+#
+#[wsgi ie]
+#kwargs={'fix_attach': False}
