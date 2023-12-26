@@ -648,6 +648,8 @@ USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
 USE_RC_SUBR=	trytond trytond-cron trytond-worker
 #NO_MTREE=	YES
+USERS=		tryton
+GROUPS=		tryton www
 
 pre-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/rc.d
