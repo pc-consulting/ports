@@ -45,5 +45,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION:S/1/0/g}:finance/py-t
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
+USERS=		tryton
+GROUPS=		tryton www
 
 .include <bsd.port.mk>

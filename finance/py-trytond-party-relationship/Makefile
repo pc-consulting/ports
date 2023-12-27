@@ -22,5 +22,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-try
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
+USERS=		tryton
+GROUPS=		tryton www
 
 .include <bsd.port.mk>
