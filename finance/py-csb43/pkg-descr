@@ -1,0 +1,7 @@
+Tools for converting from the Spanish banks' format CSB norm 43
+(CSB43/AEB43) to several formats, including homebank, ofx, ods, tsv,
+xls, xlsx, yaml, json, html.
+
+Herramientas para convertir ficheros en formato usado por multiples
+bancos espanioles (norma 43 del Consejo Superior Bancario [CSB43] /
+Asociacion Espaniola de Banca [AEB43]) a otros formatos.
