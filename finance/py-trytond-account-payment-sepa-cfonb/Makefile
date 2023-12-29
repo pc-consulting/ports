@@ -25,6 +25,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond-account-payment=${PORTVERSION}:fina
 		${PYTHON_PKGNAMEPREFIX}trytond-bank=${PORTVERSION}:finance/py-trytond-bank@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-company=${PORTVERSION}:finance/py-trytond-company@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR}
+# No test dependencies from pyton package
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

@@ -42,6 +42,11 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION:S/1/0/g}:finance/py-t
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-shipment-grouping=${PORTVERSION:S/1/0/g}:finance/py-trytond-sale-shipment-grouping@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-stock=${PORTVERSION:S/1/0/g}:finance/py-trytond-stock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-stock-package-shipping=${PORTVERSION:S/1/0/g}:finance/py-trytond-stock-package-shipping@${PY_FLAVOR}
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR} \
+#		${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION:S/1/0/g}:finance/py-trytond-account@${PY_FLAVOR} \
+#		${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-grouping=${PORTVERSION:S/1/0/g}:finance/py-trytond-sale-invoice-grouping@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

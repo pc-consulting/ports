@@ -21,6 +21,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION}:finance/py-trytond-account@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR}
+# No test dependencies from python package
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

@@ -17,6 +17,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # No dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>=0.4:databases/py-python-sql@${PY_FLAVOR}
 # Dependencies from tryton.cfg (account, acount_invoice,
 #				account_product, currency, ir,
 #				product, project, project_revenue,
@@ -30,6 +31,9 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 		${PYTHON_PKGNAMEPREFIX}trytond-project=${PORTVERSION}:finance/py-trytond-project@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-project-revenue=${PORTVERSION}:finance/py-trytond-project-revenue@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-timesheet=${PORTVERSION}:finance/py-trytond-timesheet@${PY_FLAVOR}
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

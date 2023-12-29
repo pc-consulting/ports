@@ -20,6 +20,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # Dependencies from tryton.cfg (ir, purchase) # ir: trytond built-in
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-purchase=${PORTVERSION}:finance/py-trytond-purchase@${PY_FLAVOR}
+# No further test dependencies from python package
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

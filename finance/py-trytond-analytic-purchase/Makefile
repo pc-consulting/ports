@@ -22,6 +22,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-account=${PORTVERSION}:finance/py-trytond-analytic-account@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-analytic-invoice=${PORTVERSION}:finance/py-trytond-analytic-invoice@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-purchase=${PORTVERSION}:finance/py-trytond-purchase@${PY_FLAVOR}
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils

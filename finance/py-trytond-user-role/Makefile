@@ -19,6 +19,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # No dependencies from python package
 # Dependencies from tryton.cfg (company, currency, ir, party, res) # ir, res:trytond built-in
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
