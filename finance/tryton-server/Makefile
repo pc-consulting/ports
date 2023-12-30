@@ -3,8 +3,8 @@
 PORTNAME=	tryton-server
 PORTVERSION=	7.0.0
 CATEGORIES=	finance
-MASTER_SITES=	@comment
-##DISTFILES=	@comment
+MASTER_SITES=	""
+DISTFILES=	""
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Meta-port for your module configuration of the Tryton server
@@ -14,7 +14,7 @@ LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies have GPLv3
 
 # Let's assume that we always want a server. We also should have a WSGI server.
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gevent=${PORTVERSION}:devel/py-gevent@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
 
 OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 		ANALYTIC ATTENDANCE COMMISSION DOCUMENT MARKETING \
@@ -22,14 +22,14 @@ OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 		SALESUBSCRIPTION STOCK TIMESHEET \
 		BANKING COMPANY CARRIER COUNTRY CURRENCY CUSTOMS \
 		DASHBOARD GOOGLEMAPS INCOTERM PARTY PRODUCT \
-		ADMINISTRATION
+		ADMINISTRATION WEBSHOP
 # Main and local functions if desired (could be served elsewhere, for instance)
 OPTIONS_GROUP_MAIN=	DTCLIENT SCRCLIENT PSQLCLIENT PSQLSRV WEBSRV
 OPTIONS_DEFAULT=	SCRCLIENT PSQLCLIENT
 MAIN_DESC=		Tryton Frontends and Dependencies
-DTCLIENT_DESC=		The application to connect to the server.
+DTCLIENT_DESC=		Desktop application to connect to the server.
 DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${PORTVERSION}:finance/py-tryton@${PY_FLAVOR}
-SCRCLIENT_DESC=		The library to access models, wizards and reports like a client.
+SCRCLIENT_DESC=		Library to access models, wizards and reports like a client.
 SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 PSQLCLIENT_DESC=	Install Postgres client (otherwise, depend on local sqlite).
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
@@ -78,7 +78,7 @@ OPTIONS_GROUP_ACCOUNTING=	ACCOUNTINGFUNDAMENTAL ACCOUNTINGASSET \
 				TAXCASH TAXNONDEDUCTIBLE TAXRULECOUNTRY
 OPTIONS_DEFAULT+=	ACCOUNTINGFUNDAMENTAL ACCOUNTINGINVOICE \
 			INVOICESTOCK ACCOUNTINGPRODUCT
-ACCOUNTING_DESC=	Operational Modules - Reports all Transactions of Your Chart of Accounts
+ACCOUNTING_DESC=	Operational Modules - Report all Transactions of Your Chart of Accounts
 ACCOUNTINGFUNDAMENTAL_DESC=		Fundamentals for most accounting needs.
 ACCOUNTINGFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION}:finance/py-trytond-account@${PY_FLAVOR}
 ACCOUNTINGASSET_DESC=		Depreciation of fixed assets.
@@ -189,7 +189,7 @@ TAXRULECOUNTRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-account-tax-rule-coun
 OPTIONS_GROUP_ANALYTIC=	ANALYTICFUNDAMENTAL BUDGET ANALYTICINVOICE \
 			ANALYTICPURCHASE ANALYTICSALE
 OPTIONS_DEFAULT+=	ANALYTICFUNDAMENTAL
-ANALYTIC_DESC=		Operational Modules - Analyze your Accounts
+ANALYTIC_DESC=		Operational Modules - Analyze Your Accounts
 ANALYTICFUNDAMENTAL_DESC=		Fundamentals for analytic.
 ANALYTICFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-analytic-account=${PORTVERSION}:finance/py-trytond-analytic-account@${PY_FLAVOR}
 BUDGET_DESC=		Budgets for analytic accounts.
@@ -236,7 +236,7 @@ UNECE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-edocument-unece=${PORTVERSION}
 OPTIONS_GROUP_MARKETING=	MARKETINGFUNDAMENTAL AUTOMATION \
 				CAMPAIGN EMAIL
 OPTIONS_DEFAULT+=	MARKETINGFUNDAMENTAL
-MARKETING_DESC=		Operational Modules - Communicates with Your Customers
+MARKETING_DESC=		Operational Modules - Marketing - Communicate with Your Customers
 MARKETINGFUNDAMENTAL_DESC=		Fundamentals for marketing.
 MARKETINGFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-marketing=${PORTVERSION}:finance/py-trytond-marketing@${PY_FLAVOR}
 AUTOMATION_DESC=	Uses scenario.
@@ -250,7 +250,7 @@ OPTIONS_GROUP_PRODUCTION=	PRODUCTIONFUNDAMENTAL OUTSOURCING \
 				ROUTING PRODUCTIONSPLIT WORK \
 				WORKTIMESHEET
 OPTIONS_DEFAULT+=	PRODUCTIONFUNDAMENTAL
-PRODUCTION_DESC=	Operational Modules - Transforms Raw Materials into Finished Products
+PRODUCTION_DESC=	Operational Modules - Production - Transform Raw Materials into Finished Products
 PRODUCTIONFUNDAMENTAL_DESC=		Fundamentals for production management.
 PRODUCTIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production=${PORTVERSION}:finance/py-trytond-production@${PY_FLAVOR}
 OUTSOURCING_DESC=		Outsources the production.
@@ -266,7 +266,7 @@ WORKTIMESHEET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-production-work-timesh
 #
 OPTIONS_GROUP_PROJECT=	PROJECTFUNDAMENTAL INVOICE PLAN REVENUE
 OPTIONS_DEFAULT+=	PROJECTFUNDAMENTAL
-PROJECT_DESC=		Operational Modules - Checks the Profitability of Projects
+PROJECT_DESC=		Operational Modules - Projects - Check Profitability
 PROJECTFUNDAMENTAL_DESC=	Fundamentals for project management.
 PROJECTFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-project=${PORTVERSION}:finance/py-trytond-project@${PY_FLAVOR}
 INVOICE_DESC=		Invoices the projects.
@@ -283,7 +283,7 @@ OPTIONS_GROUP_PURCHASE=	PURCHASEFUNDAMENTAL PURCHASEAMENDMENT \
 			REQUISITION PURCHASESECONDARYUNIT \
 			PURCHASESHIPMENTCOST
 OPTIONS_DEFAULT+=	PURCHASEFUNDAMENTAL REQUEST
-PURCHASE_DESC=		Operational Modules - Follows Your Purchases
+PURCHASE_DESC=		Operational Modules - Manage Your Purchases
 PURCHASEFUNDAMENTAL_DESC=		Fundamentals to follow purchases.
 PURCHASEFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase=${PORTVERSION}:finance/py-trytond-purchase@${PY_FLAVOR}
 PURCHASEAMENDMENT_DESC=		Amend purchases in processing.
@@ -328,7 +328,7 @@ OPTIONS_GROUP_SALE=	SALEFUNDAMENTAL ADVANCEPAYMENT SALESAMENDMENT \
 			STOCKQUANTITY SALESUPPLY SUPPLYDROPSHIPMENT \
 			SUPPLYPRODUCTION
 OPTIONS_DEFAULT+=	SALEFUNDAMENTAL SALESUPPLY SUPPLYDROPSHIPMENT
-SALE_DESC=		Operational Modules - Follows Sale Orders
+SALE_DESC=		Operational Modules - Manage Sales and Orders
 SALEFUNDAMENTAL_DESC=		Fundamentals to follow sales.
 SALEFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/py-trytond-sale@${PY_FLAVOR}
 ADVANCEPAYMENT_DESC=		Manage advance payment on sale.
@@ -399,7 +399,7 @@ SALEPOINTFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-point=${PO
 OPTIONS_GROUP_SALESUBSCRIPTION=	SALESUBSCRIPTIONFUNDAMENTAL \
 				SALESUBSCRIPTIONASSET
 #OPTIONS_DEFAULT+=	# Not yet
-SALESUBSCRIPTION_DESC=	Operational Modules - Subscribes to Recurring Service
+SALESUBSCRIPTION_DESC=	Operational Modules - Subscribe to Recurring Services
 SALESUBSCRIPTIONFUNDAMENTAL_DESC=		Fundamentals to manage subscriptions.
 SALESUBSCRIPTIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription=${PORTVERSION}:finance/py-trytond-sale-subscription@${PY_FLAVOR}
 SALESUBSCRIPTIONASSET_DESC=		Add asset to subscribed service.
@@ -418,7 +418,7 @@ OPTIONS_GROUP_STOCK=	STOCKFUNDAMENTAL ASSIGNMANUAL CONSIGNMENT \
 			STOCKSPLIT STOCKSUPPLY SUPPLYFORECAST \
 			SUPPLYDAY SUPPLYPRODUCTION
 OPTIONS_DEFAULT+=	STOCKFUNDAMENTAL LOT
-STOCK_DESC=		Operational Modules - Tracks Goods in Your Warehouses
+STOCK_DESC=		Operational Modules - Track Goods in Your Warehouses
 STOCKFUNDAMENTAL_DESC=		Fundamentals to manage warehouses.
 STOCKFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock=${PORTVERSION}:finance/py-trytond-stock@${PY_FLAVOR}
 ASSIGNMANUAL_DESC=		Manually decide where to pick products.
@@ -478,8 +478,8 @@ SUPPLYPRODUCTION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-stock-supply-produc
 #
 OPTIONS_GROUP_TIMESHEET=	TIMESHEETFUNDAMENTAL COST
 OPTIONS_DEFAULT+=	TIMESHEETFUNDAMENTAL
-TIMESHEET_DESC=		Operational Modules - Tracks Time Spend
-TIMESHEETFUNDAMENTAL_DESC=		Fundamentals to track time spend.
+TIMESHEET_DESC=		Operational Modules - Track Time Spent
+TIMESHEETFUNDAMENTAL_DESC=		Fundamentals to track time spent.
 TIMESHEETFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet=${PORTVERSION}:finance/py-trytond-timesheet@${PY_FLAVOR}
 COST_DESC=		Tracks employee cost.
 COST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet-cost=${PORTVERSION}:finance/py-trytond-timesheet-cost@${PY_FLAVOR}
@@ -491,7 +491,7 @@ COST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet-cost=${PORTVERSION}:f
 #
 OPTIONS_GROUP_BANKING=	BANK
 OPTIONS_DEFAULT+=	BANK
-BANKING_DESC=		Referential Modules - Adds Bank and Account
+BANKING_DESC=		Referential Modules - Banks and Accounts
 BANK_DESC=		Adds bank and account.
 BANK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-bank=${PORTVERSION}:finance/py-trytond-bank@${PY_FLAVOR}
 #
@@ -506,7 +506,7 @@ WORKTIME_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-company-work-time=${PORTVER
 OPTIONS_GROUP_CARRIER=	CARRIERFUNDAMENTAL CARRIAGE PERCENTAGE \
 			SUBDIVISION WEIGHT
 OPTIONS_DEFAULT+=	CARRIERFUNDAMENTAL
-CARRIER_DESC=		Referential Modules - To Ship
+CARRIER_DESC=		Referential Modules - Shipping
 CARRIERFUNDAMENTAL_DESC=	Fundamentals to manage carriers.
 CARRIERFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-carrier=${PORTVERSION}:finance/py-trytond-carrier@${PY_FLAVOR}
 CARRIAGE_DESC=		Supports multiple carriers per document.
@@ -536,7 +536,7 @@ SERBIAN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-currency-rs=${PORTVERSION}:f
 #
 OPTIONS_GROUP_CUSTOMS=	CUSTOMSFUNDAMENTAL
 OPTIONS_DEFAULT+=	CUSTOMSFUNDAMENTAL
-CUSTOMS_DESC=		Referential Modules - Defines Customs Duty per Tariff Code
+CUSTOMS_DESC=		Referential Modules - Define Customs Duty per Tariff Code
 CUSTOMSFUNDAMENTAL_DESC=	Defines customs duty per tariff code.
 CUSTOMSFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-customs=${PORTVERSION}:finance/py-trytond-customs@${PY_FLAVOR}
 #
@@ -548,19 +548,19 @@ DASHBOARDFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-dashboard=${POR
 #
 OPTIONS_GROUP_GOOGLEMAPS=	GOOGLEMAPSFUNDAMENTAL
 OPTIONS_DEFAULT+=	GOOGLEMAPSFUNDAMENTAL
-GOOGLEMAPS_DESC=	Referential Modules - Links Address to Google map
+GOOGLEMAPS_DESC=	Referential Modules - Link Address to Google Maps
 GOOGLEMAPSFUNDAMENTAL_DESC=	Links address to Google map.
 GOOGLEMAPSFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-google-maps=${PORTVERSION}:finance/py-trytond-google-maps@${PY_FLAVOR}
 #
 OPTIONS_GROUP_INCOTERM=	INCOTERMFUNDAMENTAL
-INCOTERM_DESC=		Referential Modules - Defines Incoterms
+INCOTERM_DESC=		Referential Modules - Define Incoterms
 INCOTERMFUNDAMENTAL_DESC=	Manage the Incoterms on Sales, Purchases and Shipments
 # NOTE incoterm currently deviates in its PORTVERSION, hence relaxed check
 INCOTERMFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-incoterm>=${PORTVERSION}:finance/py-trytond-incoterm@${PY_FLAVOR}
 #
 OPTIONS_GROUP_PARTY=	PARTYFUNDAMENTAL AVATAR RELATIONSHIP SIRET
 OPTIONS_DEFAULT+=	PARTYFUNDAMENTAL
-PARTY_DESC=		Referential Modules - Identify parties
+PARTY_DESC=		Referential Modules - Identify Parties
 PARTYFUNDAMENTAL_DESC=		Fundamentals to store parties.
 PARTYFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-party=${PORTVERSION}:finance/py-trytond-party@${PY_FLAVOR}
 AVATAR_DESC=		Adds avatar.
@@ -576,7 +576,7 @@ OPTIONS_GROUP_PRODUCT=	PRODUCTFUNDAMENTAL ATTRIBUTE CLASSIFICATION \
 			PRICELISTCACHE PRICELISTDATES PRICELISTPARENT \
 			IMAGE IMAGEATTRIBUTE KIT
 OPTIONS_DEFAULT+=	PRODUCTFUNDAMENTAL IMAGE ATTRIBUTE
-PRODUCT_DESC=		Referential Modules - Manages Products
+PRODUCT_DESC=		Referential Modules - Manage Products
 PRODUCTFUNDAMENTAL_DESC=	Fundamentals to manage products.
 PRODUCTFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product=${PORTVERSION}:finance/py-trytond-product@${PY_FLAVOR}
 ATTRIBUTE_DESC=		Adds attributes to products.
@@ -609,14 +609,10 @@ KIT_DESC=		Add support for product kits.
 KIT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-product-kit=${PORTVERSION}:finance/py-trytond-product-kit@${PY_FLAVOR}
 #
 OPTIONS_GROUP_ADMINISTRATION=	INBOUNDEMAIL AUTHENTICATIOSAML \
-				AUTHENTICATIONLDAP \
-				NOTIFICATIONEMAIL USERROLE SHOP \
-				SHOPSHOPIFY SHOPVUESTOREFRONT \
-				SHOPVUESTOREFRONTSTRIPE SHORTENER \
-				USER
+				AUTHENTICATIONSMS AUTHENTICATIONLDAP \
+				NOTIFICATIONEMAIL USERROLE
 OPTIONS_DEFAULT+=	INBOUNDEMAIL AUTHENTICATIONLDAP \
 			NOTIFICATIONEMAIL USERROLE SHOP USER
-# FIXME:	AUTHENTICATIONSMS
 ADMINISTRATION_DESC=	Administration Modules - Various
 INBOUNDEMAIL_DESC=		Receive email.
 INBOUNDEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-inbound-email=${PORTVERSION}:finance/py-trytond-inbound-email@${PY_FLAVOR}
@@ -630,6 +626,11 @@ NOTIFICATIONEMAIL_DESC=		Sends email.
 NOTIFICATIONEMAIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-notification-email=${PORTVERSION}:finance/py-trytond-notification-email@${PY_FLAVOR}
 USERROLE_DESC=		Manage user groups with roles.
 USERROLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-user-role=${PORTVERSION}:finance/py-trytond-user-role@${PY_FLAVOR}
+#
+OPTIONS_GROUP_WEBSHOP=	SHOP SHOPSHOPIFY SHOPVUESTOREFRONT \
+			SHOPVUESTOREFRONTSTRIPE SHORTENER USER
+OPTIONS_DEFAULT+=	SHOP SHORTENER USER
+WEBSHOP_DESC=	Web and Webshop-Related Modules - Various
 SHOP_DESC=		Fundamentals to sale online.
 SHOP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shop=${PORTVERSION}:finance/py-trytond-web-shop@${PY_FLAVOR}
 SHOPSHOPIFY_DESC=		Integration with Shopify.
@@ -643,6 +644,7 @@ SHORTENER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-shortener=${PORTVERSIO
 USER_DESC=		Manages external users.
 USER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance/py-trytond-web-user@${PY_FLAVOR}
 
+# metaport supresses fetch.
 USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
@@ -651,14 +653,22 @@ USE_RC_SUBR=	trytond trytond-cron trytond-worker
 USERS=		tryton
 GROUPS=		tryton www
 
+# ${ETCDIR} uses PORTNAME which does not look like what we want in there.
 pre-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/rc.d
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/trytond
+	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}rc.d
+	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.d
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
+PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
+PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.d"
+PLIST_FILES+=	"@dir /var/db/trytond/db"
+PLIST_FILES+=	"@dir /var/db/trytond"
 
 post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}${ETCDIR}/trytond.conf.sample
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}${ETCDIR}/trytond.rc.defaults
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}${ETCDIR}/trytond.logconf.sample
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
+PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
+PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
+PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
 
 .include <bsd.port.mk>
