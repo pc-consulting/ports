@@ -1,0 +1,6 @@
+#
+OPTIONS_GROUP_CUSTOMS=	CUSTOMSFUNDAMENTAL
+OPTIONS_DEFAULT+=	CUSTOMSFUNDAMENTAL
+CUSTOMS_DESC=		Referential Modules - Define Customs Duty per Tariff Code
+CUSTOMSFUNDAMENTAL_DESC=	Defines customs duty per tariff code.
+CUSTOMSFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-customs=${PORTVERSION}:finance/py-trytond-customs@${PY_FLAVOR}
