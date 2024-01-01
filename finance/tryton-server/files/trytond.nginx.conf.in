@@ -1,0 +1,14 @@
+server {
+    # Please note that tryton does not properly work with supbaths. You need a host name.
+    # You will have to change this to your real host name.
+    listen localhost:80;
+    location / {
+        proxy_pass http://localhost:8421;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    # Serve potential static content from a directory.
+    location /tryton-static/ {
+        root %%WWWDIR%%/tryton-static;
+    }
+}

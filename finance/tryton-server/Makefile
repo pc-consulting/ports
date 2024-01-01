@@ -20,36 +20,40 @@ OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 		DASHBOARD GOOGLEMAPS INCOTERM PARTY PRODUCT \
 		ADMINISTRATION WEBSHOP
 # Main and local functions if desired (could be served elsewhere, for instance)
-#OPTIONS_GROUP_MAIN=	TRYTONDCFG GUNICORN UWSGI PSQLCLIENT DTCLIENT \
+#OPTIONS_GROUP_MAIN=	TRYTOND GUNICORN UWSGI PSQLCLIENT DTCLIENT \
 #			SCRCLIENT PSQLSRV WEBSRV
-OPTIONS_GROUP_MAIN=	DTCLIENT SCRCLIENT PSQLCLIENT PSQLSRV WEBSRV
-#OPTIONS_DEFAULT=	TRYTONDCFG UWSGI PSQLCLIENT WEBSRV
-OPTIONS_DEFAULT=	SCRCLIENT PSQLCLIENT
-MAIN_DESC=		Tryton Frontends and Dependencies
-# Let's NOT assume that we always want a trytond server. You then
-# could install just the tryton proxy settings on a dedigated nginx
-# instance and leave out any module, for instance. Any selected
-# tryton module would pull it in via its dependencies. But decide
-# whether we want configs from here.
-#TRYTONDCFG_DESC=	Install trytond startup and sample configs. Modules pull the server in automatically.
+OPTIONS_GROUP_MAIN=	TRYTOND PSQLCLIENT DTCLIENT \
+			SCRCLIENT PSQLSRV WEBSRV
+#OPTIONS_DEFAULT=	TRYTOND UWSGI PSQLCLIENT WEBSRV
+OPTIONS_DEFAULT=	TRYTOND PSQLCLIENT WEBSRV
+MAIN_DESC=		Tryton Config, Frontends and Dependencies (Modules pull in trytond automatically)
+TRYTOND_DESC=		Install trytond and its startup and sample configs on this box.
+# Dependencies called from here would pull in trytond anyways, but
+# let's leave the direct dependency in here for the time being.
+TRYTOND_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
+# FIXME Currently no WSGI for production, using just 'built-in' Werkzeug.
 # Production systems allegedly also should have a WSGI server.
-# Pick one only. This port below prefers uWSGI if settings conflicted.
-# See both below.
+# Pick one only. This port should below prefer uWSGI if settings conflicted.
+# See both further below.
+#GUNICORN_PREVENTS=	UWSGI
 #GUNICORN_DESC=		Production WSGI support via gunicorn on this box.
-#GUNICORN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
+#GUNICORN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gunicorn>0:www/py-gunicorn@${PY_FLAVOR} \
+#			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
+#UWSGI_PREVENTS=		GUNICORN
 #UWSGI_DESC=		Production WSGI support via uWSGI on this box.
-#UWSGI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
-DTCLIENT_DESC=		Desktop application to connect to the server.
+#UWSGI_RUN_DEPENDS=	uwsgi${PYTHON_PKGNAMESUFFIX}>0:www/uwsgi@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
+DTCLIENT_DESC=		Tryton desktop application on this box to connect to the server.
 DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${PORTVERSION}:finance/py-tryton@${PY_FLAVOR}
-SCRCLIENT_DESC=		Library to access models, wizards and reports like a client.
+SCRCLIENT_DESC=		Proteus library on this box to access models, wizards and reports like a client.
 SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
-PSQLCLIENT_DESC=	Install Postgres client (otherwise, depend on local sqlite).
+PSQLCLIENT_DESC=	Install Postgres client on this box (otherwise, depend on local sqlite).
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
 # Radio-like check required: psql client || sqlite # one req'd in any case, sqlite is default if no other is picked, afaik
-PSQLSRV_DESC=		Locally add a postgres database on the Tryton server machine.
+PSQLSRV_DESC=		Locally add a postgres database on this box.
 PSQLSRV_RUN_DEPENDS=	postgresql15-server>0:databases/postgresql15-server
 PSQLSRV_IMPLIES=	PSQLCLIENT
-WEBSRV_DESC=		Locally add an nginx web server.
+WEBSRV_DESC=		Locally add an nginx web server on this box.
 WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
 #
 .include "Makefile.BACKEND"
@@ -98,27 +102,62 @@ WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
 USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
-USE_RC_SUBR=	trytond trytond-cron trytond-worker
 #NO_MTREE=	YES
 USERS=		tryton
 GROUPS=		tryton www
 
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MTRYTOND}
+USE_RC_SUBR=	trytond trytond-cron trytond-worker
+.endif
+
+#.if ${PORT_OPTIONS:MGUNICORN} && ${PORT_OPTIONS:MUWSGI}
+#	${ECHO_MSG} "You should have picked either one of GUNICORN or UWSGI, but not both."
+#	${ECHO_MSG} "I decided to select UWSGI for you."
+#	UNSET GUNICORN ... somehow.
+#.endif
+
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.
-pre-install:
+pre-install-TRYTOND-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}rc.d
-	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.d
+	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.d
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
 PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
-PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.d"
+PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.conf.d"
+PLIST_FILES+=	"@owner tryton"
+PLIST_FILES+=	"@group tryton"
+PLIST_FILES+=	"@mode 0750"
 PLIST_FILES+=	"@dir /var/db/trytond/db"
 PLIST_FILES+=	"@dir /var/db/trytond"
+PLIST_FILES+=	"@owner"
+PLIST_FILES+=	"@group"
+PLIST_FILES+=	"@mode"
 
-post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
+# ${ETCDIR} uses PORTNAME which does not look like what we want in there.
+# FIXME ${INSTALL_SCRIPT} does not replace keywords like %%PREFIX%%.
+post-install-TRYTOND-on:
 	${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 	${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
-PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
-PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
+PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.conf.sample ${ETCDIR:S/${PORTNAME}//}trytond.conf"
+PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf"
 
-.include <bsd.port.mk>
+pre-install-WEBSRV-on:
+	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
+	@${MKDIR} ${STAGEDIR}/${WWWDIR}tryton-static
+PLIST_FILES+=	"@owner tryton"
+PLIST_FILES+=	"@group www"
+PLIST_FILES+=	"@mode 0750"
+PLIST_FILES+=	"@dir ${WWWDIR}tryton-static"
+PLIST_FILES+=	"@owner"
+PLIST_FILES+=	"@group"
+PLIST_FILES+=	"@mode"
+PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
+
+post-install-WEBSRV-on:
+	${INSTALL_SCRIPT} ${FILESDIR}/trytond.nginx.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
+PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
+
+.include <bsd.port.post.mk>
