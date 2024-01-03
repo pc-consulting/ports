@@ -18,7 +18,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}py-pypdf>=3:print/py-pypdf@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pypdf>=3:print/py-pypdf@${PY_FLAVOR}
 # Dependencies from tryton.cfg (company, ir, res, extra: inbound_email) # ir, res:trytond built-in
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-company=${PORTVERSION}:finance/py-trytond-company@${PY_FLAVOR} \
