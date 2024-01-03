@@ -1,7 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	schwifty
-PORTVERSION=	2023.10.0
+# NOTE: Must also update version in files/patch-setup.py accordingly!
+PORTVERSION=	2023.11.2
 CATEGORIES=	finance devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +13,12 @@ WWW=		https://github.com/mdomke/schwifty
 
 LICENSE=	MIT
 
+# We eventually could (should?) include ${WRKSRC}/scripts in
+# ${FILESDIR}/patch-setup.py, or add a SCRIPTS option to ${COPYTREE_BIN}
+# the update scripts from ${WRKSRC}/scripts to somewhere useful but I
+# leave this for afters meanwhile to get things done. NOTE that there are
+# additional dependencies required for that which are defined in
+# ${WRKSRC}/scripts/requirements.txt.
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}importlib-resources>0:devel/py-importlib-resources@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}iso3166>0:textproc/py-iso3166@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycountry>0:textproc/py-pycountry@${PY_FLAVOR} \

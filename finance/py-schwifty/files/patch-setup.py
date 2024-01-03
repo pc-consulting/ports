@@ -39,7 +39,7 @@
 +    # For a discussion on single-sourcing the version across setup.py and the
 +    # project code, see
 +    # https://packaging.python.org/guides/single-sourcing-package-version/
-+    version="2023.10.0",  # Required
++    version="2023.11.2",  # Required
 +    # This is a one-line description or tagline of what your project does. This
 +    # corresponds to the "Summary" metadata field:
 +    # https://packaging.python.org/specifications/core-metadata/#summary
@@ -146,7 +146,7 @@
 +    },
 +    # If there are data files included in your packages that need to be
 +    # installed, specify them here.
-+    package_data={  # Optional
++    package_data={  '': ['bank_registry/*', 'iban_registry/*'] # Optional
 +    #    "sample": ["package_data.dat"],
 +    },
 +    # Entry points. The following would provide a command called `sample` which
