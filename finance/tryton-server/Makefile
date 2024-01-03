@@ -31,6 +31,12 @@ TRYTOND_DESC=		Install trytond and its startup and sample configs on this box.
 # Dependencies called from here would pull in trytond anyways, but
 # let's leave the direct dependency in here for the time being.
 TRYTOND_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
+TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
+TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.conf.d"
+TRYTOND_PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
+TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.conf.sample ${ETCDIR:S/${PORTNAME}//}trytond.conf"
+TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf"
+TRYTOND_SUB_FILES+=	trytond.rc.defaults trytond.conf trytond.logconf
 # FIXME Currently no WSGI for production, using just 'built-in' Werkzeug.
 # Production systems allegedly also should have a WSGI server.
 # Pick one only. This port should below prefer uWSGI if settings conflicted.
@@ -49,12 +55,29 @@ SCRCLIENT_DESC=		Proteus library on this box to access models, wizards and repor
 SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 PSQLCLIENT_DESC=	Install Postgres client on this box (otherwise, depend on local sqlite).
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
+PSQLCLIENT_PLIST_FILES_OFF+=	"@owner ${TRYTONDOWN}"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@group ${TRYTONDGRP}"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0750"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond/db"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@owner"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@group"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@mode"
 # Radio-like check required: psql client || sqlite # one req'd in any case, sqlite is default if no other is picked, afaik
 PSQLSRV_DESC=		Locally add a postgres database on this box.
 PSQLSRV_RUN_DEPENDS=	postgresql15-server>0:databases/postgresql15-server
 PSQLSRV_IMPLIES=	PSQLCLIENT
 WEBSRV_DESC=		Locally add an nginx web server on this box.
 WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
+WEBSRV_PLIST_FILES+=	"@owner ${TRYTONDOWN}"
+WEBSRV_PLIST_FILES+=	"@group ${WWWGRP}"
+WEBSRV_PLIST_FILES+=	"@mode 0750"
+WEBSRV_PLIST_FILES+=	"@dir ${WWWDIR}tryton-static"
+WEBSRV_PLIST_FILES+=	"@owner"
+WEBSRV_PLIST_FILES+=	"@group"
+WEBSRV_PLIST_FILES+=	"@mode"
+WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
+WEBSRV_SUB_FILES+=	trytond.nginx.conf
 #
 .include "Makefile.BACKEND"
 #
@@ -103,8 +126,13 @@ USES=		python:3.9+ metaport
 USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
 #NO_MTREE=	YES
-USERS=		tryton
-GROUPS=		tryton www
+NO_WRKSUBDIR=	YES
+TRYTONDOWN=	tryton
+TRYTONDGRP=	${TRYTONDOWN}
+USERS=		${TRYTONDOWN}
+GROUPS=		${TRYTONDOWN} ${WWWGRP}
+
+SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
@@ -115,49 +143,33 @@ USE_RC_SUBR=	trytond trytond-cron trytond-worker
 #.if ${PORT_OPTIONS:MGUNICORN} && ${PORT_OPTIONS:MUWSGI}
 #	${ECHO_MSG} "You should have picked either one of GUNICORN or UWSGI, but not both."
 #	${ECHO_MSG} "I decided to select UWSGI for you."
-#	UNSET GUNICORN ... somehow.
+#	.undef GUNICORN ... somehow.
 #.endif
 
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.
 pre-install-TRYTOND-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}rc.d
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.d
-	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
-PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
-PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.conf.d"
-PLIST_FILES+=	"@owner tryton"
-PLIST_FILES+=	"@group tryton"
-PLIST_FILES+=	"@mode 0750"
-PLIST_FILES+=	"@dir /var/db/trytond/db"
-PLIST_FILES+=	"@dir /var/db/trytond"
-PLIST_FILES+=	"@owner"
-PLIST_FILES+=	"@group"
-PLIST_FILES+=	"@mode"
 
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.
-# FIXME ${INSTALL_SCRIPT} does not replace keywords like %%PREFIX%%.
 post-install-TRYTOND-on:
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.rc.defaults.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.logconf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
-PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
-PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.conf.sample ${ETCDIR:S/${PORTNAME}//}trytond.conf"
-PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf"
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.rc.defaults ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.logconf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
+
+# An empty db.sqlite must be present otherwise the suggested database
+# initialization in pkg-message via trytond-admin fails. However db.sqlite is
+# not included in PLIST_FILES such as not to lose it when deinstalling.
+post-install-PSQLCLIENT-off:
+	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
+	${INSTALL} -b -C -g ${TRYTONDGRP} -m 0640 -o ${TRYTONDOWN} /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
 	@${MKDIR} ${STAGEDIR}/${WWWDIR}tryton-static
-PLIST_FILES+=	"@owner tryton"
-PLIST_FILES+=	"@group www"
-PLIST_FILES+=	"@mode 0750"
-PLIST_FILES+=	"@dir ${WWWDIR}tryton-static"
-PLIST_FILES+=	"@owner"
-PLIST_FILES+=	"@group"
-PLIST_FILES+=	"@mode"
-PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
 
 post-install-WEBSRV-on:
-	${INSTALL_SCRIPT} ${FILESDIR}/trytond.nginx.conf.in ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
-PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.nginx.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
+WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 
 .include <bsd.port.post.mk>

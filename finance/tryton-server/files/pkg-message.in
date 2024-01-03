@@ -2,31 +2,41 @@
 { type: install
   message: <<EOM
 
-If you have selected TRYTONDCFG:
+If you have selected TRYTOND:
 
-  Please check and amend your configuration according to your needs. You can find it at the following location.
+  Please check and amend your configuration according to your needs.
+  You can find it at the following location.
     Tryton server configuration:  %%PREFIX%%/etc/trytond.conf
     Tryton server logging config: %%PREFIX%%/etc/trytond.logconf
 
-  Prior to the first start of trytond, the Tryton daemon, please initialize the database with:
+  Prior to the first start of trytond, the Tryton daemon, please
+  initialize the database with:
     trytond-admin -c <config file> -d <database name> --all
-  where <config file> is the location of your trytond config file, and <database name> the location of your database, for instance:
+  where <config file> is the location of your trytond config file, and
+  <database name> the name of your database. For instance, if you
+  have not selected PSQLCLIENT nor PSQLSRV, the following command
+  should work:
     trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all
 
-  You may start the server processes via rc as follows.
+  You may then start the server processes via rc as follows.
     Tryton server:      service trytond onestart
     Tryton cron server: service trytond-cron onestart
     Tryton worker:      service trytond-worker onestart
 
-  You may these services to start automatically upon boot by setting trytond_enable="YES", trytond-cron_enable="YES", or trytond-worker_enable="YES", respectively, e. g. in /etc/rc.conf.
-  Please check the following startup scripts for further startup configuration options.
+  You may these services to start automatically upon boot by setting
+  trytond_enable="YES", trytond-cron_enable="YES", or
+  trytond-worker_enable="YES", respectively, e. g. in /etc/rc.conf.
+  Please check the following startup scripts for further startup
+  configuration options.
     Tryton server:      %%PREFIX%%/etc/rc.d/trytond
     Tryton cron server: %%PREFIX%%/etc/rc.d/trytond-cron
     Tryton worker:      %%PREFIX%%/etc/rc.d/trytond-worker
 
 If you have selected WEBSRV:
 
-  The port depends on nginx as a web proxy. Please see %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample] for an example configuration.
+  The port depends on nginx as a web proxy. Please see
+  %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
+  for an example configuration.
 
 EOM
 }
