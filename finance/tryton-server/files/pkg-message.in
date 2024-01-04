@@ -16,7 +16,7 @@ If you have selected TRYTOND:
   <database name> the name of your database. For instance, if you
   have not selected PSQLCLIENT nor PSQLSRV, the following command
   should work:
-    trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all
+    trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all -p
 
   You may then start the server processes via rc as follows.
     Tryton server:      service trytond onestart

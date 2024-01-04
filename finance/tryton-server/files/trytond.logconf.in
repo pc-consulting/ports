@@ -13,7 +13,7 @@ datefmt=%a %b %d %H:%M:%S %Y
 
 [handler_rotate]
 class=handlers.TimedRotatingFileHandler
-args=('%%PREFIX%%/var/log/trytond.log', 'D', 1, 30)
+args=('/var/log/trytond.log', 'D', 1, 30)
 formatter=simple
 
 [handler_console]

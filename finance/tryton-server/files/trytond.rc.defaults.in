@@ -6,6 +6,6 @@ load_rc_config trytond
 
 : ${trytond_enable:=NO}
 : ${trytond_args="--coroutine"}
-: ${trytond_conf:="%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.d/*"}
-: ${trytond_db:="%%PREFIX%%/var/db/trytond/db"}
+: ${trytond_conf:="%%PREFIX%%/etc/trytond.conf %%PREFIX%%/etc/trytond.conf.d/*"}
+: ${trytond_db:="/var/db/trytond/db"}
 : ${trytond_logconf:="%%PREFIX%%/etc/trytond.logconf"}
