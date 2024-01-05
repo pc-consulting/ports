@@ -36,6 +36,8 @@ command=%%PREFIX%%/bin/${name}
 command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
+# Please ensure to terminate command_args with an ampersand '&' sign
+# at all times. Otherwise, you will see this script hang at boot time.
 command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile} &"
 
 desc="Server of the Tryton Business Software suite."
