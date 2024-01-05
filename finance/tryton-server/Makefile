@@ -135,7 +135,8 @@ TRYTONDGRP=	${TRYTONDOWN}
 USERS=		${TRYTONDOWN}
 GROUPS=		${TRYTONDOWN} ${WWWGRP}
 
-SUB_FILES=	pkg-message
+SUB_FILES+=	pkg-message
+SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 .include <bsd.port.pre.mk>
 

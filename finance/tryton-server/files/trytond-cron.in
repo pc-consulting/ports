@@ -42,6 +42,7 @@ load_rc_config ${name}
 : ${trytond-cron_logconf:="${trytond_logconf}"}
 
 command=%%PREFIX%%/bin/${name}
+command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
 command_args="-c ${trytond-cron_conf} --logconf ${trytond-cron_logconf} --pidfile ${pidfile}"

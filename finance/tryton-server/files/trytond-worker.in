@@ -44,6 +44,7 @@ load_rc_config ${name}
 : ${trytond-worker_logconf:="${trytond_logconf}"}
 
 command=%%PREFIX%%/bin/${name}
+command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
 command_args="-c ${trytond-worker_conf} --logconf ${trytond-worker_logconf} --pidfile ${pidfile}"

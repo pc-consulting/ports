@@ -33,6 +33,7 @@ rcvar=trytond_enable
 . %%PREFIX%%/etc/trytond.rc.defaults
 
 command=%%PREFIX%%/bin/${name}
+command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
 command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile}"
