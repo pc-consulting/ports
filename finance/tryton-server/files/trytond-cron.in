@@ -45,7 +45,7 @@ command=%%PREFIX%%/bin/${name}
 command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
-command_args="-c ${trytond-cron_conf} --logconf ${trytond-cron_logconf} --pidfile ${pidfile}"
+command_args="-c ${trytond-cron_conf} --logconf ${trytond-cron_logconf} --pidfile ${pidfile} &"
 
 desc="Cron server for the Tryton Business Software suite."
 

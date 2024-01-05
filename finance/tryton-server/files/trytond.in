@@ -36,7 +36,7 @@ command=%%PREFIX%%/bin/${name}
 command_interpreter=%%PYTHON_CMD%%
 pidfile=/var/run/${name}.pid
 
-command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile}"
+command_args="-c ${trytond_conf} --logconf ${trytond_logconf} --pidfile ${pidfile} &"
 
 desc="Server of the Tryton Business Software suite."
 
