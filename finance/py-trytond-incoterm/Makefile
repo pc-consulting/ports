@@ -3,13 +3,7 @@
 PORTNAME=	trytond-incoterm
 PORTVERSION=	7.0.1
 CATEGORIES=	finance python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module for incoterms
 WWW=		https://docs.tryton.org/projects/modules-incoterm/en/latest/
 
@@ -48,9 +42,8 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION:S/1/0/g}:finance/py-t
 #		${PYTHON_PKGNAMEPREFIX}trytond-account=${PORTVERSION:S/1/0/g}:finance/py-trytond-account@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}trytond-sale-invoice-grouping=${PORTVERSION:S/1/0/g}:finance/py-trytond-sale-invoice-grouping@${PY_FLAVOR}
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

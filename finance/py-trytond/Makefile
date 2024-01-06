@@ -1,12 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	trytond
-PORTVERSION=	7.0.0
 CATEGORIES=	finance python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton server
 WWW=		https://docs.tryton.org/projects/server/en/latest/
 
@@ -39,9 +35,8 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psycopg2>2.7.0:databases/py-psycopg2@${PY_F
 		${PYTHON_PKGNAMEPREFIX}email-validator>=2:mail/py-email-validator@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dnspython>0:dns/py-dnspython@${PY_FLAVOR}
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

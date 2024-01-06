@@ -1,15 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	trytond-web-shop-vue-storefront-stripe
-PORTVERSION=	7.0.0
 CATEGORIES=	finance www python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module to support stripe payment with vue storefront
 WWW=		https://docs.tryton.org/projects/modules-web-shop-vue-storefront-stripe/en/latest/
 
@@ -28,9 +21,8 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 		${PYTHON_PKGNAMEPREFIX}trytond-web-shop-vue-storefront=${PORTVERSION}:finance/py-trytond-web-shop-vue-storefront@${PY_FLAVOR}
 # No test dependencies from python package
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

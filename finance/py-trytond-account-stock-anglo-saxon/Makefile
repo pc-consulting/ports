@@ -1,15 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	trytond-account-stock-anglo-saxon
-PORTVERSION=	7.0.0
 CATEGORIES=	finance python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module for anglo-saxon real-time stock valuation
 WWW=		https://docs.tryton.org/projects/modules-account-stock-anglo-saxon/en/latest/
 
@@ -35,9 +28,8 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 #		${PYTHON_PKGNAMEPREFIX}trytond-sale=${PORTVERSION}:finance/trytond-sale@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}trytond-sale-supply-drop-shipment=${PORTVERSION}:finance/trytond-sale-supply-drop-shipment@${PY_FLAVOR}
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

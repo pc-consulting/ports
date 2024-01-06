@@ -1,15 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	trytond-notification-email
-PORTVERSION=	7.0.0
 CATEGORIES=	finance python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton module for sending email notifications
 WWW=		https://docs.tryton.org/projects/modules-notification-email/en/latest/
 
@@ -28,9 +21,8 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 		${PYTHON_PKGNAMEPREFIX}trytond-web-user=${PORTVERSION}:finance/py-trytond-web-user@${PY_FLAVOR}
 # No further test dependencies from python package
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

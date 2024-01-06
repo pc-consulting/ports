@@ -1,15 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	trytond-gis
-PORTVERSION=	7.0.0
 CATEGORIES=	finance geography python # science?? -- nah...
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Adds geographic information system support to trytond
 WWW=		https://docs.tryton.org/projects/backend-gis/en/latest
 
@@ -22,9 +15,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geomet>0:science/py-geomet@${PY_FLAVOR} \
 # No dependencies from tryton.cfg
 # No test dependencies from python package
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
-USERS=		tryton
 GROUPS=		tryton www
+
+.include "${.CURDIR}/../../finance/tryton-server/Makefile"
 
 .include <bsd.port.mk>

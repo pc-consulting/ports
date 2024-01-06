@@ -10,7 +10,7 @@ MAINTAINER=	pcc@gmx.net
 COMMENT=	Meta-port for your module configuration of the Tryton server
 WWW=		https://www.tryton.org/
 
-LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies have GPLv3
+LICENSE=	BSD4CLAUSE	# For this meta-port only; dependencies may have other licenses.
 
 OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 		ANALYTIC ATTENDANCE COMMISSION DOCUMENT MARKETING \
@@ -130,6 +130,7 @@ USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
 #NO_MTREE=	YES
 NO_WRKSUBDIR=	YES
+# Default user and group settings
 TRYTONDOWN=	tryton
 TRYTONDGRP=	${TRYTONDOWN}
 USERS=		${TRYTONDOWN}
@@ -137,6 +138,9 @@ GROUPS=		${TRYTONDOWN} ${WWWGRP}
 
 SUB_FILES+=	pkg-message
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
+
+# The defaults Makefile does not work with this port Makefile yet.
+#.include "${.CURDIR}/Makefile.defaults.inc"
 
 .include <bsd.port.pre.mk>
 
