@@ -8,6 +8,23 @@ Considered *production-ready* (i. e. could go into the ports tree):
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
     - Passes poudriere testport
+- The following ports are requirements to Tryton modules and appear to operate (passing poudriere testport):
+    - devel/py-efficient-apriori
+    - devel/py-goocalendar
+    - devel/py-mando
+    - devel/py-radon
+    - devel/py/stdnum
+        - Taken from ports and updated from 1.18 to 1.19 as required by finance/py-trytond-party
+    - finance/py-braintree
+    - finance/py-csb43
+    - finance/py-febelfin-coda
+    - finance/py-mt940
+    - finance/py-pyactiveresource
+    - finance/py-schwifty
+    - finance/py-shopifyapi
+    - net/py-zeep
+        - Taken from ports and updated with corrected dependencies (bumped PORTREVISION for that)
+    - www/py-pytest-httpx
 
 Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
