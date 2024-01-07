@@ -59,6 +59,8 @@ PSQLCLIENT_DESC=	Install Postgres client on this box (otherwise, depend on local
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
 PSQLCLIENT_PLIST_FILES_OFF+=	"@owner ${TRYTONDOWN}"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@group ${TRYTONDGRP}"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0640"
+PSQLCLIENT_PLIST_FILES_OFF+=	"/var/db/trytond/db/db.sqlite"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0750"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond/db"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond"
@@ -74,13 +76,13 @@ WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
 WEBSRV_PLIST_FILES+=	"@owner ${TRYTONDOWN}"
 WEBSRV_PLIST_FILES+=	"@group ${WWWGRP}"
 WEBSRV_PLIST_FILES+=	"@mode 0750"
-WEBSRV_PLIST_FILES+=	"@dir ${WWWDIR:S/${PORTNAME}//}/tryton-static"
+WEBSRV_PLIST_FILES+=	"@dir ${WWWDIR:S/${PORTNAME}//}tryton-static"
 WEBSRV_PLIST_FILES+=	"@owner"
 WEBSRV_PLIST_FILES+=	"@group"
 WEBSRV_PLIST_FILES+=	"@mode"
 WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
+WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 WEBSRV_SUB_FILES+=	trytond.nginx.conf
-#WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 #
 .include "Makefile.BACKEND.mk"
 #
@@ -163,19 +165,23 @@ pre-install-TRYTOND-on:
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.
 post-install-TRYTOND-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.rc.defaults ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
-	${INSTALL_SCRIPT} -m 0640 ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.logconf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
+#	${INSTALL_SCRIPT} -m 0640 ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 
 # An empty db.sqlite must be present otherwise the suggested database
 # initialization in pkg-message via trytond-admin fails. However db.sqlite is
 # not included in PLIST_FILES such as not to lose it when deinstalling.
 post-install-PSQLCLIENT-off:
-	@${MKDIR} -m 0750 ${STAGEDIR}/var/db/trytond/db
-	${INSTALL} -b -C -g ${TRYTONDGRP} -m 0640 -o ${TRYTONDOWN} /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
+	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
+	${INSTALL} -b -C /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
+#	${INSTALL} -b -C -g ${TRYTONDGRP} -m 0640 -o ${TRYTONDOWN} /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
+#	@${MKDIR} -m 0750 ${STAGEDIR}/var/db/trytond/db
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
-	@${MKDIR} -m 0750 ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
+	@${MKDIR} ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
+#	@${MKDIR} -m 0750 ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
 
 post-install-WEBSRV-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.nginx.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
