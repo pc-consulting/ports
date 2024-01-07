@@ -82,47 +82,47 @@ WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
 WEBSRV_SUB_FILES+=	trytond.nginx.conf
 #WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 #
-.include "Makefile.BACKEND"
+.include "Makefile.BACKEND.mk"
 #
 # There are so many 'operational' modules that we use a group for
 # each of them. In most cases, picking one of the items therein
 # means that the corresponding module port ensures that it pulls
 # in its 'fundamental' module by its port dependencies.
-.include "Makefile.ACCOUNTING"
-.include "Makefile.ANALYTIC"
-.include "Makefile.ATTENDANCE"
-.include "Makefile.COMMISSION"
-.include "Makefile.DOCUMENT"
-.include "Makefile.MARKETING"
-.include "Makefile.PRODUCTION"
-.include "Makefile.PROJECT"
-.include "Makefile.PURCHASE"
-.include "Makefile.QUALITY"
-.include "Makefile.SALE"
-.include "Makefile.SALEPOINT"
-.include "Makefile.SALESUBSCRIPTION"
-.include "Makefile.STOCK"
-.include "Makefile.TIMESHEET"
+.include "Makefile.ACCOUNTING.mk"
+.include "Makefile.ANALYTIC.mk"
+.include "Makefile.ATTENDANCE.mk"
+.include "Makefile.COMMISSION.mk"
+.include "Makefile.DOCUMENT.mk"
+.include "Makefile.MARKETING.mk"
+.include "Makefile.PRODUCTION.mk"
+.include "Makefile.PROJECT.mk"
+.include "Makefile.PURCHASE.mk"
+.include "Makefile.QUALITY.mk"
+.include "Makefile.SALE.mk"
+.include "Makefile.SALEPOINT.mk"
+.include "Makefile.SALESUBSCRIPTION.mk"
+.include "Makefile.STOCK.mk"
+.include "Makefile.TIMESHEET.mk"
 #
 # There are so many 'referential' modules that we use a group for
 # each of them. In most cases, picking one of the items therein
 # means that the corresponding module port pulls in the 'fundamental'
 # module by its port dependencies.
-.include "Makefile.BANKING"
-.include "Makefile.COMPANY"
-.include "Makefile.CARRIER"
-.include "Makefile.COUNTRY"
-.include "Makefile.CURRENCY"
-.include "Makefile.CUSTOMS"
-.include "Makefile.DASHBOARD"
-.include "Makefile.GOOGLEMAPS"
-.include "Makefile.INCOTERM"
-.include "Makefile.PARTY"
-.include "Makefile.PRODUCT"
+.include "Makefile.BANKING.mk"
+.include "Makefile.COMPANY.mk"
+.include "Makefile.CARRIER.mk"
+.include "Makefile.COUNTRY.mk"
+.include "Makefile.CURRENCY.mk"
+.include "Makefile.CUSTOMS.mk"
+.include "Makefile.DASHBOARD.mk"
+.include "Makefile.GOOGLEMAPS.mk"
+.include "Makefile.INCOTERM.mk"
+.include "Makefile.PARTY.mk"
+.include "Makefile.PRODUCT.mk"
 #
 # There are some modules not grouped as at the Tryton web site.
-.include "Makefile.ADMINISTRATION"
-.include "Makefile.WEBSHOP"
+.include "Makefile.ADMINISTRATION.mk"
+.include "Makefile.WEBSHOP.mk"
 
 # metaport supresses fetch.
 USES=		python:3.9+ metaport

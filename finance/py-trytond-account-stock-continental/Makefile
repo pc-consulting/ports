@@ -20,6 +20,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@$
 # Don't know yet how to properly test
 #TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
 
-.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.inc"
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>

@@ -44,6 +44,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION:S/1/0/g}:finance/py-t
 
 GROUPS=		tryton www
 
-.include "${.CURDIR}/../../finance/tryton-server/Makefile"
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>

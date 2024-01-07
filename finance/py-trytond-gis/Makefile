@@ -17,6 +17,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geomet>0:science/py-geomet@${PY_FLAVOR} \
 
 GROUPS=		tryton www
 
-.include "${.CURDIR}/../../finance/tryton-server/Makefile"
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>

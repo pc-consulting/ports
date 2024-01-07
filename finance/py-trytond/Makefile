@@ -37,6 +37,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psycopg2>2.7.0:databases/py-psycopg2@${PY_F
 
 GROUPS=		tryton www
 
-.include "${.CURDIR}/../../finance/tryton-server/Makefile"
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>

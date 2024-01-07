@@ -23,6 +23,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond-account-asset=${PORTVERSION}:financ
 
 GROUPS=		tryton www
 
-.include "${.CURDIR}/../../finance/tryton-server/Makefile"
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>
