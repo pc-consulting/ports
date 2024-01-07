@@ -1,5 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
+# Versions must be set first.
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
+
 PORTNAME=	trytond-account-statement-aeb43
 CATEGORIES=	finance spanish python
 
@@ -13,12 +16,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}stdnum>0:devel/py-stdnum@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}csb43>0.8:finance/py-csb43@${PY_FLAVOR}
 # Dependencies from tryton.cfg (account_statement, bank, ir) # ir: trytond built-in
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-account-statement=${PORTVERSION}:finance/py-trytond-account-statement@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-bank=${PORTVERSION}:finance/py-trytond-bank@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account-statement>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account-statement@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-bank>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-bank@${PY_FLAVOR}
 # Test dependencies from python package
 # Don't know yet how to properly test
-#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-proteus@${PY_FLAVOR}
 
 GROUPS=		tryton www
 

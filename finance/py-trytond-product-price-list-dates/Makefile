@@ -1,5 +1,8 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
+# Versions must be set first.
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
+
 PORTNAME=	trytond-product-price-list-dates
 CATEGORIES=	finance python
 
@@ -13,10 +16,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # Dependencies from tryton.cfg (ir, product_price_list;
 #				extras: product_price_list_cache,
 #				sale_price_list) # ir: trytond built-in
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list=${PORTVERSION}:finance/py-trytond-product-price-list@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-cache=${PORTVERSION}:finance/py-trytond-product-price-list-cache@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list=${PORTVERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-product-price-list@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-cache>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-product-price-list-cache@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
 # No further dependencies from python package
 
 GROUPS=		tryton www

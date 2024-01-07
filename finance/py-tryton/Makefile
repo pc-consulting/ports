@@ -1,15 +1,12 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
+# Versions must be set first.
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
+
 PORTNAME=	tryton
 PORTVERSION=	7.0.2
 CATEGORIES=	finance python
-MASTER_SITES=	CHEESESHOP
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-# Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
-DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-DIST_SUBDIR=	Tryton
 
-MAINTAINER=	pcc@gmx.net
 COMMENT=	Tryton desktop client
 WWW=		https://docs.tryton.org/projects/client-desktop/en/latest/
 
@@ -24,7 +21,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR} \
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}goocalendar>0:devel/py-goocalendar@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}playsound>0:audio/py-playsound@${PY_FLAVOR}
 
-USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
+.include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
 
 .include <bsd.port.mk>

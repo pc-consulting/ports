@@ -3,6 +3,6 @@ OPTIONS_GROUP_TIMESHEET=	TIMESHEETFUNDAMENTAL COST
 OPTIONS_DEFAULT+=	TIMESHEETFUNDAMENTAL
 TIMESHEET_DESC=		Operational Modules - Track Time Spent
 TIMESHEETFUNDAMENTAL_DESC=		Fundamentals to track time spent.
-TIMESHEETFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet=${PORTVERSION}:finance/py-trytond-timesheet@${PY_FLAVOR}
+TIMESHEETFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-timesheet@${PY_FLAVOR}
 COST_DESC=		Tracks employee cost.
-COST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet-cost=${PORTVERSION}:finance/py-trytond-timesheet-cost@${PY_FLAVOR}
+COST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-timesheet-cost>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-timesheet-cost@${PY_FLAVOR}

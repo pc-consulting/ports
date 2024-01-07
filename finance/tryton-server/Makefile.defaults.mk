@@ -5,8 +5,15 @@
 # _BUT BEFORE_ bsd.port.pre.mk.
 # This way, port-local settings override defaults here.
 
-# Do not set PORTVERSION in Tryton ports Makefiles unless really required to do so.
-PORTVERSION?=	7.0.0
+# Include Tryton port version defaults if not yet done.
+.ifndef TRYTON_MK_DEFAULTS_PORTVERSIONS_INCLUDED
+.include "${.CURDIR}/Makefile.defaults.portversions.mk"
+.endif
+
+# Do not set PORTVERSION in Tryton ports Makefiles unless you really
+# need to deviate from the default (saves a lot of manual hacking by
+# maintainers).
+PORTVERSION?=	${TRYTON_DEFAULT_VERSION}
 # Ensure that finance is in CATEGORIES at all times, and always first.
 CATEGORIES:=	finance ${CATEGORIES:S/finance//}
 # MASTER_SITES and PKGNAMEPREFIX usually are the same for all ports

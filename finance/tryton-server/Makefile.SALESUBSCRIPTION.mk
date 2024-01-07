@@ -4,6 +4,6 @@ OPTIONS_GROUP_SALESUBSCRIPTION=	SALESUBSCRIPTIONFUNDAMENTAL \
 #OPTIONS_DEFAULT+=	# Not yet
 SALESUBSCRIPTION_DESC=	Operational Modules - Subscribe to Recurring Services
 SALESUBSCRIPTIONFUNDAMENTAL_DESC=		Fundamentals to manage subscriptions.
-SALESUBSCRIPTIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription=${PORTVERSION}:finance/py-trytond-sale-subscription@${PY_FLAVOR}
+SALESUBSCRIPTIONFUNDAMENTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-sale-subscription@${PY_FLAVOR}
 SALESUBSCRIPTIONASSET_DESC=		Add asset to subscribed service.
-SALESUBSCRIPTIONASSET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription-asset=${PORTVERSION}:finance/py-trytond-sale-subscription-asset@${PY_FLAVOR}
+SALESUBSCRIPTIONASSET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-sale-subscription-asset>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-sale-subscription-asset@${PY_FLAVOR}

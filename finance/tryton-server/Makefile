@@ -1,7 +1,10 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
+# Versions must be set first.
+.include "${.CURDIR}/Makefile.defaults.portversions.mk"
+
 PORTNAME=	tryton-server
-PORTVERSION=	7.0.0
+PORTVERSION=	${TRYTON_DEFAULT_VERSION}
 CATEGORIES=	finance
 MASTER_SITES=	""
 DISTFILES=	""
@@ -30,7 +33,7 @@ MAIN_DESC=		Tryton Config, Frontends and Dependencies (Modules pull in trytond a
 TRYTOND_DESC=		Install trytond and its startup and sample configs on this box.
 # Dependencies called from here would pull in trytond anyways, but
 # let's leave the direct dependency in here for the time being.
-TRYTOND_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond=${PORTVERSION}:finance/py-trytond@${PY_FLAVOR}
+TRYTOND_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR}
 TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
 TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.conf.d"
 TRYTOND_PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
@@ -52,9 +55,9 @@ TRYTOND_SUB_FILES+=	trytond.rc.defaults trytond.conf trytond.logconf
 #UWSGI_RUN_DEPENDS=	uwsgi${PYTHON_PKGNAMESUFFIX}>0:www/uwsgi@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
 DTCLIENT_DESC=		Tryton desktop application on this box to connect to the server.
-DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${PORTVERSION}:finance/py-tryton@${PY_FLAVOR}
+DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-tryton@${PY_FLAVOR}
 SCRCLIENT_DESC=		Proteus library on this box to access models, wizards and reports like a client.
-SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus=${PORTVERSION}:finance/py-proteus@${PY_FLAVOR}
+SCRCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-proteus@${PY_FLAVOR}
 PSQLCLIENT_DESC=	Install Postgres client on this box (otherwise, depend on local sqlite).
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
 PSQLCLIENT_PLIST_FILES_OFF+=	"@owner ${TRYTONDOWN}"
@@ -142,7 +145,7 @@ SUB_FILES+=	pkg-message
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 # The defaults Makefile does not work with this port Makefile yet.
-#.include "${.CURDIR}/Makefile.defaults.inc"
+#.include "${.CURDIR}/Makefile.defaults.mk"
 
 .include <bsd.port.pre.mk>
 
@@ -167,7 +170,6 @@ post-install-TRYTOND-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.rc.defaults ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.logconf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample
-#	${INSTALL_SCRIPT} -m 0640 ${WRKDIR}/trytond.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}trytond.conf.sample
 
 # An empty db.sqlite must be present otherwise the suggested database
 # initialization in pkg-message via trytond-admin fails. However db.sqlite is
@@ -175,13 +177,10 @@ post-install-TRYTOND-on:
 post-install-PSQLCLIENT-off:
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
 	${INSTALL} -b -C /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
-#	${INSTALL} -b -C -g ${TRYTONDGRP} -m 0640 -o ${TRYTONDOWN} /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
-#	@${MKDIR} -m 0750 ${STAGEDIR}/var/db/trytond/db
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
 	@${MKDIR} ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
-#	@${MKDIR} -m 0750 ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
 
 post-install-WEBSRV-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.nginx.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample

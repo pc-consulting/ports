@@ -17,6 +17,9 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
         - portlint passes and poudriere testport passes for all py-tryton* ports. tryton.cfg dependencies should be in the Makefiles, trytond starts and does something, at least some (many) of the modules can be activated from the admin account, data entered. etc. but some modules (and those depending on them) still seem unwilling; I need to check whether that is due to incomplete packaging from my side, or whether that's genuine bugs which may be resolved with a newer software version.
         - Recommendation is to start from finance/tryton-server and pick options from there. It installs configuration samples and depends on the selected trytond modules. finance/py-tryton* just contain software by design.
         - Distfiles go to DIST_SUBDIR=Tryton
+        - TRYTON_DEFAULT_VERSION, TRYTON_MIN_VERSION and TRYTON_MAX_VERSION can be set from finance/tryton-server/Makefile.defaults.portversions.mk for all tryton ports
+            - PORTVERSION is set to TRYTON_DEFAULT_VERSION in tryton-server/Makefile.defaults.mk unless explicitly set in a port Makefile.
+            - Tryton port dependency checks are relaxed to check for an installed version above including (>=) TRYTON_MIN_VERSION and below (<) TRYTON_MAX_VERSION as Tryton says that modules of the same Major.minor version should interoperate nicely.
         - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance as we have no 'business' category.
     - Individual ports, as currently are:
         - finance/tryton-server
