@@ -4,6 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-stock-package-shipping-sendcloud
+PORTVERSION=	7.0.1
 CATEGORIES=	finance python
 
 COMMENT=	Sendcloud connector for the tryton application platform
