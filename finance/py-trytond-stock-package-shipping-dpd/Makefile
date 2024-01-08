@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeep>0.12:net/py-zeep@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}py-pypdf>=3:print/py-pypdf@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pypdf>=3:print/py-pypdf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR}
 # Dependencies from tryton.cfg (ir, party, product, res, stock,
 #				stock_package, stock_package_shipping,
