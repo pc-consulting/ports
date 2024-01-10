@@ -37,7 +37,7 @@ TRYTOND_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRY
 TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}rc.d"
 TRYTOND_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}//}trytond.conf.d"
 TRYTOND_PLIST_FILES+=	${ETCDIR:S/${PORTNAME}//}trytond.rc.defaults
-TRYTOND_PLIST_FILES+=	"@mode 0640"
+#TRYTOND_PLIST_FILES+=	"@mode 0640"
 TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.conf.sample ${ETCDIR:S/${PORTNAME}//}trytond.conf"
 TRYTOND_PLIST_FILES+=	"@mode"
 TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf"
@@ -62,8 +62,8 @@ PSQLCLIENT_DESC=	Install Postgres client on this box (otherwise, depend on local
 PSQLCLIENT_RUN_DEPENDS=	postgresql15-client>0:databases/postgresql15-client
 PSQLCLIENT_PLIST_FILES_OFF+=	"@owner ${TRYTONDOWN}"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@group ${TRYTONDGRP}"
-PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0640"
-PSQLCLIENT_PLIST_FILES_OFF+=	"/var/db/trytond/db/db.sqlite"
+#PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0640"
+#PSQLCLIENT_PLIST_FILES_OFF+=	"/var/db/trytond/db/db.sqlite"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0750"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond/db"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond"
@@ -176,7 +176,7 @@ post-install-TRYTOND-on:
 # not included in PLIST_FILES such as not to lose it when deinstalling.
 post-install-PSQLCLIENT-off:
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
-	${INSTALL} -b -C /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
+	${INSTALL} -b -C /dev/null -m 0640 ${STAGEDIR}/var/db/trytond/db/db.sqlite
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
