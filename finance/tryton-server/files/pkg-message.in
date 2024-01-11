@@ -38,6 +38,13 @@ If you have selected WEBSRV:
   %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
   for an example configuration.
 
+  If you also have selected UWSGI, the port depends on uwsgi as UWSGI
+  gateway. There is a configuration for uWSGI to start from in:
+    %%PREFIX%/etc/trytond.uwsgi.ini.
+  In order to use that, please set in /etc/rc.conf:
+    uwsgi_configfile="%%PREFIX%%/etc/trytond.uwsgi.ini"
+  and restart the uwsgi server (e. g. with service uwsgi onerestart).
+
 EOM
 }
 ]

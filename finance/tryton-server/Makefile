@@ -27,8 +27,8 @@ OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 #			SCRCLIENT PSQLSRV WEBSRV
 OPTIONS_GROUP_MAIN=	TRYTOND PSQLCLIENT DTCLIENT \
 			SCRCLIENT PSQLSRV WEBSRV
-#OPTIONS_DEFAULT=	TRYTOND UWSGI PSQLCLIENT WEBSRV
-OPTIONS_DEFAULT=	TRYTOND PSQLCLIENT WEBSRV
+OPTIONS_DEFAULT=	TRYTOND UWSGI PSQLCLIENT WEBSRV
+#OPTIONS_DEFAULT=	TRYTOND PSQLCLIENT WEBSRV
 MAIN_DESC=		Tryton Config, Frontends and Dependencies (Modules pull in trytond automatically)
 TRYTOND_DESC=		Install trytond and its startup and sample configs on this box.
 # Dependencies called from here would pull in trytond anyways, but
@@ -51,9 +51,11 @@ TRYTOND_SUB_FILES+=	trytond.rc.defaults trytond.conf trytond.logconf
 #GUNICORN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gunicorn>0:www/py-gunicorn@${PY_FLAVOR} \
 #			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
 #UWSGI_PREVENTS=		GUNICORN
-#UWSGI_DESC=		Production WSGI support via uWSGI on this box.
-#UWSGI_RUN_DEPENDS=	uwsgi${PYTHON_PKGNAMESUFFIX}>0:www/uwsgi@${PY_FLAVOR} \
+UWSGI_DESC=		Production WSGI support via uWSGI on this box.
+UWSGI_RUN_DEPENDS=	uwsgi${PYTHON_PKGNAMESUFFIX}>0:www/uwsgi@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
+UWSGI_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini.sample ${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini"
+UWSGI_SUB_FILES+=	trytond.uwsgi.ini
 DTCLIENT_DESC=		Tryton desktop application on this box to connect to the server.
 DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-tryton@${PY_FLAVOR}
 SCRCLIENT_DESC=		Proteus library on this box to access models, wizards and reports like a client.
@@ -177,6 +179,9 @@ post-install-TRYTOND-on:
 post-install-PSQLCLIENT-off:
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
 	${INSTALL} -b -C /dev/null -m 0640 ${STAGEDIR}/var/db/trytond/db/db.sqlite
+
+post-install-UWSGI-on:
+	${INSTALL_SCRIPT} ${WRKDIR}/trytond.uwsgi.ini ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini.sample
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
