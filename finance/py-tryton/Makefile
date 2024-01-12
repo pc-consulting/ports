@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}types-python-dateutil>0:devel/py-types-python-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}gobject3>3.19:devel/py-gobject3@${PY_FLAVOR}
 # 'Extras' dependencies follow
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}goocalendar>0:devel/py-goocalendar@${PY_FLAVOR} \
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}goocalendar>=0.7:devel/py-goocalendar@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}playsound>0:audio/py-playsound@${PY_FLAVOR}
 
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.mk"
