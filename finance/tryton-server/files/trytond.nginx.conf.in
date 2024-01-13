@@ -13,6 +13,6 @@ server {
     }
     # Serve potential static content from a directory.
     location /tryton-static/ {
-        root %%WWWDIR%%/tryton-static;
+        root %%STATICWWWDIR%%/tryton-static;
     }
 }

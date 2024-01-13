@@ -88,6 +88,7 @@ WEBSRV_PLIST_FILES+=	"@mode"
 WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
 WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 WEBSRV_SUB_FILES+=	trytond.nginx.conf
+PLIST_SUB+=		STATICWWWDIR=${WWWDIR:S/${PORTNAME}//}tryton-static
 #
 .include "Makefile.BACKEND.mk"
 #
