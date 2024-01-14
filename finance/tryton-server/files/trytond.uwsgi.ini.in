@@ -1,7 +1,7 @@
 [uwsgi]
 http-socket=localhost:8421
 master=true
-plugins=python3
+plugins=python
 wsgi=trytond.application:app
 cheaper=4
 processes=16
