@@ -35,15 +35,24 @@ If you have selected TRYTOND:
 If you have selected WEBSRV:
 
   The port depends on nginx as a web proxy. Please see
-  %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
-  for an example configuration.
+    %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
+  for an example configuration which you can include into your server
+  with
+    include nginx.conf.d/*.conf;
+  the http {} section of your nginx configuration (usually available at
+  %%PREFIX%/etc/nginx/nginx.conf).
 
-  If you also have selected UWSGI, the port depends on uwsgi as UWSGI
+  If you also have selected UWSGI, the port depends on uWSGI as uwsgi
   gateway. There is a configuration for uWSGI to start from in:
     %%PREFIX%/etc/trytond.uwsgi.ini.
   In order to use that, please set in /etc/rc.conf:
     uwsgi_configfile="%%PREFIX%%/etc/trytond.uwsgi.ini"
   and restart the uwsgi server (e. g. with service uwsgi onerestart).
+
+  If you use UWSGI, please also ensure that you do NOT run trytond as
+  a service from rc.d (service trytond disable) as UWSGI will run it
+  for you, and to stop to 'listen =' in the [web] section of your
+  %%PREFIX%%/etc/trytond.conf.
 
 EOM
 }

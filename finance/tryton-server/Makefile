@@ -81,14 +81,14 @@ WEBSRV_RUN_DEPENDS=	nginx>0:www/nginx
 WEBSRV_PLIST_FILES+=	"@owner ${TRYTONDOWN}"
 WEBSRV_PLIST_FILES+=	"@group ${WWWGRP}"
 WEBSRV_PLIST_FILES+=	"@mode 0750"
-WEBSRV_PLIST_FILES+=	"@dir ${WWWDIR:S/${PORTNAME}//}tryton-static"
+WEBSRV_PLIST_FILES+=	"@dir ${WWWDIR}/tryton-static"
 WEBSRV_PLIST_FILES+=	"@owner"
 WEBSRV_PLIST_FILES+=	"@group"
 WEBSRV_PLIST_FILES+=	"@mode"
 WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
 WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
 WEBSRV_SUB_FILES+=	trytond.nginx.conf
-PLIST_SUB+=		STATICWWWDIR=${WWWDIR:S/${PORTNAME}//}tryton-static
+#PLIST_SUB+=		STATICWWWDIR=${WWWDIR:S/${PORTNAME}//}tryton-static
 #
 .include "Makefile.BACKEND.mk"
 #
@@ -186,7 +186,7 @@ post-install-UWSGI-on:
 
 pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d
-	@${MKDIR} ${STAGEDIR}/${WWWDIR:S/${PORTNAME}//}/tryton-static
+	@${MKDIR} ${STAGEDIR}/${WWWDIR}/tryton-static
 
 post-install-WEBSRV-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.nginx.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
