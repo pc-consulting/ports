@@ -4,7 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-sale-shipment-cost
-PORTVERSION=	7.0.1
+PORTVERSION=	7.0.2
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module for sale shipment cost
@@ -13,7 +13,8 @@ WWW=		https://docs.tryton.org/projects/modules-stock-shipment-cost/en/latest/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# No dependencies from python package
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:databases/py-python-sql@${PY_FLAVOR}
 # Dependencies from tryton.cfg (account_invoice, carrier, currency,
 #				ir, product, res, sale, stock,
 #				stock_shipment_cost; extras:

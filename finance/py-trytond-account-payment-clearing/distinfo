@@ -1,3 +1,3 @@
-TIMESTAMP = 1699131620
-SHA256 (Tryton/trytond_account_payment_clearing-7.0.0.tar.gz) = bfde932062c5c91871bc38977a6b7bcb80af93068936a5c9a0fe47c3fb5660e9
-SIZE (Tryton/trytond_account_payment_clearing-7.0.0.tar.gz) = 34553
+TIMESTAMP = 1705443020
+SHA256 (Tryton/trytond_account_payment_clearing-7.0.1.tar.gz) = 515354172ba67530b0bb082a02616256f847df768610459178e7d5511285d132
+SIZE (Tryton/trytond_account_payment_clearing-7.0.1.tar.gz) = 34374
