@@ -44,8 +44,8 @@ cheaper = 4
 processes = 16
 threads= 16
 # Environment variables, see https://docs.tryton.org/projects/server/en/latest/topics/start_server.html#wsgi-server
-env = TRYTON_CONFIG=%%PREFIX%%/etc/trytond.conf
-env = TRYTON_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
+env = TRYTOND_CONFIG=%%PREFIX%%/etc/trytond.conf
+env = TRYTOND_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
 # Should be possible to control form tryton.logconf but that seems ineffective.
 # If you set it here, you must use the _numerical_ values from
 # https://docs.python.org/3/library/logging.html#levels
@@ -58,6 +58,6 @@ env = TRYTON_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
 # 50 - CRITICAL
 # env = TRYTOND_LOGGING_LEVEL=20
 env = TRYTOND_LOGGING_LEVEL=0
-env = TRYTON_COROUTINE=YES
+env = TRYTOND_COROUTINE=YES
 # Let's also just set the database in one single place, please, i. e. trtond.conf
-# env = TRYTON_DATABASE_NAMES=db
+# env = TRYTOND_DATABASE_NAMES=db
