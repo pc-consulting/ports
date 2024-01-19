@@ -34,7 +34,8 @@ cheaper-busyness-max = 70
 #cheaper-busyness-backlog-step = 2
 
 # Actual trytond items.
-procname-prefix = "trytond "
+# procname-prefix is not helpful _stopping_ via service/rc.d ...
+#procname-prefix = "trytond "
 #http-socket = localhost:8421
 uwsgi-socket = localhost:8421
 master = true
