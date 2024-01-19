@@ -58,6 +58,7 @@ env = TRYTOND_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
 # 50 - CRITICAL
 # env = TRYTOND_LOGGING_LEVEL=20
 env = TRYTOND_LOGGING_LEVEL=0
-env = TRYTOND_COROUTINE=YES
+# trytond seems to choke on coroutine at this time...?
+#env = TRYTOND_COROUTINE=YES
 # Let's also just set the database in one single place, please, i. e. trtond.conf
 # env = TRYTOND_DATABASE_NAMES=db
