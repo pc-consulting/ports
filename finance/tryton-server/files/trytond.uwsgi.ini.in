@@ -46,8 +46,18 @@ threads= 16
 # Environment variables, see https://docs.tryton.org/projects/server/en/latest/topics/start_server.html#wsgi-server
 env = TRYTON_CONFIG=%%PREFIX%%/etc/trytond.conf
 env = TRYTON_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
-# Can be controlled form tryton.logconf
-# env = TRYTOND_LOGGING_LEVEL=INFO
+# Should be possible to control form tryton.logconf but that seems ineffective.
+# If you set it here, you must use the _numerical_ values from
+# https://docs.python.org/3/library/logging.html#levels
+# Common values apparently are as follows.
+#  0 - NOTSET (i. e. output everything there is)
+# 10 - DEBUG
+# 20 - INFO
+# 30 - WARNING
+# 40 - ERROR
+# 50 - CRITICAL
+# env = TRYTOND_LOGGING_LEVEL=20
+env = TRYTOND_LOGGING_LEVEL=0
 env = TRYTON_COROUTINE=YES
 # Let's also just set the database in one single place, please, i. e. trtond.conf
 # env = TRYTON_DATABASE_NAMES=db
