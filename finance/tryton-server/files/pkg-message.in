@@ -40,11 +40,11 @@ If you have selected WEBSRV:
   with
     include nginx.conf.d/*.conf;
   the http {} section of your nginx configuration (usually available at
-  %%PREFIX%/etc/nginx/nginx.conf).
+  %%PREFIX%%/etc/nginx/nginx.conf).
 
   If you also have selected UWSGI, the port depends on uWSGI as uwsgi
   gateway. There is a configuration for uWSGI to start from in:
-    %%PREFIX%/etc/trytond.uwsgi.ini.
+    %%PREFIX%%/etc/trytond.uwsgi.ini.
   In order to use that, please set in /etc/rc.conf:
     uwsgi_configfile="%%PREFIX%%/etc/trytond.uwsgi.ini"
   and restart the uwsgi server (e. g. with service uwsgi onerestart).
