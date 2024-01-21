@@ -22,6 +22,5 @@ formatter=simple
 args=(sys.stdout,)
 
 [logger_root]
-#level=INFO
-level=DEBUG
+level=INFO
 handlers=rotate,console

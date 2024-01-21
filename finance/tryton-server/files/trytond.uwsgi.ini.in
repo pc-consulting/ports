@@ -8,11 +8,12 @@ single-interpreter = true
 die-on-term = true
 need-app = true
 
-disable-logging = false
+disable-logging = true
 log-4xx = true
 log-5xx = true
 
 harakiri = 60
+# This option seems to have gone.
 #py-callos-afterfork = true
 
 max-requests = 1000
@@ -22,10 +23,10 @@ worker-reload-mercy = 60
 
 cheaper-algo = busyness
 processes = 32
-#cheaper = 4
-cheaper-initial = 4
+cheaper = 8
+cheaper-initial = 16
 cheaper-overload = 1
-cheaper-step = 4
+cheaper-step = 16
 
 cheaper-busyness-multiplier = 30
 cheaper-busyness-min = 20
@@ -34,18 +35,18 @@ cheaper-busyness-max = 70
 #cheaper-busyness-backlog-step = 2
 
 # Actual trytond items.
-# procname-prefix is not helpful _stopping_ via service/rc.d ...
+# procname-prefix is not helpful _stopping_ via service/rc.d.
+# Strong suggestion to leave the uWSGI defaults in. Set at your own risk.
 #procname-prefix = "trytond "
-#http-socket = localhost:8421
 uwsgi-socket = localhost:8421
 master = true
 wsgi = trytond.application:app
-cheaper = 4
 processes = 16
 threads= 16
 # Environment variables, see https://docs.tryton.org/projects/server/en/latest/topics/start_server.html#wsgi-server
 env = TRYTOND_CONFIG=%%PREFIX%%/etc/trytond.conf
-env = TRYTOND_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
+# trytond seems to choke on the logging configuration at this time...?
+#env = TRYTOND_LOGGING_CONFIG=%%PREFIX%%/etc/tryton.logconf
 # Should be possible to control form tryton.logconf but that seems ineffective.
 # If you set it here, you must use the _numerical_ values from
 # https://docs.python.org/3/library/logging.html#levels
