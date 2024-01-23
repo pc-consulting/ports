@@ -42,10 +42,10 @@ TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.conf.sample ${ET
 TRYTOND_PLIST_FILES+=	"@mode"
 TRYTOND_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf.sample ${ETCDIR:S/${PORTNAME}//}trytond.logconf"
 TRYTOND_SUB_FILES+=	trytond.rc.defaults trytond.conf trytond.logconf
-# FIXME Currently no WSGI for production, using just 'built-in' Werkzeug.
 # Production systems allegedly also should have a WSGI server.
 # Pick one only. This port should below prefer uWSGI if settings conflicted.
 # See both further below.
+# Currently only supporting uWSGI
 #GUNICORN_PREVENTS=	UWSGI
 #GUNICORN_DESC=		Production WSGI support via gunicorn on this box.
 #GUNICORN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gunicorn>0:www/py-gunicorn@${PY_FLAVOR} \
@@ -66,7 +66,7 @@ PSQLCLIENT_PLIST_FILES_OFF+=	"@owner ${TRYTONDOWN}"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@group ${TRYTONDGRP}"
 #PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0640"
 #PSQLCLIENT_PLIST_FILES_OFF+=	"/var/db/trytond/db/db.sqlite"
-PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0750"
+PSQLCLIENT_PLIST_FILES_OFF+=	"@mode 0770"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond/db"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@dir /var/db/trytond"
 PSQLCLIENT_PLIST_FILES_OFF+=	"@owner"
@@ -157,6 +157,11 @@ SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 USE_RC_SUBR=	trytond trytond-cron trytond-worker
 .endif
 
+# Ensure write access to file database if called via uWSGI
+.if ${PORT_OPTIONS:MUWSGI}
+TRYTONDGRP=	uwsgi
+.endif
+
 #.if ${PORT_OPTIONS:MGUNICORN} && ${PORT_OPTIONS:MUWSGI}
 #	${ECHO_MSG} "You should have picked either one of GUNICORN or UWSGI, but not both."
 #	${ECHO_MSG} "I decided to select UWSGI for you."
@@ -179,7 +184,7 @@ post-install-TRYTOND-on:
 # not included in PLIST_FILES such as not to lose it when deinstalling.
 post-install-PSQLCLIENT-off:
 	@${MKDIR} ${STAGEDIR}/var/db/trytond/db
-	${INSTALL} -b -C /dev/null -m 0640 ${STAGEDIR}/var/db/trytond/db/db.sqlite
+	${INSTALL} -b -C -m 0660 /dev/null ${STAGEDIR}/var/db/trytond/db/db.sqlite
 
 post-install-UWSGI-on:
 	${INSTALL_SCRIPT} ${WRKDIR}/trytond.uwsgi.ini ${STAGEDIR}/${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini.sample
