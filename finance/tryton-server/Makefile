@@ -25,7 +25,7 @@ OPTIONS_GROUP=	MAIN BACKEND ACCOUNTING \
 # Main and local functions if desired (could be served elsewhere, for instance)
 #OPTIONS_GROUP_MAIN=	TRYTOND GUNICORN UWSGI PSQLCLIENT DTCLIENT \
 #			SCRCLIENT PSQLSRV WEBSRV
-OPTIONS_GROUP_MAIN=	TRYTOND PSQLCLIENT DTCLIENT \
+OPTIONS_GROUP_MAIN=	TRYTOND UWSGI PSQLCLIENT DTCLIENT \
 			SCRCLIENT PSQLSRV WEBSRV
 OPTIONS_DEFAULT=	TRYTOND UWSGI PSQLCLIENT WEBSRV
 #OPTIONS_DEFAULT=	TRYTOND PSQLCLIENT WEBSRV
@@ -54,8 +54,9 @@ TRYTOND_SUB_FILES+=	trytond.rc.defaults trytond.conf trytond.logconf
 UWSGI_DESC=		Production WSGI support via uWSGI on this box.
 UWSGI_RUN_DEPENDS=	uwsgi${PYTHON_PKGNAMESUFFIX}>0:www/uwsgi@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}gevent>0:devel/py-gevent@${PY_FLAVOR}
+UWSGI_IMPLIES+=		WEBSRV
 UWSGI_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini.sample ${ETCDIR:S/${PORTNAME}//}/trytond.uwsgi.ini"
-UWSGI_SUB_FILES+=	trytond.uwsgi.ini
+UWSGI_SUB_FILES+=	trytond.uwsgi.ini trytond.nginx.conf.UWSGI
 DTCLIENT_DESC=		Tryton desktop application on this box to connect to the server.
 DTCLIENT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tryton>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-tryton@${PY_FLAVOR}
 SCRCLIENT_DESC=		Proteus library on this box to access models, wizards and reports like a client.
@@ -87,7 +88,7 @@ WEBSRV_PLIST_FILES+=	"@group"
 WEBSRV_PLIST_FILES+=	"@mode"
 WEBSRV_PLIST_FILES+=	"@dir ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d"
 WEBSRV_PLIST_FILES+=	"@sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample ${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf"
-WEBSRV_SUB_FILES+=	trytond.nginx.conf
+WEBSRV_SUB_FILES+=	${WEBSRV_CONF}
 #PLIST_SUB+=		STATICWWWDIR=${WWWDIR:S/${PORTNAME}//}tryton-static
 #
 .include "Makefile.BACKEND.mk"
@@ -138,6 +139,8 @@ USE_PYTHON=	flavors
 PYTHON_NO_DEPENDS=	YES
 #NO_MTREE=	YES
 NO_WRKSUBDIR=	YES
+# Defaults unless overridden later
+WEBSRV_CONF=	trytond.nginx.conf.WEBSRV
 # Default user and group settings
 TRYTONDOWN=	tryton
 TRYTONDGRP=	${TRYTONDOWN}
@@ -157,8 +160,11 @@ SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 USE_RC_SUBR=	trytond trytond-cron trytond-worker
 .endif
 
-# Ensure write access to file database if called via uWSGI
 .if ${PORT_OPTIONS:MUWSGI}
+WEBSRV_CONF=	trytond.nginx.conf.UWSGI
+.endif
+# Ensure write access to file database if called via uWSGI
+.if ${PORT_OPTIONS:MUWSGI} && !${PORT_OPTIONS:MPSQLCLIENT}
 TRYTONDGRP=	uwsgi
 .endif
 
@@ -194,6 +200,6 @@ pre-install-WEBSRV-on:
 	@${MKDIR} ${STAGEDIR}/${WWWDIR}/tryton-static
 
 post-install-WEBSRV-on:
-	${INSTALL_SCRIPT} ${WRKDIR}/trytond.nginx.conf ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
+	${INSTALL_SCRIPT} ${WRKDIR}/${WEBSRV_CONF} ${STAGEDIR}/${ETCDIR:S/${PORTNAME}/nginx/}/nginx.conf.d/trytond.conf.sample
 
 .include <bsd.port.post.mk>
