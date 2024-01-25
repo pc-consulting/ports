@@ -3,9 +3,9 @@ server {
     # You will have to change this to your real host name.
     listen localhost:8080;
     location / {
-        include uwsgi_params;
-        uwsgi_pass localhost:8421;
-        #proxy_pass http://localhost:8421;
+        %%UWSGI_OFF_COMMENT_MARK%%include uwsgi_params;
+        %%UWSGI_OFF_COMMENT_MARK%%uwsgi_pass localhost:8421;
+        %%UWSGI_ON_COMMENT_MARK%%proxy_pass http://localhost:8421;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

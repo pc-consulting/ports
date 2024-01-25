@@ -1,7 +1,7 @@
 [database]
-#uri = postgresql://user:password@localhost/
-uri = sqlite://
-path = /var/db/trytond/db
+%%PSQLCLIENT_OFF_COMMENT_MARK%%uri = postgresql://user:password@localhost/
+%%PSQLCLIENT_ON_COMMENT_MARK%%uri = sqlite://
+%%PSQLCLIENT_ON_COMMENT_MARK%%path = /var/db/trytond/db
 #list = True
 #retry = 5
 #subquery_threshold = 1000
@@ -20,8 +20,8 @@ default_name = db
 #similarity_function = similarity
 
 [web]
-#listen = localhost:8000
-listen = localhost:8421
+%%WEBSRV_OFF_COMMENT_MARK%%listen = localhost:8000
+%%UWSGI_OFF_COMMENT_MARK%%listen = localhost:8421
 hostname = localhost
 #root = /tryton
 #num_proxies = 0
