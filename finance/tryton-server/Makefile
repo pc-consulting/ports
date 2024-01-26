@@ -144,6 +144,7 @@ PSQLCLIENT_ON_COMMENT_MARK=	''
 PSQLCLIENT_OFF_COMMENT_MARK=	'\#'
 UWSGI_ON_COMMENT_MARK=		''
 UWSGI_OFF_COMMENT_MARK=		'\#'
+WEBSRV_ON_COMMENT_MARK=		''
 WEBSRV_OFF_COMMENT_MARK=	'\#'
 SUB_LIST+=	PSQLCLIENT_OFF_COMMENT_MARK=${PSQLCLIENT_OFF_COMMENT_MARK} \
 		PSQLCLIENT_ON_COMMENT_MARK=${PSQLCLIENT_ON_COMMENT_MARK} \
@@ -164,6 +165,12 @@ SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 .include <bsd.port.pre.mk>
 
+#.if ${PORT_OPTIONS:MGUNICORN} && ${PORT_OPTIONS:MUWSGI}
+#	${ECHO_MSG} "You should have picked either one of GUNICORN or UWSGI, but not both."
+#	${ECHO_MSG} "I decided to select UWSGI for you."
+#	.undef GUNICORN ... somehow.
+#.endif
+
 .if ${PORT_OPTIONS:MPSQLCLIENT}
 PSQLCLIENT_ON_COMMENT_MARK=	'\#'
 PSQLCLIENT_OFF_COMMENT_MARK=	''
@@ -183,11 +190,10 @@ UWSGI_OFF_COMMENT_MARK=		''
 TRYTONDGRP=	uwsgi
 .endif
 
-#.if ${PORT_OPTIONS:MGUNICORN} && ${PORT_OPTIONS:MUWSGI}
-#	${ECHO_MSG} "You should have picked either one of GUNICORN or UWSGI, but not both."
-#	${ECHO_MSG} "I decided to select UWSGI for you."
-#	.undef GUNICORN ... somehow.
-#.endif
+.if ${PORT_OPTIONS:MWEBSRV}
+WEBSRV_ON_COMMENT_MARK=	'\#'
+WEBSRV_OFF_COMMENT_MARK=	''
+.endif
 
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.
 pre-install-TRYTOND-on:

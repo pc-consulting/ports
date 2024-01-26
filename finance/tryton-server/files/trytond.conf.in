@@ -20,7 +20,7 @@ default_name = db
 #similarity_function = similarity
 
 [web]
-%%WEBSRV_OFF_COMMENT_MARK%%%%UWSGI_ON_COMMENT_MARK%%listen = localhost:8421
+%%WEBSRV_ON_COMMENT_MARK%%%%UWSGI_ON_COMMENT_MARK%%listen = localhost:8421
 hostname = localhost
 #root = /tryton
 #num_proxies = 0
