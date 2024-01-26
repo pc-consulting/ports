@@ -193,7 +193,7 @@ TRYTONDGRP=	uwsgi
 
 .if ${PORT_OPTIONS:MWEBSRV}
 WEBSRV_OFF_COMMENT_MARK=	''
-WEBSRV_ON_COMMENT_MARK=	'\#'
+WEBSRV_ON_COMMENT_MARK=		'\#'
 .endif
 
 # ${ETCDIR} uses PORTNAME which does not look like what we want in there.

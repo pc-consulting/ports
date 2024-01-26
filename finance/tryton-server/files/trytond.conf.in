@@ -1,5 +1,5 @@
 [database]
-%%PSQLCLIENT_OFF_COMMENT_MARK%%uri = postgresql://user:password@localhost/
+%%PSQLCLIENT_OFF_COMMENT_MARK%%uri = postgresql://trytondbuser:dbpassword@localhost/
 %%PSQLCLIENT_ON_COMMENT_MARK%%uri = sqlite://
 %%PSQLCLIENT_ON_COMMENT_MARK%%path = /var/db/trytond/db
 #list = True

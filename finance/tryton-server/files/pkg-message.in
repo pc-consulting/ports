@@ -18,6 +18,24 @@ If you have selected TRYTOND:
   should work:
     trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all -p
 
+  If you decided to use postgres (i. e. PSQLCLIENT or PSQLSRV),
+  please ensure your postgres database is initialized and up and
+  running.
+  For a local postgres server (PSQLSRV), this likely would be
+  achieved by something like:
+    service postgresql initdb
+    service postgresql onestart
+  You then should be able to initialize the tryton database now in
+  the same manner as indicated above, i. e.:
+    trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all -p
+  For a non-local postgres server (i. e. just PSQLCLIENT selected),
+  please configure your postgres server into your
+  %%PREFIX%%/etc/trytond.conf and then proceed to initialize
+  as just indicated.
+
+  Please note that the port only prepares for a local sqlite database
+  if you do NOT select any of PSQLCLIENT or PSQLSRV.
+
   You may then start the server processes via rc as follows.
     Tryton server:      service trytond onestart
     Tryton cron server: service trytond-cron onestart
@@ -39,8 +57,8 @@ If you have selected WEBSRV:
   for an example configuration which you can include into your server
   with
     include nginx.conf.d/*.conf;
-  the http {} section of your nginx configuration (usually available at
-  %%PREFIX%%/etc/nginx/nginx.conf).
+  the http {} or https {} section of your nginx configuration
+  (usually available at %%PREFIX%%/etc/nginx/nginx.conf).
 
   If you also have selected UWSGI, the port depends on uWSGI as uwsgi
   gateway. There is a configuration for uWSGI to start from in:
