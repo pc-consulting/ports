@@ -12,7 +12,7 @@ disable-logging = true
 log-4xx = true
 log-5xx = true
 
-harakiri = 60
+harakiri = 120
 # This option seems to have gone.
 #py-callos-afterfork = true
 
@@ -57,8 +57,8 @@ env = TRYTOND_CONFIG=%%PREFIX%%/etc/trytond.conf
 # 30 - WARNING
 # 40 - ERROR
 # 50 - CRITICAL
-# env = TRYTOND_LOGGING_LEVEL=20
-env = TRYTOND_LOGGING_LEVEL=0
+env = TRYTOND_LOGGING_LEVEL=30
+# env = TRYTOND_LOGGING_LEVEL=0
 # trytond seems to choke on coroutine at this time...?
 #env = TRYTOND_COROUTINE=YES
 # Let's also just set the database in one single place, please, i. e. trtond.conf
