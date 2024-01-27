@@ -25,6 +25,14 @@ If you have selected TRYTOND:
   achieved by something like:
     service postgresql initdb
     service postgresql onestart
+  Then log into your postgres database as database admin, e. g.
+    psql -U postgres
+  add a trytond database user, and add a database for that user, for
+  instance:
+    create user trytondbuser password 'dbpassword';
+    create database db with owner trytondbuser ;
+  Please refer to the postgres documentation for further details
+  regarding postgres.
   You then should be able to initialize the tryton database now in
   the same manner as indicated above, i. e.:
     trytond-admin -c %%PREFIX%%/etc/trytond.conf -d db --all -p
@@ -53,7 +61,7 @@ If you have selected TRYTOND:
 If you have selected WEBSRV:
 
   The port depends on nginx as a web proxy. Please see
-    %%PREFIX%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
+    %%PREFIX%%/etc/nginx/nginx.conf.d/trytond.conf[.sample]
   for an example configuration which you can include into your server
   with
     include nginx.conf.d/*.conf;
