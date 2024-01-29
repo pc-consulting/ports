@@ -8,70 +8,40 @@ Considered *production-ready* (i. e. could go into the ports tree):
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
     - Passes poudriere testport
-- The following ports are requirements to Tryton modules and appear to operate (passing poudriere testport):
-    - devel/py-efficient-apriori
-    - devel/py-goocalendar
-    - devel/py-mando
-    - devel/py-radon
-    - devel/py/stdnum
-        - Taken from ports and updated from 1.18 to 1.19 as required by finance/py-trytond-party
-    - finance/py-braintree
-    - finance/py-csb43
-    - finance/py-febelfin-coda
-    - finance/py-mt940
-    - finance/py-pyactiveresource
-    - finance/py-schwifty
-    - finance/py-shopifyapi
-    - net/py-zeep
-        - Taken from ports and updated with corrected dependencies (bumped PORTREVISION for that)
-    - www/py-pytest-httpx
-
-Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
-
-- finance/py-tryton*, finance/tryton-*
-    - General observations, unless noted more specifically below:
-        - uWSGI now should generally work provided there is access to the database AND the directory containing it.
-        - I currently use FreeBSD 14.0-RELEASE-p3 as a basis.
-        - portlint passes and poudriere testport passes for all py-tryton* ports. tryton.cfg dependencies should be in the Makefiles, trytond starts and does something, at least some (many) of the modules can be activated from the admin account, data entered. etc. but some modules (and those depending on them) still seem unwilling; I need to check whether that is due to incomplete packaging from my side, or whether that's genuine bugs which may be resolved with a newer software version.
-        - Recommendation is to start from finance/tryton-server and pick options from there. It installs configuration samples and depends on the selected trytond modules. finance/py-tryton* just contain software by design.
-        - Distfiles go to DIST_SUBDIR=Tryton
-        - TRYTON_DEFAULT_VERSION, TRYTON_MIN_VERSION and TRYTON_MAX_VERSION can be set from finance/tryton-server/Makefile.defaults.portversions.mk for all tryton ports
-            - PORTVERSION is set to TRYTON_DEFAULT_VERSION in tryton-server/Makefile.defaults.mk unless explicitly set in a port Makefile.
-            - Tryton port dependency checks are relaxed to check for an installed version above including (>=) TRYTON_MIN_VERSION and below (<) TRYTON_MAX_VERSION as Tryton says that modules of the same Major.minor version should interoperate nicely.
-        - OpenBSD and netbsd (used to) have the port in the devel category, pytoport suggested the same. I currently do not see a use beyond tryton itself and hence decided to put it in finance as we have no 'business' category.
+- finance/py-tryton*, finance/tryton-* (passing poudriere testport)
     - Individual ports, as currently are:
         - finance/tryton-server
             - Meta port to facilitate your individual module configuration from the lot below and further possible dependencies.
-            - Added a default OPTIONS selection of what I currently believe is close to a minimal module configuration. Please note that there now is a Makefile.XXX where XXX is in ACCOUNTING, COMPANY, PARTY, ... and the like, each of which holds the OPTIONS for that subject area.
-            - ToDos:
-                - There is a draft Makefile.defaults.inc for global defaults already. I intend to adopt all ports in the next few days (if I manage).
-                - Check (if I can) the cause of module failures found and fix them (or report bugs otherwise)
-                - Amend sample configurations for nginx proxy, uwsgi, and postgres access instead instead of 'just' werkzeug and sqlite. Some thoughts already are there in Makefile comments.
-                - Run the server with uid=tryton and from its own chdir/chroot.
-                - Ensure that all works neatly in a jail.
-            - Future improvements being considered
-                - I noted that trytond offers to the admin to update all software components on-line. This would fundamentally interfere with the port approach, so we need a solution for that. I very much prefer to use ports as I consider that a much more controllable way to manage system configuration and expect e. g. system audits to be manageable with relaitvely standard tools but otoh we all know how we all press the 'y'es key...
-                - Still need to identify whether to centralize Makefile items, and which ones, if so.
-                    - Former line of thought, now thinking that the approach is not quite realistic as-written here (or, rather, achieved much easier with the above Makefile.default.inc):
-                        - As-is, the set of ports likely is unmaintainable in the long term
-                            - Continue for the time being since I know no better and want to get up and running and test asap
-                        - Yet, I'd love to maintain separate ports because I strongly favour the idea that one can tell 'any' installed package from a look into the pkg db
-                        - So, instead, create some kind of bsd.Tryoton.mk
-                            - Derive a TRYTOND_SUITE_PACKAGES= with a list of packages in tryton.cfg writing with a script for the port maintainer
-                            - For each package, define a set of variables like we have in ports like TRTOND_ACCOUNT_EU* for *_VERSION, *_DEPENDS, *_OPTIONS, and maybe some others
-                            - Have a single trytond port origin where all packages can created from, named as we currently have them in individual ports
-                            - Eventually, have a set of TRYTOND_CONTRIB_PACKAGES=, maybe in a likewise but separate trytond-contrib port, for all community contrib modules which we evenually will have
-                            - Use the tryton-server port as a frontend to drive the two, and the bits that one needs to put Tryton on its feet (like database etc.)
         - finance/py-tryton
             - Desktop client of the Tryton business suite.
-            - Has not yet experienced any significant attention from my side but seems to start and do something (though I also managed it to dump core occasionally) so much (all?) already may just be well. finance/tryton-desktop-client thus may or may not ever come to existence...
         - finance/py-trytond
             - Server of the Tryton business suite
-            - Does not depend on postgres, rather the port relies on a database etc configuration defined via the finance/tryton-server meta port, as indicated above.
         - finance/py-trytond-*, finance/py-proteus
             - Modules for the Tryton server
-            - Like finance/py-trytond, relies on finance/tryton-server doing the right thing. finance/tryton-lib may or may likely not ever come to existence (though a tryton-demo should, at some stage...).
-            - All pass portlint, have complete tryton.cfg dependencies in Makefile, and pass poudriere testport
+        - ToDos and possible improvements:
+            - Run the server with uid=tryton and from its own chdir/chroot.
+            - Ensure that all works neatly in a jail.
+            - I noted that trytond offers to the admin to update all software components on-line. This would fundamentally interfere with the port approach, so we need a solution for that. I very much prefer to use ports as I consider that a much more controllable way to manage system configuration and expect e. g. system audits to be manageable with relaitvely standard tools but otoh we all know how we all press the 'y'es key...
+    - The following ports are requirements to Tryton modules and appear to operate (passing poudriere testport):
+        - devel/py-efficient-apriori
+        - devel/py-goocalendar
+        - devel/py-mando
+        - devel/py-radon
+        - devel/py/stdnum
+            - Taken from ports and updated from 1.18 to 1.19 as required by finance/py-trytond-party
+        - finance/py-braintree
+        - finance/py-csb43
+        - finance/py-febelfin-coda
+        - finance/py-mt940
+        - finance/py-pyactiveresource
+        - finance/py-schwifty
+        - finance/py-shopifyapi
+        - net/py-zeep
+            - Taken from ports and updated with corrected dependencies (bumped PORTREVISION for that)
+        - www/py-pytest-httpx
+
+Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
+
 - comms/gnuradio
     - _Any more knowledgeable testers/takers more than welcome._
     - Still pretty drafty port, pending better organization in Makefile, etc.
