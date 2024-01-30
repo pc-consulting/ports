@@ -2,7 +2,7 @@
 
 PORTNAME=	schwifty
 # NOTE: Must also update version in files/patch-setup.py accordingly!
-PORTVERSION=	2023.11.2
+PORTVERSION=	2024.1.1.post0
 CATEGORIES=	finance devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
