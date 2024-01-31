@@ -9,7 +9,7 @@ CATEGORIES=	devel python
 # And 'release tarball' is a file just floating about somewhere.
 # With a yet different name...
 # Will try with fbsd_gpio for the time being.
-#MASTER_SITES=	CHEESESHOP
+#MASTER_SITES=	PYPI
 #MASTER_SITES=	SF
 MASTER_SITES=	https://sourceforge.net/projects/${PORTNAME}-python/files/
 #MASTER_SITE_SUBDIR= ${PORTNAME}-python/${PORTNAME}-python/${PORTVERSION}

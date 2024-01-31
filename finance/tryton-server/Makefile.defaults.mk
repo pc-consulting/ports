@@ -17,7 +17,7 @@ PORTVERSION?=	${TRYTON_DEFAULT_VERSION}
 # Ensure that finance is in CATEGORIES at all times, and always first.
 CATEGORIES:=	finance ${CATEGORIES:S/finance//}
 # MASTER_SITES and PKGNAMEPREFIX usually are the same for all ports
-MASTER_SITES?=	CHEESESHOP
+MASTER_SITES?=	PYPI
 PKGNAMEPREFIX?=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, all Tryton distfiles come named with underscores instead of dashes.
 DISTNAME?=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}

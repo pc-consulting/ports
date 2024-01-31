@@ -3,7 +3,7 @@
 PORTNAME=	efficient-apriori
 PORTVERSION=	2.0.3
 CATEGORIES=	devel math python
-MASTER_SITES=	CHEESESHOP
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 # Unfortunately, the distfile come named with underscores instead of dashes.
 DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
