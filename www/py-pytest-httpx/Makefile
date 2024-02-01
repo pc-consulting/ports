@@ -1,7 +1,7 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	pytest-httpx
-PORTVERSION=	0.27.0
+PORTVERSION=	0.29.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
