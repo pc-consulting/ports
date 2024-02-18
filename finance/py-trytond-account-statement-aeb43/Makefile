@@ -4,6 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-account-statement-aeb43
+PORTVERSION=	7.0.1
 CATEGORIES=	finance spanish python
 
 COMMENT=	Tryton module to import aeb43 statements
