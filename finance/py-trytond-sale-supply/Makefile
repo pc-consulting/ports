@@ -4,7 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-sale-supply
-PORTVERSION=	7.0.3
+PORTVERSION=	7.0.4
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module for sale supply
