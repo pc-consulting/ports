@@ -1,0 +1,11 @@
+--- grc/scripts/freedesktop/grc_setup_freedesktop.in.orig	2024-02-05 06:14:00 UTC
++++ grc/scripts/freedesktop/grc_setup_freedesktop.in
+@@ -37,7 +37,7 @@ case "$1" in
+ 	echo "Install mime type"
+ 	xdg-mime install ${SRCDIR}/gnuradio-grc.xml
+ 	echo "Install menu items"
+-	xdg-desktop-menu install ${SRCDIR}/*.desktop
++	xdg-desktop-menu install applications ${SRCDIR}/*.desktop
+ 	echo "Done!"
+ 	echo ""
+ 	;;
