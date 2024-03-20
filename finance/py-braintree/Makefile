@@ -1,7 +1,7 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	braintree
-PORTVERSION=	4.26.0
+PORTVERSION=	4.27.0
 CATEGORIES=	finance python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
