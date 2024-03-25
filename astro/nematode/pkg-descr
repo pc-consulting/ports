@@ -1,0 +1,4 @@
+NemaTode is yet another lightweight generic NMEA parser.
+
+It also comes with a GPS data interface to handle the most popular
+GPS NMEA sentences.
