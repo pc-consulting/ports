@@ -1,0 +1,11 @@
+include/nmeaparse/Event.h
+include/nmeaparse/GPSFix.h
+include/nmeaparse/GPSService.h
+include/nmeaparse/NMEACommand.h
+include/nmeaparse/NMEAParser.h
+include/nmeaparse/NumberConversion.h
+include/nmeaparse/nmea.h
+lib/cmake/NemaTodeConfig-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/NemaTodeConfig.cmake
+lib/cmake/NemaTodeVersion.cmake
+lib/libNemaTode.a
