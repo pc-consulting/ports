@@ -3,10 +3,10 @@
 PORTNAME=	jasterix
 PORTVERSION=	0.1.1
 DISTVERSIONPREFIX=	v
-CATEGORIES=	comms
+CATEGORIES=	comms devel
 
 MAINTAINER=	pcc@gmx.net
-COMMENT=	C++ Library for EUROCONTROL's ASTERIX to JSON conversion.
+COMMENT=	C++ Library for EUROCONTROL's ASTERIX to JSON conversion
 WWW=		https://github.com/hpuhr/jASTERIX
 
 LICENSE=	GPLv3
