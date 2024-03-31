@@ -11,9 +11,9 @@ WWW=		https://github.com/hpuhr/jASTERIX
 
 LICENSE=	GPLv3
 
+# May be able to do without 		libarchive.so:archivers/libarchive dependency?
 LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs \
 		liblog4cpp.so:devel/log4cpp \
-		libarchive.so:archivers/libarchive \
 		libtbb.so:devel/tbb \
 		libCatch2.so:devel/catch2
 RUN_DEPENDS=	nlohmann-json>0:devel/nlohmann-json
