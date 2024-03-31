@@ -1,0 +1,16 @@
+bin/jasterix_client
+include/jasterix/category.h
+include/jasterix/edition.h
+include/jasterix/editionbase.h
+include/jasterix/frameparser.h
+include/jasterix/global.h
+include/jasterix/iteminfo.h
+include/jasterix/itemparserbase.h
+include/jasterix/jasterix.h
+include/jasterix/mapping.h
+include/jasterix/record.h
+include/jasterix/ref.h
+include/jasterix/refedition.h
+include/jasterix/spf.h
+include/jasterix/spfedition.h
+lib/libjasterix.a
