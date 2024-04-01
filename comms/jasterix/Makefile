@@ -13,7 +13,7 @@ LICENSE=	GPLv3
 
 LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs \
 		liblog4cpp.so:devel/log4cpp \
-		libtbb.so:devel/tbb \
+		libtbb.so:devel/onetbb \
 		libCatch2.so:devel/catch2
 RUN_DEPENDS=	nlohmann-json>0:devel/nlohmann-json
 

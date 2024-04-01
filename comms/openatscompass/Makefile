@@ -15,12 +15,12 @@ LIB_DEPENDS=	libboost_regex.so:devel/boost-libs \
 		libsqlite3.so:databases/sqlite3 \
 		liblog4cpp.so:devel/log4cpp \
 		libgdal.so:graphics/gdal \
-		libarchive.so:archivers/libarchive \
-		libtbb.so:devel:/tbb \
-		libjASTERIX.so:comms/jASTERIX
-RUN_DEPENDS=	eigen3>=3.2:math/eigen3
+		libtbb.so:devel/onetbb
+BUILD_DEPENDS=	jasterix>=0.1.1:comms/jASTERIX
+RUN_DEPENDS=	eigen3>=3.2:math/eigen3 \
+		jasterix>=0.1.1:comms/jASTERIX
 
-USES=		cmake qt:5 ssl
+USES=		cmake qt:5 ssl libarchive
 USE_QT=		widgets core opengl charts testlib
 # Distfile download fails if GH_PROJECT is set to upper case but
 # sources stubbornly extract to the wor subdir with upper case only.
