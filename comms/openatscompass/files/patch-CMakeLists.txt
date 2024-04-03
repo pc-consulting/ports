@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2024-02-29 09:52:46 UTC
++++ CMakeLists.txt
+@@ -15,7 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+ 
+-message("  Platform: Linux")
++message("  Platform: FreeBSD")
+ add_definitions ( -UNDEBUG -Wall -std=c++11) # -DQT_NO_KEYWORDS
+ 
+ set(CMAKE_THREAD_PREFER_PTHREAD TRUE)

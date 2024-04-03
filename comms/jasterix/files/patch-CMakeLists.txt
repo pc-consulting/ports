@@ -1,5 +1,14 @@
 --- CMakeLists.txt.orig	2023-02-28 08:27:46 UTC
 +++ CMakeLists.txt
+@@ -14,7 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+ 
+-message("  Platform: Linux")
++message("  Platform: FreeBSD")
+ add_definitions ( -Wall -UNDEBUG -std=c++11) # -Wno-int-in-bool-context
+ 
+ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 @@ -114,7 +114,7 @@ set_target_properties(jasterix PROPERTIES PUBLIC_HEADE
  #install(DIRECTORY "specifications" DESTINATION jasterix)
  
