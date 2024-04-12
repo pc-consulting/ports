@@ -4,7 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-account
-PORTVERSION=	7.0.4
+PORTVERSION=	7.0.5
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module for accounting
