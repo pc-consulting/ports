@@ -4,7 +4,7 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-stock-package-shipping-ups
-PORTVERSION=	7.0.1
+PORTVERSION=	7.0.2
 CATEGORIES=	finance python
 
 COMMENT=	Ups connector for the tryton application platform
