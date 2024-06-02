@@ -1,0 +1,3 @@
+The Account Export Module provides the basis to export accounting moves to
+external accounting software. An Account Move Export groups posted Moves to
+be exported to an external accounting software.
