@@ -20,7 +20,9 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX
 		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-product-price-list@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-product-price-list-cache>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-product-price-list-cache@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-sale-price-list>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-sale-price-list@${PY_FLAVOR}
-# No further dependencies from python package
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trytond-purchase-price-list>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-purchase-price-list@${PY_FLAVOR}
 
 GROUPS=		tryton www
 

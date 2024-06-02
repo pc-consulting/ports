@@ -20,6 +20,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX
 # Test dependencies from python package
 # Don't know yet how to properly test
 #TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-proteus@${PY_FLAVOR}
+#		${PYTHON_PKGNAMEPREFIX}trytond-sale-point>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-sale-point@${PY_FLAVOR}
 
 GROUPS=		tryton www
 

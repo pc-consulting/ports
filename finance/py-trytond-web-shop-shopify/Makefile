@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-web-shop-shopify
-PORTVERSION=	7.0.2
 CATEGORIES=	finance www python
 
 COMMENT=	Module to integrate tryton with shopify

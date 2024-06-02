@@ -15,6 +15,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # Dependencies from python package
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeep>0:net/py-zeep \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests
+# Dependencies from tryton.cfg (account, account_es, account_invoice)
+#				# ir: trytond built-in
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account-es>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account-es@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}trytond-account-invoice>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account-invoice@${PY_FLAVOR}
 # Test dependencies from python package
 # Don't know yet how to properly test
 #TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}proteus>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-proteus@${PY_FLAVOR}

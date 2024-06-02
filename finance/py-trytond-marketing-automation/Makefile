@@ -13,7 +13,9 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Genshi>0:textproc/py-genshi@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Genshi>0:textproc/py-genshi@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}types-python-dateutil>0:devel/py-types-python-dateutil@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygal>0:graphics/py-pygal@${PY_FLAVOR}
 # Dependencies from tryton.cfg (ir, marketing, party, res,
 #				web_shortener; extras: sale)
 #				# ir, res: trytond built-in

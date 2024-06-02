@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-account-payment
-PORTVERSION=	7.0.2
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module for payment
@@ -13,7 +12,8 @@ WWW=		https://docs.tryton.org/projects/modules-account-payment/en/latest/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# No dependencies from python package
+# Dependencies from python package
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0.4:databases/py-python-sql@${PY_FLAVOR}
 # Dependencies from tryton.cfg (account, company, currency, ir,
 #				party, res; extras: account_dunning,
 #				account_invoice, account_statement)

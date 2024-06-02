@@ -1,3 +1,3 @@
-TIMESTAMP = 1699131640
-SHA256 (Tryton/trytond_account_payment_sepa-7.0.0.tar.gz) = 65e0d05281fa0e7d5755fb3a405eb979414147ab4aac82c065bf673671811625
-SIZE (Tryton/trytond_account_payment_sepa-7.0.0.tar.gz) = 125791
+TIMESTAMP = 1715630047
+SHA256 (Tryton/trytond_account_payment_sepa-7.2.0.tar.gz) = 4e7fdb9da34d8cca337efdf1e5d86c004e52ebe3aa1b846fee9cc94478241c21
+SIZE (Tryton/trytond_account_payment_sepa-7.2.0.tar.gz) = 125859

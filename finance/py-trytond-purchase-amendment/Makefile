@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-purchase-amendment
-PORTVERSION=	7.0.1
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module to amend purchases

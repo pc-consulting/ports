@@ -1,3 +1,3 @@
-TIMESTAMP = 1699132236
-SHA256 (Tryton/trytond_authentication_saml-7.0.0.tar.gz) = b571b29a1c71201d5c5d7d08bf76d4f94851173a95d5a683baaa8dc789acc752
-SIZE (Tryton/trytond_authentication_saml-7.0.0.tar.gz) = 22405
+TIMESTAMP = 1715634097
+SHA256 (Tryton/trytond_authentication_saml-7.2.0.tar.gz) = a0992a947e9e74b097c1ecc56ccac48b1e2ad017f98b79d54484d0317911e5be
+SIZE (Tryton/trytond_authentication_saml-7.2.0.tar.gz) = 22360

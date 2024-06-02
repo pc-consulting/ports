@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond-timesheet
-PORTVERSION=	7.0.1
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module with timesheets

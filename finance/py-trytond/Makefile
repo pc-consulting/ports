@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	trytond
-PORTVERSION=	7.0.10
 CATEGORIES=	finance python
 
 COMMENT=	Tryton server
@@ -25,7 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}defusedxml>0:devel/py-defusedxml@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}backports.entry-points-selectable>0:devel/py-backports.entry-points-selectable@${PY_FLAVOR}
 # Extras
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psycopg2>2.7.0:databases/py-psycopg2@${PY_FLAVOR} \
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psycopg2>=2.7.0:databases/py-psycopg2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydot>0:graphics/py-pydot@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Levenshtein>0:devel/py-Levenshtein@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}html2text>0:textproc/py-html2text@${PY_FLAVOR} \

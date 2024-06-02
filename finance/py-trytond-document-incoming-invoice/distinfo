@@ -1,3 +1,3 @@
-TIMESTAMP = 1699132606
-SHA256 (Tryton/trytond_document_incoming_invoice-7.0.0.tar.gz) = f4fec77f3743672c1eeb4e4d7aa27ffa8abe7ca32a5f1357b84a7da22ee6fcca
-SIZE (Tryton/trytond_document_incoming_invoice-7.0.0.tar.gz) = 26590
+TIMESTAMP = 1717185142
+SHA256 (Tryton/trytond_document_incoming_invoice-7.2.0.tar.gz) = 0226fdb8ba3c08ed1b1fe35e4b4780ec2d21535cf7e9ff6251d4ecc86ba84de1
+SIZE (Tryton/trytond_document_incoming_invoice-7.2.0.tar.gz) = 26766
