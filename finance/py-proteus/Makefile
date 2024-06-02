@@ -4,7 +4,6 @@
 .include "${.CURDIR}/../../finance/tryton-server/Makefile.defaults.portversions.mk"
 
 PORTNAME=	proteus
-PORTVERSION=	7.0.1
 CATEGORIES=	finance devel python
 
 COMMENT=	Library to access tryton server as a client
