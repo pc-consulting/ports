@@ -6,8 +6,8 @@
 PORTNAME=	trytond-account-syscohada
 CATEGORIES=	finance french portuguese spanish python
 
-COMMENT=	Tryton module with french chart of accounts
-WWW=		https://docs.tryton.org/projects/modules-account-fr/en/latest/
+COMMENT=	Tryton module with SYSCOHADA chart of accounts
+WWW=		https://docs.tryton.org/latest/modules-account-syscohada/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE

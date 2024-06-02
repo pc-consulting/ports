@@ -14,7 +14,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-sql>0:databases/py-python-sql@${PY_FLAVOR}
-# Dependencies from tryton.cfg (company, currency, ir, party, res) # ir, res:trytond built-in
+# Dependencies from tryton.cfg (account, account_export,
+#				account_invoice, ir, party; extras:
+#				account_be, account_statement)
+#				# ir: trytond built-in
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account-be>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account-be@${PY_FLAVOR} \

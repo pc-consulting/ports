@@ -7,7 +7,7 @@ PORTNAME=	trytond-web-shop-product-data-feed
 CATEGORIES=	finance www python
 
 COMMENT=	Tryton module to expose product data feed
-WWW=		https://docs.tryton.org/projects/modules-web-shop/en/latest/
+WWW=		https://docs.tryton.org/latest/modules-web-shop-product-data-feed/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE

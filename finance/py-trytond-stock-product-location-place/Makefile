@@ -7,7 +7,7 @@ PORTNAME=	trytond-stock-product-location-place
 CATEGORIES=	finance python
 
 COMMENT=	Tryton module to define a product place for each location
-WWW=		https://docs.tryton.org/projects/modules-stock-product-location/en/latest/
+WWW=		https://docs.tryton.org/latest/modules-stock-product-location-place/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
