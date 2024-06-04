@@ -13,7 +13,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Dependencies from python package
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aeb43>0.8:finance/py-aeb43@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aeb43>0:finance/py-aeb43@${PY_FLAVOR}
 # Dependencies from tryton.cfg (account_statement, bank, ir) # ir: trytond built-in
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}trytond>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trytond-account-statement>=${TRYTON_MIN_VERSION}<${TRYTON_MAX_VERSION}:finance/py-trytond-account-statement@${PY_FLAVOR} \
