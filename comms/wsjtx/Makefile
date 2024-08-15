@@ -1,8 +1,12 @@
 PORTNAME=	wsjtx
-DISTVERSION=	2.5.4
-PORTREVISION=	10
+#PORTVERSION=	2.7.0
+#PORTREVISION=	10
+DISTVERSION=	2.7.0
+DISTVERSIONSUFFIX=	-rc6
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/wsjt/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
+# The follwing line should go once there is a release.
+WRKSRC=	${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Weak signal ham radio communication package
