@@ -8,6 +8,17 @@ Considered *production-ready* (i. e. could go into the ports tree):
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
     - Passes poudriere testport
+- comms/wsjtx
+    - Update to get superfox mode into FreeBSD asap.
+    - Builds package and starts but no operational test yet.
+    - portlint -AC still finds some warnings which eventually should be made gone.
+    - wsjtx.tgz is dos-formatted which is a royal pita. Hence several ugly hacks with additional CR in patches, yuck. Use vi to edit patches or so such as not to lose the ^Ms...
+    - Further hack to remove qmap which made my build choke.
+    - Hacks in Makefile to make the bl**dy -rc6 appear where I could not get rid of it. Unfortunately, as the makefile currently is. it does not make it into PORTVERSION, sigh.
+    - As a consequence, when the release is there, we'll need to bump PORTREVISION.
+    - Makefile should pull from git directly to get cleaner. The current source distribution is not good, imho.
+    - We should consider to eventually depend on comms/hamlib.
+    - pkg-plist has a few extra entries to satisfy make check-plist. Someone with brighter knowledge may find about that.
 - finance/py-tryton*, finance/tryton-* (passing poudriere testport)
     - Individual ports, as currently are:
         - finance/tryton-server
@@ -42,17 +53,6 @@ Considered *production-ready* (i. e. could go into the ports tree):
 
 Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
-- comms/wsjtx
-    - Update to get superfox mode into FreeBSD asap.
-    - Builds package and starts but no operational test yet.
-    - portlint -AC still finds some warnings which eventually should be made gone.
-    - wsjtx.tgz is dos-formatted which is a royal pita. Hence several ugly hacks with additional CR in patches, yuck. Use vi to edit patches or so such as not to lose the ^Ms...
-    - Further hack to remove qmap which made my build choke.
-    - Hacks in Makefile to make the bl**dy -rc6 appear where I could not get rid of it. Unfortunately, as the makefile currently is. it does not make it into PORTVERSION, sigh.
-    - As a consequence, when the release is there, we'll need to bump PORTREVISION.
-    - Makefile should pull from git directly to get cleaner. The current source distribution is not good, imho.
-    - We should consider to eventually depend on comms/hamlib.
-    - pkg-plist has a few extra entries to satisfy make check-plist. Someone with brighter knowledge may find about that.
 - comms/gnuradio
     - _Any more knowledgeable testers/takers more than welcome._
     - Still pretty drafty port, pending better organization in Makefile, etc.
