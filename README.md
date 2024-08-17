@@ -51,6 +51,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
     - Hacks in Makefile to make the bl**dy -rc6 appear where I could not get rid of it. Unfortunately, as the makefile currently is. it does not make it into PORTVERSION, sigh.
     - As a consequence, when the release is there, we'll need to bump PORTREVISION.
     - Makefile should pull from git directly to get cleaner. The current source distribution is not good, imho.
+    - We should consider to eventually depend on comms/hamlib.
     - pkg-plist has a few extra entries to satisfy make check-plist. Someone with brighter knowledge may find about that.
 - comms/gnuradio
     - _Any more knowledgeable testers/takers more than welcome._
