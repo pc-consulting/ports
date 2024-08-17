@@ -42,6 +42,16 @@ Considered *production-ready* (i. e. could go into the ports tree):
 
 Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
+- comms/wsjtx
+    - Update to get superfox mode into FreeBSD asap.
+    - Builds package but no operational test yet.
+    - portlint -AC still finds some warnings which eventually should be made gone.
+    - wsjtx.tgz is dos-formatted which is a royal pita. Hence several ugly hacks with additional CR in patches, yuck. Use vi to edit patches or so such as not to lose the ^Ms...
+    - Further hack to remove qmap which made my build choke.
+    - Hacks in Makefile to make the bl**dy -rc6 appear where I could not get rid of it. Unfortunately, as the makefile currently is. it does not make it into PORTVERSION, sigh.
+    - As a consequence, when the release is there, we'll need to bump PORTREVISION.
+    - Makefile should pull from git directly to get cleaner. The current source distribution is not good, imho.
+    - pkg-plist has a few extra entries to satisfy make check-plist. Someone with brighter knowledge may find about that.
 - comms/gnuradio
     - _Any more knowledgeable testers/takers more than welcome._
     - Still pretty drafty port, pending better organization in Makefile, etc.
@@ -69,6 +79,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
     - PORTREVISION bumped to 1 accordingly.
     - There still may be an issue with handling underscores '_' in distribution file names which seem to be converted to dashes '-' unconditionally. Subsequently, download of distfiles with underscores in their names fails.
 - www/cloudlog
+    - Considering to move to https://github.com/wavelog/wavelog
     - Still very drafty port
     - Makefile needs completion to install files from files/ to where they belong
     - pkg-plist needs updating accordingly (e. g. examples dir)
