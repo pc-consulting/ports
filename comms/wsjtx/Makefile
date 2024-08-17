@@ -1,6 +1,6 @@
 PORTNAME=	wsjtx
 #PORTVERSION=	2.7.0
-#PORTREVISION=	10
+#PORTREVISION=	1	# Uncomment when release is there
 DISTVERSION=	2.7.0
 DISTVERSIONSUFFIX=	-rc6
 CATEGORIES=	comms hamradio
@@ -10,7 +10,7 @@ WRKSRC=	${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Weak signal ham radio communication package
-WWW=		https://physics.princeton.edu/pulsar/k1jt/wsjtx.html
+WWW=		https://wsjt.sourceforge.io/wsjtx.html
 
 LICENSE=	GPLv3
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libboost_log_setup.so:devel/boost-libs \
 		libxslt.so:textproc/libxslt
 
-USES=	cmake:noninja compiler:c++11-lang fortran gl libedit \
+USES=		cmake:noninja compiler:c++11-lang fortran gl libedit \
 		makeinfo pkgconfig qt:5 readline tar:tgz
 USE_GL=		glu
 USE_QT=		core gui network widgets \

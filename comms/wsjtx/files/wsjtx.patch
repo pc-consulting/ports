@@ -1,5 +1,5 @@
---- wsjtx/wsjtx_config.h.in.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/wsjtx_config.h.in	2023-09-10 09:55:54.397156000 -0400
+--- wsjtx/wsjtx_config.h.in.orig	2024-08-15 16:19:19.167930000 +0200
++++ wsjtx/wsjtx_config.h.in	2024-08-15 16:20:41.591244000 +0200
 @@ -57,17 +57,22 @@
  #	endif
  #endif
@@ -54,15 +54,6 @@
  #
  # fftw3 single precision library
  #
-@@ -885,7 +885,7 @@
- check_type_size (CACHE_ALL HAMLIB_OLD_CACHING)
- check_symbol_exists (rig_set_cache_timeout_ms "hamlib/rig.h" HAVE_HAMLIB_CACHING)
- 
--find_package (Usb REQUIRED)
-+#find_package (Usb REQUIRED)
- 
- #
- # Qt5 setup
 @@ -915,7 +915,7 @@
  #
  set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
@@ -81,52 +72,6 @@
  
  add_executable (jt4code lib/jt4code.f90)
  target_link_libraries (jt4code wsjt_fort wsjt_cxx)
---- wsjtx/Radio.cpp.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/Radio.cpp	2023-09-10 09:39:14.607286000 -0400
-@@ -54,7 +54,8 @@
-     value *= std::pow (10., scale);
-     if (ok)
-       {
--        if (value < 0. || value > std::numeric_limits<Frequency>::max ())
-+#define MAXDOUBLEFREQUENCY 18446744073709551616.0
-+        if (value < 0. || value > MAXDOUBLEFREQUENCY)
-           {
-             value = 0.;
-             *ok = false;
-@@ -92,7 +93,7 @@
-     if (ok)
-       {
-         if (value < -std::numeric_limits<Frequency>::max ()
--            || value > std::numeric_limits<Frequency>::max ())
-+            || value > MAXDOUBLEFREQUENCY)
-           {
-             value = 0.;
-             *ok = false;
---- wsjtx/widgets/FrequencyLineEdit.cpp.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/widgets/FrequencyLineEdit.cpp	2023-09-10 09:39:14.607697000 -0400
-@@ -39,7 +39,8 @@
- FrequencyLineEdit::FrequencyLineEdit (QWidget * parent)
-   : QLineEdit (parent)
- {
--  setValidator (new MHzValidator {0., std::numeric_limits<Radio::Frequency>::max () / 10.e6, this});
-+#define MAXDOUBLEFREQUENCY 18446744073709551616.0
-+  setValidator (new MHzValidator {0., MAXDOUBLEFREQUENCY / 10.e6, this});
- }
- 
- auto FrequencyLineEdit::frequency () const -> Frequency
---- wsjtx/widgets/FrequencyDeltaLineEdit.cpp.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/widgets/FrequencyDeltaLineEdit.cpp	2023-09-10 09:39:14.608093000 -0400
-@@ -39,8 +39,8 @@
- FrequencyDeltaLineEdit::FrequencyDeltaLineEdit (QWidget * parent)
-   : QLineEdit (parent)
- {
--  setValidator (new MHzValidator {-std::numeric_limits<FrequencyDelta>::max () / 10.e6,
--        std::numeric_limits<FrequencyDelta>::max () / 10.e6, this});
-+  setValidator (new MHzValidator {(-(std::numeric_limits<FrequencyDelta>::max ())&-0xF) / 10.e6,
-+		  (std::numeric_limits<FrequencyDelta>::max ()&~0xF) / 10.e6, this});
- }
- 
- auto FrequencyDeltaLineEdit::frequency_delta () const -> FrequencyDelta
 --- wsjtx/CMake/Modules/FindUsb.cmake.orig	2021-12-28 04:31:58.000000000 -0500
 +++ wsjtx/CMake/Modules/FindUsb.cmake	2023-09-10 09:39:14.608507000 -0400
 @@ -13,25 +13,35 @@
