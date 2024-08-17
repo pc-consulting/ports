@@ -5,8 +5,6 @@ DISTVERSION=	2.7.0
 DISTVERSIONSUFFIX=	-rc6
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/wsjt/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
-# The follwing line should go once there is a release.
-WRKSRC=	${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Weak signal ham radio communication package
@@ -32,9 +30,13 @@ USE_QT=		core gui network widgets \
 
 CONFLICTS_INSTALL=	wsjtz
 
+# The follwing line should go once there is a release.
+WRKSRC=	${WRKDIR}/${PORTNAME}-${DISTVERSION}
+
 # for detailed debugging uncomment the next line
 #CMAKE_ARGS+=   --debug-output --trace
-PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
+PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
+		RC="${DISTVERSIONSUFFIX}"
 
 _PATCHES=	wsjtx.patch hamlib.patch
 

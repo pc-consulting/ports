@@ -1,8 +1,12 @@
+bin/cablog
+bin/echosim
 bin/fcal
 bin/fmeasure
 bin/fmtave
+bin/foxchk
 bin/fst4sim
 bin/ft8code
+bin/hash22calc
 bin/jt4code
 bin/jt65code
 bin/jt9
@@ -14,6 +18,8 @@ bin/q65sim
 bin/rigctl-wsjtx
 bin/rigctlcom-wsjtx
 bin/rigctld-wsjtx
+bin/sfrx
+bin/sftx
 bin/udp_daemon
 bin/wsjtx
 bin/wsjtx_app_version
@@ -46,8 +52,9 @@ share/doc/wsjtx/NEWS
 share/doc/wsjtx/README
 share/doc/wsjtx/THANKS
 share/doc/wsjtx/copyright
-share/doc/wsjtx/wsjtx-main-%%PORTVERSION%%.html
+share/doc/wsjtx/wsjtx-main-%%PORTVERSION%%%%RC%%.html
 share/pixmaps/wsjtx_icon.png
 %%DATADIR%%/JPLEPH
 %%DATADIR%%/cty.dat
 %%DATADIR%%/cty.dat_copyright.txt
+%%DATADIR%%/eclipse.txt

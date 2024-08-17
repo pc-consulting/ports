@@ -54,6 +54,15 @@
  #
  # fftw3 single precision library
  #
+@@ -902,7 +902,7 @@
+ check_type_size (CACHE_ALL HAMLIB_OLD_CACHING)
+ check_symbol_exists (rig_set_cache_timeout_ms "hamlib/rig.h" HAVE_HAMLIB_CACHING)
+ 
+-find_package (Usb REQUIRED)
++#find_package (Usb REQUIRED)
+ 
+ #
+ # Qt5 setup
 @@ -915,7 +915,7 @@
  #
  set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
@@ -72,6 +81,15 @@
  
  add_executable (jt4code lib/jt4code.f90)
  target_link_libraries (jt4code wsjt_fort wsjt_cxx)
+@@ -1441,7 +1441,7 @@
+   find_package (Portaudio REQUIRED)
+   add_subdirectory (map65)
+ endif ()
+-  add_subdirectory (qmap)
++#  add_subdirectory (qmap)
+ 
+ # build the main application
+ generate_version_info (wsjtx_VERSION_RESOURCES
 --- wsjtx/CMake/Modules/FindUsb.cmake.orig	2021-12-28 04:31:58.000000000 -0500
 +++ wsjtx/CMake/Modules/FindUsb.cmake	2023-09-10 09:39:14.608507000 -0400
 @@ -13,25 +13,35 @@
