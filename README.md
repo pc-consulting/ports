@@ -44,7 +44,7 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
 
 - comms/wsjtx
     - Update to get superfox mode into FreeBSD asap.
-    - Builds package but no operational test yet.
+    - Builds package and starts but no operational test yet.
     - portlint -AC still finds some warnings which eventually should be made gone.
     - wsjtx.tgz is dos-formatted which is a royal pita. Hence several ugly hacks with additional CR in patches, yuck. Use vi to edit patches or so such as not to lose the ^Ms...
     - Further hack to remove qmap which made my build choke.
