@@ -1,41 +1,5 @@
---- wsjtx/wsjtx_config.h.in.orig	2024-08-15 16:19:19.167930000 +0200
-+++ wsjtx/wsjtx_config.h.in	2024-08-15 16:20:41.591244000 +0200
-@@ -57,17 +57,22 @@
- #	endif
- #endif
- 
--  /* typedef for consistent gfortran ABI for charlen type hidden arguments */
--#if __GNUC__ > 7
--#ifdef __cplusplus
--#include <cstddef>
--#else
--#include <stddef.h>
--#endif
--  typedef size_t fortran_charlen_t;
--#else
--  typedef int fortran_charlen_t;
--#endif
-+#if (__GNUC__ > 7)
-+  #ifdef __cplusplus
-+    #include <cstddef>
-+  #else
-+    #include <stddef.h>
-+  #endif
-+   typedef size_t fortran_charlen_t;
-+ #else
-+/* typedef for consistent gfortran ABI for charlen type hidden arguments */
-+  #if defined(__clang__)
-+    #include <stddef.h>
-+    typedef size_t fortran_charlen_t;
-+  #else
-+    typedef int fortran_charlen_t;
-+  #endif
-+ #endif
- 
- #ifdef __cplusplus
- }
---- wsjtx/CMakeLists.txt.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/CMakeLists.txt	2023-09-10 09:39:14.606813000 -0400
+--- wsjtx/CMakeLists.txt.orig	2024-09-27 14:47:21.000000000 +0200
++++ wsjtx/CMakeLists.txt	2024-11-13 21:25:30.996636000 +0100
 @@ -41,7 +41,7 @@
  endif ()
  
@@ -45,7 +9,7 @@
  endif ()
  
  project (wsjtx
-@@ -868,7 +868,7 @@
+@@ -928,7 +928,7 @@
  # OpenMP
  #
  find_package (OpenMP)
@@ -54,16 +18,16 @@
  #
  # fftw3 single precision library
  #
-@@ -902,7 +902,7 @@
+@@ -945,7 +945,7 @@
  check_type_size (CACHE_ALL HAMLIB_OLD_CACHING)
  check_symbol_exists (rig_set_cache_timeout_ms "hamlib/rig.h" HAVE_HAMLIB_CACHING)
  
 -find_package (Usb REQUIRED)
 +#find_package (Usb REQUIRED)
- 
- #
- # Qt5 setup
-@@ -915,7 +915,7 @@
+ if (WSJT_FOX_OTP)
+   add_definitions (-DFOX_OTP)
+ endif ()
+@@ -977,7 +977,7 @@
  #
  set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
  
@@ -72,8 +36,8 @@
  
  if (NOT APPLE)
    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pragmas")
-@@ -1161,7 +1161,7 @@
- target_link_libraries (encode77 wsjt_fort wsjt_cxx)
+@@ -1238,7 +1238,7 @@
+ target_link_libraries (hash22calc wsjt_fort wsjt_cxx)
  
  add_executable (wsprsim ${wsprsim_CSRCS})
 -target_link_libraries (wsprsim ${LIBM_LIBRARIES})
@@ -81,7 +45,7 @@
  
  add_executable (jt4code lib/jt4code.f90)
  target_link_libraries (jt4code wsjt_fort wsjt_cxx)
-@@ -1441,7 +1441,7 @@
+@@ -1495,7 +1495,7 @@
    find_package (Portaudio REQUIRED)
    add_subdirectory (map65)
  endif ()

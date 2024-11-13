@@ -3,7 +3,6 @@ bin/echosim
 bin/fcal
 bin/fmeasure
 bin/fmtave
-bin/foxchk
 bin/fst4sim
 bin/ft8code
 bin/hash22calc
@@ -18,8 +17,6 @@ bin/q65sim
 bin/rigctl-wsjtx
 bin/rigctlcom-wsjtx
 bin/rigctld-wsjtx
-bin/sfrx
-bin/sftx
 bin/udp_daemon
 bin/wsjtx
 bin/wsjtx_app_version
