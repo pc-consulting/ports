@@ -1,24 +1,14 @@
---- wsjtx/CMakeLists.txt.orig	2024-09-27 14:47:21.000000000 +0200
-+++ wsjtx/CMakeLists.txt	2024-11-13 21:25:30.996636000 +0100
-@@ -41,7 +41,7 @@
- endif ()
- 
- if (POLICY CMP0075)
--  cmake_policy (SET CMP0075 NEW) # honour CMAKE_REQUIRED_LIBRARIES in config checks
-+  cmake_policy (SET CMP0075 NEW) # honour CMAKE_REQUIRED_LIBRARIES in config che,cks
- endif ()
- 
- project (wsjtx
-@@ -928,7 +928,7 @@
+--- CMakeLists.txt.orig	2024-12-28 09:32:24.000000000 +0100
++++ CMakeLists.txt	2025-02-02 15:39:18.984932000 +0100
+@@ -934,6 +934,7 @@
  # OpenMP
  #
  find_package (OpenMP)
--
 +set (OpenMP_C_FLAGS "-fopenmp")
+ 
  #
  # fftw3 single precision library
- #
-@@ -945,7 +945,7 @@
+@@ -951,7 +952,7 @@
  check_type_size (CACHE_ALL HAMLIB_OLD_CACHING)
  check_symbol_exists (rig_set_cache_timeout_ms "hamlib/rig.h" HAVE_HAMLIB_CACHING)
  
@@ -27,7 +17,7 @@
  if (WSJT_FOX_OTP)
    add_definitions (-DFOX_OTP)
  endif ()
-@@ -977,7 +977,7 @@
+@@ -983,7 +984,7 @@
  #
  set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
  
@@ -36,7 +26,7 @@
  
  if (NOT APPLE)
    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pragmas")
-@@ -1238,7 +1238,7 @@
+@@ -1244,7 +1245,7 @@
  target_link_libraries (hash22calc wsjt_fort wsjt_cxx)
  
  add_executable (wsprsim ${wsprsim_CSRCS})
@@ -45,7 +35,7 @@
  
  add_executable (jt4code lib/jt4code.f90)
  target_link_libraries (jt4code wsjt_fort wsjt_cxx)
-@@ -1495,7 +1495,7 @@
+@@ -1501,7 +1502,7 @@
    find_package (Portaudio REQUIRED)
    add_subdirectory (map65)
  endif ()
@@ -121,15 +111,15 @@
    Usb_LIBRARIES
    )
 +endif()
---- wsjtx/CMake/Modules/FindHamlib.cmake.orig	2021-12-28 04:31:58.000000000 -0500
-+++ wsjtx/CMake/Modules/FindHamlib.cmake	2023-09-10 09:39:14.608876000 -0400
+--- wsjtx/CMake/Modules/FindHamlib.cmake.orig	2024-12-28 09:32:24.000000000 +0100
++++ wsjtx/CMake/Modules/FindHamlib.cmake	2025-01-31 23:08:09.952877000 +0100
 @@ -18,7 +18,9 @@
    FIND_LIBRARY hamlib
    )
  
+-libfind_package (Hamlib Usb)
 +if ( NOT CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" )
- libfind_package (Hamlib Usb)
++ libfind_package (Hamlib Usb)
 +endif()
  
  libfind_process (Hamlib)
- 
