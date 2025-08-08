@@ -1,6 +1,6 @@
 PORTNAME=	gnuradio
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.10.11.2
+DISTVERSION=	3.10.12.0
 #PORTREVISION=	6
 CATEGORIES=	comms astro hamradio science
 
@@ -23,6 +23,9 @@ LIB_DEPENDS=	\
 		libthrift.so:devel/thrift-cpp \
 		libunwind.so:devel/libunwind \
 		libpangocairo-1.0.so:x11-toolkits/pango
+# XXX FIXME XXX Make complains about these missing dependencies. Where should they go to?
+LIB_DEPENDS+=	\
+		libfmt.so:devel/libfmt
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 # XXX FIXME XXX Which of these can we relate to options, which ones are global?
@@ -101,8 +104,8 @@ PYTHON_BUILD_DEPENDS+=	\
 			${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
 			${PYNUMPY} \
 			${PYTHON_PKGNAMEPREFIX}mako>=1.1.0:textproc/py-mako@${PY_FLAVOR} \
-			${PYTHON_SITELIBDIR}/yaml/__init__.py:devel/py-yaml@${PY_FLAVOR} \
-			${PYTHON_SITELIBDIR}/gi/__init__.py:devel/py-gobject3@${PY_FLAVOR} \
+			${PYTHON_SITELIBDIR}/yaml/__init__.py:devel/py-pyyaml@${PY_FLAVOR} \
+			${PYTHON_SITELIBDIR}/gi/__init__.py:devel/py-pygobject@${PY_FLAVOR} \
 			${PYTHON_SITELIBDIR}/cairo/__init__.py:graphics/py-cairo@${PY_FLAVOR} \
 			${PYTHON_SITELIBDIR}/six.py:devel/py-six@${PY_FLAVOR} \
 			${PYTHON_SITELIBDIR}/click/__init__.py:devel/py-click@${PY_FLAVOR} \
@@ -250,7 +253,7 @@ IIO_LIB_DEPENDS+=	libiio.so:misc/libiio \
 QTGUI_DESC=		QT GUI support (QT5/6 dependency, implies FFT FILTER PYTHON RUNTIME)
 QTGUI_CMAKE_BOOL=	ENABLE_GR_QTGUI
 QTGUI_IMPLIES=		RUNTIME FFT FILTER PYTHON	# Maybe resolve python qt relation more elegantly later
-QTGUI_LIB_DEPENDS+=	libqwt6.so:x11-toolkits/qwt6
+QTGUI_LIB_DEPENDS+=	libqwt.so:x11-toolkits/qwt6	# How to ensure qwt6 vs. qt5?
 # XXX FIXME XXX QTGUI_USES+=		qt:5 wx:3.2+
 QTGUI_USES+=		qt:5
 # XXX FIXME XXX QTGUI_USE+=		qt=buildtools,core,gui,xml,qmake,widgets wx=wx
@@ -297,7 +300,8 @@ BLOCKTOOL_IMPLIES=	RUNTIME PYTHON
 SDL_DESC=		Simple DirectMedia Layer video support (SDL dependency, implies RUNTIME)
 SDL_CMAKE_BOOL=		ENABLE_GR_VIDEO_SDL
 SDL_IMPLIES=		RUNTIME
-SDL_BUILD_DEPENDS+=	sdl-config:devel/sdl12
+#SDL_BUILD_DEPENDS+=	sdl-config:devel/sdl12
+USE_SDL==		sdl
 
 #	Option VOCODER
 VOCODER_DESC=		Voice encoder support (libcodec2 & libgsm dependencies, implies ANALOG FFT FILTER BLOCKS RUNTIME)
