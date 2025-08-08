@@ -1,8 +1,5 @@
 PORTNAME=	wsjtx
 PORTVERSION=	2.7.0
-#PORTREVISION=	1	# Uncomment when release is there
-#DISTVERSION=	2.7.0
-#DISTVERSIONSUFFIX=	-rc8
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/wsjt/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
@@ -30,7 +27,6 @@ USE_QT=		core gui network widgets \
 
 CONFLICTS_INSTALL=	wsjtz
 
-# The follwing line should go once there is a release.
 WRKSRC=	${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 # for detailed debugging uncomment the next line
