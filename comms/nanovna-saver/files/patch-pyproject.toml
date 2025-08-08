@@ -1,0 +1,47 @@
+--- pyproject.toml.orig	2025-02-24 23:02:09.000000000 +0100
++++ pyproject.toml	2025-08-08 14:58:10.522011000 +0200
+@@ -7,7 +7,7 @@
+ maintainers = [
+     { name = "Holger Mueller", email = "zarath@gmx.de" }
+ ]
+-requires-python = ">=3.10,<3.13"
++requires-python = ">=3.10"
+ license = {text = "GPL-3.0-or-later"}
+ readme = "README.rst"
+ 
+@@ -23,7 +23,8 @@
+   'Programming Language :: Python :: 3.13',
+ ]
+ keywords = ["Communications", "Ham Radio", "nanovna"]
+-dynamic=['version']
++version='0.7.3'
++#dynamic=['version']
+ 
+ dependencies=[
+   'pyserial~=3.5',
+@@ -66,7 +67,7 @@
+ 
+ [build-system]
+ requires = [
+-  "setuptools>=64",
++  "setuptools>=63",
+   "setuptools-scm>=8"
+ ]
+ # build-backend = 'setuptools.build_meta'
+@@ -81,12 +82,13 @@
+ [tool.setuptools.packages.find]
+ # See https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html for more details
+ where = ["src"]
++exclude = ["tools"]
+ 
+-[tool.setuptools_scm]
++#[tool.setuptools_scm]
+ # For smarter version schemes and other configuration options,
+ # check out https://github.com/pypa/setuptools_scm
+-root='.'
+-version_scheme = 'no-guess-dev'
++#root='.'
++#version_scheme = 'no-guess-dev'
+ 
+ [tool.taskipy.tasks]
+ test = "pytest ."
