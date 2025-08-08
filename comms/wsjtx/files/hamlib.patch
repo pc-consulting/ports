@@ -63,3 +63,14 @@
  #else
          mytimezone = - (int)result.tm_gmtoff; // does not compile on mingw
  #endif
+--- hamlib/rigs/dummy/rot_pstrotator.c.orig	2025-08-08 19:38:30.029038000 +0200
++++ hamlib/rigs/dummy/rot_pstrotator.c	2025-08-08 19:32:15.580006000 +0200
+@@ -22,6 +22,8 @@
+ #include <string.h>  /* String function definitions */
+ #include <math.h>
+ #include <sys/time.h>
++#include <sys/types.h>
++#include <sys/socket.h>
+ #include <errno.h>
+ 
+ #include "hamlib/rotator.h"
