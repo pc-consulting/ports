@@ -1,7 +1,7 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	aeb43
-PORTVERSION=	0.1.0
+PORTVERSION=	0.1.1
 CATEGORIES=	finance python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
