@@ -2,7 +2,7 @@
 
 PORTNAME=	schwifty
 # NOTE: Must also update version in files/patch-setup.py accordingly!
-PORTVERSION=	2024.5.4
+PORTVERSION=	2025.7.0
 CATEGORIES=	finance devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -23,6 +23,10 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}importlib-resources>0:devel/py-importlib-res
 		${PYTHON_PKGNAMEPREFIX}iso3166>0:textproc/py-iso3166@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycountry>0:textproc/py-pycountry@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.0:devel/py-pydantic2@${PY_FLAVOR}
+# Test dependencies from python package
+# Don't know yet how to properly test
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}check-manifest>0:devel/py-check-manifest@${PY_FLAVOR} \
+#		${PYTHON_PKGNAMEPREFIX}coverage>0:devel/py-coverage@${PY_FLAVOR}
 
 USES=		python:3.9+
 USE_PYTHON=	autoplist distutils
