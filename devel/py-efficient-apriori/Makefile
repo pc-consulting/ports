@@ -1,7 +1,7 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	efficient-apriori
-PORTVERSION=	2.0.3
+PORTVERSION=	2.0.6
 CATEGORIES=	devel math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ WWW=		https://github.com/tommyod/Efficient-Apriori
 
 LICENSE=	MIT
 
-USES=		python:3.7+
-USE_PYTHON=	autoplist distutils
+USES=		python:3.9+
+USE_PYTHON=	autoplist pep517
 
 .include <bsd.port.mk>
