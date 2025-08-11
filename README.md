@@ -33,7 +33,6 @@ Considered *production-ready* (i. e. could go into the ports tree):
         - devel/py-mando
         - devel/py-radon
         - devel/py/stdnum
-            - Taken from ports and updated from 1.18 to 1.19 as required by finance/py-trytond-party
         - finance/py-braintree
         - finance/py-csb43
         - finance/py-febelfin-coda
@@ -41,9 +40,9 @@ Considered *production-ready* (i. e. could go into the ports tree):
         - finance/py-pyactiveresource
         - finance/py-schwifty
         - finance/py-shopifyapi
-        - net/py-zeep
-            - Taken from ports and updated with corrected dependencies (bumped PORTREVISION for that)
         - www/py-pytest-httpx
+- graphics/py-mtcnn
+    - Builds package, installs, and passes portlint -AC
 
 Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
