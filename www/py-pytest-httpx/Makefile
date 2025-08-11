@@ -1,11 +1,11 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	pytest-httpx
-PORTVERSION=	0.30.0
+PORTVERSION=	0.35.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-#DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Send responses to httpx
@@ -20,6 +20,6 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest_asyncio=>7.0:devel/py-pytest-asyncio
 		${PYTHON_PKGNAMEPREFIX}pytest_cov>=7.0:devel/py-pytest-cov@${PY_FLAVOR}
 
 USES=		python:3.9+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist pep517
 
 .include <bsd.port.mk>
