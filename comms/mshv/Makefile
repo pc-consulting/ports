@@ -1,13 +1,10 @@
 # Created by: Peter Cornelius <pcc@gmx.net>
 
 PORTNAME=	mshv
-PORTVERSION=	2.74
+PORTVERSION=	2.76.3
 CATEGORIES=	comms hamradio
 # SF pull still inoperable as-is, as mshv appears not to properly use version subdirs
-# Current workaround is to pull manually from
-# https://sourceforge.net/projects/mshv/files/MSHV_274_Full_Source_Code.zip/download
-# and place insto DISTDIR (/usr/ports/distfile per default)
-MASTER_SITES=	SF
+MASTER_SITES=	https://sourceforge.net/projects/mshv/files/
 DISTNAME=	MSHV_${PORTVERSION:S/.//g}_Full_Source_Code
 
 MAINTAINER=	pcc@gmx.net
@@ -21,16 +18,29 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 #RUN_DEPENDS=
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libfftw3.so:math/fftw3 \
-		libpulse-simple.so:audio/pulseaudio
+		libpulse-simple.so:audio/pulseaudio \
+		libpulse.so:audio/pulseaudio
 
-USES=		qmake:outsource qt:5 zip
-USE_GCC=	yes:build
-USE_QT=		gui qmake widgets
+USES=		gl qmake qt:5 zip
+USE_GCC=	yes
+USE_GL=		opengl
+USE_QT=		buildtools:build core gui network opengl qmake:build websockets widgets
 
-WRKSRC=		${WRKDIR}/${DISTNAME:C/_.*//g}_${PORTVERSION:S/.//g}/
+SUB_FILES=	pkg-message
+SUB_LIST=	EXAMPLESDIR=${EXAMPLESDIR}
+
+WRKSRC=		${WRKDIR}/${PORTNAME:tu}_${PORTVERSION:S/.//g}
 # QMAKE does not find the pro file and complains, no idea why.
 #QMAKE_SOURCE_PATH=	${WRKSRC}
 # There is a recipe for FreeBSD !!
-QMAKE_ARGS+=	MSHV_FreeBSD_amd64.pro
+QMAKE_ARGS+=	${WRKSRC}/MSHV_FreeBSD_amd64.pro
+
+#		Note that moving MSHV_FreeBSD_amd64 is a hack to use ${COPYTREE_SHARE} later.
+pre-install::	${MKDIR} ${STAGEDIR}/${PREFIX}/bin/
+		${INSTALL_PROGRAM} ${WRKSRC}/bin/MSHV_FreeBSD_amd64 ${STAGEDIR}/${PREFIX}/bin/
+		${RM} ${WRKSRC}/bin/MSHV_FreeBSD_amd64
+		( cd  ${STAGEDIR}/${PREFIX}/bin/ && ${LN} -s MSHV_FreeBSD_amd64 mshv )
+		${MKDIR} ${STAGEDIR}/${EXAMPLESDIR}
+		( cd ${WRKSRC}/bin/ && ${COPYTREE_SHARE} . ${STAGEDIR}/${EXAMPLESDIR}/ )
 
 .include <bsd.port.mk>

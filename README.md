@@ -46,6 +46,9 @@ Considered *production-ready* (i. e. could go into the ports tree):
 
 Considered *alpha/beta* (i. e. may or may not be a starting point for a working port):
 
+- comms/mshv
+    - Builds and produces some sort of binary which kind of starts but produces no output other than an occasional splash screen.
+    - Installs (and deinstalls) that binary, plus some files to ${EXAMPLESDIR} which also are from the source build.
 - ports-mgmt/pytoport
     - Python version parsing apparently has changed a bit in ports. The patch adds a '.0' to USES= so that the checks pass.
     - Made the handling of COMMENT in Makefile resilient to inconvenient pipy.org package information.
@@ -78,6 +81,5 @@ Considered *pre-alpha* (i. e. likely a waste of time):
     - Intended as meta port for proteus but ...
     - ... likely superfluous and hence to go away.
 - finance/tryton-sao
-    - See https://hg.tryton.org/sao/
-    - Currently not sure whether this software will be supporting tryton-7.x*, last changes in repo are a year old
-- Any other port not detailed above
+    - See https://foss.heptapod.net/tryton/tryton/-/tree/branch/default/sao?ref_type=heads
+ - Any other port not detailed above
