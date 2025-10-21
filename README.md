@@ -70,6 +70,8 @@ Considered *alpha/beta* (i. e. may or may not be a starting point for a working 
 
 Considered *pre-alpha* (i. e. likely a waste of time):
 
+- devel/theia
+    - Just passes portlint, no build attempt made yet.
 - finance/tryton-demo
         - Rough action plan as follows, yet to be implemented
         - Investigate 'representative stand-alone playground' scenario for self-learning and tutorials, both
