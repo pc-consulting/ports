@@ -18,6 +18,8 @@ GH_PROJECT=	arduino-cli
 
 GO_MODULE=	github.com/arduino/arduino-cli@v${DISTVERSION}
 GO_TARGET=	./:arduino-cli
+GO_LDFLAGS=	-X github.com/arduino/arduino-cli/internal/version.versionString=${DISTVERSION} \
+		-X github.com/arduino/arduino-cli/internal/version.commit=v${DISTVERSION}
 
 PLIST_FILES=	bin/arduino-cli
 
