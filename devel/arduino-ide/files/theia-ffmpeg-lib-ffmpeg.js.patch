@@ -1,0 +1,11 @@
+--- node_modules/@theia/ffmpeg/lib/ffmpeg.js.orig
++++ node_modules/@theia/ffmpeg/lib/ffmpeg.js
+@@ -49,6 +49,7 @@ function ffmpegNameAndLocation({ platform = process.platform } = {}) {
+                 name: 'ffmpeg.dll',
+                 location: '',
+             };
+         case 'linux':
++        case 'freebsd':
+             return {
+                 name: 'libffmpeg.so',
+                 location: '',

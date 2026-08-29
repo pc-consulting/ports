@@ -1,0 +1,55 @@
+--- arduino-ide-extension/src/node/resources.ts.orig
++++ arduino-ide-extension/src/node/resources.ts
+@@ -1,4 +1,5 @@
+ import path from 'node:path';
++import { existsSync } from 'node:fs';
+ 
+ // When running the tests, the JS files are not yet bundled by webpack.
+ // Hence, the `resources` folder lookup is different.
+@@ -9,18 +10,37 @@
+ );
+ const exe = process.platform === 'win32' ? '.exe' : '';
+ 
++function resolveExecutable(name: string): string {
++  if (process.platform !== 'freebsd') {
++    return path.join(resourcesPath, name + exe);
++  }
++
++  const searchPath = process.env.PATH?.split(path.delimiter) ?? [];
++  for (const directory of searchPath) {
++    if (!directory) {
++      continue;
++    }
++    const candidate = path.resolve(directory, name);
++    if (existsSync(candidate)) {
++      return candidate;
++    }
++  }
++
++  throw new Error(
++    `Could not find FreeBSD executable '${name}' in PATH.`
++  );
++}
++
+ // binaries
+-export const arduinoCliPath = path.join(resourcesPath, 'arduino-cli' + exe);
+-export const arduinoFirmwareUploaderPath = path.join(
+-  resourcesPath,
+-  'arduino-fwuploader' + exe
++export const arduinoCliPath = resolveExecutable('arduino-cli');
++export const arduinoFirmwareUploaderPath = resolveExecutable(
++  'arduino-fwuploader'
+ );
+-export const arduinoLanguageServerPath = path.join(
+-  resourcesPath,
+-  'arduino-language-server' + exe
++export const arduinoLanguageServerPath = resolveExecutable(
++  'arduino-language-server'
+ );
+-export const clangdPath = path.join(resourcesPath, 'clangd' + exe);
+-export const clangFormatPath = path.join(resourcesPath, 'clang-format' + exe);
++export const clangdPath = resolveExecutable('clangd');
++export const clangFormatPath = resolveExecutable('clang-format');
+ 
+ // plotter
+ export const arduinoPlotterWebAppPath = path.join(

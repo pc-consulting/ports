@@ -1,0 +1,7 @@
+#!/bin/sh
+
+PATH="%%PREFIX%%/bin:%%LLVM_PREFIX%%/bin:${PATH}"
+export PATH
+
+exec "%%PREFIX%%/bin/electron%%ELECTRON_VER_MAJOR%%" \
+    "%%DATADIR%%/resources/app" "$@"

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Arduino IDE
+Comment=Arduino IDE 2.x
+Exec=arduino-ide %U
+Icon=arduino-ide
+Terminal=false
+StartupWMClass=Arduino IDE
+Categories=Development;IDE;Electronics;
