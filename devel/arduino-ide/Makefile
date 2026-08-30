@@ -8,6 +8,8 @@ WWW=		https://www.arduino.cc/en/software/
 
 LICENSE=	AGPLv3
 
+BUILD_DEPENDS=	rg:textproc/ripgrep \
+		app-builder:devel/app-builder
 RUN_DEPENDS=	arduino-cli:devel/arduino-cli \
 		arduino-fwuploader:devel/arduino-fwuploader \
 		arduino-language-server:devel/arduino-language-server
@@ -49,8 +51,15 @@ pre-build:
 		${RM} -rf ${WRKSRC}/node_modules/electron/dist
 		${RLN} ${LOCALBASE}/share/electron${ELECTRON_VER_MAJOR} \
 			${WRKSRC}/node_modules/electron/dist
+		${MKDIR} ${WRKSRC}/node_modules/@vscode/ripgrep/bin
+		${RLN} ${LOCALBASE}/bin/rg \
+			${WRKSRC}/node_modules/@vscode/ripgrep/bin/rg
+		${MKDIR} ${WRKSRC}/node_modules/app-builder-bin/linux/${NODE_ARCH}
+		${RLN} ${LOCALBASE}/bin/app-builder \
+			${WRKSRC}/node_modules/app-builder-bin/linux/${NODE_ARCH}/app-builder
 		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-ffmpeg-lib-ffmpeg.js.patch
 		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-ffmpeg-native-linux-ffmpeg.c.patch
+		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-application-manager-lib-application-package-manager.js.patch
 		cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} yarn build
 
 do-build:
