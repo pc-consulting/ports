@@ -15,7 +15,7 @@ RUN_DEPENDS=	arduino-cli:devel/arduino-cli \
 		arduino-language-server:devel/arduino-language-server
 
 USES=		electron:42,build,run gmake llvm:min=14,run npm:yarn1,build \
-		nodejs:20 python:build desktop-file-utils
+		nodejs python:build desktop-file-utils
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	arduino
