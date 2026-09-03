@@ -60,6 +60,7 @@ pre-build:
 		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-ffmpeg-lib-ffmpeg.js.patch
 		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-ffmpeg-native-linux-ffmpeg.c.patch
 		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/theia-application-manager-lib-application-package-manager.js.patch
+		${PATCH} -d ${WRKSRC} -p0 < ${FILESDIR}/drivelist-freebsd.patch
 		cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} yarn build
 
 do-build:
