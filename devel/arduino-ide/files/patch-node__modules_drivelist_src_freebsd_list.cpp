@@ -1,20 +1,6 @@
---- node_modules/drivelist/binding.gyp	2026-09-03 21:35:36.631000041 +0200
-+++ node_modules/drivelist/binding.gyp	2026-09-03 21:02:09.963588000 +0200
-@@ -55,6 +55,11 @@
-           "sources": [
-             "src/linux/list.cpp"
-           ]
-+        }],
-+        [ 'OS=="freebsd"', {
-+          "sources": [
-+            "src/freebsd/list.cpp"
-+          ]
-         }]
-       ]
-     }
---- /dev/null	2026-09-03 22:59:07.970495000 +0200
-+++ node_modules/drivelist/src/freebsd/list.cpp	2026-09-03 21:17:26.224757000 +0200
-@@ -0,0 +1,432 @@
+--- node_modules/drivelist/src/freebsd/list.cpp.orig	2026-09-21 18:43:40 UTC
++++ node_modules/drivelist/src/freebsd/list.cpp
+@@ -0,0 +1,434 @@
 +/*
 + * Copyright 2017 balena.io
 + *
@@ -31,6 +17,8 @@
 + * limitations under the License.
 + */
 +
++#include <sys/param.h>
++#include <sys/ucred.h>
 +#include <sys/mount.h>
 +#include <sys/sysctl.h>
 +
@@ -143,7 +131,7 @@
 +}
 +
 +std::vector<DiskInfo> GetDiskInfo() {
-+  const std::string output = RunCommand("geom disk list 2>/dev/null");
++  const std::string output = RunCommand("/sbin/geom disk list 2>/dev/null");
 +  std::vector<DiskInfo> disks;
 +
 +  DiskInfo *current = nullptr;
@@ -193,7 +181,7 @@
 +}
 +
 +std::map<std::string, std::string> GetPartitionSchemes() {
-+  const std::string output = RunCommand("geom part list 2>/dev/null");
++  const std::string output = RunCommand("/sbin/geom part list 2>/dev/null");
 +  std::map<std::string, std::string> schemes;
 +
 +  std::istringstream stream(output);
@@ -371,7 +359,7 @@
 +        device.busType = "ATAPI";
 +      } else {
 +        device.busType = "Unknown";
-+      };
++      }
 +
 +      if (name.rfind("md", 0) == 0) {
 +        device.isVirtual = true;

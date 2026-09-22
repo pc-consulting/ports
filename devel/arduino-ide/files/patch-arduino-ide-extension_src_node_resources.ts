@@ -1,12 +1,12 @@
---- arduino-ide-extension/src/node/resources.ts.orig
+--- arduino-ide-extension/src/node/resources.ts.orig	2026-06-09 15:17:09 UTC
 +++ arduino-ide-extension/src/node/resources.ts
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,5 @@ import path from 'node:path';
  import path from 'node:path';
 +import { existsSync } from 'node:fs';
  
  // When running the tests, the JS files are not yet bundled by webpack.
  // Hence, the `resources` folder lookup is different.
-@@ -9,18 +10,37 @@
+@@ -9,18 +10,37 @@ const exe = process.platform === 'win32' ? '.exe' : ''
  );
  const exe = process.platform === 'win32' ? '.exe' : '';
  

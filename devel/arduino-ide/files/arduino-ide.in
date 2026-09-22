@@ -1,7 +1,41 @@
 #!/bin/sh
 
-PATH="%%PREFIX%%/bin:%%LLVM_PREFIX%%/bin:${PATH}"
+PATH="%%PREFIX%%/bin:${PATH}:%%LLVM_PREFIX%%/bin"
 export PATH
+
+if [ -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
+    export DBUS_SESSION_BUS_ADDRESS="autolaunch:"
+fi
+
+# Pre-populate arduino-cli's "builtin" tools from FreeBSD-native packages,
+# since Arduino's own package_index.json has no FreeBSD binaries for them.
+_ide_data_dir="${HOME}/.arduinoIDE"
+_cli_config="${_ide_data_dir}/arduino-cli.yaml"
+mkdir -p "${_ide_data_dir}"
+
+# arduino-cli falls back to a *relative* "." for directories.data/user when
+# arduino-cli.yaml has no "directories" block, resolved against whatever
+# directory the app happens to be launched from. Force it explicitly.
+if [ ! -f "${_cli_config}" ]; then
+    printf 'board_manager:\n  additional_urls: []\ndirectories:\n  data: %s\n  user: %s\n' \
+        "${_ide_data_dir}" "${HOME}/Arduino" > "${_cli_config}"
+elif ! grep -q '^directories:' "${_cli_config}"; then
+    printf 'directories:\n  data: %s\n  user: %s\n' \
+        "${_ide_data_dir}" "${HOME}/Arduino" >> "${_cli_config}"
+fi
+
+_populate_builtin_tool() {
+    _name="$1"; _version="$2"; _binpath="$3"
+    _dst="${_ide_data_dir}/packages/builtin/tools/${_name}/${_version}"
+    if [ -x "${_binpath}" ] && [ ! -e "${_dst}/${_name}" ]; then
+        mkdir -p "${_dst}"
+        ln -sf "${_binpath}" "${_dst}/${_name}"
+    fi
+}
+_populate_builtin_tool ctags 5.8-arduino11 "%%LOCALBASE%%/arduino/tools-builder/ctags/5.8-arduino11/ctags"
+_populate_builtin_tool mdns-discovery 1.1.0 "%%PREFIX%%/bin/arduino-mdns-discovery"
+_populate_builtin_tool serial-discovery 1.5.2 "%%PREFIX%%/bin/arduino-serial-discovery"
+_populate_builtin_tool serial-monitor 0.15.0 "%%PREFIX%%/bin/arduino-serial-monitor"
 
 exec "%%PREFIX%%/bin/electron%%ELECTRON_VER_MAJOR%%" \
     "%%DATADIR%%/resources/app" "$@"

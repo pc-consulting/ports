@@ -1,5 +1,0 @@
---- arduino-ide-extension/package.json.orig
-+++ arduino-ide-extension/package.json
-@@ -6 +6 @@
--    "prepare": "yarn download-cli && yarn download-fwuploader && yarn download-ls && yarn copy-i18n && yarn download-examples",
-+    "prepare": "yarn copy-i18n && yarn download-examples",
