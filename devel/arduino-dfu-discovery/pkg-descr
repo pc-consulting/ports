@@ -1,0 +1,3 @@
+arduino-dfu-discovery is a DFU pluggable discovery tool for arduino-clI
+and required by the integrated development environment for Arduino and
+related microcontroller projects, devel/arduino-ide.
