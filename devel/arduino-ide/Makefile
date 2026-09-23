@@ -52,6 +52,7 @@ LIB_DEPENDS=	libsecret-1.so:security/libsecret
 RUN_DEPENDS=	${LLVM_PREFIX}/bin/clangd:${LLVM_PORT} \
 		${LOCALBASE}/arduino/tools-builder/ctags/5.8-arduino11/ctags:devel/arduino-ctags \
 		arduino-cli:devel/arduino-cli \
+		arduino-dfu-discovery:devel/arduino-dfu-discovery \
 		arduino-fwuploader:devel/arduino-fwuploader \
 		arduino-language-server:devel/arduino-language-server \
 		arduino-mdns-discovery:devel/arduino-mdns-discovery \
@@ -84,11 +85,6 @@ _NATIVE_MODULES=	drivelist keytar native-keymap node-pty
 MAKE_ENV=	ARDUINO_EXAMPLES_DIR=${WRKSRC}/arduino-examples \
 		IS_RELEASE=true \
 		PATH=${WRKSRC}/node_modules/.bin:${WRKSRC}/arduino-ide-extension/node_modules/.bin:${LOCALBASE}/bin:${PATH}
-
-# node_modules already exists after extract (offline yarn install by npm.mk)
-#post-patch:
-#	${PATCH} -d ${WRKSRC} ${PATCH_ARGS} < ${FILESDIR}/theia-application-manager-lib-application-package-manager.js.patch
-#	${PATCH} -d ${WRKSRC} ${PATCH_ARGS} < ${FILESDIR}/drivelist-freebsd.patch
 
 pre-build:
 # @theia/native-webpack-plugin copies this into the bundle

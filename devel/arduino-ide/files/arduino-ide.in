@@ -33,6 +33,7 @@ _populate_builtin_tool() {
     fi
 }
 _populate_builtin_tool ctags 5.8-arduino11 "%%LOCALBASE%%/arduino/tools-builder/ctags/5.8-arduino11/ctags"
+_populate_builtin_tool dfu-discovery 0.1.2 "%%PREFIX%%/bin/arduino-dfu-discovery"
 _populate_builtin_tool mdns-discovery 1.1.0 "%%PREFIX%%/bin/arduino-mdns-discovery"
 _populate_builtin_tool serial-discovery 1.5.2 "%%PREFIX%%/bin/arduino-serial-discovery"
 _populate_builtin_tool serial-monitor 0.15.0 "%%PREFIX%%/bin/arduino-serial-monitor"
