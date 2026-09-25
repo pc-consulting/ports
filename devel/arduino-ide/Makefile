@@ -1,18 +1,22 @@
 PORTNAME=	arduino-ide
 DISTVERSION=	2.3.10
 CATEGORIES=	devel editors
-MASTER_SITES=	https://open-vsx.org/api/vscode/cpp/1.88.1/file/:vscode_cpp \
-		https://open-vsx.org/api/vscode/json/1.88.1/file/:vscode_json \
-		https://open-vsx.org/api/vscode/json-language-features/1.88.1/file/:vscode_jsonlf \
+MASTER_SITES=	https://downloads.arduino.cc/vscode-arduino-tools/:arduino_tools \
+		https://downloads.arduino.cc/marus25.cortex-debug/:cortex_debug \
+		https://downloads.arduino.cc/cores/staging/:avrcore \
 		https://github.com/dankeboy36/vscode-arduino-api/releases/download/0.1.2/:arduino_api \
-		https://downloads.arduino.cc/vscode-arduino-tools/:arduino_tools \
-		https://downloads.arduino.cc/marus25.cortex-debug/:cortex_debug
-DISTFILES=	vscode.cpp-1.88.1.vsix:vscode_cpp \
+		https://github.com/espressif/arduino-esp32/releases/download/3.1.3/:espcore \
+		https://open-vsx.org/api/vscode/cpp/1.88.1/file/:vscode_cpp \
+		https://open-vsx.org/api/vscode/json/1.88.1/file/:vscode_json \
+		https://open-vsx.org/api/vscode/json-language-features/1.88.1/file/:vscode_jsonlf
+DISTFILES+=	avr-1.8.6.tar.bz2:avrcore \
+		esp32-3.1.3.zip:espcore \
+		marus25.cortex-debug-1.5.1.vsix:cortex_debug \
+		vscode.cpp-1.88.1.vsix:vscode_cpp \
 		vscode.json-1.88.1.vsix:vscode_json \
 		vscode.json-language-features-1.88.1.vsix:vscode_jsonlf \
 		vscode-arduino-api-0.1.2.vsix:arduino_api \
-		vscode-arduino-tools-0.1.3.vsix:arduino_tools \
-		marus25.cortex-debug-1.5.1.vsix:cortex_debug
+		vscode-arduino-tools-0.1.3.vsix:arduino_tools
 
 # plugin id (directory below electron-app/plugins) : distfile
 _PLUGINS=	vscode-builtin-cpp:vscode.cpp-1.88.1.vsix \
@@ -51,6 +55,8 @@ BUILD_DEPENDS=	rg:textproc/ripgrep
 LIB_DEPENDS=	libsecret-1.so:security/libsecret
 RUN_DEPENDS=	${LLVM_PREFIX}/bin/clangd:${LLVM_PORT} \
 		${LOCALBASE}/arduino/tools-builder/ctags/5.8-arduino11/ctags:devel/arduino-ctags \
+		${LOCALBASE}/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc:devel/xtensa-esp-elf \
+		arduino-avrdude:devel/arduino-avrdude \
 		arduino-cli:devel/arduino-cli \
 		arduino-dfu-discovery:devel/arduino-dfu-discovery \
 		arduino-fwuploader:devel/arduino-fwuploader \
@@ -58,6 +64,9 @@ RUN_DEPENDS=	${LLVM_PREFIX}/bin/clangd:${LLVM_PORT} \
 		arduino-mdns-discovery:devel/arduino-mdns-discovery \
 		arduino-serial-discovery:devel/arduino-serial-discovery \
 		arduino-serial-monitor:devel/arduino-serial-monitor \
+		avr-gcc:devel/avr-gcc \
+		avr-libc>0:devel/avr-libc \
+		dfu-util:comms/dfu-util \
 		rg:textproc/ripgrep
 
 USES=		electron:42,build,run gmake llvm:min=14,run,noexport \
@@ -72,7 +81,8 @@ GH_TUPLE=	arduino:arduino-examples:1.10.3:examples/arduino-examples
 # the .vsix files are only unpacked by pre-build, never extracted
 EXTRACT_ONLY=	${_DISTFILES:N*.vsix}
 
-SUB_FILES=	arduino-ide
+SUB_FILES=	arduino-ide \
+		pkg-message
 SUB_LIST=	LLVM_PREFIX=${LLVM_PREFIX} \
 		LOCALBASE=${LOCALBASE}
 
@@ -134,6 +144,10 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
 	${INSTALL_DATA} ${WRKSRC}/electron-app/resources/icons/512x512.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps/arduino-ide.png
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/arduino-ide/hardware
+	${CP} -R ${WRKDIR}/avr-1.8.6 ${STAGEDIR}${PREFIX}/share/arduino-ide/hardware/avr-1.8.6
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/arduino-ide/hardware
+	${CP} -R ${WRKDIR}/esp32-3.1.3 ${STAGEDIR}${PREFIX}/share/arduino-ide/hardware/esp32-3.1.3
 
 post-install:
 	@cd ${STAGEDIR}${PREFIX} && \

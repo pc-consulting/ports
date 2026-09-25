@@ -1,0 +1,36 @@
+[
+{ type: install
+  message: <<EOM
+
+The Arduino AVR Boards platform has been pre-configured to use this
+system's avr-gcc, avr-libc, and avrdude (from ports/pkg), since Arduino's
+own package index has no FreeBSD builds of these tools.
+
+This works via symlinks under:
+    ~/.arduinoIDE/packages/arduino/tools/avr-gcc/
+    ~/.arduinoIDE/packages/arduino/tools/avrdude/
+
+Each contains a version-pinned name required by the Arduino AVR core
+(e.g. "7.3.0-atmel3.6.1-arduino7") -- this is NOT the real installed
+version; it exists only so arduino-cli's tool lookup succeeds. Follow
+the sibling "freebsd-port-provided" symlink in the same directory to see
+what is actually being used (normally %%LOCALBASE%%, i.e. whatever
+avr-gcc/avrdude package is currently installed).
+
+If you need a different or additional toolchain version side by side,
+install it under %%LOCALBASE%% by hand and point a new version-named
+symlink at it, following the same pattern.
+
+The Arduino ESP32 Boards platform (esp32:esp32, version 3.1.3) is
+pre-configured the same way, using this system's xtensa-esp-elf package
+for compilation. Look for the "freebsd-port-provided-esp32" symlink under
+~/.arduinoIDE/packages/esp32/tools/esp-x32/.
+
+Uploading firmware over JTAG/on-chip debugging, and SPIFFS/LittleFS
+filesystem-image uploads, are not yet supported on FreeBSD (no FreeBSD
+builds exist for Espressif's gdb, openocd, mkspiffs, or mklittlefs).
+Plain sketch compile-and-upload over USB serial is supported.
+
+EOM
+}
+]
