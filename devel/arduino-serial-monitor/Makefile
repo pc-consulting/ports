@@ -15,4 +15,8 @@ GO_MODULE=	github.com/arduino/serial-monitor
 
 PLIST_FILES=	bin/arduino-serial-monitor
 
+post-patch:
+	${REINPLACE_CMD} -E 's~var osPortFilter = regexp\.MustCompile\(.*\)~var osPortFilter = regexp.MustCompile("^cuaU[0-9]+$$")~' \
+		${WRKSRC}/vendor/go.bug.st/serial/serial_freebsd.go
+
 .include <bsd.port.mk>
