@@ -1,0 +1,807 @@
+--- /dev/null
++++ cargo-crates/midir-0.11.0/src/backend/freebsd/mod.rs
+@@ -0,0 +1,570 @@
++use std::ffi::{c_char, c_int, c_uint, c_void, CString};
++use std::fs;
++use std::mem;
++use std::path::Path;
++use std::thread::{Builder, JoinHandle};
++use std::time::Instant;
++
++use crate::errors::*;
++use crate::Ignore;
++
++use libc::pollfd;
++
++const MIO_IN: c_uint = 8;
++const MIO_OUT: c_uint = 4;
++
++#[repr(C)]
++struct MioHdl {
++    _private: [u8; 0],
++}
++
++unsafe extern "C" {
++    fn mio_open(name: *const c_char, mode: c_uint, nbio_flag: c_int) -> *mut MioHdl;
++    fn mio_close(hdl: *mut MioHdl);
++    fn mio_read(hdl: *mut MioHdl, addr: *mut c_void, nbytes: usize) -> usize;
++    fn mio_write(hdl: *mut MioHdl, addr: *const c_void, nbytes: usize) -> usize;
++    fn mio_nfds(hdl: *mut MioHdl) -> c_int;
++    fn mio_pollfd(hdl: *mut MioHdl, pfd: *mut pollfd, events: c_int) -> c_int;
++    fn mio_revents(hdl: *mut MioHdl, pfd: *mut pollfd) -> c_int;
++    fn mio_eof(hdl: *mut MioHdl) -> c_int;
++}
++
++struct MioHandle(*mut MioHdl);
++
++/*
++ * A MioHandle is only ever accessed by one thread at a time.  In particular,
++ * input handles are opened before spawning the input thread and subsequently
++ * owned exclusively by that thread.  Output handles can be moved into the
++ * callback thread by midir clients.
++ */
++unsafe impl Send for MioHandle {}
++
++impl Drop for MioHandle {
++    fn drop(&mut self) {
++        if !self.0.is_null() {
++            unsafe {
++                mio_close(self.0);
++            }
++        }
++    }
++}
++
++#[repr(transparent)]
++struct PipeFd(c_int);
++
++impl PipeFd {
++    fn get(&self) -> c_int {
++        self.0
++    }
++}
++
++impl Drop for PipeFd {
++    fn drop(&mut self) {
++        unsafe {
++            libc::close(self.0);
++        }
++    }
++}
++
++fn open_mio(port: &str, mode: c_uint, nonblocking: bool) -> Option<MioHandle> {
++    let name = CString::new(port).ok()?;
++    let hdl = unsafe { mio_open(name.as_ptr(), mode, nonblocking as c_int) };
++    if hdl.is_null() {
++        None
++    } else {
++        Some(MioHandle(hdl))
++    }
++}
++
++fn enumerate_ports() -> Vec<String> {
++    let mut ports = Vec::new();
++
++    /*
++     * sndiod's first MIDI thru endpoint is a useful software MIDI endpoint.
++     * Only advertise it when it can actually be opened.
++     */
++    if let Some(hdl) = open_mio("midithru/0", MIO_IN, true) {
++        drop(hdl);
++        ports.push("midithru/0".to_string());
++    }
++
++    if let Ok(entries) = fs::read_dir("/dev") {
++        let mut rmidi = entries
++            .filter_map(Result::ok)
++            .filter_map(|entry| {
++                let name = entry.file_name();
++                let name = name.to_str()?;
++                if !name.starts_with("rmidi") {
++                    return None;
++                }
++                let suffix = &name[5..];
++                if suffix.is_empty() || !suffix.bytes().all(|b| b.is_ascii_digit()) {
++                    return None;
++                }
++                Some(name.to_string())
++            })
++            .collect::<Vec<_>>();
++
++        rmidi.sort();
++
++        for name in rmidi {
++            let path = format!("/dev/{name}");
++            if Path::new(&path).exists() {
++                ports.push(format!("rmidi/{0}", &name[5..]));
++            }
++        }
++    }
++
++    ports
++}
++
++#[derive(Clone, PartialEq)]
++pub struct MidiInputPort {
++    id: String,
++}
++
++impl MidiInputPort {
++    pub fn id(&self) -> String {
++        self.id.clone()
++    }
++}
++
++#[derive(Clone, PartialEq)]
++pub struct MidiOutputPort {
++    id: String,
++}
++
++impl MidiOutputPort {
++    pub fn id(&self) -> String {
++        self.id.clone()
++    }
++}
++
++pub struct MidiInput {
++    ignore_flags: Ignore,
++}
++
++pub struct MidiOutput;
++
++type CallbackFn<T> = dyn FnMut(u64, &[u8], &mut T) + Send;
++
++pub struct MidiInputConnection<T: 'static> {
++    thread: Option<JoinHandle<T>>,
++    trigger_send_fd: Option<PipeFd>,
++    ignore_flags: Ignore,
++}
++
++pub struct MidiOutputConnection {
++    handle: Option<MioHandle>,
++}
++
++impl MidiInput {
++    pub fn new(_client_name: &str) -> Result<Self, InitError> {
++        Ok(Self {
++            ignore_flags: Ignore::None,
++        })
++    }
++
++    pub fn ignore(&mut self, flags: Ignore) {
++        self.ignore_flags = flags;
++    }
++
++    pub(crate) fn ports_internal(&self) -> Vec<crate::common::MidiInputPort> {
++        enumerate_ports()
++            .into_iter()
++            .map(|id| crate::common::MidiInputPort {
++                imp: MidiInputPort { id },
++            })
++            .collect()
++    }
++
++    pub fn port_count(&self) -> usize {
++        enumerate_ports().len()
++    }
++
++    pub fn port_name(&self, port: &MidiInputPort) -> Result<String, PortInfoError> {
++        Ok(port.id.clone())
++    }
++
++    pub fn connect<F, T: Send>(
++        self,
++        port: &MidiInputPort,
++        port_name: &str,
++        callback: F,
++        data: T,
++    ) -> Result<MidiInputConnection<T>, ConnectError<Self>>
++    where
++        F: FnMut(u64, &[u8], &mut T) + Send + 'static,
++    {
++        let trigger_fds = match init_trigger() {
++            Ok(fds) => fds,
++            Err(()) => {
++                return Err(ConnectError::other(
++                    "could not create communication pipe for FreeBSD MIDI handler",
++                    self,
++                ));
++            }
++        };
++
++        let handle = match open_mio(&port.id, MIO_IN, true) {
++            Some(handle) => handle,
++            None => {
++                return Err(ConnectError::new(ConnectErrorKind::InvalidPort, self));
++            }
++        };
++
++        let raw_handle = handle.0 as usize;
++        let trigger_rx = trigger_fds.0;
++        let ignore_flags = self.ignore_flags;
++
++        /*
++         * The raw pointer itself is deliberately converted to usize before
++         * entering the spawned closure.  Raw pointers do not implement Send,
++         * whereas the handle is exclusively owned by the input thread.
++         */
++        let thread_name = format!("midir FreeBSD input handler (port '{port_name}')");
++        let thread = match Builder::new()
++            .name(thread_name)
++            .spawn(move || {
++                let handle = raw_handle as *mut MioHdl;
++                let mut user_data = data;
++                let mut callback: Box<CallbackFn<T>> = Box::new(callback);
++                let mut decoder = MidiDecoder::new(ignore_flags);
++                let started = Instant::now();
++                let mut input_buffer = [0u8; 4096];
++                let mut poll_fds = Vec::<pollfd>::new();
++
++                loop {
++                    let nfds = unsafe { mio_nfds(handle) };
++                    if nfds <= 0 {
++                        break;
++                    }
++
++                    poll_fds.resize(
++                        nfds as usize + 1,
++                        pollfd {
++                            fd: -1,
++                            events: 0,
++                            revents: 0,
++                        },
++                    );
++
++                    poll_fds[0] = pollfd {
++                        fd: trigger_rx.get(),
++                        events: libc::POLLIN,
++                        revents: 0,
++                    };
++
++                    let mio_nfds = unsafe {
++                        mio_pollfd(
++                            handle,
++                            poll_fds[1..].as_mut_ptr(),
++                            libc::POLLIN,
++                        )
++                    };
++
++                    if mio_nfds <= 0 {
++                        break;
++                    }
++
++                    let poll_result = unsafe {
++                        libc::poll(
++                            poll_fds.as_mut_ptr(),
++                            poll_fds.len() as libc::nfds_t,
++                            -1,
++                        )
++                    };
++
++                    if poll_result < 0 {
++                        if std::io::Error::last_os_error().raw_os_error()
++                            == Some(libc::EINTR)
++                        {
++                            continue;
++                        }
++                        break;
++                    }
++
++                    if poll_fds[0].revents != 0 {
++                        break;
++                    }
++
++                    let revents = unsafe {
++                        mio_revents(handle, poll_fds[1..].as_mut_ptr())
++                    };
++
++                    if revents & libc::POLLIN == 0 {
++                        if revents & (libc::POLLERR | libc::POLLHUP | libc::POLLNVAL) != 0 {
++                            break;
++                        }
++                        continue;
++                    }
++
++                    let n = unsafe {
++                        mio_read(
++                            handle,
++                            input_buffer.as_mut_ptr() as *mut c_void,
++                            input_buffer.len(),
++                        )
++                    };
++
++                    if n == 0 {
++                        if unsafe { mio_eof(handle) } != 0 {
++                            break;
++                        }
++                        continue;
++                    }
++
++                    for &byte in &input_buffer[..n] {
++                        if let Some(message) = decoder.push(byte) {
++                            let timestamp = started.elapsed().as_micros() as u64;
++                            callback(timestamp, &message, &mut user_data);
++                        }
++                    }
++                }
++
++                /*
++                 * The handle is closed here, in the same thread which used
++                 * it.  This also guarantees that the sndio calls on a handle
++                 * remain serialized.
++                 */
++                unsafe {
++                    mio_close(handle);
++                }
++
++                user_data
++            }) {
++            Ok(thread) => thread,
++            Err(_) => {
++                drop(handle);
++                return Err(ConnectError::other(
++                    "could not start FreeBSD MIDI input handler thread",
++                    self,
++                ));
++            }
++        };
++
++        /*
++         * Ownership of the sndio handle was transferred into the thread as a
++         * raw pointer.  Prevent the temporary Rust owner from closing it.
++         */
++        mem::forget(handle);
++        mem::forget(trigger_fds.0);
++
++        Ok(MidiInputConnection {
++            thread: Some(thread),
++            trigger_send_fd: Some(trigger_fds.1),
++            ignore_flags,
++        })
++    }
++
++    pub fn create_virtual<F, T: Send>(
++        self,
++        _port_name: &str,
++        _callback: F,
++        _data: T,
++    ) -> Result<MidiInputConnection<T>, ConnectError<Self>>
++    where
++        F: FnMut(u64, &[u8], &mut T) + Send + 'static,
++    {
++        Err(ConnectError::other(
++            "FreeBSD sndio does not provide midir virtual-port creation",
++            self,
++        ))
++    }
++}
++
++impl<T> MidiInputConnection<T> {
++    pub fn close(mut self) -> (MidiInput, T) {
++        let data = self.close_internal();
++        (
++            MidiInput {
++                ignore_flags: self.ignore_flags,
++            },
++            data,
++        )
++    }
++
++    fn close_internal(&mut self) -> T {
++        if let Some(fd) = self.trigger_send_fd.as_ref() {
++            let byte = [0u8; 1];
++            unsafe {
++                libc::write(
++                    fd.get(),
++                    byte.as_ptr() as *const c_void,
++                    byte.len(),
++                );
++            }
++        }
++
++        self.trigger_send_fd.take();
++
++        let thread = self.thread.take().expect("MIDI input thread already stopped");
++        match thread.join() {
++            Ok(data) => data,
++            Err(err) => {
++                if let Some(message) = err.downcast_ref::<&'static str>() {
++                    panic!("FreeBSD MIDI input thread panicked: {message}");
++                }
++                panic!("FreeBSD MIDI input thread panicked");
++            }
++        }
++    }
++}
++
++impl<T> Drop for MidiInputConnection<T> {
++    fn drop(&mut self) {
++        if self.thread.is_some() {
++            let _ = self.close_internal();
++        }
++    }
++}
++
++impl MidiOutput {
++    pub fn new(_client_name: &str) -> Result<Self, InitError> {
++        Ok(Self)
++    }
++
++    pub(crate) fn ports_internal(&self) -> Vec<crate::common::MidiOutputPort> {
++        enumerate_ports()
++            .into_iter()
++            .map(|id| crate::common::MidiOutputPort {
++                imp: MidiOutputPort { id },
++            })
++            .collect()
++    }
++
++    pub fn port_count(&self) -> usize {
++        enumerate_ports().len()
++    }
++
++    pub fn port_name(&self, port: &MidiOutputPort) -> Result<String, PortInfoError> {
++        Ok(port.id.clone())
++    }
++
++    pub fn connect(
++        self,
++        port: &MidiOutputPort,
++        _port_name: &str,
++    ) -> Result<MidiOutputConnection, ConnectError<Self>> {
++        let handle = match open_mio(&port.id, MIO_OUT, false) {
++            Some(handle) => handle,
++            None => {
++                return Err(ConnectError::new(ConnectErrorKind::InvalidPort, self));
++            }
++        };
++
++        Ok(MidiOutputConnection {
++            handle: Some(handle),
++        })
++    }
++
++    pub fn create_virtual(
++        self,
++        _port_name: &str,
++    ) -> Result<MidiOutputConnection, ConnectError<Self>> {
++        Err(ConnectError::other(
++            "FreeBSD sndio does not provide midir virtual-port creation",
++            self,
++        ))
++    }
++}
++
++impl MidiOutputConnection {
++    pub fn close(mut self) -> MidiOutput {
++        self.handle.take();
++        MidiOutput
++    }
++
++    pub fn send(&mut self, message: &[u8]) -> Result<(), SendError> {
++        if message.is_empty() {
++            return Ok(());
++        }
++
++        let handle = match self.handle.as_ref() {
++            Some(handle) => handle.0,
++            None => {
++                return Err(SendError::Other(
++                    "FreeBSD MIDI output connection is closed",
++                ));
++            }
++        };
++
++        let mut offset = 0;
++        while offset < message.len() {
++            let n = unsafe {
++                mio_write(
++                    handle,
++                    message[offset..].as_ptr() as *const c_void,
++                    message.len() - offset,
++                )
++            };
++
++            if n == 0 {
++                return Err(SendError::Other(
++                    "could not write MIDI data through sndio",
++                ));
++            }
++
++            offset += n;
++        }
++
++        Ok(())
++    }
++}
++
++impl Drop for MidiOutputConnection {
++    fn drop(&mut self) {
++        self.handle.take();
++    }
++}
++
++fn init_trigger() -> Result<(PipeFd, PipeFd), ()> {
++    let mut fds = [-1, -1];
++
++    if unsafe { libc::pipe(fds.as_mut_ptr()) } == -1 {
++        return Err(());
++    }
++
++    Ok((PipeFd(fds[0]), PipeFd(fds[1])))
++}
++
++struct MidiDecoder {
++    ignore: Ignore,
++    running_status: Option<u8>,
++    status: Option<u8>,
++    data: Vec<u8>,
++    needed: usize,
++    sysex: Option<Vec<u8>>,
++    sysex_ignored: bool,
++}
++
++impl MidiDecoder {
++    fn new(ignore: Ignore) -> Self {
++        Self {
++            ignore,
++            running_status: None,
++            status: None,
++            data: Vec::with_capacity(3),
++            needed: 0,
++            sysex: None,
++            sysex_ignored: false,
++        }
++    }
++
++    fn push(&mut self, byte: u8) -> Option<Vec<u8>> {
++        /*
++         * MIDI realtime messages may occur between any two bytes, including
++         * inside SysEx.  They therefore have priority over all other parsing.
++         */
++        if byte >= 0xF8 {
++            if (byte == 0xF8 || byte == 0xF9)
++                && self.ignore.contains(Ignore::Time)
++            {
++                return None;
++            }
++
++            if byte == 0xFE && self.ignore.contains(Ignore::ActiveSense) {
++                return None;
++            }
++
++            return Some(vec![byte]);
++        }
++
++        if let Some(sysex) = self.sysex.as_mut() {
++            if byte == 0xF7 {
++                sysex.push(byte);
++                let result = if self.sysex_ignored {
++                    None
++                } else {
++                    Some(std::mem::take(sysex))
++                };
++                self.sysex = None;
++                self.sysex_ignored = false;
++                return result;
++            }
++
++            if byte & 0x80 != 0 {
++                /*
++                 * Malformed/incomplete SysEx.  Drop it and treat the new
++                 * status byte as a resynchronization point.
++                 */
++                self.sysex = None;
++                self.sysex_ignored = false;
++                self.running_status = None;
++            } else {
++                sysex.push(byte);
++                return None;
++            }
++        }
++
++        if byte & 0x80 != 0 {
++            match byte {
++                0xF0 => {
++                    self.status = None;
++                    self.data.clear();
++                    self.needed = 0;
++                    self.running_status = None;
++                    self.sysex = Some(vec![0xF0]);
++                    self.sysex_ignored = self.ignore.contains(Ignore::Sysex);
++                    return None;
++                }
++
++                0xF1 => {
++                    self.start_system_status(byte, 1);
++                    return None;
++                }
++
++                0xF2 => {
++                    self.start_system_status(byte, 2);
++                    return None;
++                }
++
++                0xF3 => {
++                    self.start_system_status(byte, 1);
++                    return None;
++                }
++
++                0xF6 | 0xF7 => {
++                    self.running_status = None;
++                    self.status = None;
++                    self.data.clear();
++                    self.needed = 0;
++                    return Some(vec![byte]);
++                }
++
++                0x80..=0xEF => {
++                    self.running_status = Some(byte);
++                    self.status = Some(byte);
++                    self.data.clear();
++                    self.needed = channel_data_len(byte);
++                    return None;
++                }
++
++                _ => {
++                    /*
++                     * 0xF4/0xF5 and other undefined system common bytes are
++                     * treated as standalone messages for resynchronization.
++                     */
++                    self.running_status = None;
++                    self.status = None;
++                    self.data.clear();
++                    self.needed = 0;
++                    return Some(vec![byte]);
++                }
++            }
++        }
++
++        /*
++         * A data byte with no explicit status uses MIDI running status.
++         */
++        if self.status.is_none() {
++            if let Some(status) = self.running_status {
++                self.status = Some(status);
++                self.needed = channel_data_len(status);
++                self.data.clear();
++            } else {
++                return None;
++            }
++        }
++
++        self.data.push(byte);
++
++        if self.data.len() < self.needed {
++            return None;
++        }
++
++        let status = self.status.take().unwrap();
++        let mut message = Vec::with_capacity(self.data.len() + 1);
++        message.push(status);
++        message.extend_from_slice(&self.data);
++        self.data.clear();
++        self.needed = 0;
++
++        if status < 0xF0 {
++            /*
++             * Channel-message running status survives the completed message.
++             */
++            self.running_status = Some(status);
++        } else {
++            self.running_status = None;
++        }
++
++        Some(message)
++    }
++
++    fn start_system_status(&mut self, status: u8, needed: usize) {
++        self.running_status = None;
++        self.status = Some(status);
++        self.data.clear();
++        self.needed = needed;
++    }
++}
++
++fn channel_data_len(status: u8) -> usize {
++    match status & 0xF0 {
++        0xC0 | 0xD0 => 1,
++        _ => 2,
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++
++    fn decode(bytes: &[u8], ignore: Ignore) -> Vec<Vec<u8>> {
++        let mut decoder = MidiDecoder::new(ignore);
++        bytes
++            .iter()
++            .filter_map(|&byte| decoder.push(byte))
++            .collect()
++    }
++
++    #[test]
++    fn channel_message() {
++        assert_eq!(
++            decode(&[0x90, 0x40, 0x7f], Ignore::None),
++            vec![vec![0x90, 0x40, 0x7f]]
++        );
++    }
++
++    #[test]
++    fn running_status() {
++        assert_eq!(
++            decode(
++                &[0x90, 0x40, 0x7f, 0x41, 0x7e],
++                Ignore::None
++            ),
++            vec![
++                vec![0x90, 0x40, 0x7f],
++                vec![0x90, 0x41, 0x7e]
++            ]
++        );
++    }
++
++    #[test]
++    fn program_change_has_one_data_byte() {
++        assert_eq!(
++            decode(&[0xC0, 0x05], Ignore::None),
++            vec![vec![0xC0, 0x05]]
++        );
++    }
++
++    #[test]
++    fn sysex() {
++        assert_eq!(
++            decode(&[0xF0, 0x01, 0x02, 0x03, 0xF7], Ignore::None),
++            vec![vec![0xF0, 0x01, 0x02, 0x03, 0xF7]]
++        );
++    }
++
++    #[test]
++    fn realtime_inside_sysex() {
++        assert_eq!(
++            decode(
++                &[0xF0, 0x01, 0xF8, 0x02, 0xF7],
++                Ignore::None
++            ),
++            vec![
++                vec![0xF8],
++                vec![0xF0, 0x01, 0x02, 0xF7]
++            ]
++        );
++    }
++
++    #[test]
++    fn ignored_realtime_inside_sysex() {
++        assert_eq!(
++            decode(
++                &[0xF0, 0x01, 0xF8, 0x02, 0xF7],
++                Ignore::Time
++            ),
++            vec![vec![0xF0, 0x01, 0x02, 0xF7]]
++        );
++    }
++
++    #[test]
++    fn ignore_sysex() {
++        assert_eq!(
++            decode(
++                &[0xF0, 0x01, 0x02, 0xF7],
++                Ignore::Sysex
++            ),
++            Vec::<Vec<u8>>::new()
++        );
++    }
++
++    #[test]
++    fn ignore_active_sense() {
++        assert_eq!(
++            decode(&[0xFE, 0x90, 0x40, 0x7f], Ignore::ActiveSense),
++            vec![vec![0x90, 0x40, 0x7f]]
++        );
++    }
++}
++

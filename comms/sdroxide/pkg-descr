@@ -1,0 +1,9 @@
+SDR Oxide (sdroxide) is a native software-defined-radio transceiver
+client written in Rust.  It provides a PowerSDR/Thetis-style desktop
+interface, browser-served remote operation, CAT/TCI/HPSDR and multiple
+native SDR backends, including SoapySDR, RTL-SDR, HackRF, Airspy,
+RX-888, SDRplay, LimeSDR and others.
+
+The upstream project also includes digital-mode DSP, CW/RTTY/PSK
+skimmers, FT8/FT4, FreeDV/RADE, logbook and built-in TCI and Hamlib
+rigctld servers.

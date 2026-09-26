@@ -1,0 +1,773 @@
+--- cargo-crates/nusb-0.2.7/src/platform/mod.rs
++++ cargo-crates/nusb-0.2.7/src/platform/mod.rs
+@@ -1,3 +1,9 @@
++#[cfg(target_os = "freebsd")]
++mod freebsd;
++
++#[cfg(target_os = "freebsd")]
++pub use freebsd::*;
++
+ #[cfg(any(target_os = "linux", target_os = "android"))]
+ mod linux_usbfs;
+ 
+--- /dev/null
++++ cargo-crates/nusb-0.2.7/src/platform/freebsd.rs
+@@ -0,0 +1,758 @@
++use std::{
++    collections::VecDeque,
++    num::NonZeroU32,
++    ptr,
++    sync::Arc,
++    task::{Context, Poll},
++    time::Duration,
++};
++
++use crate::{
++    descriptors::{parse_concatenated_config_descriptors, EndpointDescriptor, TransferType},
++    enumeration::{DeviceInfo, InterfaceInfo, Speed},
++    maybe_future::{MaybeFuture, Ready},
++    transfer::{
++        internal::{take_completed_from_queue, Notify, Pending, TransferFuture},
++        Allocator, Buffer, Completion, ControlIn, ControlOut, Direction, TransferError,
++    },
++    Error, ErrorKind,
++};
++
++#[link(name = "usb")]
++unsafe extern "C" {
++    fn libusb_init(ctx: *mut *mut libusb_context) -> i32;
++    fn libusb_get_device_list(ctx: *mut libusb_context, list: *mut *mut *mut libusb_device) -> isize;
++    fn libusb_free_device_list(list: *mut *mut libusb_device, unref_devices: i32);
++    fn libusb_get_bus_number(dev: *mut libusb_device) -> u8;
++    fn libusb_get_device_address(dev: *mut libusb_device) -> u8;
++    fn libusb_get_port_numbers(dev: *mut libusb_device, buf: *mut u8, bufsize: u8) -> i32;
++    fn libusb_get_device_speed(dev: *mut libusb_device) -> i32;
++    fn libusb_ref_device(dev: *mut libusb_device) -> *mut libusb_device;
++    fn libusb_unref_device(dev: *mut libusb_device);
++    fn libusb_open(dev: *mut libusb_device, handle: *mut *mut libusb_device_handle) -> i32;
++    fn libusb_close(handle: *mut libusb_device_handle);
++    fn libusb_get_device(handle: *mut libusb_device_handle) -> *mut libusb_device;
++    fn libusb_claim_interface(handle: *mut libusb_device_handle, interface: i32) -> i32;
++    fn libusb_release_interface(handle: *mut libusb_device_handle, interface: i32) -> i32;
++    fn libusb_set_interface_alt_setting(handle: *mut libusb_device_handle, interface: i32, alt: i32) -> i32;
++    fn libusb_get_configuration(handle: *mut libusb_device_handle, config: *mut i32) -> i32;
++    fn libusb_set_configuration(handle: *mut libusb_device_handle, config: i32) -> i32;
++    fn libusb_reset_device(handle: *mut libusb_device_handle) -> i32;
++    fn libusb_clear_halt(handle: *mut libusb_device_handle, endpoint: u8) -> i32;
++    fn libusb_detach_kernel_driver(handle: *mut libusb_device_handle, interface: i32) -> i32;
++    fn libusb_attach_kernel_driver(handle: *mut libusb_device_handle, interface: i32) -> i32;
++    fn libusb_get_device_descriptor(dev: *mut libusb_device, desc: *mut LibusbDeviceDescriptor) -> i32;
++    fn libusb_get_descriptor(handle: *mut libusb_device_handle, ty: u8, index: u8, data: *mut u8, len: i32) -> i32;
++    fn libusb_get_string_descriptor_ascii(handle: *mut libusb_device_handle, index: u8, data: *mut u8, len: i32) -> i32;
++    fn libusb_control_transfer(
++        handle: *mut libusb_device_handle, request_type: u8, request: u8, value: u16,
++        index: u16, data: *mut u8, length: u16, timeout: u32,
++    ) -> i32;
++    fn libusb_bulk_transfer(
++        handle: *mut libusb_device_handle, endpoint: u8, data: *mut u8, length: i32,
++        transferred: *mut i32, timeout: u32,
++    ) -> i32;
++    fn libusb_interrupt_transfer(
++        handle: *mut libusb_device_handle, endpoint: u8, data: *mut u8, length: i32,
++        transferred: *mut i32, timeout: u32,
++    ) -> i32;
++}
++
++#[repr(C)]
++struct libusb_context;
++#[repr(C)]
++struct libusb_device;
++#[repr(C)]
++struct libusb_device_handle;
++
++#[repr(C)]
++#[derive(Default, Copy, Clone)]
++struct LibusbDeviceDescriptor {
++    b_length: u8,
++    b_descriptor_type: u8,
++    bcd_usb: u16,
++    b_device_class: u8,
++    b_device_sub_class: u8,
++    b_device_protocol: u8,
++    b_max_packet_size0: u8,
++    id_vendor: u16,
++    id_product: u16,
++    bcd_device: u16,
++    i_manufacturer: u8,
++    i_product: u8,
++    i_serial_number: u8,
++    b_num_configurations: u8,
++}
++
++const SUCCESS: i32 = 0;
++const ERROR_IO: i32 = -1;
++const ERROR_INVALID_PARAM: i32 = -2;
++const ERROR_ACCESS: i32 = -3;
++const ERROR_NO_DEVICE: i32 = -4;
++const ERROR_NOT_FOUND: i32 = -5;
++const ERROR_BUSY: i32 = -6;
++const ERROR_TIMEOUT: i32 = -7;
++const ERROR_OVERFLOW: i32 = -8;
++const ERROR_PIPE: i32 = -9;
++const ERROR_INTERRUPTED: i32 = -10;
++const ERROR_NO_MEM: i32 = -11;
++const ERROR_NOT_SUPPORTED: i32 = -12;
++
++fn context() -> Result<*mut libusb_context, Error> {
++    static CTX: std::sync::OnceLock<Result<usize, i32>> = std::sync::OnceLock::new();
++    let r = CTX.get_or_init(|| {
++        let mut ctx = ptr::null_mut();
++        let rc = unsafe { libusb_init(&mut ctx) };
++        if rc == SUCCESS { Ok(ctx as usize) } else { Err(rc) }
++    });
++    match r {
++        Ok(p) => Ok(*p as *mut libusb_context),
++        Err(rc) => Err(Error::new_os(ErrorKind::Other, "failed to initialize FreeBSD libusb", *rc)),
++    }
++}
++
++fn error(rc: i32, what: &'static str) -> Error {
++    let kind = match rc {
++        ERROR_NO_DEVICE => ErrorKind::Disconnected,
++        ERROR_BUSY => ErrorKind::Busy,
++        ERROR_ACCESS => ErrorKind::PermissionDenied,
++        ERROR_NOT_FOUND => ErrorKind::NotFound,
++        ERROR_NOT_SUPPORTED => ErrorKind::Unsupported,
++        _ => ErrorKind::Other,
++    };
++    Error {
++        kind,
++        code: NonZeroU32::new(rc.unsigned_abs()),
++        message: what,
++    }
++}
++
++fn transfer_error(rc: i32) -> TransferError {
++    match rc {
++        ERROR_TIMEOUT | ERROR_INTERRUPTED => TransferError::Cancelled,
++        ERROR_PIPE => TransferError::Stall,
++        ERROR_NO_DEVICE => TransferError::Disconnected,
++        ERROR_INVALID_PARAM => TransferError::InvalidArgument,
++        ERROR_OVERFLOW | ERROR_IO => TransferError::Fault,
++        x => TransferError::Unknown(x.unsigned_abs()),
++    }
++}
++
++pub fn format_os_error_code(f: &mut std::fmt::Formatter<'_>, code: u32) -> std::fmt::Result {
++    write!(f, "libusb error {}", code)
++}
++
++impl crate::error::Error {
++    pub(crate) fn new_os(kind: ErrorKind, message: &'static str, code: i32) -> Self {
++        Self {
++            kind,
++            code: NonZeroU32::new(code.unsigned_abs()),
++            message,
++        }
++    }
++}
++
++#[derive(Copy, Clone, Debug, Hash, PartialEq, Eq)]
++pub struct DeviceId {
++    pub(crate) bus: u8,
++    pub(crate) addr: u8,
++}
++
++#[derive(Clone)]
++pub struct Device {
++    inner: Arc<DeviceInner>,
++}
++
++struct DeviceInner {
++    handle: *mut libusb_device_handle,
++    descriptor: [u8; 18],
++    configs: Vec<u8>,
++}
++
++unsafe impl Send for DeviceInner {}
++unsafe impl Sync for DeviceInner {}
++
++impl Drop for DeviceInner {
++    fn drop(&mut self) {
++        unsafe { libusb_close(self.handle) };
++    }
++}
++
++impl Device {
++    pub fn from_device_info(info: &DeviceInfo) -> impl MaybeFuture<Output = Result<Arc<Device>, Error>> {
++        Ready(open_device(info))
++    }
++
++    pub(crate) fn device_descriptor(&self) -> crate::descriptors::DeviceDescriptor {
++        crate::descriptors::DeviceDescriptor::new(&self.inner.descriptor).unwrap()
++    }
++
++    pub(crate) fn configuration_descriptors(
++        &self,
++    ) -> impl Iterator<Item = crate::descriptors::ConfigurationDescriptor<'_>> {
++        parse_concatenated_config_descriptors(
++            &self.inner.configs.iter().flat_map(|v| v.iter().copied()).collect::<Vec<_>>()
++        ).collect::<Vec<_>>().into_iter()
++    }
++
++    pub(crate) fn speed(&self) -> Option<Speed> {
++        let dev = unsafe { libusb_get_device(self.inner.handle) };
++        match unsafe { libusb_get_device_speed(dev) } {
++            1 => Some(Speed::Low),
++            2 => Some(Speed::Full),
++            3 => Some(Speed::High),
++            4 => Some(Speed::Super),
++            5 => Some(Speed::SuperPlus),
++            _ => None,
++        }
++    }
++
++    pub(crate) fn active_configuration_value(&self) -> u8 {
++        let mut config = 0;
++        if unsafe { libusb_get_configuration(self.inner.handle, &mut config) } == SUCCESS {
++            config as u8
++        } else {
++            0
++        }
++    }
++
++    pub(crate) fn set_configuration(self: Arc<Self>, config: u8) -> impl MaybeFuture<Output = Result<(), Error>> {
++        let rc = unsafe { libusb_set_configuration(self.inner.handle, config as i32) };
++        Ready(if rc == SUCCESS { Ok(()) } else { Err(error(rc, "failed to set configuration")) })
++    }
++
++    pub(crate) fn reset(self: Arc<Self>) -> impl MaybeFuture<Output = Result<(), Error>> {
++        let rc = unsafe { libusb_reset_device(self.inner.handle) };
++        Ready(if rc == SUCCESS { Ok(()) } else { Err(error(rc, "failed to reset device")) })
++    }
++
++    pub fn control_in(
++        self: Arc<Self>, data: ControlIn, timeout: Duration,
++    ) -> impl MaybeFuture<Output = Result<Vec<u8>, TransferError>> {
++        let handle = self.inner.handle;
++        let t = TransferData::new_control_in(data);
++        TransferFuture::new(t, move |mut idle| {
++            let raw = idle.as_ptr();
++            let pending = idle.pre_submit();
++            std::thread::spawn(move || {
++                let td = unsafe { &mut *raw };
++                let setup = unsafe { std::slice::from_raw_parts(td.ptr, 8) };
++                let rc = unsafe {
++                    libusb_control_transfer(handle, setup[0], setup[1],
++                        u16::from_le_bytes([setup[2], setup[3]]),
++                        u16::from_le_bytes([setup[4], setup[5]]),
++                        td.ptr.add(8), u16::from_le_bytes([setup[6], setup[7]]),
++                        timeout.as_millis().min(u32::MAX as u128) as u32)
++                };
++                td.actual = if rc >= 0 { rc as u32 } else { 0 };
++                td.status = if rc >= 0 { 0 } else { rc };
++                unsafe { crate::transfer::internal::notify_completion(raw) };
++            });
++            pending
++        }).map(move |mut t| { let r=t.status(); if r.is_ok() { Ok(t.control_data().to_vec()) } else { Err(r.unwrap_err()) } })
++    }
++
++    pub fn control_out(
++        self: Arc<Self>, data: ControlOut, timeout: Duration,
++    ) -> impl MaybeFuture<Output = Result<(), TransferError>> {
++        let handle = self.inner.handle;
++        let t = TransferData::new_control_out(data);
++        TransferFuture::new(t, move |mut idle| {
++            let raw=idle.as_ptr(); let pending=idle.pre_submit();
++            std::thread::spawn(move || {
++                let td=unsafe { &mut *raw };
++                let setup=unsafe { std::slice::from_raw_parts(td.ptr,8) };
++                let rc=unsafe { libusb_control_transfer(handle,setup[0],setup[1],
++                    u16::from_le_bytes([setup[2],setup[3]]),u16::from_le_bytes([setup[4],setup[5]]),
++                    td.ptr.add(8),u16::from_le_bytes([setup[6],setup[7]]),
++                    timeout.as_millis().min(u32::MAX as u128) as u32) };
++                td.actual=if rc>=0 {rc as u32}else{0}; td.status=if rc>=0{0}else{rc};
++                unsafe{crate::transfer::internal::notify_completion(raw)};
++            }); pending
++        }).map(|mut t| t.status())
++    }
++
++    pub(crate) fn claim_interface(self: Arc<Self>, interface: u8) -> impl MaybeFuture<Output=Result<Arc<Interface>,Error>> {
++        let rc=unsafe{libusb_claim_interface(self.inner.handle,interface as i32)};
++        Ready(if rc==SUCCESS {Ok(Arc::new(Interface{device:self,interface_number:interface,alt_setting:std::sync::Mutex::new(0)}))} else {Err(error(rc,"failed to claim interface"))})
++    }
++
++    pub(crate) fn detach_and_claim_interface(self: Arc<Self>, interface:u8)->impl MaybeFuture<Output=Result<Arc<Interface>,Error>> {
++        let _=unsafe{libusb_detach_kernel_driver(self.inner.handle,interface as i32)};
++        self.claim_interface(interface)
++    }
++
++    pub(crate) fn detach_kernel_driver(&self, interface:u8)->Result<(),Error>{
++        let rc=unsafe{libusb_detach_kernel_driver(self.inner.handle,interface as i32)};
++        if rc==SUCCESS {Ok(())} else {Err(error(rc,"failed to detach kernel driver"))}
++    }
++    pub(crate) fn attach_kernel_driver(&self, interface:u8)->Result<(),Error>{
++        let rc=unsafe{libusb_attach_kernel_driver(self.inner.handle,interface as i32)};
++        if rc==SUCCESS {Ok(())} else {Err(error(rc,"failed to attach kernel driver"))}
++    }
++}
++
++
++pub fn list_devices() -> impl MaybeFuture<Output = Result<impl Iterator<Item = DeviceInfo>, Error>> {
++    Ready((|| {
++        let ctx = context()?;
++        let mut list = ptr::null_mut();
++        let n = unsafe { libusb_get_device_list(ctx, &mut list) };
++        if n < 0 {
++            return Err(error(n as i32, "failed to enumerate USB devices"));
++        }
++
++        let mut devices = Vec::new();
++        for i in 0..n as usize {
++            let dev = unsafe { *list.add(i) };
++            let mut desc = LibusbDeviceDescriptor::default();
++            if unsafe { libusb_get_device_descriptor(dev, &mut desc) } != SUCCESS {
++                continue;
++            }
++
++            let busnum = unsafe { libusb_get_bus_number(dev) };
++            let address = unsafe { libusb_get_device_address(dev) };
++            let mut port_chain = [0u8; 8];
++            let port_count = unsafe {
++                libusb_get_port_numbers(dev, port_chain.as_mut_ptr(), port_chain.len() as u8)
++            };
++            let port_chain = if port_count > 0 {
++                port_chain[..port_count as usize].to_vec()
++            } else {
++                Vec::new()
++            };
++
++            let mut interfaces = Vec::new();
++            let mut configs = Vec::new();
++            let mut handle = ptr::null_mut();
++
++            if unsafe { libusb_open(dev, &mut handle) } == SUCCESS {
++                configs = collect_config_descriptors(
++                    handle,
++                    desc.b_num_configurations,
++                );
++
++                let mut buf = [0u8; 256];
++                let manufacturer_string = if desc.i_manufacturer != 0 {
++                    string_descriptor(handle, desc.i_manufacturer, &mut buf)
++                } else {
++                    None
++                };
++                let product_string = if desc.i_product != 0 {
++                    string_descriptor(handle, desc.i_product, &mut buf)
++                } else {
++                    None
++                };
++                let serial_number = if desc.i_serial_number != 0 {
++                    string_descriptor(handle, desc.i_serial_number, &mut buf)
++                } else {
++                    None
++                };
++
++                unsafe { libusb_close(handle) };
++
++                for raw in &configs {
++                    parse_interfaces(raw, &mut interfaces);
++                }
++
++                devices.push(DeviceInfo {
++                    busnum,
++                    device_address: address,
++                    vendor_id: desc.id_vendor,
++                    product_id: desc.id_product,
++                    device_version: desc.bcd_device,
++                    usb_version: desc.bcd_usb,
++                    class: desc.b_device_class,
++                    subclass: desc.b_device_sub_class,
++                    protocol: desc.b_device_protocol,
++                    speed: match unsafe { libusb_get_device_speed(dev) } {
++                        1 => Some(Speed::Low),
++                        2 => Some(Speed::Full),
++                        3 => Some(Speed::High),
++                        4 => Some(Speed::Super),
++                        5 => Some(Speed::SuperPlus),
++                        _ => None,
++                    },
++                    manufacturer_string,
++                    product_string,
++                    serial_number,
++                    interfaces,
++
++                });
++            } else {
++                devices.push(DeviceInfo {
++                    busnum,
++                    device_address: address,
++                    vendor_id: desc.id_vendor,
++                    product_id: desc.id_product,
++                    device_version: desc.bcd_device,
++                    usb_version: desc.bcd_usb,
++                    class: desc.b_device_class,
++                    subclass: desc.b_device_sub_class,
++                    protocol: desc.b_device_protocol,
++                    speed: match unsafe { libusb_get_device_speed(dev) } {
++                        1 => Some(Speed::Low),
++                        2 => Some(Speed::Full),
++                        3 => Some(Speed::High),
++                        4 => Some(Speed::Super),
++                        5 => Some(Speed::SuperPlus),
++                        _ => None,
++                    },
++                    manufacturer_string: None,
++                    product_string: None,
++                    serial_number: None,
++                    interfaces,
++                });
++            }
++            let _ = port_chain;
++        }
++
++        unsafe { libusb_free_device_list(list, 1) };
++        Ok(devices.into_iter())
++    })())
++}
++
++fn collect_config_descriptors(
++    handle: *mut libusb_device_handle,
++    count: u8,
++) -> Vec<Vec<u8>> {
++    let mut configs = Vec::new();
++    for idx in 0..count {
++        let mut head = [0u8; 9];
++        let got = unsafe { libusb_get_descriptor(handle, 2, idx, head.as_mut_ptr(), 9) };
++        if got < 9 {
++            continue;
++        }
++        let total = u16::from_le_bytes([head[2], head[3]]) as usize;
++        if !(9..=65535).contains(&total) {
++            continue;
++        }
++        let mut raw = vec![0u8; total];
++        let got = unsafe { libusb_get_descriptor(handle, 2, idx, raw.as_mut_ptr(), total as i32) };
++        if got > 0 {
++            raw.truncate(got as usize);
++            configs.push(raw);
++        }
++    }
++    configs
++}
++
++fn string_descriptor(
++    handle: *mut libusb_device_handle,
++    index: u8,
++    buf: &mut [u8],
++) -> Option<String> {
++    let n = unsafe {
++        libusb_get_string_descriptor_ascii(handle, index, buf.as_mut_ptr(), buf.len() as i32)
++    };
++    (n > 0).then(|| String::from_utf8_lossy(&buf[..n as usize]).into_owned())
++}
++
++fn parse_interfaces(raw: &[u8], out: &mut Vec<InterfaceInfo>) {
++    let mut pos = 0usize;
++    while pos + 2 <= raw.len() {
++        let len = raw[pos] as usize;
++        let ty = raw[pos + 1];
++        if len < 2 || pos + len > raw.len() {
++            break;
++        }
++        if ty == 4 && len >= 9 {
++            out.push(InterfaceInfo {
++                interface_number: raw[pos + 2],
++                class: raw[pos + 5],
++                subclass: raw[pos + 6],
++                protocol: raw[pos + 7],
++                interface_string: None,
++            });
++        }
++        pos += len;
++    }
++}
++
++fn open_device(info:&DeviceInfo)->Result<Arc<Device>,Error>{
++    let ctx=context()?;
++    let mut list=ptr::null_mut();
++    let n=unsafe{libusb_get_device_list(ctx,&mut list)};
++    if n<0 {return Err(error(n as i32,"failed to enumerate USB devices"));}
++    let mut found=ptr::null_mut();
++    for i in 0..n as usize {
++        let d=unsafe{*list.add(i)};
++        if unsafe{libusb_get_bus_number(d)}==info.busnum && unsafe{libusb_get_device_address(d)}==info.device_address {
++            found=unsafe{libusb_ref_device(d)}; break;
++        }
++    }
++    unsafe{libusb_free_device_list(list,1)};
++    if found.is_null(){return Err(Error::new(ErrorKind::Disconnected,"device disappeared"));}
++    let mut handle=ptr::null_mut();
++    let rc=unsafe{libusb_open(found,&mut handle)};
++    unsafe{libusb_unref_device(found)};
++    if rc!=SUCCESS{return Err(error(rc,"failed to open USB device"));}
++
++    let mut desc=LibusbDeviceDescriptor::default();
++    let dev=unsafe{libusb_get_device(handle)};
++    let rc=unsafe{libusb_get_device_descriptor(dev,&mut desc)};
++    if rc!=SUCCESS {unsafe{libusb_close(handle)};return Err(error(rc,"failed to read device descriptor"));}
++
++    let mut descriptor=[0u8;18];
++    descriptor[0]=18; descriptor[1]=1;
++    descriptor[2..4].copy_from_slice(&desc.bcd_usb.to_le_bytes());
++    descriptor[4]=desc.b_device_class; descriptor[5]=desc.b_device_sub_class; descriptor[6]=desc.b_device_protocol;
++    descriptor[7]=desc.b_max_packet_size0; descriptor[8..10].copy_from_slice(&desc.id_vendor.to_le_bytes());
++    descriptor[10..12].copy_from_slice(&desc.id_product.to_le_bytes()); descriptor[12..14].copy_from_slice(&desc.bcd_device.to_le_bytes());
++    descriptor[14]=desc.i_manufacturer; descriptor[15]=desc.i_product; descriptor[16]=desc.i_serial_number; descriptor[17]=desc.b_num_configurations;
++
++    let configs = collect_config_descriptors(handle, desc.b_num_configurations)
++        .into_iter().flatten().collect();
++    Ok(Arc::new(Device{inner:Arc::new(DeviceInner{handle,descriptor,configs})}))
++}
++
++pub struct Interface {
++    pub(crate) device: Arc<Device>,
++    pub(crate) interface_number: u8,
++    alt_setting: std::sync::Mutex<u8>,
++}
++
++impl Interface {
++    pub fn set_alt_setting(self:Arc<Self>, alt:u8)->impl MaybeFuture<Output=Result<(),Error>>{
++        let rc=unsafe{libusb_set_interface_alt_setting(self.device.inner.handle,self.interface_number as i32,alt as i32)};
++        if rc==SUCCESS {*self.alt_setting.lock().unwrap()=alt; Ready(Ok(()))} else {Ready(Err(error(rc,"failed to set alternate setting")))}
++    }
++    pub fn get_alt_setting(&self)->u8{*self.alt_setting.lock().unwrap()}
++    pub fn control_in(&self,data:ControlIn,timeout:Duration)->impl MaybeFuture<Output=Result<Vec<u8>,TransferError>>{self.device.clone().control_in(data,timeout)}
++    pub fn control_out(&self,data:ControlOut,timeout:Duration)->impl MaybeFuture<Output=Result<(),TransferError>>{self.device.clone().control_out(data,timeout)}
++    pub fn interface_number(&self)->u8{self.interface_number}
++    pub fn endpoint(self:&Arc<Self>, descriptor:EndpointDescriptor)->Result<Endpoint,Error>{
++        Ok(Endpoint{inner:Arc::new(EndpointInner{interface:self.clone(),address:descriptor.address(),ep_type:descriptor.transfer_type(),notify:Arc::new(Notify::new())}),max_packet_size:descriptor.max_packet_size(),pending:VecDeque::new()})
++    }
++    pub fn release(self:Arc<Self>)->impl MaybeFuture<Output=Result<(),Error>>{
++        if Arc::strong_count(&self)==1 {
++            let rc=unsafe{libusb_release_interface(self.device.inner.handle,self.interface_number as i32)};
++            Ready(if rc==SUCCESS{Ok(())}else{Err(error(rc,"failed to release interface"))})
++        } else {Ready(Err(Error::new(ErrorKind::Busy,"interface is still in use")))}
++    }
++}
++
++pub struct Endpoint {
++    inner: Arc<EndpointInner>,
++    pub(crate) max_packet_size: usize,
++    pending: VecDeque<Pending<TransferData>>,
++}
++
++struct EndpointInner {
++    interface: Arc<Interface>,
++    address: u8,
++    ep_type: TransferType,
++    notify: Arc<Notify>,
++}
++
++impl Endpoint {
++    pub(crate) fn endpoint_address(&self) -> u8 { self.inner.address }
++    pub(crate) fn pending(&self) -> usize { self.pending.len() }
++    pub(crate) fn cancel_all(&mut self) {
++        // Synchronous libusb transfers are executed on worker threads. They
++        // cannot be cancelled through this backend; dropping Pending marks the
++        // transfer abandoned and the worker completes it safely.
++        while self.pending.first().is_some_and(|p| p.is_complete()) {
++            let _ = self.pending.pop_front();
++        }
++    }
++    pub(crate) fn allocate(&self, len: usize) -> Result<Buffer, std::io::Error> {
++        Ok(Buffer::new(len))
++    }
++    pub(crate) fn submit_err(&mut self, data: Buffer, _error: TransferError) {
++        self.submit(data);
++    }
++
++    fn start(&self, idle: crate::transfer::internal::Idle<TransferData>) -> Pending<TransferData> {
++        let raw = idle.as_ptr();
++        let pending = idle.pre_submit();
++        let handle = self.inner.interface.device.inner.handle;
++        let ep = self.inner.address;
++        let ty = self.inner.ep_type;
++        let notify = self.inner.notify.clone();
++
++        std::thread::spawn(move || {
++            let td = unsafe { &mut *raw };
++            let mut transferred = 0i32;
++            let rc = unsafe {
++                match ty {
++                    TransferType::Bulk => libusb_bulk_transfer(
++                        handle, ep, td.ptr, td.length as i32, &mut transferred, 1000,
++                    ),
++                    TransferType::Interrupt => libusb_interrupt_transfer(
++                        handle, ep, td.ptr, td.length as i32, &mut transferred, 1000,
++                    ),
++                    TransferType::Isochronous => ERROR_NOT_SUPPORTED,
++                    TransferType::Control => ERROR_INVALID_PARAM,
++                }
++            };
++            td.actual = transferred.max(0) as u32;
++            td.status = if rc == SUCCESS { 0 } else { rc };
++            unsafe { crate::transfer::internal::notify_completion(raw) };
++            notify.notify();
++        });
++        pending
++    }
++
++    pub(crate) fn submit(&mut self, data: Buffer) {
++        let mut td = TransferData::new(self.inner.address, self.inner.ep_type);
++        td.set_buffer(data);
++        let idle = crate::transfer::internal::Idle::new(self.inner.notify.clone(), td);
++        self.pending.push_back(self.start(idle));
++    }
++
++    pub(crate) fn poll_next_complete(
++        &mut self,
++        cx: &mut Context,
++    ) -> Poll<Completion> {
++        self.inner.notify.subscribe(cx);
++        if let Some(p) = self.pending.front() {
++            if p.is_complete() {
++                let p = self.pending.pop_front().unwrap();
++                let mut idle = unsafe { p.into_idle() };
++                return Poll::Ready(idle.take_completion());
++            }
++        }
++        Poll::Pending
++    }
++
++    pub(crate) fn wait_next_complete(
++        &mut self,
++        timeout: Duration,
++    ) -> Option<Completion> {
++        self.inner.notify.wait_timeout(timeout, || {
++            if self.pending.front().is_some_and(|p| p.is_complete()) {
++                let p = self.pending.pop_front().unwrap();
++                let mut idle = unsafe { p.into_idle() };
++                Some(idle.take_completion())
++            } else {
++                None
++            }
++        })
++    }
++
++    pub(crate) fn clear_halt(&self) -> impl MaybeFuture<Output = Result<(), Error>> {
++        let rc = unsafe {
++            libusb_clear_halt(self.inner.interface.device.inner.handle, self.inner.address)
++        };
++        Ready(if rc == SUCCESS {
++            Ok(())
++        } else {
++            Err(error(rc, "failed to clear halt"))
++        })
++    }
++}
++
++struct TransferData {
++    ptr: *mut u8,
++    length: u32,
++    capacity: u32,
++    requested: u32,
++    allocator: Allocator,
++    actual: u32,
++    status: i32,
++    endpoint: u8,
++}
++unsafe impl Send for TransferData {}
++unsafe impl Sync for TransferData {}
++
++impl TransferData {
++    fn new(endpoint: u8, _ty: TransferType) -> Self {
++        Self {
++            ptr: ptr::null_mut(),
++            length: 0,
++            capacity: 0,
++            requested: 0,
++            allocator: Allocator::Default,
++            actual: 0,
++            status: 0,
++            endpoint,
++        }
++    }
++
++    fn new_control_in(d: ControlIn) -> Self {
++        let mut t = Self::new(0x80, TransferType::Control);
++        let mut b = Buffer::new(8 + d.length as usize);
++        b.extend_from_slice(&d.setup_packet());
++        t.set_buffer(b);
++        t
++    }
++
++    fn new_control_out(d: ControlOut) -> Self {
++        let mut t = Self::new(0, TransferType::Control);
++        let mut b = Buffer::new(8 + d.data.len());
++        b.extend_from_slice(&d.setup_packet());
++        b.extend_from_slice(d.data);
++        t.set_buffer(b);
++        t
++    }
++
++    fn set_buffer(&mut self, b: Buffer) {
++        let b = std::mem::ManuallyDrop::new(b);
++        self.ptr = b.ptr;
++        self.capacity = b.capacity;
++        self.requested = b.requested_len;
++        self.length = if Direction::from_address(self.endpoint) == Direction::In {
++            b.requested_len
++        } else {
++            b.len
++        };
++        self.allocator = b.allocator;
++    }
++
++    fn status(&self) -> Result<(), TransferError> {
++        if self.status == 0 {
++            Ok(())
++        } else {
++            Err(transfer_error(self.status))
++        }
++    }
++
++    fn control_data(&self) -> &[u8] {
++        unsafe { std::slice::from_raw_parts(self.ptr.add(8), self.actual as usize) }
++    }
++
++    fn take_completion(&mut self) -> Completion {
++        let len = if Direction::from_address(self.endpoint) == Direction::In {
++            self.actual
++        } else {
++            self.length
++        };
++        let ptr = self.ptr;
++        let cap = self.capacity;
++        let req = self.requested;
++        self.ptr = ptr::null_mut();
++        self.capacity = 0;
++        Completion {
++            buffer: Buffer {
++                ptr,
++                len,
++                requested_len: req,
++                capacity: cap,
++                allocator: self.allocator,
++            },
++            actual_len: self.actual as usize,
++            status: self.status(),
++        }
++    }
++}
++
++impl Drop for TransferData {
++    fn drop(&mut self) {
++        if !self.ptr.is_null() {
++            unsafe {
++                drop(Buffer {
++                    ptr: self.ptr,
++                    len: if Direction::from_address(self.endpoint) == Direction::In {
++                        self.actual
++                    } else {
++                        self.length
++                    },
++                    requested_len: self.requested,
++                    capacity: self.capacity,
++                    allocator: self.allocator,
++                });
++            }
++        }
++    }
++}

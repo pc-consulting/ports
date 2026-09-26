@@ -1,0 +1,13 @@
+--- cargo-crates/midir-0.11.0/src/backend/mod.rs.orig
++++ cargo-crates/midir-0.11.0/src/backend/mod.rs
+@@ -31,6 +31,10 @@
+ pub use self::alsa::*;
+ 
++#[cfg(target_os = "freebsd")]
++mod freebsd;
++#[cfg(target_os = "freebsd")]
++pub use self::freebsd::*;
++
+ #[cfg(all(feature = "jack", not(target_os = "windows")))]
+ mod jack;
+ #[cfg(all(feature = "jack", not(target_os = "windows")))]

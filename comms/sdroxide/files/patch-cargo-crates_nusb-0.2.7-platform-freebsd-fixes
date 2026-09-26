@@ -1,0 +1,126 @@
+--- cargo-crates/nusb-0.2.7/src/platform/freebsd.rs	2026-09-21 04:35:56.671005875 +0000
++++ cargo-crates/nusb-0.2.7/src/platform/freebsd.rs	2026-09-21 04:35:57.123623826 +0000
+@@ -191,7 +191,7 @@
+         &self,
+     ) -> impl Iterator<Item = crate::descriptors::ConfigurationDescriptor<'_>> {
+         parse_concatenated_config_descriptors(
+-            &self.inner.configs.iter().flat_map(|v| v.iter().copied()).collect::<Vec<_>>()
++            &self.inner.configs
+         ).collect::<Vec<_>>().into_iter()
+     }
+ 
+@@ -229,12 +229,14 @@
+     pub fn control_in(
+         self: Arc<Self>, data: ControlIn, timeout: Duration,
+     ) -> impl MaybeFuture<Output = Result<Vec<u8>, TransferError>> {
+-        let handle = self.inner.handle;
++        let handle = self.inner.handle as usize;
+         let t = TransferData::new_control_in(data);
+         TransferFuture::new(t, move |mut idle| {
+-            let raw = idle.as_ptr();
++            let raw = idle.as_ptr() as usize;
+             let pending = idle.pre_submit();
+             std::thread::spawn(move || {
++                let handle = handle as *mut libusb_device_handle;
++                let raw = raw as *mut TransferData;
+                 let td = unsafe { &mut *raw };
+                 let setup = unsafe { std::slice::from_raw_parts(td.ptr, 8) };
+                 let rc = unsafe {
+@@ -255,11 +257,13 @@
+     pub fn control_out(
+         self: Arc<Self>, data: ControlOut, timeout: Duration,
+     ) -> impl MaybeFuture<Output = Result<(), TransferError>> {
+-        let handle = self.inner.handle;
++        let handle = self.inner.handle as usize;
+         let t = TransferData::new_control_out(data);
+         TransferFuture::new(t, move |mut idle| {
+-            let raw=idle.as_ptr(); let pending=idle.pre_submit();
++            let raw=idle.as_ptr() as usize; let pending=idle.pre_submit();
+             std::thread::spawn(move || {
++                let handle = handle as *mut libusb_device_handle;
++                let raw = raw as *mut TransferData;
+                 let td=unsafe { &mut *raw };
+                 let setup=unsafe { std::slice::from_raw_parts(td.ptr,8) };
+                 let rc=unsafe { libusb_control_transfer(handle,setup[0],setup[1],
+@@ -552,7 +556,7 @@
+         // Synchronous libusb transfers are executed on worker threads. They
+         // cannot be cancelled through this backend; dropping Pending marks the
+         // transfer abandoned and the worker completes it safely.
+-        while self.pending.first().is_some_and(|p| p.is_complete()) {
++        while self.pending.front().is_some_and(|p| p.is_complete()) {
+             let _ = self.pending.pop_front();
+         }
+     }
+@@ -564,14 +568,15 @@
+     }
+ 
+     fn start(&self, idle: crate::transfer::internal::Idle<TransferData>) -> Pending<TransferData> {
+-        let raw = idle.as_ptr();
++        let raw = idle.as_ptr() as usize;
+         let pending = idle.pre_submit();
+-        let handle = self.inner.interface.device.inner.handle;
++        let handle = self.inner.interface.device.inner.handle as usize;
+         let ep = self.inner.address;
+         let ty = self.inner.ep_type;
+-        let notify = self.inner.notify.clone();
+ 
+         std::thread::spawn(move || {
++            let raw = raw as *mut TransferData;
++            let handle = handle as *mut libusb_device_handle;
+             let td = unsafe { &mut *raw };
+             let mut transferred = 0i32;
+             let rc = unsafe {
+@@ -589,7 +594,6 @@
+             td.actual = transferred.max(0) as u32;
+             td.status = if rc == SUCCESS { 0 } else { rc };
+             unsafe { crate::transfer::internal::notify_completion(raw) };
+-            notify.notify();
+         });
+         pending
+     }
+--- cargo-crates/nusb-0.2.7/src/enumeration.rs	2026-09-21 04:35:56.672275689 +0000
++++ cargo-crates/nusb-0.2.7/src/enumeration.rs	2026-09-21 04:35:56.675729792 +0000
+@@ -67,6 +67,7 @@
+         target_os = "macos",
+         target_os = "windows",
+         target_os = "android",
++        target_os = "freebsd",
+     ))]
+     pub(crate) device_address: u8,
+ 
+--- cargo-crates/nusb-0.2.7/src/lib.rs	2006-07-24 01:21:28.000000000 +0000
++++ cargo-crates/nusb-0.2.7/src/lib.rs	2026-09-21 04:35:56.675890539 +0000
+@@ -271,6 +271,7 @@
+     target_os = "linux",
+     target_os = "macos",
+     target_os = "windows",
++    target_os = "freebsd",
+     target_arch = "wasm32"
+ ))]
+ pub fn list_devices() -> impl MaybeFuture<Output = Result<impl Iterator<Item = DeviceInfo>, Error>>
+@@ -308,6 +309,7 @@
+     target_os = "linux",
+     target_os = "macos",
+     target_os = "windows",
++    target_os = "freebsd",
+     target_arch = "wasm32"
+ ))]
+ pub fn request_device(
+--- cargo-crates/nusb-0.2.7/src/device.rs	2006-07-24 01:21:28.000000000 +0000
++++ cargo-crates/nusb-0.2.7/src/device.rs	2026-09-21 04:35:56.675977547 +0000
+@@ -327,6 +327,7 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
++        target_os = "freebsd",
+         target_os = "android",
+         target_arch = "wasm32"
+     ))]
+@@ -370,6 +371,7 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
++        target_os = "freebsd",
+         target_os = "android",
+         target_arch = "wasm32"
+     ))]

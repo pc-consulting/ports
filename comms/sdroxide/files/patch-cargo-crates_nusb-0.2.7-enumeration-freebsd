@@ -1,0 +1,46 @@
+--- cargo-crates/nusb-0.2.7/src/enumeration.rs
++++ cargo-crates/nusb-0.2.7/src/enumeration.rs
+@@ -32,7 +32,7 @@
+     #[cfg(target_os = "linux")]
+     pub(crate) path: SysfsPath,
+ 
+-    #[cfg(any(target_os = "linux", target_os = "android"))]
++    #[cfg(any(target_os = "linux", target_os = "android", target_os = "freebsd"))]
+     pub(crate) busnum: u8,
+ 
+     #[cfg(target_os = "windows")]
+@@ -80,6 +80,7 @@
+         target_os = "linux",
+         target_os = "macos",
+         target_os = "windows",
++        target_os = "freebsd",
+         target_arch = "wasm32"
+     ))]
+     pub(crate) device_version: u16,
+@@ -94,6 +95,7 @@
+         target_os = "macos",
+         target_os = "windows",
+         target_os = "android",
++        target_os = "freebsd",
+     ))]
+     pub(crate) speed: Option<Speed>,
+ 
+@@ -115,7 +117,7 @@
+             DeviceId(self.devinst)
+         }
+ 
+-        #[cfg(any(target_os = "linux", target_os = "android"))]
++        #[cfg(any(target_os = "linux", target_os = "android", target_os = "freebsd"))]
+         {
+             DeviceId(crate::platform::DeviceId {
+                 bus: self.busnum,
+@@ -285,7 +287,8 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
+-        target_os = "windows"
++        target_os = "windows",
++        target_os = "freebsd"
+     ))]
+     pub fn speed(&self) -> Option<Speed> {
+         self.speed
