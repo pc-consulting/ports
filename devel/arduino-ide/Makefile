@@ -58,12 +58,12 @@ RUN_DEPENDS=	${LLVM_PREFIX}/bin/clangd:${LLVM_PORT} \
 		${LOCALBASE}/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc:devel/xtensa-esp-elf \
 		arduino-avrdude:devel/arduino-avrdude \
 		arduino-cli:devel/arduino-cli \
-		arduino-dfu-discovery:devel/arduino-dfu-discovery \
+		arduino-dfu-discovery:comms/arduino-dfu-discovery \
 		arduino-fwuploader:devel/arduino-fwuploader \
 		arduino-language-server:devel/arduino-language-server \
-		arduino-mdns-discovery:devel/arduino-mdns-discovery \
-		arduino-serial-discovery:devel/arduino-serial-discovery \
-		arduino-serial-monitor:devel/arduino-serial-monitor \
+		arduino-mdns-discovery:net/arduino-mdns-discovery \
+		arduino-serial-discovery:comms/arduino-serial-discovery \
+		arduino-serial-monitor:comms/arduino-serial-monitor \
 		avr-gcc:devel/avr-gcc \
 		avr-libc>0:devel/avr-libc \
 		dfu-util:comms/dfu-util \
