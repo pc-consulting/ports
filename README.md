@@ -4,6 +4,15 @@ Current state of the art (at time of edit):
 
 Considered *production-ready* (i. e. could go into the ports tree):
 
+- devel/arduino-ide
+  - Arduino IDE of the more recent (than what we had in ports so far) v2.x branch including the following dependencies the IDE requires apart from what already is present in ports.
+  - devel/arduino-cli
+  - devel/arduino-dfu-discovery
+  - devel/arduino-fwuploader
+  - devel/arduino-language-server
+  - devel/arduino-mdns-discovery
+  - devel/arduino-serial-discovery
+  - devel/arduino-serial-monitor
 - comms/py-gpiofbsd
     - Installs on 13.1-STABLE stable/13-n253275-6974ae0530b amd64 python 3.9.16
     - Installs on 13.1-STABLE stable/13-n253132-e8c769b22d4 arm64 python 3.8.16 and tested runs with python 3.9.16
