@@ -1,5 +1,5 @@
-TIMESTAMP = 1790106559
-SHA256 (go/devel_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.mod) = 76b7e8eb9eb9bbcbef95706642d143e41640aeaf6e78111093d27cd1bfb5e2c0
-SIZE (go/devel_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.mod) = 8728
-SHA256 (go/devel_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.zip) = 13051bef159320734f138e32a6adf9640601d5a42445d9cb259d732d04b5b157
-SIZE (go/devel_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.zip) = 160916
+TIMESTAMP = 1790407925
+SHA256 (go/comms_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.mod) = 76b7e8eb9eb9bbcbef95706642d143e41640aeaf6e78111093d27cd1bfb5e2c0
+SIZE (go/comms_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.mod) = 8728
+SHA256 (go/comms_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.zip) = 13051bef159320734f138e32a6adf9640601d5a42445d9cb259d732d04b5b157
+SIZE (go/comms_arduino-serial-discovery/arduino-serial-discovery-v1.5.2/v1.5.2.zip) = 160916

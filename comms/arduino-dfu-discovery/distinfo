@@ -1,7 +1,7 @@
-TIMESTAMP = 1790144225
-SHA256 (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/dfu-util-0.11.tar.gz) = b4b53ba21a82ef7e3d4c47df2952adf5fa494f499b6b0b57c58c5d04ae8ff19e
-SIZE (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/dfu-util-0.11.tar.gz) = 152462
-SHA256 (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.mod) = 15f34f36ed96444fc925ffb5648400f56c94a6abfa522639a06f0e7958523632
-SIZE (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.mod) = 370
-SHA256 (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.zip) = 5a4316b74056048c0ed15d2cb88d769be62bc16b11d559308e20620d4f5374c3
-SIZE (go/devel_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.zip) = 86847
+TIMESTAMP = 1790407871
+SHA256 (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/dfu-util-0.11.tar.gz) = b4b53ba21a82ef7e3d4c47df2952adf5fa494f499b6b0b57c58c5d04ae8ff19e
+SIZE (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/dfu-util-0.11.tar.gz) = 152462
+SHA256 (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.mod) = 15f34f36ed96444fc925ffb5648400f56c94a6abfa522639a06f0e7958523632
+SIZE (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.mod) = 370
+SHA256 (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.zip) = 5a4316b74056048c0ed15d2cb88d769be62bc16b11d559308e20620d4f5374c3
+SIZE (go/comms_arduino-dfu-discovery/arduino-dfu-discovery-v0.1.2/v0.1.2.zip) = 86847

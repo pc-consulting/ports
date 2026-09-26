@@ -1,5 +1,5 @@
-TIMESTAMP = 1790106060
-SHA256 (go/devel_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.mod) = 707b9d2cf19d5bf7fa86c057c750ec06bf3f1b47a9a5972dcff2ae9eafa277eb
-SIZE (go/devel_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.mod) = 621
-SHA256 (go/devel_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.zip) = 694fd84d3e2e85aa2e1287fb6219f902ef4019d4733d13982f7cf39b8b0f3dfe
-SIZE (go/devel_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.zip) = 108588
+TIMESTAMP = 1790407910
+SHA256 (go/net_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.mod) = 707b9d2cf19d5bf7fa86c057c750ec06bf3f1b47a9a5972dcff2ae9eafa277eb
+SIZE (go/net_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.mod) = 621
+SHA256 (go/net_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.zip) = 694fd84d3e2e85aa2e1287fb6219f902ef4019d4733d13982f7cf39b8b0f3dfe
+SIZE (go/net_arduino-mdns-discovery/arduino-mdns-discovery-v1.1.0/v1.1.0.zip) = 108588
