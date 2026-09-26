@@ -58,6 +58,7 @@ _populate_platform_tool arduino avr-gcc 7.3.0-atmel3.6.1-arduino7 "%%LOCALBASE%%
 _populate_platform_tool arduino avrdude 6.3.0-arduino17 "%%LOCALBASE%%"
 _populate_platform_tool arduino xtensa-esp32-elf-gcc 3.0.0 "%%LOCALBASE%%/xtensa-esp-elf"
 _populate_platform_tool esp32 esp-x32 2405 "%%LOCALBASE%%/xtensa-esp-elf"
+_populate_platform_tool esp32 esptool_py 4.9.dev3 "%%LOCALBASE%%/bin/esptool"
 
 _populate_platform_hardware() {
     _vendor="$1"; _arch="$2"; _version="$3"; _srcdir="$4"

@@ -67,6 +67,7 @@ RUN_DEPENDS=	${LLVM_PREFIX}/bin/clangd:${LLVM_PORT} \
 		avr-gcc:devel/avr-gcc \
 		avr-libc>0:devel/avr-libc \
 		dfu-util:comms/dfu-util \
+		esptool:comms/py-esptool@${PY_FLAVOR} \
 		rg:textproc/ripgrep
 
 USES=		electron:42,build,run gmake llvm:min=14,run,noexport \
