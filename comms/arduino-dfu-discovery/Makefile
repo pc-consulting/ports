@@ -1,7 +1,7 @@
 PORTNAME=	arduino-dfu-discovery
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.2
-CATEGORIES=	devel
+CATEGORIES=	comms devel
 
 MASTER_SITES=	http://dfu-util.sourceforge.net/releases/:dfuutil
 DISTFILES=	dfu-util-0.11.tar.gz:dfuutil

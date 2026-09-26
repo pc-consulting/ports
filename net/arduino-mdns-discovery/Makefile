@@ -1,7 +1,7 @@
 PORTNAME=	arduino-mdns-discovery
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.0
-CATEGORIES=	devel
+CATEGORIES=	net devel
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	mDNS pluggable discovery tool for arduino-cli

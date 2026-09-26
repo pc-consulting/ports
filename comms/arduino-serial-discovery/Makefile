@@ -1,7 +1,7 @@
 PORTNAME=	arduino-serial-discovery
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.5.2
-CATEGORIES=	devel
+CATEGORIES=	comms devel
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Serial port pluggable discovery tool for arduino-cli

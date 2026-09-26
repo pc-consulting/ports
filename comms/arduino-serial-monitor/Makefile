@@ -1,7 +1,7 @@
 PORTNAME=	arduino-serial-monitor
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.15.0
-CATEGORIES=	devel
+CATEGORIES=	comms devel
 
 MAINTAINER=	pcc@gmx.net
 COMMENT=	Serial pluggable monitor tool for arduino-cli
