@@ -55,7 +55,7 @@ SUB_LIST=	ESPRESSIF_PREFIX=${ESPRESSIF_PREFIX} \
 do-install:
 	@${MKDIR} ${STAGEDIR}${ESPRESSIF_IDF_PATH} ${STAGEDIR}${DOCSDIR}
 # Copy everything except .git directories/gitlinks at any depth.
-	cd ${WRKSRC} && ${FIND} . -name .git -prune -o -print | \
+	cd ${WRKSRC} && ${FIND} . \( -name .git -o -path ./tools/esp_app_trace/test \) -prune -o -print | \
 		${CPIO} --quiet -pdum ${STAGEDIR}${ESPRESSIF_IDF_PATH}
 	${LN} -sf esp-idf-${DISTVERSION} ${STAGEDIR}${ESPRESSIF_PREFIX}/esp-idf
 	${INSTALL_DATA} ${WRKDIR}/env-script \
