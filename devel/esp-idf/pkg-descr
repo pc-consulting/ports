@@ -1,0 +1,11 @@
+ESP-IDF (Espressif IoT Development Framework) is the official development
+framework for the ESP32 family of SoCs.
+
+It provides a CMake-based build system, a component library for common
+peripherals, Wi-Fi and Bluetooth stacks, OTA updates, partition
+management and FreeRTOS integration.
+
+The framework is driven by idf.py, a Python tool that builds, flashes and
+monitors ESP32 projects.  Cross-compiling firmware additionally needs the
+xtensa-esp32-elf (or riscv32-esp-elf) toolchain, which is not part of
+this port.

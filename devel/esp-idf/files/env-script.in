@@ -1,0 +1,15 @@
+# ESP-IDF environment for POSIX sh, bash and zsh.  Source it, do not run it:
+#
+#   . %%ESPRESSIF_PREFIX%%/esp-idf-env.sh
+#
+IDF_PATH="%%ESPRESSIF_IDF_PATH%%"
+export IDF_PATH
+
+: "${IDF_TOOLS_PATH:=${HOME}/.espressif}"
+export IDF_TOOLS_PATH
+
+# idf.py lives in ${IDF_PATH}/tools
+case ":${PATH}:" in
+*":${IDF_PATH}/tools:"*) ;;
+*) PATH="${IDF_PATH}/tools:${PATH}"; export PATH ;;
+esac
