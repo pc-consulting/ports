@@ -16,15 +16,17 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # Needed when a project is built with idf.py, not to install this port.
-RUN_DEPENDS=	cmake:devel/cmake-core \
-		ninja:devel/ninja \
-		gperf:devel/gperf \
-		ccache:devel/ccache \
+RUN_DEPENDS=	ccache:devel/ccache \
+		cmake:devel/cmake-core \
 		dfu-util:comms/dfu-util \
+		gperf:devel/gperf \
 		git:devel/git \
+		${LOCALBASE}/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc:devel/xtensa-esp-elf \
+		ninja:devel/ninja \
 		${PYTHON_PKGNAMEPREFIX}pip>=0:devel/py-pip@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}cryptography>=0:security/py-cryptography@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}cryptography>=0:security/py-cryptography@${PY_FLAVOR} \
+		rustc:lang/rust
 
 # No py- prefix / FLAVORS: this is a framework that uses Python for its
 # tooling, not a module installed into site-packages.
@@ -48,12 +50,13 @@ SHEBANG_REGEX=	.*/openthread/(script/[^/]+|tests/fuzz/oss-fuzz-build)
 ESPRESSIF_PREFIX=	${LOCALBASE}/espressif
 ESPRESSIF_IDF_PATH=	${ESPRESSIF_PREFIX}/esp-idf-${DISTVERSION}
 
-SUB_FILES=	env-script pkg-message
+SUB_FILES=	env-script pkg-message idf.py-wrapper
 SUB_LIST=	ESPRESSIF_PREFIX=${ESPRESSIF_PREFIX} \
 		ESPRESSIF_IDF_PATH=${ESPRESSIF_IDF_PATH}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${ESPRESSIF_IDF_PATH} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${ESPRESSIF_IDF_PATH} ${STAGEDIR}${DOCSDIR} \
+		${STAGEDIR}${ESPRESSIF_PREFIX}/bin
 # Copy everything except .git directories/gitlinks at any depth.
 	cd ${WRKSRC} && ${FIND} . \( -name .git -o -path ./tools/esp_app_trace/test \) -prune -o -print | \
 		${CPIO} --quiet -pdum ${STAGEDIR}${ESPRESSIF_IDF_PATH}
@@ -61,6 +64,8 @@ do-install:
 	${INSTALL_DATA} ${WRKDIR}/env-script \
 		${STAGEDIR}${ESPRESSIF_PREFIX}/esp-idf-env.sh
 	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_SCRIPT} ${WRKDIR}/idf.py-wrapper \
+		${STAGEDIR}${ESPRESSIF_PREFIX}/bin/idf.py
 
 # The tree has tens of thousands of files that change per release, so the
 # bulk of the plist is generated from the staged tree instead of being

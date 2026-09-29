@@ -1,39 +1,83 @@
 [
 { type: install
   message: <<EOM
+
 ESP-IDF is installed in:
 
   %%ESPRESSIF_IDF_PATH%%
 
-Nothing is added to your PATH automatically.  In each shell in which you
+Nothing is added to your PATH automatically. In each shell in which you
 want to build ESP32 projects, run:
 
   . %%ESPRESSIF_PREFIX%%/esp-idf-env.sh
 
-This sets IDF_PATH and puts %%ESPRESSIF_IDF_PATH%%/tools
-(which contains idf.py) in your PATH.  Espressif's own export.sh in that
-directory works too.
+This sets IDF_PATH and puts %%ESPRESSIF_PREFIX%%/bin and
+%%ESPRESSIF_IDF_PATH%%/tools in your PATH. Espressif's own export.sh in
+that directory works too, and is required once per shell in addition to
+the above (see "One-time setup" below).
+
+idf.py on your PATH is a small wrapper, not the upstream script. It
+finds install.sh's virtualenv and runs the real idf.py through it. This
+is necessary because idf.py's own shebang is rewritten at package-build
+time to point at the system Python, which does not have ESP-IDF's
+Python packages.
 
 One-time setup per user:
 
   %%ESPRESSIF_IDF_PATH%%/install.sh esp32
 
-FreeBSD is not a supported ESP-IDF host.  install.sh downloads Linux
-toolchain binaries that will not run here, so you also need a native
-xtensa-esp32-elf toolchain in your PATH.
+install.sh compiles several Python packages from source (PyPI has no
+FreeBSD wheels), which needs the Rust toolchain installed with this
+package and takes a few minutes.
 
-Script interpreters in the installed tree were rewritten to the system
-Python.  If you use the virtualenv that install.sh creates, do not rely on
-the shebang of idf.py; run it through the virtualenv's Python instead:
+Espressif's constraints file forbids compiling cryptography. The first
+install.sh run will therefore stop at cryptography. Remove the
+restriction and run it again:
 
-  python %%ESPRESSIF_IDF_PATH%%/tools/idf.py build
+  sed -i '' -e '/^--only-binary cryptography/d' \
+      -e 's/^cryptography.*/cryptography>=2.1.4/' \
+      ~/.espressif/espidf.constraints.v5.2.txt
+  rm -rf ~/.espressif/python_env
+  %%ESPRESSIF_IDF_PATH%%/install.sh esp32
 
-USB serial ports appear as /dev/cuaU* on FreeBSD, not /dev/ttyUSB*, and
-are accessible to members of the "dialer" group:
+This package depends on devel/xtensa-esp-elf for a native ESP32
+toolchain. ESP-IDF's tool manager does not recognize its version string
+as matching this ESP-IDF release and will otherwise silently prefer a
+Linux binary toolchain it downloads itself, run under Linux emulation,
+if that one happens to resolve first on PATH. To force the native
+package to be used, after sourcing esp-idf-env.sh and export.sh, put it
+first on PATH and re-run the tool exporter:
 
+  export PATH="/usr/local/xtensa-esp-elf/bin:${PATH}"
+  eval "$(python3 %%ESPRESSIF_IDF_PATH%%/tools/idf_tools.py export --prefer-system)"
+
+This will also print similar warnings for cmake, ninja and any other
+tool it finds ahead of its own downloads; that's expected, since
+--prefer-system applies to everything on PATH, not just the toolchain.
+
+The Linux openocd-esp32 binary cannot load libudev.so.1 on FreeBSD,
+which otherwise makes export.sh abort before it finishes setting up
+your shell. If you don't need JTAG debugging, stub it out:
+
+  d=~/.espressif/tools/openocd-esp32/v0.12.0-esp32-20240318/openocd-esp32/bin
+  mv $d/openocd $d/openocd.linux
+  printf '#!/bin/sh\necho "Open On-Chip Debugger v0.12.0-esp32-20240318 (2024-03-18-15:59)" >&2\n' > $d/openocd
+  chmod +x $d/openocd
+
+Once install.sh has finished:
+
+  . %%ESPRESSIF_PREFIX%%/esp-idf-env.sh
+  . %%ESPRESSIF_IDF_PATH%%/export.sh
   idf.py set-target esp32
   idf.py build
   idf.py -p /dev/cuaU0 flash monitor
+
+USB serial ports appear as /dev/cuaU* on FreeBSD, not /dev/ttyUSB*, and
+are accessible to members of the "dialer" group.
+
+idf.py reports "Git version unavailable" because this package strips
+.git to save space; this is expected and does not affect functionality.
+
 EOM
 }
 ]

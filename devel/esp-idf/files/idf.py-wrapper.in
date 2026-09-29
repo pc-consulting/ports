@@ -1,0 +1,14 @@
+#!/bin/sh
+# idf.py's own shebang is hardcoded to the system Python (rewritten at
+# package-build time by USES=shebangfix), so it cannot see the packages
+# in the ESP-IDF virtualenv that install.sh creates.  This wrapper finds
+# that virtualenv and runs the real idf.py through it explicitly.
+: "${IDF_PATH:=%%ESPRESSIF_IDF_PATH%%}"
+: "${IDF_TOOLS_PATH:=${HOME}/.espressif}"
+
+venv=$(ls -d "${IDF_TOOLS_PATH}"/python_env/*/ 2>/dev/null | tail -n 1)
+if [ -n "${venv}" ] && [ -x "${venv}bin/python3" ]; then
+	exec "${venv}bin/python3" "${IDF_PATH}/tools/idf.py" "$@"
+else
+	exec python3 "${IDF_PATH}/tools/idf.py" "$@"
+fi

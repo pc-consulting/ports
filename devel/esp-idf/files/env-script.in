@@ -8,8 +8,15 @@ export IDF_PATH
 : "${IDF_TOOLS_PATH:=${HOME}/.espressif}"
 export IDF_TOOLS_PATH
 
-# idf.py lives in ${IDF_PATH}/tools
+# idf.py lives in ${IDF_PATH}/tools ...
 case ":${PATH}:" in
 *":${IDF_PATH}/tools:"*) ;;
 *) PATH="${IDF_PATH}/tools:${PATH}"; export PATH ;;
+esac
+# ... but %%ESPRESSIF_PREFIX%%/bin/idf.py must win over it: it wraps the
+# real idf.py so it always runs under install.sh's virtualenv, instead of
+# under the shebang-fixed system Python that idf.py itself ships with.
+case ":${PATH}:" in
+*":%%ESPRESSIF_PREFIX%%/bin:"*) ;;
+*) PATH="%%ESPRESSIF_PREFIX%%/bin:${PATH}"; export PATH ;;
 esac
