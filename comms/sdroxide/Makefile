@@ -1,14 +1,9 @@
-# WIP FreeBSD port for SDR Oxide (sdroxide) 1.6.7
+# FreeBSD port for SDR Oxide (sdroxide) 1.6.7
 #
-# This is an analysis/build prototype, not yet submission-ready.
-# See PORT-ANALYSIS.md before attempting a build.
-#
-# Upstream release:
-# https://github.com/dividebysandwich/sdroxide/releases/tag/v1.6.7
 
 PORTNAME=	sdroxide
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.7
+DISTVERSION=	1.6.9
 CATEGORIES=	comms hamradio
 
 MAINTAINER=	dl5bct@gmx.net
@@ -42,7 +37,8 @@ GH_ACCOUNT=	dividebysandwich
 GH_TUPLE=	knik0:faad2:673a22a3c7c33e96e2ff7aae7c4d2bc190dfbf92:faad2/vendor/faad2 \
 		freedv:rade_c:a36161bce0fb37daf3f4602344b095f6817dddb1:rade_c/vendor/rade_c \
 		merbanan:rtl_433:8fa6364c5c7e14665fe3d80d0553883ec14a4116:rtl_433/vendor/rtl_433 \
-		xiph:opus:940d4e5af64351ca8ba8390df3f555484c567fbb:opus/vendor/opus
+		xiph:opus:940d4e5af64351ca8ba8390df3f555484c567fbb:opus/vendor/opus \
+		airframesio:xng:096c805278faa0a904de7d98066bf4cf395cb6c2:xng/vendor/xng
 
 # rade_c's BuildOpus.cmake downloads Opus, and Opus' autogen.sh downloads a
 # neural-network model tarball.  Neither is allowed at build time, so both are

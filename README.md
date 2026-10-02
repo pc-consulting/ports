@@ -4,6 +4,12 @@ Current state of the art (at time of edit):
 
 Considered *production-ready* (i. e. could go into the ports tree):
 
+- comms/sdroxide
+  - Builds, installs and runs
+  - Test with real hardware pending
+  - Large build pulls in tons of crates, may consider OPTIONS later, but for now please just be patient for the port to build
+- devel/esp-idf
+  - Tested: Successfully built, uploaded and run esp32-ue project
 - devel/arduino-ide
   - Arduino IDE of the more recent (than what we had in ports so far) v2.x branch including the following dependencies the IDE requires apart from what already is present in ports.
   - devel/arduino-cli
