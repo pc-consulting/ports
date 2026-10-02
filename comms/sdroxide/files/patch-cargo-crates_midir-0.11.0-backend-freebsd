@@ -1,6 +1,6 @@
 --- /dev/null
 +++ cargo-crates/midir-0.11.0/src/backend/freebsd/mod.rs
-@@ -0,0 +1,570 @@
+@@ -0,0 +1,809 @@
 +use std::ffi::{c_char, c_int, c_uint, c_void, CString};
 +use std::fs;
 +use std::mem;
@@ -21,6 +21,7 @@
 +    _private: [u8; 0],
 +}
 +
++#[link(name = "sndio")]
 +unsafe extern "C" {
 +    fn mio_open(name: *const c_char, mode: c_uint, nbio_flag: c_int) -> *mut MioHdl;
 +    fn mio_close(hdl: *mut MioHdl);
@@ -262,7 +263,7 @@
 +                        mio_pollfd(
 +                            handle,
 +                            poll_fds[1..].as_mut_ptr(),
-+                            libc::POLLIN,
++                            libc::POLLIN as c_int,
 +                        )
 +                    };
 +
@@ -295,8 +296,13 @@
 +                        mio_revents(handle, poll_fds[1..].as_mut_ptr())
 +                    };
 +
-+                    if revents & libc::POLLIN == 0 {
-+                        if revents & (libc::POLLERR | libc::POLLHUP | libc::POLLNVAL) != 0 {
++                    if revents & (libc::POLLIN as c_int) == 0 {
++                        if revents
++                            & (libc::POLLERR as c_int
++                                | libc::POLLHUP as c_int
++                                | libc::POLLNVAL as c_int)
++                            != 0
++                        {
 +                            break;
 +                        }
 +                        continue;
@@ -351,7 +357,6 @@
 +         * raw pointer.  Prevent the temporary Rust owner from closing it.
 +         */
 +        mem::forget(handle);
-+        mem::forget(trigger_fds.0);
 +
 +        Ok(MidiInputConnection {
 +            thread: Some(thread),

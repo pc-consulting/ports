@@ -1,4 +1,6 @@
-TIMESTAMP = 1789804582
+TIMESTAMP = 1790834826
+SHA256 (opus_data-4ed9445b96698bad25d852e912b41495ddfa30c8dbc8a55f9cde5826ed793453.tar.gz) = 4ed9445b96698bad25d852e912b41495ddfa30c8dbc8a55f9cde5826ed793453
+SIZE (opus_data-4ed9445b96698bad25d852e912b41495ddfa30c8dbc8a55f9cde5826ed793453.tar.gz) = 183514217
 SHA256 (rust/crates/ab_glyph-0.2.32.crate) = 01c0457472c38ea5bd1c3b5ada5e368271cb550be7a4ca4a0b4634e9913f6cc2
 SIZE (rust/crates/ab_glyph-0.2.32.crate) = 20967
 SHA256 (rust/crates/ab_glyph_rasterizer-0.1.10.crate) = 366ffbaa4442f4684d91e2cd7c5ea7c4ed8add41959a31447066e279e432b618
@@ -1401,3 +1403,5 @@ SHA256 (freedv-rade_c-a36161bce0fb37daf3f4602344b095f6817dddb1_GH0.tar.gz) = eab
 SIZE (freedv-rade_c-a36161bce0fb37daf3f4602344b095f6817dddb1_GH0.tar.gz) = 86716759
 SHA256 (merbanan-rtl_433-8fa6364c5c7e14665fe3d80d0553883ec14a4116_GH0.tar.gz) = 6e164f38216f46f1d08494c2adeaa7c72d7f3d5456e0b8c5ae424159d7051753
 SIZE (merbanan-rtl_433-8fa6364c5c7e14665fe3d80d0553883ec14a4116_GH0.tar.gz) = 1394657
+SHA256 (xiph-opus-940d4e5af64351ca8ba8390df3f555484c567fbb_GH0.tar.gz) = 285c74f5130ee074f123aaad81cd52c2fc8db653ee130941afafe3ee0ae8cec2
+SIZE (xiph-opus-940d4e5af64351ca8ba8390df3f555484c567fbb_GH0.tar.gz) = 4881876

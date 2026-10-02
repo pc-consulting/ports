@@ -12,7 +12,7 @@
  
 --- /dev/null
 +++ cargo-crates/nusb-0.2.7/src/platform/freebsd.rs
-@@ -0,0 +1,758 @@
+@@ -0,0 +1,761 @@
 +use std::{
 +    collections::VecDeque,
 +    num::NonZeroU32,
@@ -372,7 +372,9 @@
 +
 +                devices.push(DeviceInfo {
 +                    busnum,
++                    bus_id: format!("{busnum:03}"),
 +                    device_address: address,
++                    port_chain,
 +                    vendor_id: desc.id_vendor,
 +                    product_id: desc.id_product,
 +                    device_version: desc.bcd_device,
@@ -397,7 +399,9 @@
 +            } else {
 +                devices.push(DeviceInfo {
 +                    busnum,
++                    bus_id: format!("{busnum:03}"),
 +                    device_address: address,
++                    port_chain,
 +                    vendor_id: desc.id_vendor,
 +                    product_id: desc.id_product,
 +                    device_version: desc.bcd_device,
@@ -419,7 +423,6 @@
 +                    interfaces,
 +                });
 +            }
-+            let _ = port_chain;
 +        }
 +
 +        unsafe { libusb_free_device_list(list, 1) };

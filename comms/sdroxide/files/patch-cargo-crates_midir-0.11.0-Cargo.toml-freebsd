@@ -1,12 +1,12 @@
 --- cargo-crates/midir-0.11.0/Cargo.toml.orig
 +++ cargo-crates/midir-0.11.0/Cargo.toml
-@@ -50,6 +50,9 @@
- [target.'cfg(target_os = "linux")'.dependencies]
- alsa = ">=0.9.0, <0.12"
- libc = "0.2.21"
+@@ -152,6 +152,9 @@
+ [target.'cfg(target_os = "linux")'.dependencies.libc]
+ version = "0.2.21"
  
-+[target.'cfg(target_os = "freebsd")'.dependencies]
-+libc = "0.2.21"
++[target.'cfg(target_os = "freebsd")'.dependencies.libc]
++version = "0.2.21"
 +
- [target.'cfg(target_os = "ios")'.dependencies]
- coremidi = "0.9.0"
+ [target.'cfg(target_os = "macos")'.dependencies.coremidi]
+ version = "0.9.0"
+ 

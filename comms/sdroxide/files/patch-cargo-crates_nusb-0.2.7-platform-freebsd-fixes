@@ -78,16 +78,6 @@
          });
          pending
      }
---- cargo-crates/nusb-0.2.7/src/enumeration.rs	2026-09-21 04:35:56.672275689 +0000
-+++ cargo-crates/nusb-0.2.7/src/enumeration.rs	2026-09-21 04:35:56.675729792 +0000
-@@ -67,6 +67,7 @@
-         target_os = "macos",
-         target_os = "windows",
-         target_os = "android",
-+        target_os = "freebsd",
-     ))]
-     pub(crate) device_address: u8,
- 
 --- cargo-crates/nusb-0.2.7/src/lib.rs	2006-07-24 01:21:28.000000000 +0000
 +++ cargo-crates/nusb-0.2.7/src/lib.rs	2026-09-21 04:35:56.675890539 +0000
 @@ -271,6 +271,7 @@

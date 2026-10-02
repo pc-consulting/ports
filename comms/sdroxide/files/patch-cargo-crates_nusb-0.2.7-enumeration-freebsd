@@ -9,7 +9,29 @@
      pub(crate) busnum: u8,
  
      #[cfg(target_os = "windows")]
-@@ -80,6 +80,7 @@
+@@ -59,7 +59,7 @@
+     #[cfg(target_os = "macos")]
+     pub(crate) location_id: u32,
+ 
+-    #[cfg(any(target_os = "linux", target_os = "macos", target_os = "windows",))]
++    #[cfg(any(target_os = "linux", target_os = "macos", target_os = "windows", target_os = "freebsd"))]
+     pub(crate) bus_id: String,
+ 
+     #[cfg(any(
+@@ -67,10 +67,11 @@
+         target_os = "macos",
+         target_os = "windows",
+         target_os = "android",
++        target_os = "freebsd",
+     ))]
+     pub(crate) device_address: u8,
+ 
+-    #[cfg(any(target_os = "linux", target_os = "macos", target_os = "windows"))]
++    #[cfg(any(target_os = "linux", target_os = "macos", target_os = "windows", target_os = "freebsd"))]
+     pub(crate) port_chain: Vec<u8>,
+ 
+     pub(crate) vendor_id: u16,
+@@ -80,6 +81,7 @@
          target_os = "linux",
          target_os = "macos",
          target_os = "windows",
@@ -17,7 +39,7 @@
          target_arch = "wasm32"
      ))]
      pub(crate) device_version: u16,
-@@ -94,6 +95,7 @@
+@@ -94,6 +96,7 @@
          target_os = "macos",
          target_os = "windows",
          target_os = "android",
@@ -25,7 +47,7 @@
      ))]
      pub(crate) speed: Option<Speed>,
  
-@@ -115,7 +117,7 @@
+@@ -115,7 +118,7 @@
              DeviceId(self.devinst)
          }
  
@@ -34,7 +56,45 @@
          {
              DeviceId(crate::platform::DeviceId {
                  bus: self.busnum,
-@@ -285,7 +287,8 @@
+@@ -183,7 +186,8 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
+-        target_os = "windows"
++        target_os = "windows",
++        target_os = "freebsd"
+     ))]
+     pub fn port_chain(&self) -> &[u8] {
+         &self.port_chain
+@@ -212,7 +216,8 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
+-        target_os = "windows"
++        target_os = "windows",
++        target_os = "freebsd"
+     ))]
+     pub fn bus_id(&self) -> &str {
+         &self.bus_id
+@@ -223,7 +228,8 @@
+         docsrs,
+         target_os = "linux",
+         target_os = "macos",
+-        target_os = "windows"
++        target_os = "windows",
++        target_os = "freebsd"
+     ))]
+     pub fn device_address(&self) -> u8 {
+         self.device_address
+@@ -248,6 +254,7 @@
+         target_os = "linux",
+         target_os = "macos",
+         target_os = "windows",
++        target_os = "freebsd",
+         target_arch = "wasm32"
+     ))]
+     pub fn device_version(&self) -> u16 {
+@@ -285,7 +292,8 @@
          docsrs,
          target_os = "linux",
          target_os = "macos",
