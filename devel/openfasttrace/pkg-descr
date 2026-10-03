@@ -1,0 +1,12 @@
+OpenFastTrace (OFT) is a requirement management and tracing suite.
+
+Requirement tracing keeps track of whether everything planned in the
+specifications was actually implemented. It also identifies obsolete
+parts of a product so they can be removed.
+
+OFT imports specification items from Markdown, reStructuredText and
+other formats, links them against tags in source code and tests, and
+produces plain-text, HTML and other tracing reports.
+
+Usage:
+  oft trace /path/to/project
