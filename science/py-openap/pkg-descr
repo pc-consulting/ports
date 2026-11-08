@@ -1,0 +1,8 @@
+OpenAP is an open aircraft performance and emission model. It provides
+aircraft and engine parameter databases together with kinematic, thrust,
+drag and fuel-flow models, along with command line tools for aviation
+research and trajectory analysis.
+
+It is used by science/py-bluesky-simulator for aircraft performance
+modelling, and can also be used standalone for trajectory generation,
+flight emission estimation, and related studies.
