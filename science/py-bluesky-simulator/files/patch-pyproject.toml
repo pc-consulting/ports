@@ -1,0 +1,30 @@
+Upstream pins the exact hatchling release it developed against, which
+is older than devel/py-hatchling. The PEP-517 build frontend refuses to
+proceed ("Unmet dependencies") when the installed hatchling does not
+match that exact pin, since we build with --no-isolation. Relax it to a
+lower bound; hatchling's build-hook API used by hatch_build.py has not
+changed since.
+
+The custom build hook also declares a hard setuptools>=69.1.1 need for
+compiling the bundled C++ extensions, which the build frontend enforces
+the same way. devel/py-setuptools (63.1.0_3) is older but still exposes
+the plain setuptools.Extension / build_ext API the hook actually uses,
+so drop the version bound instead of bumping a whole-tree dependency.
+
+--- pyproject.toml.orig	2026-11-06 00:00:00 UTC
++++ pyproject.toml
+@@ -71,7 +71,7 @@
+ Repository = "https://github.com/TUDelft-CNS-ATM/bluesky"
+
+ [build-system]
+-requires = ["hatchling==1.26.3", "hatch-vcs"]
++requires = ["hatchling>=1.26.3", "hatch-vcs"]
+ build-backend = "hatchling.build"
+
+ [tool.hatch.version]
+@@ -92,4 +92,4 @@
+ ]
+
+ [tool.hatch.build.targets.wheel.hooks.custom]
+-dependencies = ["setuptools>=69.1.1", "numpy"]
++dependencies = ["setuptools", "numpy"]
