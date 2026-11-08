@@ -1,0 +1,10 @@
+BlueSky plugin bridging the BlueSky air traffic simulator to Frequentis's
+cme-manager (Conformance Monitoring Element service). Subscribes to
+conformance-monitoring and conflict/separation alerts (STCA, MSAW,
+RIMCAS, ACAS-RA, and more) for a configured airspace volume and tracks
+them, correlating each alert to the simulated aircraft involved.
+
+Drop-in plugin: once installed, BlueSky automatically discovers it from
+the shared plugin directory. Load it with "PLUGIN LOAD FRQ_CME" (or add
+FRQ_CME to enabled_plugins in settings.cfg), then toggle the bridge with
+the FRQCME ON/OFF stack command.
