@@ -1,0 +1,10 @@
+BlueSky plugin bridging the BlueSky air traffic simulator to Frequentis's
+ras-manager (Restricted Airspace Service). Consumes UASZone restricted-
+airspace definitions from ras-manager and enforces them as BlueSky
+geofenced areas, honoring each zone's altitude band, restriction type and
+time-window applicability.
+
+Drop-in plugin: once installed, BlueSky automatically discovers it from
+the shared plugin directory. Load it with "PLUGIN LOAD FRQ_RAS" (or add
+FRQ_RAS to enabled_plugins in settings.cfg); it then runs automatically,
+with no further stack command needed.
