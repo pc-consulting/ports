@@ -1,0 +1,6 @@
+Navigation data files (airports, waypoints, airways, coastlines, FIR
+boundaries and related navaid data) used by the BlueSky open air traffic
+simulator.
+
+This package only contains data and installs no code of its own; see
+science/py-bluesky-simulator for the simulator itself.
