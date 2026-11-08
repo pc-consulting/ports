@@ -1,0 +1,9 @@
+BlueSky plugin bridging the BlueSky air traffic simulator to Frequentis's
+operation-plan-service. Files BlueSky routes as U-space OperationPlans
+(including contingency/alternate plans) and activates authorized plans
+by spawning the corresponding simulated flight.
+
+Drop-in plugin: once installed, BlueSky automatically discovers it from
+the shared plugin directory. Load it with "PLUGIN LOAD FRQ_OPPLAN" (or
+add FRQ_OPPLAN to enabled_plugins in settings.cfg), then use the
+FRQACTIVATE stack command to activate a filed plan.
