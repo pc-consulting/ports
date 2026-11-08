@@ -2,6 +2,7 @@
 
 PORTNAME=	bluesky-simulator
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -38,6 +39,13 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 USES=		compiler:c++11-lang python:3.11+
 USE_PYTHON=	autoplist pep517
 
+# Fixed, package-manager-installable plugin search directory (see
+# files/patch-bluesky_pathfinder.py) so third-party BlueSky plugin
+# ports (science/py-bluesky-frq-*, and any future one) can drop their
+# files in without per-user configuration. Always created, even if no
+# such port is installed, so it isn't autoplist-detected as orphaned.
+PLIST_DIRS=	share/bluesky/plugins
+
 OPTIONS_DEFINE=		CONSOLE PYGAME QT6
 OPTIONS_DEFAULT=	CONSOLE
 CONSOLE_DESC=	Text console UI (textual)
@@ -51,5 +59,12 @@ QT6_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}qt6-pyqt>0:devel/py-qt6-pyqt@${PY_FLAVOR
 			${PYTHON_PKGNAMEPREFIX}PyOpenGL>0:graphics/py-PyOpenGL@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}PyOpenGL-accelerate>0:graphics/py-PyOpenGL-accelerate@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}bluesky-guidata>0:science/py-bluesky-guidata@${PY_FLAVOR}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,/usr/local,${PREFIX},' \
+		${WRKSRC}/bluesky/pathfinder.py
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/bluesky/plugins
 
 .include <bsd.port.mk>
