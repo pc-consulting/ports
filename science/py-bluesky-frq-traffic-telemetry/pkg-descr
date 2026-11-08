@@ -1,0 +1,10 @@
+BlueSky plugin bridging the BlueSky air traffic simulator to Frequentis's
+telemetry-manager. Reports the live position/velocity of simulated
+aircraft as PositionReports as if they were real tracked aircraft, and
+consumes externally-sourced PositionReports back into the simulation as
+injected or updated tracks.
+
+Drop-in plugin: once installed, BlueSky automatically discovers it from
+the shared plugin directory. Load it with "PLUGIN LOAD FRQ_TELEMETRY"
+(or add FRQ_TELEMETRY to enabled_plugins in settings.cfg), then toggle
+the bridge with the FRQTELEMETRY ON/OFF stack command.
